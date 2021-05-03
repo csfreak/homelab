@@ -41,7 +41,6 @@ spec:
             secretKeyRef:
               key: database-name
               name: netbox-postgres
-        image: registry.redhat.io/rhel8/postgresql-10@sha256:c9ff126020cda98c6622c6bf5d6f58ebbd9016b56c41612be9a427d9c5a03ff1
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
@@ -95,6 +94,5 @@ spec:
         kind: ImageStreamTag
         name: postgresql:10-el8
         namespace: openshift
-      lastTriggeredImage: registry.redhat.io/rhel8/postgresql-10@sha256:c9ff126020cda98c6622c6bf5d6f58ebbd9016b56c41612be9a427d9c5a03ff1
     type: ImageChange
   - type: ConfigChange
