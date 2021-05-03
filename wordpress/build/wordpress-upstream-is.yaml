@@ -11,7 +11,7 @@ spec:
       annotations: null
       from:
         kind: DockerImage
-        name: 'registry.hub.docker.com/wordpress:latest'
+        name: 'wordpress:latest'
       importPolicy: {}
       referencePolicy:
         type: Source
