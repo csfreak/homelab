@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  ALLOWED_HOSTS: localhost netbox.homelab.csfreak.com
+  DB_HOST: netbox-postgres
+  REDIS_HOST: netbox-redis
+kind: ConfigMap
+metadata:
+  name: netbox-config
+  namespace: netbox
