@@ -1,0 +1,24 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: "wordpress-base" 
+spec:
+  runPolicy: "Serial" 
+  triggers: 
+    - type: "ImageChange"
+      from:
+        kind: "ImageStreamTag"
+        name: "wordpress-upstream:latest"
+  source: 
+    git:
+      uri: "https://github.com/csfreak/homelab"
+    context-dir: "wordpress/build/base"
+  strategy:
+    dockerStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "wordpress-upstream:latest"
+  output: 
+    to:
+      kind: "ImageStreamTag"
+      name: "wordpress-base:latest"
