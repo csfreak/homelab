@@ -7,8 +7,6 @@ metadata:
     template: redis-ephemeral-template
   name: netbox-redis
   namespace: netbox
-  resourceVersion: "464883"
-  uid: 84fc7919-7e82-4928-ad6b-d6c26788ad4f
 spec:
   replicas: 1
   revisionHistoryLimit: 5
