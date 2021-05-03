@@ -12,7 +12,7 @@ spec:
       protocol: TCP
       targetPort: 6379
   selector:
-    deployment-config: netbox-redis
+    deploymentconfig: netbox-redis
   sessionAffinity: None
   type: ClusterIP
 status:
