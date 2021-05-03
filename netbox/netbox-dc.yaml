@@ -2,21 +2,21 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   labels:
-    app: netbox-community
-    app.kubernetes.io/component: netbox-community
-    app.kubernetes.io/instance: netbox-community
-    app.kubernetes.io/name: netbox-community
-    app.openshift.io/runtime: netbox-community
+    app: netbox
+    app.kubernetes.io/component: netbox
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/name: netbox
+    app.openshift.io/runtime: netbox
     app.openshift.io/runtime-namespace: netbox
     app.openshift.io/runtime-version: latest
-  name: netbox-community
+  name: netbox
   namespace: netbox
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
-    app: netbox-community
-    deploymentconfig: netbox-community
+    app: netbox
+    deploymentconfig: netbox
   strategy:
     activeDeadlineSeconds: 21600
     resources: {}
@@ -30,8 +30,8 @@ spec:
   template:
     metadata:
       labels:
-        app: netbox-community
-        deploymentconfig: netbox-community
+        app: netbox
+        deploymentconfig: netbox
     spec:
       containers:
       - env:
@@ -61,7 +61,7 @@ spec:
         - secretRef:
             name: netbox-secrets
         imagePullPolicy: IfNotPresent
-        name: netbox-community
+        name: netbox
         ports:
         - containerPort: 8080
           protocol: TCP
