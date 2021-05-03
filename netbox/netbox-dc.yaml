@@ -60,6 +60,7 @@ spec:
             name: netbox-config
         - secretRef:
             name: netbox-secrets
+        imageName: netbox-community:latest
         imagePullPolicy: IfNotPresent
         name: netbox
         ports:
