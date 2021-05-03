@@ -3,10 +3,10 @@ kind: Route
 metadata:
   creationTimestamp: "2021-05-02T18:56:20Z"
   labels:
-    app: netbox-community
-    app.kubernetes.io/component: netbox-community
-    app.kubernetes.io/instance: netbox-community
-  name: netbox-community
+    app: netbox
+    app.kubernetes.io/component: netbox
+    app.kubernetes.io/instance: netbox
+  name: netbox
   namespace: netbox
 spec:
   host: netbox.homelab.csfreak.com
@@ -17,6 +17,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: netbox-community
+    name: netbox
     weight: 100
   wildcardPolicy: None
