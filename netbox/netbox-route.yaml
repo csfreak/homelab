@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: "2021-05-02T18:56:20Z"
+  labels:
+    app: netbox-community
+    app.kubernetes.io/component: netbox-community
+    app.kubernetes.io/instance: netbox-community
+  name: netbox-community
+  namespace: netbox
+spec:
+  host: netbox.homelab.csfreak.com
+  port:
+    targetPort: 8080-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: netbox-community
+    weight: 100
+  wildcardPolicy: None
