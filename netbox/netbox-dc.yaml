@@ -60,6 +60,8 @@ spec:
             name: netbox-config
         - secretRef:
             name: netbox-secrets
+        image: >-
+          quay.io/netboxcommunity/netbox@sha256:9acda30e0f6cf7c0c7b8684301e5436c7b0a458cad422d58580f23c21d7a67a0
         imagePullPolicy: IfNotPresent
         name: netbox
         ports:
