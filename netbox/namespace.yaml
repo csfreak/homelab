@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: "Netbox DCIM/IPAM for Home Lab"
+    openshift.io/display-name: Openshift Netbox Install
+  name: netbox
+spec: {}
