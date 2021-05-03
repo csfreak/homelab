@@ -12,7 +12,7 @@ spec:
   source: 
     git:
       uri: "https://github.com/csfreak/homelab"
-    context-dir: "wordpress/build/base"
+    contextDir: "wordpress/build/base"
   strategy:
     dockerStrategy:
       from:
