@@ -6,9 +6,7 @@ spec:
   runPolicy: "Serial" 
   triggers: 
     - type: "ImageChange"
-      from:
-        kind: "ImageStreamTag"
-        name: "wordpress-upstream:latest"
+      imageChange: {}
   source: 
     git:
       uri: "https://github.com/csfreak/homelab"
