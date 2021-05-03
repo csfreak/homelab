@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: netbox
+    app.kubernetes.io/component: netbox
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
+  name: netbox
+  namespace: netbox
+spec:
+  ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: netbox
+    deploymentconfig: netbox
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
