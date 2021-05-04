@@ -7,6 +7,10 @@ spec:
   triggers: 
     - type: "ImageChange"
       imageChange: {}
+    - type: "Generic"
+      generic:
+        secretReference:
+          name: "generic-webhook-secret"
   source: 
     git:
       uri: "https://github.com/csfreak/homelab"
