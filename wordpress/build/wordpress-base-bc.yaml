@@ -26,5 +26,5 @@ spec:
     to:
       kind: "ImageStreamTag"
       name: "wordpress-base:latest"
-  succsessfulBuildsHistoryLimit: 2
+  successfulBuildsHistoryLimit: 2
   failedBuildsHistoryLimit: 2
