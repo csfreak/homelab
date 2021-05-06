@@ -1,6 +1,7 @@
 FROM wordpress:latest
 
-RUN cd /usr/src/wordpress/wp-content/plugins && \
+RUN apt-get install wget && \
+    cd /usr/src/wordpress/wp-content/plugins && \
     wget https://downloads.wordpress.org/plugin/wordfence.${WORDFENCE_VERSION}.zip && \
     wget https://downloads.wordpress.org/plugin/updraftplus.${UPDRAFT_VERSION}.zip
     unzip wordfence.latest-stable.zip && \
