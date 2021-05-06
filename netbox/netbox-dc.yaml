@@ -70,11 +70,18 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/netbox/media
+          name: netbox-media-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      volumes:
+      - name: netbox-media-data
+        persistentVolumeClaim:
+          claimName: netbox-media
   test: false
   triggers:
   - imageChangeParams:
