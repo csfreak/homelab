@@ -1,9 +1,7 @@
 FROM wordpress:latest
 
-ARG WORDFENCE_VERSION='latest-stable'
-ARG UPDRAFT_VERSION='latest-stable'
-ADD https://downloads.wordpress.org/plugin/wordfence.$WORDFENCE_VERSION.zip /usr/src/wordpress/wp-content/plugins/
-ADD https://downloads.wordpress.org/plugin/updraftplus.$UPDRAFT_VERSION.zip /usr/src/wordpress/wp-content/plugins/
+ADD https://downloads.wordpress.org/plugin/wordfence.${WORDFENCE_VERSION}.zip /usr/src/wordpress/wp-content/plugins/
+ADD https://downloads.wordpress.org/plugin/updraftplus.${UPDRAFT_VERSION}.zip /usr/src/wordpress/wp-content/plugins/
 RUN cd /usr/src/wordpress/wp-content/plugins && \
     unzip wordfence.latest-stable.zip && \
     unzip updraftplus.latest-stable.zip && \

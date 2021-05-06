@@ -22,6 +22,11 @@ spec:
         kind: "ImageStreamTag"
         name: "wordpress-upstream:latest"
       imageOptimizationPolicy: SkipLayers
+      env:
+        - name: "WORDFENCE_VERSION"
+          value: "latest-stable"
+        - name: "UPDRAFTPLUS_VERSION"
+          value: "latest-stable"
   output: 
     to:
       kind: "ImageStreamTag"
