@@ -3,7 +3,7 @@ apiVersion: build.openshift.io/v1
 metadata:
   name: "wordpress-base" 
 spec:
-  runPolicy: "Serial" 
+  runPolicy: "SerialLatestOnly" 
   triggers: 
     - type: "ImageChange"
       imageChange: {}
@@ -11,6 +11,7 @@ spec:
       generic:
         secretReference:
           name: "generic-webhook-secret"
+        allowEnv: true
   source: 
     git:
       uri: "https://github.com/csfreak/homelab"
@@ -20,7 +21,10 @@ spec:
       from:
         kind: "ImageStreamTag"
         name: "wordpress-upstream:latest"
+      imageOptimizationPolicy: SkipLayers
   output: 
     to:
       kind: "ImageStreamTag"
       name: "wordpress-base:latest"
+  succsessfulBuildsHistoryLimit: 2
+  failedBuildsHistoryLimit: 2
