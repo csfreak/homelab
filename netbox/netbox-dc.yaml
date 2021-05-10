@@ -11,6 +11,8 @@ metadata:
     app.openshift.io/runtime-version: latest
   name: netbox
   namespace: netbox
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: 'netbox-community'
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -54,8 +56,7 @@ spec:
             name: netbox-config
         - secretRef:
             name: netbox-secrets
-        image: >-
-          image-registry.openshift-image-registry.svc:5000/netbox/netbox-community:latest
+        image: netbox-community:latest
         imagePullPolicy: IfNotPresent
         name: netbox
         ports:

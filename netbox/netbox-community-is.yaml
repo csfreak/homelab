@@ -5,7 +5,7 @@ metadata:
   namespace: netbox
 spec:
   lookupPolicy:
-    local: false
+    local: true
   tags:
     - name: latest
       from:
@@ -13,4 +13,4 @@ spec:
         name: 'quay.io/netboxcommunity/netbox:latest'
       importPolicy: {}
       referencePolicy:
-        type: Source
+        type: Local
