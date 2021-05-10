@@ -8,11 +8,9 @@ spec:
     local: false
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: 'quay.io/netboxcommunity/netbox:latest'
-      generation: 1
       importPolicy: {}
       referencePolicy:
         type: Source
