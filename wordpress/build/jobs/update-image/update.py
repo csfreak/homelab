@@ -5,7 +5,7 @@ import sys
 import requests
 from kubernetes import client, config
 
-image_name = sys.argv[0]
+image_name = sys.argv[1]
 update = {}
 namespace = None
 config.incluster_config.load_incluster_config()
