@@ -24,3 +24,4 @@ spec:
               envFrom:
                 - secretRef:
                     name: generic-webhook-secrets
+          restartPolicy: Never
