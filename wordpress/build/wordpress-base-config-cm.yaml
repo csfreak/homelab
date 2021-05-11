@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  WORDFENCE_VERSION: "latest-stable"
+  UPDRAFTPLUS_VERSION: "latest-stable"
+kind: ConfigMap
+metadata:
+  name: wordpress-base-config
+  namespace: wordpress

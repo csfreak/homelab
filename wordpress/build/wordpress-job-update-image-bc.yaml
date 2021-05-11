@@ -1,30 +1,23 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: "wordpress-base"
+  name: "wordpress-job-update-image"
 spec:
   runPolicy: "SerialLatestOnly"
   triggers:
     - type: "ImageChange"
       imageChange: {}
-    - type: "Generic"
+    - type: "GitHub"
       generic:
         secretReference:
           name: "generic-webhook-secret"
-        allowEnv: true
   source:
     git:
       uri: "https://github.com/csfreak/homelab"
-    contextDir: "wordpress/build/base"
+    contextDir: "wordpress/build/jobs/update-image"
   strategy:
     dockerStrategy:
-      from:
-        kind: "ImageStreamTag"
-        name: "wordpress-upstream:latest"
       imageOptimizationPolicy: SkipLayers
-      envFrom:
-        - configMapRef:
-            name: wordpress-base-config
   output:
     to:
       kind: "ImageStreamTag"

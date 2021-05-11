@@ -1,0 +1,26 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: update-wordpress-base
+spec:
+  schedule: "0 4 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 300
+      template:
+        metadata:
+          labels:
+            parent: update-wordpress-base
+          annotations:
+            alpha.image.policy.openshift.io/resolve-names: "wordpress-job-update-image"
+        spec:
+          containers:
+            - image: wordpress-job-update-image:latest
+              name: wordpress-job-update-image
+              command: ["wordpress-base"]
+              envFrom:
+                - secretRef:
+                  name: generic-webhook-secrets
