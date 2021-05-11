@@ -32,7 +32,7 @@ for plugin in plugins:
 
 
 if update:
-    core.patched_namespaced_config_map(
+    core.patch_namespaced_config_map(
         f"${image_name}_config",
         namespace,
         f'{{"data":{{${json.dumps(update)}}}}}')
