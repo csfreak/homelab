@@ -8,7 +8,7 @@ spec:
     - type: "ImageChange"
       imageChange: {}
     - type: "GitHub"
-      generic:
+      github:
         secretReference:
           name: "generic-webhook-secret"
   source:
