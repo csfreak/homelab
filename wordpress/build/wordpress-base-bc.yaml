@@ -22,9 +22,17 @@ spec:
         kind: "ImageStreamTag"
         name: "wordpress-upstream:latest"
       imageOptimizationPolicy: SkipLayers
-      envFrom:
-        - configMapRef:
-            name: wordpress-base-config
+      env:
+        - name: "WORDFENCE_VERSION"
+          valueFrom:
+            configMapKeyRef:
+              key: "WORDFENCE_VERSION"
+              name: "wordpress-base-config"
+        - name: "UPDRAFTPLUS_VERSION"
+          valueFrom:
+            configMapKeyRef:
+              key: "UPDRAFTPLUS_VERSION"
+              name: "wordpress-base-config"
   output:
     to:
       kind: "ImageStreamTag"
