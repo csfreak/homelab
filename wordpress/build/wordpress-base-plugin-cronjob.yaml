@@ -10,6 +10,7 @@ spec:
   jobTemplate:
     spec:
       activeDeadlineSeconds: 300
+      backoffLimit: 2
       template:
         metadata:
           labels:
@@ -20,7 +21,7 @@ spec:
           containers:
             - image: wordpress-job-update-image:latest
               name: wordpress-job-update-image
-              command: ["wordpress-base"]
+              command: ["python", "update.py", "wordpress-base"]
               envFrom:
                 - secretRef:
                     name: generic-webhook-secret
