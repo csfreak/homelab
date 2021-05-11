@@ -19,6 +19,6 @@ spec:
   output:
     to:
       kind: "ImageStreamTag"
-      name: "wordpress-base:latest"
+      name: "wordpress-job-update-image:latest"
   successfulBuildsHistoryLimit: 2
   failedBuildsHistoryLimit: 2
