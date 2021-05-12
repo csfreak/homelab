@@ -2,7 +2,7 @@ FROM wordpress-base:latest
 
 RUN apt-get update && apt-get install -y wget unzip && \
     cd /usr/src/wordpress/wp-content/plugins && \
-    wget https://downloads.wordpress.org/plugin/wordfence.${DUO-WORDPRESS_VERSION}.zip && \
+    wget https://downloads.wordpress.org/plugin/duo-wordpress.${DUO-WORDPRESS_VERSION}.zip && \
     wget https://downloads.wordpress.org/plugin/updraftplus.${CONTACT-FORM-7_VERSION}.zip && \
     unzip wordfence.*.zip && unzip updraftplus.*.zip && rm -f *.zip && \
     cd /usr/src/wordpress/wp-content/themes && \
