@@ -7,10 +7,10 @@ metadata:
     k8s-app: netbox-metrics
 spec:
   ports:
-  - name: metrics
-    port: 80
-    protocol: TCP
-    targetPort: 80
+    - name: metrics
+      port: 80
+      protocol: TCP
+      targetPort: 8080
   selector:
     app: netbox
 ---
@@ -29,6 +29,6 @@ spec:
     matchLabels:
       k8s-app: netbox-metrics
   endpoints:
-  - port: metrics
-    path: /metrics
-    interval: 10s
+    - port: metrics
+      path: /metrics
+      interval: 10s
