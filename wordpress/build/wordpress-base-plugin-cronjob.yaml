@@ -21,7 +21,10 @@ spec:
           containers:
             - image: wordpress-job-update-image:latest
               name: wordpress-job-update-image
-              command: ["python", "update.py", "wordpress-base"]
+              command:
+                - python
+                - update.py
+                - wordpress-base
               envFrom:
                 - secretRef:
                     name: generic-webhook-secret
