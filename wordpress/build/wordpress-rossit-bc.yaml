@@ -22,12 +22,12 @@ spec:
         name: "wordpress-base:latest"
       imageOptimizationPolicy: SkipLayers
       env:
-        - name: "DUO-WORDPRESS_VERSION"
+        - name: "DUO_WORDPRESS_VERSION"
           valueFrom:
             configMapKeyRef:
               key: "DUO-WORDPRESS_VERSION"
               name: "wordpress-rossit-build-config"
-        - name: "CONTACT-FORM-7_VERSION"
+        - name: "CONTACT_FORM_7_VERSION"
           valueFrom:
             configMapKeyRef:
               key: "CONTACT-FORM-7_VERSION"
@@ -35,7 +35,7 @@ spec:
         - name: "CLEAN-CORPORATE_VERSION"
           valueFrom:
             configMapKeyRef:
-              key: "CLEAN-CORPORATE_VERSION"
+              key: "CLEAN_CORPORATE_VERSION"
               name: "wordpress-rossit-build-config"
   output:
     to:
