@@ -14,7 +14,7 @@ spec:
         name: "eclipse-mosquitto:latest"
       importPolicy: {}
       referencePolicy:
-        type: local
+        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -32,7 +32,7 @@ spec:
         name: "zwavejs/zwavejs2mqtt:latest"
       importPolicy: {}
       referencePolicy:
-        type: local
+        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -50,7 +50,7 @@ spec:
         name: "homeassistant/home-assistant:latest"
       importPolicy: {}
       referencePolicy:
-        type: local
+        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -68,4 +68,4 @@ spec:
         name: "acockburn/appdaemon:latest"
       importPolicy: {}
       referencePolicy:
-        type: local
+        type: Local
