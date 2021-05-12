@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mosquitto-config-dir
+  namespace: homeautomation
+  labels:
+    app.kubernetes.io/instance: home-automation
+data:
+  mosquitto.conf: |-
+    allow_anonymous false
+    password_file /mosquitto/config/passwd
+    connection_messages true
+  passwd: |-
+    hass-alarm:$6$kb+u5YvJU9cJkhmO$xXOqL8L9utbctgROuGNYFLjWKg8Noe0dlOg/CNBPQuKZEYPZ7dTf4kWKgqBZxYi8FuYpmUzqzDfzSGzzqlcNdw==
+    hassbian:$6$k617d9xwgdDkWQOi$xoKRRuJHbOR8g7JcbgMWp6+RczfeMdXEdhl3HsaE4eQ58U0+Fb7NMgLdIP03U2jLiq0ui37xzMnB6+D8qTZnLw==
+    roobmapi:$6$riYBLY2R3Cc8rX+6$zUrray8VEGSc9BIKBssJIMYb56vhRyhu95UcmXrgde7w2eeAV0+wVIqKIONxJ67PaL+dX0lFdEgA+ZKGTVqCLw==
+    roombapi:$6$vcOcgX3Tq4ekSRrG$3nCuWoHyFAk3SwY4n9piq6l2J+ISFC0DkuO5zOkMU95TijK1foJxf6kYhRiTde5OUgUcaCdP6r+rjOjeBADR8w==

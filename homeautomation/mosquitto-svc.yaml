@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mosquitto
+    app.kubernetes.io/instance: home-automation
+  name: mosquitto
+  namespace: homeautomation
+spec:
+  ports:
+    - name: mqtt
+      port: 1883
+      protocol: TCP
+      targetPort: 1883
+  selector:
+    deploymentconfig: mosquitto
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mosquitto
+    app.kubernetes.io/instance: home-automation
+  name: mosquitto-ext
+  namespace: homeautomation
+spec:
+  ports:
+    - name: mqtt
+      port: 1883
+      protocol: TCP
+  selector:
+    name: mosquitto
+  sessionAffinity: None
+  type: LoadBalancer
