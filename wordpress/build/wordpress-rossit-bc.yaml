@@ -1,7 +1,7 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: "wordpress-base"
+  name: "wordpress-rossit"
 spec:
   runPolicy: "SerialLatestOnly"
   triggers:
@@ -14,27 +14,32 @@ spec:
   source:
     git:
       uri: "https://github.com/csfreak/homelab"
-    contextDir: "wordpress/build/images/base"
+    contextDir: "wordpress/build/images/rossit"
   strategy:
     dockerStrategy:
       from:
         kind: "ImageStreamTag"
-        name: "wordpress-upstream:latest"
+        name: "wordpress-base:latest"
       imageOptimizationPolicy: SkipLayers
       env:
-        - name: "WORDFENCE_VERSION"
+        - name: "DUO-WORDPRESS_VERSION"
           valueFrom:
             configMapKeyRef:
-              key: "WORDFENCE_VERSION"
-              name: "wordpress-base-config"
-        - name: "UPDRAFTPLUS_VERSION"
+              key: "DUO-WORDPRESS_VERSION"
+              name: "wordpress-rossit-config"
+        - name: "CONTACT-FORM-7_VERSION"
           valueFrom:
             configMapKeyRef:
-              key: "UPDRAFTPLUS_VERSION"
-              name: "wordpress-base-config"
+              key: "CONTACT-FORM-7_VERSION"
+              name: "wordpress-rossit-config"
+        - name: "CLEAN-CORPORATE_VERSION"
+          valueFrom:
+            configMapKeyRef:
+              key: "CLEAN-CORPORATE_VERSION"
+              name: "wordpress-rossit-config"
   output:
     to:
       kind: "ImageStreamTag"
-      name: "wordpress-base:latest"
+      name: "wordpress-rossit:latest"
   successfulBuildsHistoryLimit: 2
   failedBuildsHistoryLimit: 2

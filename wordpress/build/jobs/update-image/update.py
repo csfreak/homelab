@@ -29,6 +29,13 @@ for plugin in plugins:
     if latest != plugin[1]:
         update[f"{plugin[0].upper()}_VERSION"] = latest
 
+for theme in themes:
+    latest = requests.get("https://api.wordpress.org/themes/info/1.1/", params={
+        'action': 'theme_information',
+        'request[slug]': theme[0]
+    }).json().get('version')
+    if latest != theme[1]:
+        update[f"{theme[0].upper()}_VERSION"] = latest
 
 if update:
     client.CoreV1Api().patch_namespaced_config_map(
