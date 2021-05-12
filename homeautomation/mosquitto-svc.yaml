@@ -3,7 +3,6 @@ kind: Service
 metadata:
   labels:
     app: mosquitto
-    app.kubernetes.io/instance: home-automation
   name: mosquitto
   namespace: homeautomation
 spec:
@@ -22,7 +21,6 @@ kind: Service
 metadata:
   labels:
     app: mosquitto
-    app.kubernetes.io/instance: home-automation
   name: mosquitto-ext
   namespace: homeautomation
 spec:

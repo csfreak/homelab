@@ -4,7 +4,7 @@ metadata:
   name: mosquitto-config-dir
   namespace: homeautomation
   labels:
-    app.kubernetes.io/instance: home-automation
+    app: mosquitto
 data:
   mosquitto.conf: |-
     allow_anonymous false

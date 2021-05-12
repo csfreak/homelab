@@ -4,7 +4,6 @@ metadata:
   labels:
     app: mosquitto
     app.kubernetes.io/component: mosquitto
-    app.kubernetes.io/instance: home-automation
     app.kubernetes.io/name: mosquitto
   name: mosquitto
   namespace: homeautomation
