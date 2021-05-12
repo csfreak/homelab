@@ -11,7 +11,6 @@ spec:
       generic:
         secretReference:
           name: "generic-webhook-secret"
-        allowEnv: true
   source:
     git:
       uri: "https://github.com/csfreak/homelab"
