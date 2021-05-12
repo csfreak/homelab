@@ -26,17 +26,17 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: "DUO-WORDPRESS_VERSION"
-              name: "wordpress-rossit-config"
+              name: "wordpress-rossit-build-config"
         - name: "CONTACT-FORM-7_VERSION"
           valueFrom:
             configMapKeyRef:
               key: "CONTACT-FORM-7_VERSION"
-              name: "wordpress-rossit-config"
+              name: "wordpress-rossit-build-config"
         - name: "CLEAN-CORPORATE_VERSION"
           valueFrom:
             configMapKeyRef:
               key: "CLEAN-CORPORATE_VERSION"
-              name: "wordpress-rossit-config"
+              name: "wordpress-rossit-build-config"
   output:
     to:
       kind: "ImageStreamTag"

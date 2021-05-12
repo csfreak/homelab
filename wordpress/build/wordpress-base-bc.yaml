@@ -26,12 +26,12 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: "WORDFENCE_VERSION"
-              name: "wordpress-base-config"
+              name: "wordpress-base-build-config"
         - name: "UPDRAFTPLUS_VERSION"
           valueFrom:
             configMapKeyRef:
               key: "UPDRAFTPLUS_VERSION"
-              name: "wordpress-base-config"
+              name: "wordpress-base-build-config"
   output:
     to:
       kind: "ImageStreamTag"

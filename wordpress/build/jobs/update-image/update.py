@@ -39,7 +39,7 @@ for theme in themes:
 
 if update:
     client.CoreV1Api().patch_namespaced_config_map(
-        f"{image_name}-config",
+        f"{image_name}-build-config",
         namespace,
         {"data": update})
     secret = os.environ.get('WebHookSecretKey').strip("\n")
