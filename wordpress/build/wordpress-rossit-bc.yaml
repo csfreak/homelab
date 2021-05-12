@@ -32,7 +32,7 @@ spec:
             configMapKeyRef:
               key: "CONTACT-FORM-7_VERSION"
               name: "wordpress-rossit-build-config"
-        - name: "CLEAN-CORPORATE_VERSION"
+        - name: "CLEAN_CORPORATE_VERSION"
           valueFrom:
             configMapKeyRef:
               key: "CLEAN-CORPORATE_VERSION"
