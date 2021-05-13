@@ -10,6 +10,7 @@ data:
     allow_anonymous false
     password_file /mosquitto/config/passwd
     connection_messages true
+    listen 1883 0.0.0.0
   passwd: |-
     hass-alarm:$6$kb+u5YvJU9cJkhmO$xXOqL8L9utbctgROuGNYFLjWKg8Noe0dlOg/CNBPQuKZEYPZ7dTf4kWKgqBZxYi8FuYpmUzqzDfzSGzzqlcNdw==
     hassbian:$6$k617d9xwgdDkWQOi$xoKRRuJHbOR8g7JcbgMWp6+RczfeMdXEdhl3HsaE4eQ58U0+Fb7NMgLdIP03U2jLiq0ui37xzMnB6+D8qTZnLw==
