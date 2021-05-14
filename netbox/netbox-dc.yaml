@@ -11,8 +11,6 @@ metadata:
     app.openshift.io/runtime-version: latest
   name: netbox
   namespace: netbox
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: 'netbox-community'
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -30,62 +28,62 @@ spec:
         deploymentconfig: netbox
     spec:
       containers:
-      - env:
-        - name: DB_NAME
-          valueFrom:
-            secretKeyRef:
-              key: database-name
-              name: netbox-postgres
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              key: database-user
-              name: netbox-postgres
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: database-password
-              name: netbox-postgres
-        - name: REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: database-password
-              name: netbox-redis
-        envFrom:
-        - configMapRef:
-            name: netbox-config
-        - secretRef:
-            name: netbox-secrets
-        image: netbox-community:latest
-        imagePullPolicy: IfNotPresent
-        name: netbox
-        ports:
-        - containerPort: 8080
-          protocol: TCP
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /etc/netbox/media
-          name: netbox-media-data
+        - env:
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: database-name
+                  name: netbox-postgres
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: database-user
+                  name: netbox-postgres
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database-password
+                  name: netbox-postgres
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: database-password
+                  name: netbox-redis
+          envFrom:
+            - configMapRef:
+                name: netbox-config
+            - secretRef:
+                name: netbox-secrets
+          image: image-registry.openshift-image-registry.svc:5000/netbox/netbox-community:latest
+          imagePullPolicy: IfNotPresent
+          name: netbox
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /etc/netbox/media
+              name: netbox-media-data
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: netbox-media-data
-        persistentVolumeClaim:
-          claimName: netbox-media
+        - name: netbox-media-data
+          persistentVolumeClaim:
+            claimName: netbox-media
   test: false
   triggers:
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - netbox-community
-      from:
-        kind: ImageStreamTag
-        name: netbox-community:latest
-        namespace: netbox
-    type: ImageChange
-  - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - netbox-community
+        from:
+          kind: ImageStreamTag
+          name: netbox-community:latest
+          namespace: netbox
+      type: ImageChange
+    - type: ConfigChange
