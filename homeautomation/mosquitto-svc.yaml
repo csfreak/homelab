@@ -29,6 +29,6 @@ spec:
       port: 1883
       protocol: TCP
   selector:
-    name: mosquitto
+    deploymentconfig: mosquitto
   sessionAffinity: None
   type: LoadBalancer
