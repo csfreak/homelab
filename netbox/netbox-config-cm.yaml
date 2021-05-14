@@ -4,6 +4,7 @@ data:
   DB_HOST: netbox-postgres
   REDIS_HOST: netbox-redis
   METRICS_ENABLED: "true"
+  NAPALM_USERNAME: napalmro
 kind: ConfigMap
 metadata:
   name: netbox-config
