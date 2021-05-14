@@ -54,7 +54,7 @@ spec:
                 name: netbox-config
             - secretRef:
                 name: netbox-secrets
-          image: image-registry.openshift-image-registry.svc:5000/netbox/netbox-community:latest
+          image: netbox-custom:latest
           imagePullPolicy: IfNotPresent
           name: netbox
           ports:
@@ -80,10 +80,10 @@ spec:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - netbox-community
+          - netbox
         from:
           kind: ImageStreamTag
-          name: netbox-community:latest
+          name: netbox-custom:latest
           namespace: netbox
       type: ImageChange
     - type: ConfigChange
