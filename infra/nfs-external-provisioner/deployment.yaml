@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-hdd-client-provisioner
+  labels:
+    app: nfs-hdd-client-provisioner
+  # replace with namespace where provisioner is deployed
+  namespace: synology-mgmt
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-hdd-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-hdd-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+        - name: nfs-hdd-client-provisioner
+          image: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+          volumeMounts:
+            - name: nfs-hdd-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/synology-nfs-hdd-provisioner
+            - name: NFS_SERVER
+              value: 172.31.1.199
+            - name: NFS_PATH
+              value: //volume2/NFS_HDD_ROOT
+      volumes:
+        - name: nfs-hdd-root
+          persistentVolumeClaim:
+            claimName: nfs-hdd-root
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nfs-ssd-client-provisioner
+  labels:
+    app: nfs-ssd-client-provisioner
+  # replace with namespace where provisioner is deployed
+  namespace: synology-mgmt
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nfs-ssd-client-provisioner
+  template:
+    metadata:
+      labels:
+        app: nfs-ssd-client-provisioner
+    spec:
+      serviceAccountName: nfs-client-provisioner
+      containers:
+        - name: nfs-ssd-client-provisioner
+          image: k8s.gcr.io/sig-storage/nfs-subdir-external-provisioner:v4.0.2
+          volumeMounts:
+            - name: nfs-ssd-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: k8s-sigs.io/synology-nfs-ssd-provisioner
+            - name: NFS_SERVER
+              value: 172.31.1.199
+            - name: NFS_PATH
+              value: /volume1/NFS_SSD_ROOT
+      volumes:
+        - name: nfs-ssd-root
+          persistentVolumeClaim:
+            claimName: nfs-ssd-root
