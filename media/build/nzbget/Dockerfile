@@ -9,4 +9,4 @@ EXPOSE 6789
 VOLUME /config
 VOLUME /downloads
 
-CMD ["/nzbget/nzbget", "-s", "-c", "/config/nzbget.conf"]
+CMD ["/nzbget/nzbget", "-s", "-c", "/config/nzbget.conf", "-o", "OutputMode=log"]
