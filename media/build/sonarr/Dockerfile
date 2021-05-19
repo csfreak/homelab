@@ -32,4 +32,4 @@ RUN \
 EXPOSE 8989
 VOLUME /config
 
-CMD ["mono", "--debug", "Sonarr.exe", "-nobrowser", "-data=/config"]
+CMD ["mono", "--debug", "/app/sonarr/bin/Sonarr.exe", "-nobrowser", "-data=/config"]
