@@ -4,6 +4,7 @@ ENV SONARR_BRANCH="main"
 ARG SONARR_VERSION
 ARG DEBIAN_FRONTEND="noninteractive"
 
+
 RUN \
   echo "**** install packages ****" && \
   apt-get update && \
@@ -27,9 +28,13 @@ RUN \
   apt-get clean && \
   rm -rf \
     /tmp/* \
-    /var/tmp/*
+    /var/tmp/* && \
+  chown -R 1000: /app/sonarr
 
+USER 1000:1000
 EXPOSE 8989
 VOLUME /config
+VOLUME /media
+VOLUME /downloads
 
 CMD ["mono", "--debug", "/app/sonarr/bin/Sonarr.exe", "-nobrowser", "-data=/config"]
