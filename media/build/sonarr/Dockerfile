@@ -16,7 +16,9 @@ RUN \
 	mono-devel \
 	mono-vbnc && \
   apt-get install -y \
-    jq curl && \
+    jq \
+    curl \
+    mediainfo && \
   echo "**** install sonarr ****" && \
   mkdir -p /app/sonarr/bin && \
   if [ -z ${SONARR_VERSION+x} ]; then \
@@ -36,9 +38,9 @@ RUN \
   rm -rf \
     /tmp/* \
     /var/tmp/* && \
-  chown -R 1025 /app/sonarr
+  chown -R 1025:100 /app/sonarr
 
-USER 1025
+USER 1025:100
 EXPOSE 8989
 VOLUME /config
 VOLUME /media
