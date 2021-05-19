@@ -1,0 +1,74 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: sonarr
+    app.kubernetes.io/component: sonarr
+    app.kubernetes.io/instance: sonarr
+    app.kubernetes.io/part-of: sonarr
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    app: sonarr
+    deploymentconfig: sonarr
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: sonarr
+        deploymentconfig: sonarr
+    spec:
+      containers:
+        - imagePullPolicy: Always
+          name: sonarr
+          ports:
+            - containerPort: 8989
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+            - mountPath: /downloads
+              name: sonarr-downloads
+            - mountPath: /media
+              name: sonarr-media
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: media-runas-user
+      serviceAccountName: media-runas-user
+      volumes:
+        - name: sonarr-config
+          persistentVolumeClaim:
+            claimName: sonarr-config
+        - name: sonarr-downloads
+          persistentVolumeClaim:
+            claimName: nzbget-downloads
+        - name: sonarr-media
+          persistentVolumeClaim:
+            claimName: shared-media
+  triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - sonarr
+        from:
+          kind: ImageStreamTag
+          name: sonarr:latest
+          namespace: media
+      type: ImageChange

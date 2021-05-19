@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: nzbget
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: nzbget
+    app.kubernetes.io/part-of: nzbget
+  name: nzbget
+  namespace: media
+spec:
+  ports:
+    - name: 6789-tcp
+      port: 6789
+      protocol: TCP
+      targetPort: 6789
+  selector:
+    app: nzbget
+    deploymentconfig: nzbget
+  sessionAffinity: None
+  type: ClusterIP

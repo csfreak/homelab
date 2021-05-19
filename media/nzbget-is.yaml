@@ -1,0 +1,16 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: nzbget
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: nzbget
+    app.kubernetes.io/part-of: nzbget
+  name: nzbget
+  namespace: media
+spec:
+  lookupPolicy:
+    local: false

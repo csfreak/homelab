@@ -1,0 +1,69 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: nzbget
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: nzbget
+    app.kubernetes.io/part-of: nzbget
+  name: nzbget
+  namespace: media
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    app: nzbget
+    deploymentconfig: nzbget
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        app: nzbget
+        deploymentconfig: nzbget
+    spec:
+      containers:
+        - imagePullPolicy: Always
+          name: nzbget
+          ports:
+            - containerPort: 6789
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /config
+              name: nzbget-config
+            - mountPath: /downloads
+              name: nzbget-downloads
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: nzbget-config
+          persistentVolumeClaim:
+            claimName: nzbget-config
+        - name: nzbget-downloads
+          persistentVolumeClaim:
+            claimName: nzbget-downloads
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - nzbget
+        from:
+          kind: ImageStreamTag
+          name: nzbget:latest
+          namespace: media
+      type: ImageChange
+    - type: ConfigChange
