@@ -29,9 +29,9 @@ RUN \
   rm -rf \
     /tmp/* \
     /var/tmp/* && \
-  chown -R 1000: /app/sonarr
+  chown -R 1000 /app/sonarr
 
-USER 1000:1000
+USER 1000
 EXPOSE 8989
 VOLUME /config
 VOLUME /media
