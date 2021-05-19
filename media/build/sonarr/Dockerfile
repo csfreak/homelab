@@ -3,11 +3,18 @@ FROM mono:slim
 ENV SONARR_BRANCH="main"
 ARG SONARR_VERSION
 ARG DEBIAN_FRONTEND="noninteractive"
-
+ENV XDG_CONFIG_HOME="/config/xdg"
 
 RUN \
   echo "**** install packages ****" && \
   apt-get update && \
+  apt-get install -y \
+	--no-install-recommends \
+	--no-install-suggests \
+	ca-certificates-mono \
+	libcurl4-openssl-dev \
+	mono-devel \
+	mono-vbnc && \
   apt-get install -y \
     jq curl && \
   echo "**** install sonarr ****" && \
