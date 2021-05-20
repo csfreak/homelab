@@ -31,7 +31,7 @@ spec:
       initContainers:
         - name: kube-plex-install
           image: quay.io/munnerz/kube-plex:latest
-          imagePullPolicy: ifNotPresent
+          imagePullPolicy: IfNotPresent
           command:
             - cp
             - /kube-plex
@@ -75,9 +75,9 @@ spec:
                 name: plex-secrets
           env:
             - name: KUBE_NAMESPACE
-                valueFrom:
-                  fieldRef:
-                    fieldPath: metadata.namespace
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           volumeMounts:
             - name: data
               mountPath: /data
@@ -87,19 +87,17 @@ spec:
               mountPath: /transcode
             - name: shared
               mountPath: /shared
-        nodeSelector:
-          beta.kubernetes.io/arch: amd64
-        volumes:
-          - name: data
-            persistentVolumeClaim:
-              claimName: shared-media
-          - name: config
-            persistentVolumeClaim:
-              claimName: plex-config
-          - name: transcode
-            persistentVolumeClaim:
-              claimName: plex-transcode
-          - name: shared
-            emptyDir: {}
-            
-          
+      nodeSelector:
+        beta.kubernetes.io/arch: amd64
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: shared-media
+        - name: config
+          persistentVolumeClaim:
+            claimName: plex-config
+        - name: transcode
+          persistentVolumeClaim:
+            claimName: plex-transcode
+        - name: shared
+          emptyDir: {}
