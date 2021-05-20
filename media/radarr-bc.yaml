@@ -35,5 +35,5 @@ spec:
     - github:
         secretReference:
           name: radarr-generic-webhook-secret
-      type: Github
+      type: GitHub
     - type: ConfigChange
