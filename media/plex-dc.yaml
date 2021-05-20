@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  labels:
+    app: plex
+  annotations:
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: plex
+      deployment: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+        deployment: plex
+      annotations:
+        app.kubernetes.io/component: plex
+        app.kubernetes.io/instance: media
+        app.kubernetes.io/part-of: plex
+    spec:
+      serviceAccountName: plex-run-user
+      initContainers:
+        - name: kube-plex-install
+          image: quay.io/munnerz/kube-plex:latest
+          imagePullPolicy: ifNotPresent
+          command:
+            - cp
+            - /kube-plex
+            - /shared/kube-plex
+          volumeMounts:
+            - name: shared
+              mountPath: /shared
+      containers:
+        - name: plex-server
+          image: image-registry.openshift-image-registry.svc:5000/media/plex
+          lifecyle:
+            postStart:
+              exec:
+                command:
+                  - bash
+                  - -c
+                  - |
+                    #!/bin/bash
+                    set -e
+                    rm -f '/usr/lib/plexmediaserver/Plex Transcoder'
+                    cp /shared/kube-plex '/usr/lib/plexmediaserver/Plex Transcoder'
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          ports:
+            - name: pms
+              containerPort: 32400
+          envFrom:
+            - configMapRef:
+                name: plex-config
+            - secretRef:
+                name: plex-secrets
+          env:
+            - name: KUBE_NAMESPACE
+                valueFrom:
+                  fieldRef:
+                    fieldPath: metadata.namespace
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: config
+              mountPath: /config
+            - name: transcode
+              mountPath: /transcode
+            - name: shared
+              mountPath: /shared
+        nodeSelector:
+          beta.kubernetes.io/arch: amd64
+        volumes:
+          - name: data
+            persistentVolumeClaim:
+              claimName: shared-media
+          - name: config
+            persistentVolumeClaim:
+              claimName: plex-config
+          - name: transcode
+            persistentVolumeClaim:
+              claimName: plex-transcode
+          - name: shared
+            emptyDir: {}
+            
+          

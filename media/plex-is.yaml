@@ -1,0 +1,21 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: plex
+  namespace: media
+  annotations:
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "plexinc/pms-docker:latest"
+      importPolicy: {}
+      referencePolicy:
+        type: Source

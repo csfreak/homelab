@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  labels:
+    app: plex
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex
+spec:
+  type: ClusterIP
+  ports:
+    - name: pms
+      port: 32400
+      protocol: TCP
+      targetPort: 32400
+  selector:
+    app: plex
+    deployment: plex
