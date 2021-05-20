@@ -11,7 +11,7 @@ metadata:
 spec:
   host: radarr-media.apps.homelab.csfreak.com
   port:
-    targetPort: 8989-tcp
+    targetPort: 7878-tcp
   to:
     kind: Service
     name: radarr

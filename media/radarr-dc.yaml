@@ -33,7 +33,7 @@ spec:
         - imagePullPolicy: Always
           name: radarr
           ports:
-            - containerPort: 8989
+            - containerPort: 7878
               protocol: TCP
           resources: {}
           terminationMessagePath: /dev/termination-log

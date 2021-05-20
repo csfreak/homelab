@@ -13,10 +13,10 @@ metadata:
   namespace: media
 spec:
   ports:
-    - name: 8989-tcp
-      port: 8989
+    - name: 7878-tcp
+      port: 7878
       protocol: TCP
-      targetPort: 8989
+      targetPort: 7878
   selector:
     app: radarr
     deploymentconfig: radarr
