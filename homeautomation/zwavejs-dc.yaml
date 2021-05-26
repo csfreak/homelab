@@ -1,0 +1,79 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: zwavejs
+    app.kubernetes.io/component: zwavejs
+    app.kubernetes.io/name: zwavejs
+  name: zwavejs
+  namespace: homeautomation
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: "zwavejs"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: zwavejs
+    deploymentconfig: zwavejs
+  strategy:
+    type: Recreate
+    activeDeadlineSeconds: 21600
+  template:
+    metadata:
+      labels:
+        app: zwavejs
+        deploymentconfig: zwavejs
+    spec:
+      serviceAccountName: zwavejs-run-user
+      containers:
+        - name: zwavejs-server
+          image: zwavejs:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 1883
+              protocol: TCP
+          volumeMounts:
+            - name: zwave-config
+              mountPath: "/usr/src/app/store"
+            - name: zwave-stick
+              mountPath: "/dev/ttyUSB1"
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        allowPrivilegeEscalation: true
+        privileged: true
+      terminationGracePeriodSeconds: 30
+      nodeSelector:
+        feature.node.kubernetes.io/usb-0658.present: true
+      volumes:
+        - name: zwave-config
+          persistentVolumeClaim:
+            claimName: zwavejs-config
+        - name: zwave-stick
+          hostPath:
+            path: /dev/serial/by-id/usb-0658_0200-if00
+
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - zwavejs-server
+        from:
+          kind: ImageStreamTag
+          name: zwavejs:latest
+          namespace: homeautomation
+      type: ImageChange
+    - type: ConfigChange

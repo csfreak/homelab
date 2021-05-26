@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: zwavejs
+    app.kubernetes.io/component: zwavejs
+    app.kubernetes.io/instance: homeautomation
+    app.kubernetes.io/part-of: zwavejs
+  name: zwave-run-user
+  namespace: homeautomation
+---
+

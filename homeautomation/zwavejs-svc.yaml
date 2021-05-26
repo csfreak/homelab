@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: zwavejs
+  name: zwavejs
+  namespace: homeautomation
+spec:
+  ports:
+    - name: zwavejsws
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+    - name: zwavejsui
+      port: 8091
+      protocol: TCP
+      targetPort: 8091
+  selector:
+    deploymentconfig: zwavejs
+  sessionAffinity: None
+  type: ClusterIP
