@@ -56,7 +56,7 @@ spec:
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        feature.node.kubernetes.io/usb-0658.present: true
+        feature.node.kubernetes.io/usb-0658.present: "true"
       volumes:
         - name: zwave-config
           persistentVolumeClaim:
