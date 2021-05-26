@@ -9,7 +9,6 @@ image_name = sys.argv[1]
 update = {}
 namespace = None
 conf = config.incluster_config.load_incluster_config()
-conf.debug = True
 
 with open("/var/run/secrets/kubernetes.io/serviceaccount/namespace") as namespace_file:
     namespace = namespace_file.read()
