@@ -49,12 +49,11 @@ spec:
             periodSeconds: 3
             successThreshold: 1
             timeoutSeconds: 1
+            securityContext:
+              runAsUser: 0
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
-      securityContext:
-        allowPrivilegeEscalation: true
-        privileged: true
       terminationGracePeriodSeconds: 30
       nodeSelector:
         feature.node.kubernetes.io/usb-0658.present: true
