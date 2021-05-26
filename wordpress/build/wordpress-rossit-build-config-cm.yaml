@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: wordpress-rossit-build-config
   namespace: wordpress
-  argocd.argoproj.io/sync-wave: 1
+  annotations:
+    argocd.argoproj.io/sync-wave: 1

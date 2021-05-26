@@ -2,7 +2,8 @@ kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
   name: "wordpress-rossit"
-  argocd.argoproj.io/sync-wave: 1
+  annotations:
+    argocd.argoproj.io/sync-wave: 1
 spec:
   runPolicy: "SerialLatestOnly"
   triggers:
