@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: update-wordpress-base
   annotations:
-    argocd.argoproj.io/sync-wave: 2
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   schedule: "0 4 * * *"
   concurrencyPolicy: Forbid

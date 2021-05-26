@@ -4,4 +4,4 @@ metadata:
   name: wordpress-rossit-build-config
   namespace: wordpress
   annotations:
-    argocd.argoproj.io/sync-wave: 1
+    argocd.argoproj.io/sync-wave: "1"
