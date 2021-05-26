@@ -3,6 +3,7 @@ apiVersion: image.openshift.io/v1
 metadata:
   name: wordpress-base
   namespace: wordpress
+  argocd.argoproj.io/sync-wave: 0
 spec:
   lookupPolicy:
     local: true

@@ -2,6 +2,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: update-wordpress-rossit
+  argocd.argoproj.io/sync-wave: 2
 spec:
   schedule: "0 4 * * *"
   concurrencyPolicy: Forbid

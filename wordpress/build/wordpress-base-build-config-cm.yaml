@@ -3,3 +3,4 @@ kind: ConfigMap
 metadata:
   name: wordpress-base-build-config
   namespace: wordpress
+  argocd.argoproj.io/sync-wave: 1
