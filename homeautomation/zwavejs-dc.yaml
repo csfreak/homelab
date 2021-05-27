@@ -54,6 +54,8 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
           securityContext:
+            allowPrivilegeEscalation: true
+            privileged: true
             runAsUser: 0
       dnsPolicy: ClusterFirst
       restartPolicy: Always
