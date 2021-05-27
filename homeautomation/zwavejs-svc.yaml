@@ -7,11 +7,11 @@ metadata:
   namespace: homeautomation
 spec:
   ports:
-    - name: zwavejsws
+    - name: zwavejs-ws
       port: 3000
       protocol: TCP
       targetPort: 3000
-    - name: zwavejsui
+    - name: zwavejs-http
       port: 8091
       protocol: TCP
       targetPort: 8091
