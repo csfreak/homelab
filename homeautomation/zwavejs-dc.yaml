@@ -24,7 +24,7 @@ spec:
         app: zwavejs
         deploymentconfig: zwavejs
     spec:
-      serviceAccountName: zwavejs-run-user
+      serviceAccountName: zwave-run-user
       containers:
         - name: zwavejs-server
           image: zwavejs:latest
