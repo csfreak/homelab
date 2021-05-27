@@ -33,7 +33,7 @@ spec:
             - containerPort: 8091
               protocol: TCP
               name: http
-            - containterPort: 3000
+            - containerPort: 3000
               protocol: TCP
               name: zwajvejs-ws
           volumeMounts:
