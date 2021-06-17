@@ -42,18 +42,6 @@ spec:
       containers:
         - name: plex-server
           image: image-registry.openshift-image-registry.svc:5000/media/plex
-          lifecyle:
-            postStart:
-              exec:
-                command:
-                  - bash
-                  - -c
-                  - >|
-                    #!/bin/bash
-                    # set -e
-                    # rm -f /usr/lib/plexmediaserver/Plex\ Transcoder
-                    # cp /shared/kube-plex /usr/lib/plexmediaserver/Plex\ Transcoder
-                    echo "Skipping transcoder changes"
           readinessProbe:
             httpGet:
               path: /identity
