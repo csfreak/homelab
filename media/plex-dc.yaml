@@ -48,11 +48,12 @@ spec:
                 command:
                   - bash
                   - -c
-                  - |
+                  - >|
                     #!/bin/bash
-                    set -e
-                    rm -f '/usr/lib/plexmediaserver/Plex Transcoder'
-                    cp /shared/kube-plex '/usr/lib/plexmediaserver/Plex Transcoder'
+                    #set -e
+                    #rm -f /usr/lib/plexmediaserver/Plex\ Transcoder
+                    #cp /shared/kube-plex /usr/lib/plexmediaserver/Plex\ Transcoder
+                    echo "Skipping transcoder changes"
           readinessProbe:
             httpGet:
               path: /identity
