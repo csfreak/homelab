@@ -15,7 +15,8 @@ spec:
       annotations: null
       from:
         kind: DockerImage
-        name: "plexinc/pms-docker:latest"
-      importPolicy: {}
+        name: "docker.io/plexinc/pms-docker:latest"
+      importPolicy:
+        scheduled: true
       referencePolicy:
         type: Source
