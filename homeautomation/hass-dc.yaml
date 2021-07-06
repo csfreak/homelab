@@ -8,7 +8,7 @@ metadata:
   name: hass
   namespace: homeautomation
   annotations:
-    alpha.image.policy.openshift.io/resolve-names: "home-assistant"
+    alpha.image.policy.openshift.io/resolve-names: "homeassistant"
 spec:
   replicas: 1
   revisionHistoryLimit: 10
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: hass-server
-          image: home-assistant:latest
+          image: homeassistant:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8123
@@ -63,7 +63,7 @@ spec:
           - hass-server
         from:
           kind: ImageStreamTag
-          name: home-assistant:latest
+          name: homeassistant:latest
           namespace: homeautomation
       type: ImageChange
     - type: ConfigChange
