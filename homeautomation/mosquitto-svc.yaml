@@ -14,21 +14,4 @@ spec:
   selector:
     deploymentconfig: mosquitto
   sessionAffinity: None
-  type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: mosquitto
-  name: mosquitto-ext
-  namespace: homeautomation
-spec:
-  ports:
-    - name: mqtt
-      port: 1883
-      protocol: TCP
-  selector:
-    deploymentconfig: mosquitto
-  sessionAffinity: None
   type: LoadBalancer
