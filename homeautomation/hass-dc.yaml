@@ -1,0 +1,69 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: hass
+    app.kubernetes.io/component: hass
+    app.kubernetes.io/name: hass
+  name: hass
+  namespace: homeautomation
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: "home-assistant"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: hass
+    deploymentconfig: hass
+  strategy:
+    type: Recreate
+    activeDeadlineSeconds: 21600
+  template:
+    metadata:
+      labels:
+        app: hass
+        deploymentconfig: hass
+    spec:
+      containers:
+        - name: hass-server
+          image: home-assistant:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8123
+              protocol: TCP
+              name: hass-http
+          volumeMounts:
+            - name: hass-config
+              mountPath: "/config"
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /config/info
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          securityContext:
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: hass-config
+          persistentVolumeClaim:
+            claimName: hass-config
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - hass-server
+        from:
+          kind: ImageStreamTag
+          name: home-assistant:latest
+          namespace: homeautomation
+      type: ImageChange
+    - type: ConfigChange
