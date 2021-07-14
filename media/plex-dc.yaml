@@ -34,7 +34,7 @@ spec:
     metadata:
       labels:
         app: plex
-        deploymentcofig: plex
+        deploymentconfig: plex
       annotations:
         app.kubernetes.io/component: plex
         app.kubernetes.io/instance: media
