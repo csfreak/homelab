@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: plex
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - name: pms
       port: 32400
