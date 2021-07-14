@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DeploymentConfig
 metadata:
   name: plex
   labels:
@@ -12,33 +12,36 @@ spec:
   replicas: 1
   revisionHistoryLimit: 2
   strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
     type: Recreate
   selector:
     matchLabels:
-      app: plex
-      deployment: plex
+      deploymentconfig: plex
+  triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - radarr
+        from:
+          kind: ImageStreamTag
+          name: plex:latest
+          namespace: media
+      type: ImageChange
   template:
     metadata:
       labels:
         app: plex
-        deployment: plex
+        deploymentcofig: plex
       annotations:
         app.kubernetes.io/component: plex
         app.kubernetes.io/instance: media
         app.kubernetes.io/part-of: plex
     spec:
       serviceAccountName: plex-run-user
-      initContainers:
-        - name: kube-plex-install
-          image: quay.io/munnerz/kube-plex:latest
-          imagePullPolicy: IfNotPresent
-          command:
-            - cp
-            - /kube-plex
-            - /shared/kube-plex
-          volumeMounts:
-            - name: shared
-              mountPath: /shared
       containers:
         - name: plex-server
           image: image-registry.openshift-image-registry.svc:5000/media/plex
