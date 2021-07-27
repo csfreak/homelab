@@ -1,0 +1,64 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: appdaemon
+    app.kubernetes.io/component: appdaemon
+    app.kubernetes.io/name: appdaemon
+  name: appdaemon
+  namespace: homeautomation
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: "appdaemon"
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: appdaemon
+    deploymentconfig: appdaemon
+  strategy:
+    type: Rolling
+    activeDeadlineSeconds: 21600
+  template:
+    metadata:
+      labels:
+        app: appdaemon
+        deploymentconfig: appdaemon
+    spec:
+      containers:
+        - name: appdaemon
+          image: appdaemon:latest
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: appdaemon-config
+            - secretRef:
+                name: appdaemon-secrets
+          ports:
+            - containerPort: 5050
+              protocol: TCP
+              name: http
+              appProtocol: http
+          volumeMounts:
+            - name: config
+              mountPath: "/conf"
+              readOnly: true
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: appdaemon-config
+  triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - appdaemon
+        from:
+          kind: ImageStreamTag
+          name: appdaemon:latest
+          namespace: homeautomation
+      type: ImageChange
+    - type: ConfigChange
