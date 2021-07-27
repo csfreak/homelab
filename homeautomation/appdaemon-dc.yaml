@@ -37,7 +37,6 @@ spec:
             - containerPort: 5050
               protocol: TCP
               name: http
-              appProtocol: http
           volumeMounts:
             - name: config
               mountPath: "/conf"
