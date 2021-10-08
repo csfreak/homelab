@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM public.ecr.aws/ubuntu/ubuntu:latest
 
 ENV RADARR_BRANCH="master"
 ARG RADARR_RELEASE
