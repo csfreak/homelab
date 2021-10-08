@@ -1,4 +1,4 @@
-FROM mono:slim
+FROM public.ecr.aws/ubuntu/ubuntu:latest
 
 ENV SONARR_BRANCH="main"
 ARG SONARR_VERSION
@@ -12,7 +12,6 @@ RUN \
 	--no-install-recommends \
 	--no-install-suggests \
 	ca-certificates-mono \
-	libcurl4-openssl-dev \
 	mono-devel \
 	mono-vbnc && \
   apt-get install -y \
