@@ -40,7 +40,6 @@ spec:
           volumeMounts:
             - name: config
               mountPath: "/conf"
-              readOnly: true
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler

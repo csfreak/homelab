@@ -42,7 +42,8 @@ spec:
                 - name: Accept
                   value: text/plain
               path: /config/info
-              port: http
+              port: 8123
+              schem: HTTP
             initialDelaySeconds: 30
             periodSeconds: 3
             successThreshold: 1
