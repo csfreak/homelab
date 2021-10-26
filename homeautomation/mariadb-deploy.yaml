@@ -39,7 +39,7 @@ spec:
             - secretRef:
                 name: hass-db-root
               prefix: MYSQL_
-          volumeMount:
+          volumeMounts:
             - mountPath: /var/lib/mysql/data
               name: db-data
       volumes:

@@ -29,7 +29,7 @@ spec:
       containers:
         - name: code-server
           image: code-server:latest
-          volumeMount:
+          volumeMounts:
             - mountPath: /hass
               name: hass-config
       volumes:
