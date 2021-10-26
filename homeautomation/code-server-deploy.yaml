@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass-code-server
+  namespace: homeautomation
+  annotations:
+    app.kubernetes.io/component: hass-code-server
+    app.kubernetes.io/instance: hass-code-server
+    app.kubernetes.io/part-of: hass-code-server
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"code-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"code-server\")].image"}]
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: hass-code-server
+  template:
+    metadata:
+      labels:
+        deployment: hass-code-server
+      annotations:
+        app.kubernetes.io/component: hass-code-server
+        app.kubernetes.io/instance: hass-code-server
+        app.kubernetes.io/part-of: hass-code-server
+        alpha.image.policy.openshift.io/resolve-names: "*"
+    spec:
+      containers:
+        - name: code-server
+          image: code-server:latest
+          volumeMount:
+            - mountPath: /hass
+              name: hass-config
+      volumes:
+        - name: hass-config
+          persistentVolumeClaim:
+            claimName: hass-config-shared

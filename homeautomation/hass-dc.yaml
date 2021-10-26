@@ -48,6 +48,17 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
           securityContext:
+          envFrom:
+          - secretRef:
+              name: hass-db-user
+            prefix: MYSQL_
+          - configMapRef:
+              name: hass-db-config
+            prefix: MYSQL_
+          env:
+          - name: MYSQL_URL
+            value: >-
+              mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db.homeautomation.svc:3306/$(MYSQL_DATABASE)?charset-utf8mb4
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -55,7 +66,7 @@ spec:
       volumes:
         - name: hass-config
           persistentVolumeClaim:
-            claimName: hass-config
+            claimName: hass-config-shared
   triggers:
     - imageChangeParams:
         automatic: true

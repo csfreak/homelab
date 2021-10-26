@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hass-db
+  namespace: homeautomation
+  annotations:
+    app.kubernetes.io/component: hass-db
+    app.kubernetes.io/instance: hass-db
+    app.kubernetes.io/part-of: hass-db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: synology-iscsi
+  volumeMode: Filesystem

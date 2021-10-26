@@ -12,9 +12,10 @@ spec:
       from:
         kind: DockerImage
         name: "eclipse-mosquitto:latest"
-      importPolicy: {}
+      importPolicy:
+        scheduled: true
       referencePolicy:
-        type: Source
+        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -30,9 +31,10 @@ spec:
       from:
         kind: DockerImage
         name: "zwavejs/zwavejs2mqtt:latest"
-      importPolicy: {}
+      importPolicy:
+        scheduled: true
       referencePolicy:
-        type: Source
+        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -48,9 +50,10 @@ spec:
       from:
         kind: DockerImage
         name: "homeassistant/home-assistant:latest"
-      importPolicy: {}
+      importPolicy:
+        scheduled: true
       referencePolicy:
-        type: Source
+        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -66,6 +69,45 @@ spec:
       from:
         kind: DockerImage
         name: "acockburn/appdaemon:latest"
-      importPolicy: {}
+      importPolicy:
+        scheduled: true
       referencePolicy:
-        type: Source
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: mariadb
+  namespace: homeautomation
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "registry.redhat.io/rhel8/mariadb-105:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: code-server
+  namespace: homeautomation
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "codercom/code-server:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local

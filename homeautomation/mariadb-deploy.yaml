@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass-db
+  namespace: homeautomation
+  annotations:
+    app.kubernetes.io/component: hass-db
+    app.kubernetes.io/instance: hass-db
+    app.kubernetes.io/part-of: hass-db
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"mariadb:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mariadb\")].image"}]
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: hass-db
+  template:
+    metadata:
+      labels:
+        deployment: hass-db
+      annotations:
+        app.kubernetes.io/component: hass-db
+        app.kubernetes.io/instance: hass-db
+        app.kubernetes.io/part-of: hass-db
+        alpha.image.policy.openshift.io/resolve-names: "*"
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          envFrom:
+            - configMapRef:
+                name: hass-db-config
+              prefix: MYSQL_
+            - secretRef:
+                name: hass-db-user
+              prefix: MYSQL_
+            - secretRef:
+                name: hass-db-root
+              prefix: MYSQL_
+          volumeMount:
+            - mountPath: /var/lib/mysql/data
+              name: db-data
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: hass-db
