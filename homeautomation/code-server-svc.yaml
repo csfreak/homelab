@@ -12,6 +12,6 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    deplpoyment: hass-code-server
+    deployment: hass-code-server
   sessionAffinity: None
   type: ClusterIP
