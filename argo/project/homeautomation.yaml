@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: homeautomation
+  namespace: argocd
+spec:
+  destinations:
+  - name: '*'
+    namespace: homeautomation
+    server: https://kubernetes.default.svc
+  roles:
+  - name: default
+    policies:
+    - p, proj:homeautomation:default, applications, *, homeautomation/*, allow
+  sourceRepos:
+  - https://github.com/csfreak/homelab.git

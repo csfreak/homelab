@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: media
+  namespace: argocd
+spec:
+  destinations:
+  - name: '*'
+    namespace: media
+    server: https://kubernetes.default.svc
+  roles:
+  - name: default
+    policies:
+    - p, proj:media:default, applications, *, media/*, allow
+  sourceRepos:
+  - https://github.com/csfreak/homelab.git
