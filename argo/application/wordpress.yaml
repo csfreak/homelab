@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: homeautomation
+  name: wordpress
   namespace: argocd
 spec:
   destination:
-    namespace: homeautomation
+    namespace: wordpress
     server: https://kubernetes.default.svc
   ignoreDifferences:
   - group: apps
@@ -19,8 +19,8 @@ spec:
   - jsonPointers:
     - /data
     kind: Secret
-  project: homeautomation
+  project: wordpress
   source:
-    path: homeautomation
+    path: wordpress
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD

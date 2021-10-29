@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: homeautomation
+  name: netbox
   namespace: argocd
 spec:
   destination:
-    namespace: homeautomation
+    namespace: netbox
     server: https://kubernetes.default.svc
   ignoreDifferences:
   - group: apps
@@ -19,8 +19,8 @@ spec:
   - jsonPointers:
     - /data
     kind: Secret
-  project: homeautomation
+  project: netbox
   source:
-    path: homeautomation
+    path: netbox
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
