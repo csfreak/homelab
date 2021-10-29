@@ -24,7 +24,7 @@ spec:
     - imageChangeParams:
         automatic: true
         containerNames:
-          - radarr
+          - plex-server
         from:
           kind: ImageStreamTag
           name: plex:latest
