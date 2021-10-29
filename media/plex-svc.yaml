@@ -16,4 +16,4 @@ spec:
       targetPort: 32400
   selector:
     app: plex
-    deployment: plex
+    deploymentconfig: plex
