@@ -35,6 +35,7 @@ spec:
             - name: configfile
               mountPath: "/mosquitto/config"
               readOnly: true
+          resources: {}		
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -45,13 +46,14 @@ spec:
           configMap:
             name: mosquitto-config-dir
   triggers:
+    - type: ConfigChange
     - imageChangeParams:
         automatic: true
         containerNames:
-          - mosquitto
+          - mosquitto-server
         from:
           kind: ImageStreamTag
           name: mosquitto:latest
           namespace: homeautomation
       type: ImageChange
-    - type: ConfigChange
+
