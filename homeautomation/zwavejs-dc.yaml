@@ -49,10 +49,12 @@ spec:
                   value: text/plain
               path: /health
               port: http
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 3
             successThreshold: 1
             timeoutSeconds: 1
+          resources: {}
           securityContext:
             allowPrivilegeEscalation: true
             privileged: true
@@ -62,7 +64,7 @@ spec:
       schedulerName: default-scheduler
       terminationGracePeriodSeconds: 30
       nodeSelector:
-        feature.node.kubernetes.io/usb-0658.present: "true"
+        feature.node.kubernetes.io/usb-0658_0200.present: "true"
       volumes:
         - name: zwave-config
           persistentVolumeClaim:
