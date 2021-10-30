@@ -4,6 +4,9 @@ kind: ServiceMonitor
 metadata:
   name: argocd-metrics
 spec:
+  namespaceSelector:
+    matchNames:
+      - argocd
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-metrics
@@ -15,6 +18,9 @@ kind: ServiceMonitor
 metadata:
   name: argocd-server-metrics
 spec:
+  namespaceSelector:
+    matchNames:
+      - argocd
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-server-metrics
