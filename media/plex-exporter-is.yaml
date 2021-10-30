@@ -1,0 +1,17 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: plex_exporter
+  namespace: media
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "granra/plex_exporter:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local

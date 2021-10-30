@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: plex-exporter-config
+  namespace: media
+data:
+  config.yaml: |
+    address: ":9594"
+    autoDiscover: true
+    token: uTFikLuskD7ruCoDXSHj
