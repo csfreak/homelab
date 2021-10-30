@@ -11,7 +11,7 @@ spec:
         port: web
   podMonitorSelector: {}
   probeSelector: {}
-  replicas: 2
+  replicas: 1
   ruleSelector: {}
   serviceAccountName: prometheus-k8s
   serviceMonitorSelector: {}
