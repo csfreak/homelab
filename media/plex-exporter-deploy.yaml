@@ -23,12 +23,12 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         volumeMounts:
-          - name: plex_exporter_config
+          - name: plex-exporter-config
             mountPath: /etc/plex_exporter
         ports:
         - containerPort: 9594
       volumes: 
         - configMap:
             name: plex-exporter-config
-          name: plex_exporter_config
+          name: plex-exporter-config
         
