@@ -50,6 +50,8 @@ spec:
             timeoutSeconds: 1
           resources: {}
           securityContext:
+          terminationMessagePath: /dev/termination-log		
+          terminationMessagePolicy: File
           envFrom:
           - secretRef:
               name: hass-db-user
