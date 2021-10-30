@@ -14,5 +14,5 @@ spec:
       k8s-app: plex-metrics
   endpoints:
     - port: metrics
-      path: /
+      path: /metrics
       interval: 10s
