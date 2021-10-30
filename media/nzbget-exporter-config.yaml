@@ -5,7 +5,7 @@ metadata:
   name: nzbget-exporter-config
   namespace: media
 data:
-    NZBGET_USER: nzbget
+    NZBGET_USERNAME: nzbget
 ---
 apiVersion: v1
 kind: Secret
