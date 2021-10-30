@@ -23,9 +23,9 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         envFrom:
-          - configMap:
+          - configMapRef:
               name: nzbget-exporter-config
-          - secret:
+          - secretRef:
               name: nzbget-exporter-secret
         env:
           - name: NZBGET_HOST
