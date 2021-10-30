@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  destinations:
+  - name: '*'
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  roles:
+  - name: default
+    policies:
+    - p, proj:monitoring:default, applications, *, monitoring/*, allow
+  sourceRepos:
+  - https://github.com/csfreak/homelab.git
