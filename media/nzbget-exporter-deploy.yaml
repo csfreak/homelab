@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nzbget-metrics
+  namespace: media
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"nzbget-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget-metrics\")].image"}]
+spec:
+  selector:
+    matchLabels:
+      app: nzbget-metrics
+  template:
+    metadata:
+      labels:
+        app: nzbget-metrics
+    spec:
+      containers:
+      - name: nzbget-metrics
+        image: nzbget-exporter
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        envFrom:
+          - configMap:
+              name: nzbget-exporter-config
+          - secret:
+              name: nzbget-exporter-secret
+        env:
+          - name: NZBGET_HOST
+            value: "http://nzbget.media.svc:6789"
+        ports:
+        - containerPort: 9452

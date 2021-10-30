@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nzbget-exporter-config
+  namespace: media
+data:
+    NZBGET_USER: nzbget
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nzbget-exporter-secret
+  namespace: media
