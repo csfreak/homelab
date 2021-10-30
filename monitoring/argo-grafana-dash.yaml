@@ -6,7 +6,9 @@ metadata:
     app: grafana
   namespace: monitoring
 spec:
-  name: argo-dashboard.json
+  datasources:
+    - datasourceName: Prometheus
+      inputName: "-- Grafana --"
   json: |
     {
       "annotations": {
