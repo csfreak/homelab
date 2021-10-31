@@ -11,8 +11,13 @@ spec:
         port: web
   podMonitorSelector: {}
   probeSelector: {}
-  replicas: 1
+  replicas: 2
   ruleSelector: {}
   serviceAccountName: prometheus-k8s
   serviceMonitorSelector: {}
-
+  storage:
+    spec:
+      storageClassName: synology-nfs-storage-hdd
+      resources:
+        requests:
+          storage: 100G

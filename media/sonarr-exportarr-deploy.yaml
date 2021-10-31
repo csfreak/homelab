@@ -27,7 +27,7 @@ spec:
             cpu: "500m"
         envFrom:
           - secretRef:
-              name: sonarr-exportar-secret
+              name: sonarr-exportarr-secret
         env:
           - name: URL
             value: "http://sonarr.media.svc:8989"
