@@ -62,7 +62,7 @@ spec:
           env:
           - name: MYSQL_URL
             value: >-
-              mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db.homeautomation.svc:3306/$(MYSQL_DATABASE)?charset-utf8mb4
+              mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@hass-db.homeautomation.svc:3306/${MYSQL_DATABASE}?charset-utf8mb4
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
