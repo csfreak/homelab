@@ -18,6 +18,9 @@ spec:
       containers:
       - name: sonarr-metrics
         image: exportarr:latest
+        command:
+          - "exportarr"
+          - "sonarr"
         resources:
           limits:
             memory: "128Mi"
