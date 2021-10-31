@@ -1,0 +1,128 @@
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: plex
+  namespace: media
+  annotations:
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "docker.io/plexinc/pms-docker:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Source
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: radarr
+    app.kubernetes.io/component: radarr
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: radarr
+  name: radarr
+  namespace: media
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: sonarr
+    app.kubernetes.io/component: sonarr
+    app.kubernetes.io/instance: sonarr
+    app.kubernetes.io/part-of: sonarr
+  name: sonarr
+  namespace: media
+spec:
+  lookupPolicy:
+    local: false
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: nzbget
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: nzbget
+    app.kubernetes.io/part-of: nzbget
+  name: nzbget
+  namespace: media
+spec:
+  lookupPolicy:
+    local: false
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: nzbget-exporter
+  namespace: media
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "frebib/nzbget-exporter:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: plex_exporter
+  namespace: media
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "granra/plex_exporter:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: exportarr
+  namespace: media
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "ghcr.io/onedr0p/exportarr:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
