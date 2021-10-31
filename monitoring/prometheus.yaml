@@ -16,8 +16,9 @@ spec:
   serviceAccountName: prometheus-k8s
   serviceMonitorSelector: {}
   storage:
-    spec:
-      storageClassName: synology-nfs-storage-hdd
-      resources:
-        requests:
-          storage: 100G
+    volumeClaimTemplate:
+      spec:
+        storageClassName: synology-nfs-storage-hdd
+        resources:
+          requests:
+            storage: 100G
