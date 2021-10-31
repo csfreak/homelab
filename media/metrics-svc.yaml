@@ -13,7 +13,9 @@ spec:
       protocol: TCP
       targetPort: 9452
   selector:
-    app: nzbget-metricsapiVersion: v1
+    app: nzbget-metrics
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: plex-metrics
@@ -28,3 +30,35 @@ spec:
       targetPort: 9594
   selector:
     app: plex-metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarr-metrics
+  namespace: media
+  labels:
+    k8s-app: sonarr-metrics
+spec:
+  ports:
+    - name: metrics
+      port: 80
+      protocol: TCP
+      targetPort: 9707
+  selector:
+    app: sonarr-metrics
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: radarr-metrics
+  namespace: media
+  labels:
+    k8s-app: radarr-metrics
+spec:
+  ports:
+    - name: metrics
+      port: 80
+      protocol: TCP
+      targetPort: 9708
+  selector:
+    app: radarr-metrics
