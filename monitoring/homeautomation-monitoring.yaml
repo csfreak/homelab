@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hass-metrics
+  namespace: monitoring
+  labels:
+    k8s-app: hass-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - homeautomation
+  selector:
+    matchLabels:
+      app: hass
+  endpoints:
+    - port: hass-http
+      path: /api/metrics
+      interval: 10s
+      bearerTokenSecret: 
+        key: TOKEN
+        name: hass-token-secret
