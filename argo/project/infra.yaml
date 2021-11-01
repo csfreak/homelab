@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infra
+  namespace: argocd
+spec:
+  destinations:
+  - name: '*'
+    namespace: synology-mgmt
+    server: https://kubernetes.default.svc
+  roles:
+  - name: default
+    policies:
+    - p, proj:infra:default, applications, *, infra/*, allow
+  sourceRepos:
+  - https://github.com/csfreak/homelab.git
