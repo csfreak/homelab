@@ -14,7 +14,7 @@ spec:
       app: hass
   endpoints:
     - port: hass-http
-      path: /api/metrics
+      path: /api/prometheus
       interval: 10s
       bearerTokenSecret: 
         key: TOKEN
