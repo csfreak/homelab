@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/part-of: plex
 spec:
   lookupPolicy:
-    local: false
+    local: true
   tags:
     - name: latest
       from:
@@ -19,7 +19,7 @@ spec:
       importPolicy:
         scheduled: true
       referencePolicy:
-        type: Source
+        type: Local
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream
@@ -36,7 +36,7 @@ metadata:
   namespace: media
 spec:
   lookupPolicy:
-    local: false
+    local: true
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream
@@ -53,7 +53,7 @@ metadata:
   namespace: media
 spec:
   lookupPolicy:
-    local: false
+    local: true
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream
@@ -70,7 +70,7 @@ metadata:
   namespace: media
 spec:
   lookupPolicy:
-    local: false
+    local: true
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
