@@ -35,5 +35,6 @@ spec:
               prefix: MYSQL_
           env:
             - name: DATA_SOURCE_NAME
-              value: $(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db.homeautomation.svc:3306
+              value: >-
+                $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp($(HASS_DB_SERVICE_HOST):$(HASS_DB_SERVICE_PORT))/
           resources: {}

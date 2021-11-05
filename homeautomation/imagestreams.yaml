@@ -130,3 +130,22 @@ spec:
         scheduled: true
       referencePolicy:
         type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: mosquitto-exporter
+  namespace: homeautomation
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "sapcc/mosquitto-exporter:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
