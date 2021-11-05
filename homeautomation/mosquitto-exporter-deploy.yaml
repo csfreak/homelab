@@ -33,7 +33,7 @@ spec:
             - secretRef:
                 name: mosquitto-exporter-secret
               prefix: MOSQUITTO_
-          cmd:
+          command:
             -  --endpoint
             - $(MOSQUITTO_PORT)
             - --user
