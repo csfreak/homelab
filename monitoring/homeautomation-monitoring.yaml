@@ -39,3 +39,22 @@ spec:
     - port: metrics
       path: /metrics
       interval: 10s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: mosquitto-metrics
+  namespace: monitoring
+  labels:
+    k8s-app: mosquitto-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - homeautomation
+  selector:
+    matchLabels:
+      app: hasmosquittosdb-exporter
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 10s
