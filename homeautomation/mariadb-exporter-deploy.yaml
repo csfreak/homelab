@@ -37,7 +37,13 @@ spec:
             - name: DATA_SOURCE_NAME
               value: >-
                 $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp($(HASS_DB_SERVICE_HOST):$(HASS_DB_SERVICE_PORT))/
-          resources: {}
+          resources:
+            limits:
+              memory: 50M
+              cpu: 100m
+            requests:
+              memory: 20M
+              cpu: 10m
           args:
             - --collect.info_schema.innodb_metrics
             - --collect.info_schema.tables

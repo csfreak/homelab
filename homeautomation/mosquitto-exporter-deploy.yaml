@@ -36,11 +36,13 @@ spec:
           args:
             -  --endpoint
             - $(MOSQUITTO_PORT)
-            - --user
-            - $(MOSQUITTO_USER)
-            - --pass
-            - $(MOSQUITTO_PASSWORD)
-          resources: {}
+          resources:
+            limits:
+              memory: 50M
+              cpu: 10m
+            requests:
+              memory: 20M
+              cpu: 2m
           ports:
             - name: metrics
               containerPort: 9234

@@ -37,7 +37,13 @@ spec:
           env:
           - name: HOME
             value: /home/coder
-          resources: {}
+          resources:
+            limits:
+              memory: 1G
+              cpu: 100m
+            requests:
+              memory: 256M
+              cpu: 10m
       volumes:
         - name: hass-config
           persistentVolumeClaim:
