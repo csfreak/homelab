@@ -41,3 +41,7 @@ spec:
             - --pass
             - $(MOSQUITTO_PASSWORD)
           resources: {}
+          ports:
+            - name: metrics
+              containerPort: 9234
+              protocol: TCP

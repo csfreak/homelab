@@ -1,11 +1,9 @@
 ---
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: hass-metrics
   namespace: monitoring
-  labels:
-    k8s-app: hass-metrics
 spec:
   namespaceSelector:
     matchNames:
@@ -22,38 +20,34 @@ spec:
         name: hass-token-secret
 ---
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: hassdb-metrics
   namespace: monitoring
-  labels:
-    k8s-app: hassdb-metrics
 spec:
   namespaceSelector:
     matchNames:
       - homeautomation
   selector:
     matchLabels:
-      app: hassdb-exporter
+      deployment: hassdb-exporter
   endpoints:
     - port: metrics
       path: /metrics
       interval: 10s
 ---
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: mosquitto-metrics
   namespace: monitoring
-  labels:
-    k8s-app: mosquitto-metrics
 spec:
   namespaceSelector:
     matchNames:
       - homeautomation
   selector:
     matchLabels:
-      app: hasmosquittosdb-exporter
+      deployment: mosquitto-exporter
   endpoints:
     - port: metrics
       path: /metrics
