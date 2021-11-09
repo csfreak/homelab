@@ -1,18 +1,16 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: netbox-metrics
   namespace: monitoring
-  labels:
-    k8s-app: netbox-metrics
 spec:
   namespaceSelector:
     matchNames:
       - netbox
   selector:
     matchLabels:
-      k8s-app: netbox-metrics
-  endpoints:
-    - port: metrics
+      app: netbox
+  podMetricsEndpoints:
+    - port: http-alt
       path: /metrics
       interval: 10s

@@ -57,7 +57,11 @@ spec:
             timeoutSeconds: 1
           resources:
             limits:
-              memory: 512Mi
+              memory: 100M
+              cpu: 50m
+            requests:
+              memory: 50M
+              cpu: 10m
           securityContext:
             capabilities: {}
             privileged: false
