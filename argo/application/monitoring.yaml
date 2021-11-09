@@ -22,5 +22,4 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated: 
-      properties:
-        prune: true
+      prune: true
