@@ -38,7 +38,7 @@ spec:
               value: >-
                 $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp($(HASS_DB_SERVICE_HOST):$(HASS_DB_SERVICE_PORT))/
           resources: {}
-          cmd:
+          command:
             - collect.info_schema.innodb_metrics
             - collect.info_schema.innodb_metrics
             - collect.info_schema.tablestats
