@@ -39,12 +39,9 @@ spec:
                 $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp($(HASS_DB_SERVICE_HOST):$(HASS_DB_SERVICE_PORT))/
           resources: {}
           args:
-            - collect.info_schema.innodb_metrics
-            - collect.info_schema.innodb_metrics
-            - collect.info_schema.tablestats
-            - collect.info_schema.tables
-            - collect.info_schema.userstats
-            - collect.engine_innodb_status
+            - --collect.info_schema.innodb_metrics
+            - --collect.info_schema.tables
+            - --collect.engine_innodb_status
           ports:
             - name: metrics
               containerPort: 9104 
