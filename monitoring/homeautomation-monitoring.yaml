@@ -11,7 +11,7 @@ spec:
   selector:
     matchLabels:
       app: hass
-  endpoints:
+  podMetricsEndpoints:
     - port: hass-http
       path: /api/prometheus
       interval: 10s
@@ -31,7 +31,7 @@ spec:
   selector:
     matchLabels:
       deployment: hassdb-exporter
-  endpoints:
+  podMetricsEndpoints:
     - port: metrics
       path: /metrics
       interval: 10s
@@ -48,7 +48,7 @@ spec:
   selector:
     matchLabels:
       deployment: mosquitto-exporter
-  endpoints:
+  podMetricsEndpoints:
     - port: metrics
       path: /metrics
       interval: 10s
