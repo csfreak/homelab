@@ -38,19 +38,14 @@ spec:
               protocol: TCP
               name: http
           volumeMounts:
-            - name: config
-              mountPath: "/conf"
             - name: config-shared
-              mountPath: /sharedconfig
+              mountPath: /conf
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: appdaemon-config
         - name: config-shared
           persistentVolumeClaim:
             claimName: appdaemon-config-shared
