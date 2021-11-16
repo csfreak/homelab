@@ -55,4 +55,4 @@ spec:
             claimName: hass-code-server-config
         - name: appdaemon-config
           persistentVolumeClaim:
-            claimName: appdaemon-config
+            claimName: appdaemon-config-shared
