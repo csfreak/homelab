@@ -30,8 +30,10 @@ spec:
         - name: code-server
           image: code-server:latest
           volumeMounts:
-            - mountPath: /home/coder/project
+            - mountPath: /home/coder/project/hass
               name: hass-config
+            - mountPath: /home/coder/project/appdaemon
+              name: appdaemon-config
             - mountPath: /home/coder/.config
               name: code-server-config
           env:
@@ -51,3 +53,6 @@ spec:
         - name: code-server-config
           persistentVolumeClaim:
             claimName: hass-code-server-config
+        - name: appdaemon-config
+          persistentVolumeClaim:
+            claimName: appdaemon-config
