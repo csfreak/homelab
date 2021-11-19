@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: snmp-exporter
   namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
 data:
   snmp.yml: |-
     # WARNING: This file was auto-generated using snmp_exporter generator, manual changes will be lost.
