@@ -40,6 +40,10 @@ spec:
             - name: snmp-exporter-cm
               mountPath: /etc/snmp_exporter
               readOnly: true
+          ports:
+            - name: metrics
+              containerPort: 9116
+              protocol: TCP
       volumes:
         - name: snmp-exporter-cm
           configMap:
