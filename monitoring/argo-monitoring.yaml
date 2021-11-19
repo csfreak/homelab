@@ -2,27 +2,27 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: argocd-metrics
+  name: openshift-gitops-metrics
 spec:
   namespaceSelector:
     matchNames:
-      - argocd
+      - openshift-gitops
   selector:
     matchLabels:
-      app.kubernetes.io/name: argocd-metrics
+      app.kubernetes.io/name: openshift-gitops-metrics
   endpoints:
   - port: metrics
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: argocd-server-metrics
+  name: openshift-gitops-server-metrics
 spec:
   namespaceSelector:
     matchNames:
-      - argocd
+      - openshift-gitops
   selector:
     matchLabels:
-      app.kubernetes.io/name: argocd-server-metrics
+      app.kubernetes.io/name: openshift-gitops-server-metrics
   endpoints:
   - port: metrics
