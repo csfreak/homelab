@@ -11,6 +11,8 @@ spec:
   roles:
   - name: default
     policies:
-    - p, proj:netbox:default, applications, *, netbox/*, allow
+      - p, proj:netbox:default, applications, *, netbox/*, allow
+    groups:
+      - system:authenticated:oauth
   sourceRepos:
   - https://github.com/csfreak/homelab.git

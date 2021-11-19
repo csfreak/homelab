@@ -11,6 +11,8 @@ spec:
   roles:
   - name: default
     policies:
-    - p, proj:monitoring:default, applications, *, monitoring/*, allow
+      - p, proj:monitoring:default, applications, *, monitoring/*, allow
+    groups:
+      - system:authenticated:oauth
   sourceRepos:
   - https://github.com/csfreak/homelab.git

@@ -11,6 +11,8 @@ spec:
   roles:
   - name: default
     policies:
-    - p, proj:media:default, applications, *, media/*, allow
+      - p, proj:media:default, applications, *, media/*, allow
+    groups:
+      - system:authenticated:oauth
   sourceRepos:
   - https://github.com/csfreak/homelab.git

@@ -11,6 +11,8 @@ spec:
   roles:
   - name: default
     policies:
-    - p, proj:homeautomation:default, applications, *, homeautomation/*, allow
+      - p, proj:homeautomation:default, applications, *, homeautomation/*, allow
+    groups:
+      - system:authenticated:oauth
   sourceRepos:
   - https://github.com/csfreak/homelab.git
