@@ -39,6 +39,7 @@ spec:
           volumeMounts:
             - name: snmp-exporter-cm
               mountPath: /etc/snmp_exporter
+              readOnly: true
       volumes:
         - name: snmp-exporter-cm
           configMap:
