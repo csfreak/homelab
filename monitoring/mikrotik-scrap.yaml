@@ -1,5 +1,5 @@
 apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
+kind: PodMonitor
 metadata:
   name: mikrotik-core
   namespace: monitoring
@@ -10,7 +10,7 @@ spec:
   selector:
     matchLabels:
       app: snmp-exporter
-  endpoints:
+  podMetricsEndpoints:
     - port: metrics
       path: /snmp
       params:
@@ -20,4 +20,4 @@ spec:
           - "172.31.1.1"
       interval: 60s
   targetLimit: 1
-  jobLabel:
+  jobLabel: mikrotik-core
