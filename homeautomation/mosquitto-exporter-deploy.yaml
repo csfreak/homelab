@@ -32,7 +32,7 @@ spec:
           envFrom:
             - secretRef:
                 name: mosquitto-exporter-secret
-              prefix: MOSQUITTO_
+              prefix: MQTT_
           args:
             -  --endpoint
             - $(MOSQUITTO_PORT)
