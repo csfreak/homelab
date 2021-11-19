@@ -9,7 +9,7 @@ spec:
       - monitoring
   selector:
     matchLabels:
-      app: snmp-exporter
+      deployment: snmp-exporter
   podMetricsEndpoints:
     - port: metrics
       path: /snmp
