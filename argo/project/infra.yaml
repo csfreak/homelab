@@ -6,7 +6,7 @@ metadata:
 spec:
   destinations:
   - name: '*'
-    namespace: synology-mgmt
+    namespace: '*'
     server: https://kubernetes.default.svc
   roles:
   - name: default
