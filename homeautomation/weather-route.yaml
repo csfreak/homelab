@@ -11,7 +11,7 @@ spec:
   port:
     targetPort: http-alt
   tls:
-    insecureEdgeTerminationPolicy: Redirect
+    insecureEdgeTerminationPolicy: Allow
     termination: edge
   to:
     kind: Service
