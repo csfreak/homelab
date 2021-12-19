@@ -149,3 +149,22 @@ spec:
         scheduled: true
       referencePolicy:
         type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: weather-station
+  namespace: homeautomation
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "quay.io/csfreak/weather_station:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
