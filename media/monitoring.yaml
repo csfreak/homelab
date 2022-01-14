@@ -3,7 +3,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: plex-metrics
-  namespace: monitoring
   labels:
     k8s-app: plex-metrics
 spec:
@@ -22,7 +21,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: nzbget-metrics
-  namespace: monitoring
   labels:
     k8s-app: nzbget-metrics
 spec:
@@ -41,7 +39,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: sonarr-metrics
-  namespace: monitoring
   labels:
     k8s-app: sonarr-metrics
 spec:
@@ -60,7 +57,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: radarr-metrics
-  namespace: monitoring
   labels:
     k8s-app: radarr-metrics
 spec:

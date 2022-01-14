@@ -2,7 +2,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
   name: netbox-metrics
-  namespace: monitoring
 spec:
   namespaceSelector:
     matchNames:
