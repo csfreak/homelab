@@ -12,6 +12,9 @@ spec:
     path: infra/openshift-monitoring
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
+  syncPolicy:
+    automated: 
+      prune: true
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -27,3 +30,6 @@ spec:
     path: infra/openshift-user-workload-monitoring
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
+  syncPolicy:
+    automated: 
+      prune: true
