@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-monitoring
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-monitoring
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/openshift-monitoring
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-user-workload-monitoring
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-user-workload-monitoring
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/openshift-user-workload-monitoring
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
