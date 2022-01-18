@@ -121,7 +121,7 @@ spec:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(irate(django_http_requests_total_by_transport_total{namespace=~\"$namespace\", app=~\"^$app$\"}[1m]))",
+              "expr": "sum(irate(django_http_requests_total_by_transport_total{namespace=~\"$namespace\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
@@ -201,7 +201,7 @@ spec:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(irate(django_http_responses_total_by_status_total{status=~\"2.+\",namespace=~\"$namespace\", app=~\"^$app$\"}[1m]))",
+              "expr": "sum(irate(django_http_responses_total_by_status_total{status=~\"2.+\",namespace=~\"$namespace\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -282,7 +282,7 @@ spec:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(irate(django_http_responses_total_by_status_total{status=~\"4.+\",namespace=~\"$namespace\", app=~\"^$app$\"}[1m]))",
+              "expr": "sum(irate(django_http_responses_total_by_status_total{status=~\"4.+\",namespace=~\"$namespace\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -363,7 +363,7 @@ spec:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(irate(django_http_responses_total_by_status_total{status=~\"5.+\",namespace=~\"$namespace\", app=~\"^$app$\"}[1m]))",
+              "expr": "sum(irate(django_http_responses_total_by_status_total{status=~\"5.+\",namespace=~\"$namespace\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "",
@@ -420,7 +420,7 @@ spec:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(django_http_requests_total_by_view_transport_method_total{namespace=~\"$namespace\", app=~\"^$app$\",view!~\"prometheus-django-metrics|healthcheck\"}[1m])) by(method, view)",
+              "expr": "sum(irate(django_http_requests_total_by_view_transport_method_total{namespace=~\"$namespace\",view!~\"prometheus-django-metrics|healthcheck\"}[1m])) by(method, view)",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -505,7 +505,7 @@ spec:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.50, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\", app=~\"^$app$\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
+              "expr": "histogram_quantile(0.50, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -513,7 +513,7 @@ spec:
               "refId": "A"
             },
             {
-              "expr": "histogram_quantile(0.95, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\", app=~\"^$app$\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
+              "expr": "histogram_quantile(0.95, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -522,7 +522,7 @@ spec:
               "refId": "B"
             },
             {
-              "expr": "histogram_quantile(0.99, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\", app=~\"^$app$\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
+              "expr": "histogram_quantile(0.99, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -531,7 +531,7 @@ spec:
               "refId": "C"
             },
             {
-              "expr": "histogram_quantile(0.999, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\", app=~\"^$app$\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
+              "expr": "histogram_quantile(0.999, sum(rate(django_http_requests_latency_seconds_by_view_method_bucket{namespace=~\"$namespace\",view!~\"prometheus-django-metrics|healthcheck\"}[5m])) by (job, le))",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -621,7 +621,7 @@ spec:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(django_http_responses_before_middlewares_total{namespace=~\"$namespace\", app=~\"^$app$\", view!~\"prometheus-django-metrics|healthcheck\"}[1m])) by(job)",
+              "expr": "sum(irate(django_http_responses_before_middlewares_total{namespace=~\"$namespace\", view!~\"prometheus-django-metrics|healthcheck\"}[1m])) by(job)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 1,
@@ -706,7 +706,7 @@ spec:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(django_http_responses_total_by_status_total{namespace=~\"$namespace\", app=~\"^$app$\", view!~\"prometheus-django-metrics|healthcheck\"}[1m])) by(status)",
+              "expr": "sum(irate(django_http_responses_total_by_status_total{namespace=~\"$namespace\", view!~\"prometheus-django-metrics|healthcheck\"}[1m])) by(status)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{status}}",
@@ -793,7 +793,7 @@ spec:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(django_db_execute_total{namespace=~\"$namespace\", app=~\"^$app$\"}[1m])) by (vendor)",
+              "expr": "sum(irate(django_db_execute_total{namespace=~\"$namespace\"}[1m])) by (vendor)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{vendor}}",
@@ -881,21 +881,21 @@ spec:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(irate(django_model_deletes_total{namespace=~\"$namespace\", app=~\"^$app$\"}[1m])) by (model)",
+              "expr": "sum(irate(django_model_deletes_total{namespace=~\"$namespace\"}[1m])) by (model)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "[{{model}}] deletes",
               "refId": "A"
             },
             {
-              "expr": "sum(irate(django_model_inserts_total{namespace=~\"$namespace\", app=~\"^$app$\"}[1m])) by (model)",
+              "expr": "sum(irate(django_model_inserts_total{namespace=~\"$namespace\"}[1m])) by (model)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "[{{model}}] inserts",
               "refId": "B"
             },
             {
-              "expr": "sum(irate(django_model_updates_total{namespace=~\"$namespace\", app=~\"^$app$\"}[1m])) by (model)",
+              "expr": "sum(irate(django_model_updates_total{namespace=~\"$namespace\"}[1m])) by (model)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "[{{model}}] updates",
@@ -954,52 +954,38 @@ spec:
               "text": "Prometheus",
               "value": "Prometheus"
             },
-            "hide": 0,
+            "hide": 1,
             "label": null,
             "name": "datasource",
             "options": [],
             "query": "prometheus",
             "refresh": 1,
-            "regex": "",
+            "regex": "Prometheus",
             "skipUrlSync": false,
             "type": "datasource"
           },
           {
             "allValue": ".*",
-            "current": {},
+            "current": {
+              "selected": false,
+              "text": "netbox",
+              "value": "netbox"
+            },
             "datasource": "$datasource",
-            "hide": 0,
+            "hide": 1,
             "includeAll": false,
             "label": "",
             "multi": false,
             "name": "namespace",
             "options": [],
-            "query": "label_values(django_db_new_connections_total, namespace)",
+            "query": {
+              "query": "label_values(namespace)",
+              "refId": "StandardVariableQuery"
+            },
             "refresh": 1,
-            "regex": "",
+            "regex": "netbox",
             "skipUrlSync": false,
             "sort": 1,
-            "tagValuesQuery": "",
-            "tags": [],
-            "tagsQuery": "",
-            "type": "query",
-            "useTags": false
-          },
-          {
-            "allValue": null,
-            "current": {},
-            "datasource": "$datasource",
-            "hide": 0,
-            "includeAll": true,
-            "label": "app",
-            "multi": false,
-            "name": "app",
-            "options": [],
-            "query": "label_values(django_db_new_connections_total{namespace=~\"$namespace\"}, app)",
-            "refresh": 1,
-            "regex": "",
-            "skipUrlSync": false,
-            "sort": 0,
             "tagValuesQuery": "",
             "tags": [],
             "tagsQuery": "",
