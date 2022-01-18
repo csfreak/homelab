@@ -11,24 +11,5 @@ data:
       retention: 30d
 kind: ConfigMap
 metadata:
-  creationTimestamp: "2022-01-14T22:53:14Z"
-  managedFields:
-  - apiVersion: v1
-    fieldsType: FieldsV1
-    fieldsV1:
-      f:data: {}
-    manager: Mozilla
-    operation: Update
-    time: "2022-01-14T22:53:14Z"
-  - apiVersion: v1
-    fieldsType: FieldsV1
-    fieldsV1:
-      f:data:
-        f:config: {}
-    manager: kubectl-edit
-    operation: Update
-    time: "2022-01-14T22:55:21Z"
   name: user-workload-monitoring-config
   namespace: openshift-user-workload-monitoring
-  resourceVersion: "426307335"
-  uid: 67d75196-b7ff-4a91-96f5-2b7dbaa49b1c
