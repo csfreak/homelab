@@ -16,3 +16,6 @@ spec:
       - system:authenticated:oauth
   sourceRepos:
   - https://github.com/csfreak/homelab.git
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
