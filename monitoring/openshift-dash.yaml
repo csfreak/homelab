@@ -2057,7 +2057,7 @@ spec:
           }
         },
         {
-          "collapsed": false,
+          "collapsed": true,
           "datasource": null,
           "gridPos": {
             "h": 1,
@@ -2066,89 +2066,994 @@ spec:
             "y": 48
           },
           "id": 84,
-          "panels": [],
+          "panels": [
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "rgba(92, 182, 66, 0.9)",
+                        "value": null
+                      },
+                      {
+                        "color": "rgba(237, 129, 40, 0.89)",
+                        "value": 70
+                      },
+                      {
+                        "color": "rgba(172, 47, 45, 0.97)",
+                        "value": 90
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 8,
+                "x": 0,
+                "y": 49
+              },
+              "id": 12,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "text": {}
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[1m])) / sum (machine_cpu_cores) * 100",
+                  "format": "time_series",
+                  "hide": false,
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Total CPU usage (1m avg)",
+              "type": "gauge"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "rgba(98, 245, 54, 0.9)",
+                        "value": null
+                      },
+                      {
+                        "color": "rgba(237, 129, 40, 0.89)",
+                        "value": 70
+                      },
+                      {
+                        "color": "rgba(172, 47, 45, 0.97)",
+                        "value": 90
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 8,
+                "x": 8,
+                "y": 49
+              },
+              "id": 13,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "text": {}
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"master.+\"}[1m])) / sum (machine_cpu_cores{node=~\"master.+\"}) * 100",
+                  "format": "time_series",
+                  "hide": false,
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Master CPU usage (1m avg)",
+              "type": "gauge"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "rgba(98, 245, 54, 0.9)",
+                        "value": null
+                      },
+                      {
+                        "color": "rgba(237, 129, 40, 0.89)",
+                        "value": 70
+                      },
+                      {
+                        "color": "rgba(172, 47, 45, 0.97)",
+                        "value": 90
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 9,
+                "w": 8,
+                "x": 16,
+                "y": 49
+              },
+              "id": 15,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "text": {}
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node!~\"master..\"}[1m])) / sum (machine_cpu_cores{node!~\"master..\"}) * 100",
+                  "format": "time_series",
+                  "hide": false,
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Application CPU usage (1m avg)",
+              "type": "gauge"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 0,
+                "y": 58
+              },
+              "id": 17,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "expr": "sum (machine_cpu_cores)",
+                  "format": "time_series",
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Total Cores",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 4,
+                "y": 58
+              },
+              "id": 16,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[1m]))",
+                  "format": "time_series",
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Total Used Cores",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 8,
+                "y": 58
+              },
+              "id": 19,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum (machine_cpu_cores{node=~\"master..\"})",
+                  "format": "time_series",
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Master Cores",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 12,
+                "y": 58
+              },
+              "id": 18,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"master..\"}[1m]))",
+                  "format": "time_series",
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Used Cores",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 16,
+                "y": 58
+              },
+              "id": 23,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum (machine_cpu_cores{node!~\"master..\"}) ",
+                  "format": "time_series",
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "App Cores",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 2,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "green",
+                        "value": null
+                      },
+                      {
+                        "color": "red",
+                        "value": 80
+                      }
+                    ]
+                  },
+                  "unit": "none"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 5,
+                "w": 4,
+                "x": 20,
+                "y": 58
+              },
+              "id": 22,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "colorMode": "value",
+                "graphMode": "none",
+                "justifyMode": "auto",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "text": {},
+                "textMode": "auto"
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node!~\"master..\"}[1m]))",
+                  "format": "time_series",
+                  "hide": false,
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "Used Cores",
+              "type": "stat"
+            },
+            {
+              "cacheTimeout": null,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {
+                  "color": {
+                    "mode": "thresholds"
+                  },
+                  "decimals": 0,
+                  "mappings": [
+                    {
+                      "id": 0,
+                      "op": "=",
+                      "text": "N/A",
+                      "type": 1,
+                      "value": "null"
+                    }
+                  ],
+                  "max": 100,
+                  "min": 0,
+                  "thresholds": {
+                    "mode": "absolute",
+                    "steps": [
+                      {
+                        "color": "rgba(98, 245, 54, 0.9)",
+                        "value": null
+                      },
+                      {
+                        "color": "rgba(237, 129, 40, 0.89)",
+                        "value": 70
+                      },
+                      {
+                        "color": "rgba(172, 47, 45, 0.97)",
+                        "value": 90
+                      }
+                    ]
+                  },
+                  "unit": "percent"
+                },
+                "overrides": []
+              },
+              "gridPos": {
+                "h": 8,
+                "w": 6,
+                "x": 0,
+                "y": 63
+              },
+              "id": 35,
+              "interval": null,
+              "links": [],
+              "maxDataPoints": 100,
+              "options": {
+                "orientation": "horizontal",
+                "reduceOptions": {
+                  "calcs": [
+                    "lastNotNull"
+                  ],
+                  "fields": "",
+                  "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true,
+                "text": {}
+              },
+              "pluginVersion": "7.5.11",
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "(sum ((kube_pod_container_resource_requests{resource=\"cpu\",container!=\"docker-build\"})*1000)) / (sum (machine_cpu_cores)*1000)  * 100 ",
+                  "format": "time_series",
+                  "hide": false,
+                  "interval": "10s",
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A",
+                  "step": 900
+                }
+              ],
+              "title": "CPU Request Allocation",
+              "type": "gauge"
+            },
+            {
+              "aliasColors": {},
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "Prometheus",
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              },
+              "fill": 1,
+              "fillGradient": 0,
+              "gridPos": {
+                "h": 8,
+                "w": 18,
+                "x": 6,
+                "y": 63
+              },
+              "height": "300",
+              "hiddenSeries": false,
+              "id": 36,
+              "legend": {
+                "alignAsTable": true,
+                "avg": true,
+                "current": true,
+                "max": true,
+                "min": false,
+                "rightSide": true,
+                "show": true,
+                "sort": "current",
+                "sortDesc": true,
+                "total": false,
+                "values": true
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "null",
+              "options": {
+                "alertThreshold": true
+              },
+              "percentage": false,
+              "pluginVersion": "7.5.11",
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "exemplar": true,
+                  "expr": "sum ((kube_pod_container_resource_requests{resource=\"cpu\", namespace!~\"openshift-.*\"})*1000) by (namespace)",
+                  "format": "time_series",
+                  "interval": "",
+                  "intervalFactor": 2,
+                  "legendFormat": "{{ namespace }}",
+                  "refId": "A",
+                  "step": 120
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": null,
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "CPU Request Allocation per Project",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "$$hashKey": "object:1361",
+                  "format": "none",
+                  "label": "millicores",
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                },
+                {
+                  "$$hashKey": "object:1362",
+                  "format": "short",
+                  "label": "",
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            }
+          ],
           "repeat": null,
           "title": "CPU Details",
           "type": "row"
         },
         {
-          "cacheTimeout": null,
-          "datasource": "Prometheus",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 0,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "max": 100,
-              "min": 0,
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "rgba(92, 182, 66, 0.9)",
-                    "value": null
-                  },
-                  {
-                    "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 70
-                  },
-                  {
-                    "color": "rgba(172, 47, 45, 0.97)",
-                    "value": 90
-                  }
-                ]
-              },
-              "unit": "percent"
-            },
-            "overrides": []
-          },
+          "collapsed": false,
+          "datasource": null,
           "gridPos": {
-            "h": 9,
-            "w": 8,
+            "h": 1,
+            "w": 24,
             "x": 0,
             "y": 49
           },
-          "id": 12,
+          "id": 85,
+          "panels": [],
+          "repeat": null,
+          "title": "Memory Details",
+          "type": "row"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 5,
+            "x": 0,
+            "y": 50
+          },
+          "height": "200",
+          "hideTimeOverride": true,
+          "id": 39,
           "interval": null,
           "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "showThresholdLabels": false,
-            "showThresholdMarkers": true,
-            "text": {}
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
+          "mappingType": 1,
+          "mappingTypes": [
             {
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[1m])) / sum (machine_cpu_cores) * 100",
-              "format": "time_series",
-              "hide": false,
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 900
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
             }
           ],
-          "title": "Total CPU usage (1m avg)",
-          "type": "gauge"
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\"}) / sum (machine_memory_bytes) * 100",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "thresholds": "70,90",
+          "timeFrom": "1m",
+          "title": "Total Memory Usage",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
         },
         {
           "cacheTimeout": null,
@@ -2168,7 +3073,7 @@ spec:
                   "value": "null"
                 }
               ],
-              "max": 100,
+              "max": 400,
               "min": 0,
               "thresholds": {
                 "mode": "absolute",
@@ -2179,11 +3084,11 @@ spec:
                   },
                   {
                     "color": "rgba(237, 129, 40, 0.89)",
-                    "value": 70
+                    "value": 250
                   },
                   {
                     "color": "rgba(172, 47, 45, 0.97)",
-                    "value": 90
+                    "value": 350
                   }
                 ]
               },
@@ -2192,12 +3097,12 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 9,
-            "w": 8,
-            "x": 8,
-            "y": 49
+            "h": 6,
+            "w": 3,
+            "x": 5,
+            "y": 50
           },
-          "id": 13,
+          "id": 53,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2218,7 +3123,7 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"master.+\"}[1m])) / sum (machine_cpu_cores{node=~\"master.+\"}) * 100",
+              "expr": "(sum (container_spec_memory_limit_bytes{pod!=\"\"})) / (sum (machine_memory_bytes))  * 100 ",
               "format": "time_series",
               "hide": false,
               "interval": "10s",
@@ -2228,7 +3133,7 @@ spec:
               "step": 900
             }
           ],
-          "title": "Master CPU usage (1m avg)",
+          "title": "Total Memory Limit Allocation",
           "type": "gauge"
         },
         {
@@ -2239,7 +3144,6 @@ spec:
               "color": {
                 "mode": "thresholds"
               },
-              "decimals": 0,
               "mappings": [
                 {
                   "id": 0,
@@ -2255,7 +3159,7 @@ spec:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "rgba(98, 245, 54, 0.9)",
+                    "color": "rgba(50, 172, 45, 0.97)",
                     "value": null
                   },
                   {
@@ -2263,7 +3167,7 @@ spec:
                     "value": 70
                   },
                   {
-                    "color": "rgba(172, 47, 45, 0.97)",
+                    "color": "rgba(245, 54, 54, 0.9)",
                     "value": 90
                   }
                 ]
@@ -2273,12 +3177,13 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 9,
-            "w": 8,
-            "x": 16,
-            "y": 49
+            "h": 6,
+            "w": 5,
+            "x": 8,
+            "y": 50
           },
-          "id": 15,
+          "hideTimeOverride": true,
+          "id": 40,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2299,7 +3204,88 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node!~\"master..\"}[1m])) / sum (machine_cpu_cores{node!~\"master..\"}) * 100",
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"master..\"}) / sum (machine_memory_bytes{node=~\"master..\"})* 100",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Master Memory Usage",
+          "type": "gauge"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 400,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "rgba(98, 245, 54, 0.9)",
+                    "value": null
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 250
+                  },
+                  {
+                    "color": "rgba(172, 47, 45, 0.97)",
+                    "value": 350
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 13,
+            "y": 50
+          },
+          "id": 54,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "text": {}
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "(sum (container_spec_memory_limit_bytes{node=~\"master..\"})) / (sum (machine_memory_bytes{node=~\"master..\"}))  * 100 ",
               "format": "time_series",
               "hide": false,
               "interval": "10s",
@@ -2309,7 +3295,177 @@ spec:
               "step": 900
             }
           ],
-          "title": "Application CPU usage (1m avg)",
+          "title": "Master Memory Limit Allocation",
+          "type": "gauge"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": true,
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "format": "percent",
+          "gauge": {
+            "maxValue": 100,
+            "minValue": 0,
+            "show": true,
+            "thresholdLabels": false,
+            "thresholdMarkers": true
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 5,
+            "x": 16,
+            "y": 50
+          },
+          "height": "200",
+          "hideTimeOverride": true,
+          "id": 42,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\",role!=\"master\",role!=\"infra\"}) / sum (machine_memory_bytes{role!=\"master\",role!=\"infra\"}) * 100",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 2,
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "thresholds": "70,90",
+          "timeFrom": "1m",
+          "title": "App Memory Usage",
+          "type": "singlestat",
+          "valueFontSize": "80%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "max": 400,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "rgba(98, 245, 54, 0.9)",
+                    "value": null
+                  },
+                  {
+                    "color": "rgba(237, 129, 40, 0.89)",
+                    "value": 250
+                  },
+                  {
+                    "color": "rgba(172, 47, 45, 0.97)",
+                    "value": 350
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 3,
+            "x": 21,
+            "y": 50
+          },
+          "id": 56,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true,
+            "text": {}
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "(sum (container_spec_memory_limit_bytes{node!~\"master..\"})) / (sum (machine_memory_bytes{node!~\"master..\"}))  * 100 ",
+              "format": "time_series",
+              "hide": false,
+              "interval": "10s",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 900
+            }
+          ],
+          "title": "App Memory Limit Allocation",
           "type": "gauge"
         },
         {
@@ -2336,24 +3492,21 @@ spec:
                   {
                     "color": "green",
                     "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
                   }
                 ]
               },
-              "unit": "none"
+              "unit": "bytes"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 4,
+            "h": 3,
+            "w": 2,
             "x": 0,
-            "y": 58
+            "y": 56
           },
-          "id": 17,
+          "hideTimeOverride": true,
+          "id": 37,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2375,89 +3528,16 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "sum (machine_cpu_cores)",
+              "expr": "sum (machine_memory_bytes)",
               "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
+              "intervalFactor": 2,
               "refId": "A",
-              "step": 900
+              "step": 2
             }
           ],
-          "title": "Total Cores",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "Prometheus",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 4,
-            "y": 58
-          },
-          "id": 16,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[1m]))",
-              "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "refId": "A",
-              "step": 900
-            }
-          ],
-          "title": "Total Used Cores",
+          "timeFrom": "1m",
+          "timeShift": null,
+          "title": "Total Memory",
           "type": "stat"
         },
         {
@@ -2484,24 +3564,166 @@ spec:
                   {
                     "color": "green",
                     "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
                   }
                 ]
               },
-              "unit": "none"
+              "unit": "decbytes"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 4,
+            "h": 3,
+            "w": 2,
+            "x": 2,
+            "y": 56
+          },
+          "hideTimeOverride": true,
+          "id": 38,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\"})",
+              "format": "time_series",
+              "intervalFactor": 2,
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Total Mem Used",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 2,
+            "x": 5,
+            "y": 56
+          },
+          "hideTimeOverride": true,
+          "id": 43,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum (container_spec_memory_limit_bytes{pod!=\"\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "Total Mem Limits",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 2,
             "x": 8,
-            "y": 58
+            "y": 56
           },
-          "id": 19,
+          "hideTimeOverride": true,
+          "id": 44,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2512,7 +3734,7 @@ spec:
             "orientation": "horizontal",
             "reduceOptions": {
               "calcs": [
-                "lastNotNull"
+                "mean"
               ],
               "fields": "",
               "values": false
@@ -2524,92 +3746,17 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (machine_cpu_cores{node=~\"master..\"})",
+              "expr": "sum (machine_memory_bytes{node=~\"master..\"})",
               "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
+              "interval": "",
+              "intervalFactor": 2,
               "legendFormat": "",
               "refId": "A",
-              "step": 900
+              "step": 2
             }
           ],
-          "title": "Master Cores",
-          "type": "stat"
-        },
-        {
-          "cacheTimeout": null,
-          "datasource": "Prometheus",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "decimals": 2,
-              "mappings": [
-                {
-                  "id": 0,
-                  "op": "=",
-                  "text": "N/A",
-                  "type": 1,
-                  "value": "null"
-                }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "none"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 12,
-            "y": 58
-          },
-          "id": 18,
-          "interval": null,
-          "links": [],
-          "maxDataPoints": 100,
-          "options": {
-            "colorMode": "value",
-            "graphMode": "none",
-            "justifyMode": "auto",
-            "orientation": "horizontal",
-            "reduceOptions": {
-              "calcs": [
-                "lastNotNull"
-              ],
-              "fields": "",
-              "values": false
-            },
-            "text": {},
-            "textMode": "auto"
-          },
-          "pluginVersion": "7.5.11",
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"master..\"}[1m]))",
-              "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A",
-              "step": 900
-            }
-          ],
-          "title": "Used Cores",
+          "timeFrom": "1m",
+          "title": "Master Memory",
           "type": "stat"
         },
         {
@@ -2636,24 +3783,21 @@ spec:
                   {
                     "color": "green",
                     "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
                   }
                 ]
               },
-              "unit": "none"
+              "unit": "decbytes"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 16,
-            "y": 58
+            "h": 3,
+            "w": 2,
+            "x": 10,
+            "y": 56
           },
-          "id": 23,
+          "hideTimeOverride": true,
+          "id": 45,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2664,7 +3808,7 @@ spec:
             "orientation": "horizontal",
             "reduceOptions": {
               "calcs": [
-                "lastNotNull"
+                "mean"
               ],
               "fields": "",
               "values": false
@@ -2676,16 +3820,17 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (machine_cpu_cores{node!~\"master..\"}) ",
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node=~\"master..\"})",
               "format": "time_series",
-              "interval": "10s",
-              "intervalFactor": 1,
+              "interval": "",
+              "intervalFactor": 2,
               "legendFormat": "",
               "refId": "A",
-              "step": 900
+              "step": 2
             }
           ],
-          "title": "App Cores",
+          "timeFrom": "1m",
+          "title": "Master Mem Used",
           "type": "stat"
         },
         {
@@ -2696,7 +3841,7 @@ spec:
               "color": {
                 "mode": "thresholds"
               },
-              "decimals": 2,
+              "decimals": 0,
               "mappings": [
                 {
                   "id": 0,
@@ -2712,24 +3857,21 @@ spec:
                   {
                     "color": "green",
                     "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
                   }
                 ]
               },
-              "unit": "none"
+              "unit": "decbytes"
             },
             "overrides": []
           },
           "gridPos": {
-            "h": 5,
-            "w": 4,
-            "x": 20,
-            "y": 58
+            "h": 3,
+            "w": 2,
+            "x": 13,
+            "y": 56
           },
-          "id": 22,
+          "hideTimeOverride": true,
+          "id": 46,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2752,17 +3894,239 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node!~\"master..\"}[1m]))",
+              "expr": "sum (container_spec_memory_limit_bytes{node=~\"master..\",pod!=\"\"})",
               "format": "time_series",
-              "hide": false,
-              "interval": "10s",
-              "intervalFactor": 1,
+              "interval": "",
+              "intervalFactor": 2,
               "legendFormat": "",
               "refId": "A",
-              "step": 900
+              "step": 2
             }
           ],
-          "title": "Used Cores",
+          "timeFrom": "1m",
+          "title": "Master Mem Limits",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "bytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 2,
+            "x": 16,
+            "y": 56
+          },
+          "hideTimeOverride": true,
+          "id": 50,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum (machine_memory_bytes{node!~\"master..\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "App Memory",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 2,
+            "x": 18,
+            "y": 56
+          },
+          "hideTimeOverride": true,
+          "id": 51,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node!~\"master..\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "App Mem Used",
+          "type": "stat"
+        },
+        {
+          "cacheTimeout": null,
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "decimals": 0,
+              "mappings": [
+                {
+                  "id": 0,
+                  "op": "=",
+                  "text": "N/A",
+                  "type": 1,
+                  "value": "null"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "decbytes"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 3,
+            "w": 2,
+            "x": 21,
+            "y": 56
+          },
+          "hideTimeOverride": true,
+          "id": 52,
+          "interval": null,
+          "links": [],
+          "maxDataPoints": 100,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "mean"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.11",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum (container_spec_memory_limit_bytes{node!~\"master..\",pod!=\"\"})",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 2,
+              "legendFormat": "",
+              "refId": "A",
+              "step": 2
+            }
+          ],
+          "timeFrom": "1m",
+          "title": "App Memory Limits",
           "type": "stat"
         },
         {
@@ -2810,9 +4174,10 @@ spec:
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 63
+            "y": 59
           },
-          "id": 35,
+          "hideTimeOverride": true,
+          "id": 57,
           "interval": null,
           "links": [],
           "maxDataPoints": 100,
@@ -2833,17 +4198,18 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "(sum ((kube_pod_container_resource_requests{resource=\"cpu\",container!=\"docker-build\"})*1000)) / (sum (machine_cpu_cores)*1000)  * 100 ",
+              "expr": "(sum (kube_pod_container_resource_requests{resource=\"memory\",node!~\"master..\"})) / (sum (machine_memory_bytes{node!~\"master..\"}))  * 100 ",
               "format": "time_series",
               "hide": false,
               "interval": "10s",
               "intervalFactor": 1,
               "legendFormat": "",
               "refId": "A",
-              "step": 900
+              "step": 10
             }
           ],
-          "title": "CPU Request Allocation",
+          "timeFrom": "1m",
+          "title": "Memory Request Allocation",
           "type": "gauge"
         },
         {
@@ -2857,16 +4223,16 @@ spec:
             "overrides": []
           },
           "fill": 1,
-          "fillGradient": 0,
+          "fillGradient": 1,
           "gridPos": {
             "h": 8,
             "w": 18,
             "x": 6,
-            "y": 63
+            "y": 59
           },
           "height": "300",
           "hiddenSeries": false,
-          "id": 36,
+          "id": 58,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2881,7 +4247,7 @@ spec:
             "values": true
           },
           "lines": true,
-          "linewidth": 1,
+          "linewidth": 3,
           "links": [],
           "nullPointMode": "null",
           "options": {
@@ -2899,7 +4265,7 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "sum ((kube_pod_container_resource_requests{resource=\"cpu\", namespace!~\"openshift-.*\"})*1000) by (namespace)",
+              "expr": "sum ((kube_pod_container_resource_requests{resource=\"memory\",namespace!~\"openshift-.*\"})) by (namespace)",
               "format": "time_series",
               "interval": "",
               "intervalFactor": 2,
@@ -2912,7 +4278,7 @@ spec:
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "CPU Request Allocation per Project",
+          "title": "Memory Request Allocation per Project",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -2928,16 +4294,16 @@ spec:
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1361",
-              "format": "none",
-              "label": "millicores",
+              "$$hashKey": "object:2083",
+              "format": "bytes",
+              "label": "memory",
               "logBase": 1,
               "max": null,
               "min": null,
               "show": true
             },
             {
-              "$$hashKey": "object:1362",
+              "$$hashKey": "object:2084",
               "format": "short",
               "label": "",
               "logBase": 1,
@@ -2958,1549 +4324,7 @@ spec:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 71
-          },
-          "id": 85,
-          "panels": [
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(50, 172, 45, 0.97)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(245, 54, 54, 0.9)"
-              ],
-              "datasource": "Prometheus",
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 6,
-                "w": 6,
-                "x": 0,
-                "y": 4
-              },
-              "height": "200",
-              "hideTimeOverride": true,
-              "id": 39,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_memory_working_set_bytes{id=\"/\"}) / sum (machine_memory_bytes) * 100",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "70,90",
-              "timeFrom": "1m",
-              "title": "Total Memory Usage",
-              "type": "singlestat",
-              "valueFontSize": "80%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(50, 172, 45, 0.97)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(245, 54, 54, 0.9)"
-              ],
-              "datasource": "Prometheus",
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 6,
-                "w": 6,
-                "x": 6,
-                "y": 4
-              },
-              "height": "200",
-              "hideTimeOverride": true,
-              "id": 40,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_memory_working_set_bytes{id=\"/\",role=\"master\"}) / sum (machine_memory_bytes{role=\"master\"})* 100",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "70,90",
-              "timeFrom": "1m",
-              "title": "Master Memory Usage",
-              "type": "singlestat",
-              "valueFontSize": "80%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(50, 172, 45, 0.97)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(245, 54, 54, 0.9)"
-              ],
-              "datasource": "Prometheus",
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 6,
-                "w": 6,
-                "x": 18,
-                "y": 4
-              },
-              "height": "200",
-              "hideTimeOverride": true,
-              "id": 42,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_memory_working_set_bytes{id=\"/\",role!=\"master\",role!=\"infra\"}) / sum (machine_memory_bytes{role!=\"master\",role!=\"infra\"}) * 100",
-                  "format": "time_series",
-                  "hide": false,
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "70,90",
-              "timeFrom": "1m",
-              "title": "App Memory Usage",
-              "type": "singlestat",
-              "valueFontSize": "80%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "bytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 0,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 37,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (machine_memory_bytes)",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "timeShift": null,
-              "title": "Total Memory",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "decbytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 2,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 38,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_memory_working_set_bytes{id=\"/\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "Total Mem Used",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "decbytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 4,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 43,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_spec_memory_limit_bytes{pod_name!=\"\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "Total Mem Limits",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "avg"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "bytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 6,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 44,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (machine_memory_bytes{role=\"master\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "Master Memory",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "avg"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "decbytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 8,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 45,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_memory_working_set_bytes{id=\"/\",role=\"master\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "Master Mem Used",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "avg"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "decbytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 10,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 46,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_spec_memory_limit_bytes{role=\"master\",pod_name!=\"\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "Master Mem Limits",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "bytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 18,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 50,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (machine_memory_bytes{role!=\"master\",role!=\"infra\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "App Memory",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "avg"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "decbytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 20,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 51,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_memory_working_set_bytes{id=\"/\",role!=\"master\",role!=\"infra\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "App Mem Used",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "avg"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": false,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "decbytes",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 3,
-                "w": 2,
-                "x": 22,
-                "y": 10
-              },
-              "height": "100",
-              "hideTimeOverride": true,
-              "id": 52,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "sum (container_spec_memory_limit_bytes{role!=\"master\",role!=\"infra\",pod_name!=\"\"})",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "refId": "A",
-                  "step": 2
-                }
-              ],
-              "thresholds": "",
-              "timeFrom": "1m",
-              "title": "App Memory Limits",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "avg"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(98, 245, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(172, 47, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 400,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 6,
-                "w": 6,
-                "x": 0,
-                "y": 13
-              },
-              "height": "200",
-              "id": 53,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "(sum (container_spec_memory_limit_bytes{pod_name!=\"\"})) / (sum (machine_memory_bytes))  * 100 ",
-                  "format": "time_series",
-                  "hide": false,
-                  "interval": "10s",
-                  "intervalFactor": 1,
-                  "refId": "A",
-                  "step": 900
-                }
-              ],
-              "thresholds": "250,350",
-              "title": "Total Memory Limit Allocation",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(98, 245, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(172, 47, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 400,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 6,
-                "w": 6,
-                "x": 6,
-                "y": 13
-              },
-              "height": "200",
-              "id": 54,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "(sum (container_spec_memory_limit_bytes{role=\"master\"})) / (sum (machine_memory_bytes))  * 100 ",
-                  "format": "time_series",
-                  "hide": false,
-                  "interval": "10s",
-                  "intervalFactor": 1,
-                  "refId": "A",
-                  "step": 900
-                }
-              ],
-              "thresholds": "250,350",
-              "title": "Master Memory Limit Allocation",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(98, 245, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(172, 47, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 400,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 6,
-                "w": 6,
-                "x": 18,
-                "y": 13
-              },
-              "height": "200",
-              "id": 56,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "(sum (container_spec_memory_limit_bytes{role!=\"master\",role!=\"infra\"})) / (sum (machine_memory_bytes))  * 100 ",
-                  "format": "time_series",
-                  "hide": false,
-                  "interval": "10s",
-                  "intervalFactor": 1,
-                  "refId": "A",
-                  "step": 900
-                }
-              ],
-              "thresholds": "250,350",
-              "title": "App Memory Limit Allocation",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "cacheTimeout": null,
-              "colorBackground": false,
-              "colorValue": true,
-              "colors": [
-                "rgba(98, 245, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(172, 47, 45, 0.97)"
-              ],
-              "datasource": "Prometheus",
-              "decimals": 0,
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "format": "percent",
-              "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-              },
-              "gridPos": {
-                "h": 8,
-                "w": 6,
-                "x": 0,
-                "y": 19
-              },
-              "height": "300",
-              "hideTimeOverride": true,
-              "id": 57,
-              "interval": null,
-              "links": [],
-              "mappingType": 1,
-              "mappingTypes": [
-                {
-                  "name": "value to text",
-                  "value": 1
-                },
-                {
-                  "name": "range to text",
-                  "value": 2
-                }
-              ],
-              "maxDataPoints": 100,
-              "nullPointMode": "connected",
-              "nullText": null,
-              "postfix": "",
-              "postfixFontSize": "50%",
-              "prefix": "",
-              "prefixFontSize": "50%",
-              "rangeMaps": [
-                {
-                  "from": "null",
-                  "text": "N/A",
-                  "to": "null"
-                }
-              ],
-              "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-              },
-              "tableColumn": "",
-              "targets": [
-                {
-                  "expr": "(sum (container_spec_memory_limit_bytes{pod_name!=\"\"})) / (sum (machine_memory_bytes))  * 100 ",
-                  "format": "time_series",
-                  "hide": false,
-                  "interval": "10s",
-                  "intervalFactor": 1,
-                  "refId": "A",
-                  "step": 10
-                }
-              ],
-              "thresholds": "70,90",
-              "timeFrom": "1m",
-              "title": "Memory Request Allocation",
-              "type": "singlestat",
-              "valueFontSize": "50%",
-              "valueMaps": [
-                {
-                  "op": "=",
-                  "text": "N/A",
-                  "value": "null"
-                }
-              ],
-              "valueName": "current"
-            },
-            {
-              "aliasColors": {},
-              "bars": false,
-              "dashLength": 10,
-              "dashes": false,
-              "datasource": "Prometheus",
-              "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-              },
-              "fill": 1,
-              "fillGradient": 0,
-              "gridPos": {
-                "h": 8,
-                "w": 18,
-                "x": 6,
-                "y": 19
-              },
-              "height": "300",
-              "hiddenSeries": false,
-              "id": 58,
-              "legend": {
-                "alignAsTable": true,
-                "avg": true,
-                "current": true,
-                "max": true,
-                "min": false,
-                "rightSide": true,
-                "show": true,
-                "sort": "current",
-                "sortDesc": true,
-                "total": false,
-                "values": true
-              },
-              "lines": true,
-              "linewidth": 1,
-              "links": [],
-              "nullPointMode": "null",
-              "options": {
-                "alertThreshold": true
-              },
-              "percentage": false,
-              "pluginVersion": "7.5.11",
-              "pointradius": 5,
-              "points": false,
-              "renderer": "flot",
-              "seriesOverrides": [],
-              "spaceLength": 10,
-              "stack": false,
-              "steppedLine": false,
-              "targets": [
-                {
-                  "expr": "sum ((kube_pod_container_resource_requests_memory_bytes)) by (namespace)",
-                  "format": "time_series",
-                  "intervalFactor": 2,
-                  "legendFormat": "{{ namespace }}",
-                  "refId": "A",
-                  "step": 120
-                }
-              ],
-              "thresholds": [],
-              "timeFrom": null,
-              "timeRegions": [],
-              "timeShift": null,
-              "title": "Memory Request Allocation per Project",
-              "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-              },
-              "type": "graph",
-              "xaxis": {
-                "buckets": null,
-                "mode": "time",
-                "name": null,
-                "show": true,
-                "values": []
-              },
-              "yaxes": [
-                {
-                  "format": "bytes",
-                  "label": "memory",
-                  "logBase": 1,
-                  "max": null,
-                  "min": null,
-                  "show": true
-                },
-                {
-                  "format": "short",
-                  "label": "",
-                  "logBase": 1,
-                  "max": null,
-                  "min": null,
-                  "show": true
-                }
-              ],
-              "yaxis": {
-                "align": false,
-                "alignLevel": null
-              }
-            }
-          ],
-          "repeat": null,
-          "title": "Memory Details",
-          "type": "row"
-        },
-        {
-          "collapsed": true,
-          "datasource": null,
-          "gridPos": {
-            "h": 1,
-            "w": 24,
-            "x": 0,
-            "y": 72
+            "y": 67
           },
           "id": 86,
           "panels": [
@@ -4654,5 +4478,5 @@ spec:
       "timezone": "",
       "title": "Openshift/K8 Cluster Overview",
       "uid": "PlGR1sJ7z",
-      "version": 11
+      "version": 12
     }
