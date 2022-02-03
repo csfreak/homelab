@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: cyber-power
   namespace: homeautomation
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"cyber-power:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"cyber-power\")].image"}]
 spec:
   selector:
     matchLabels:
