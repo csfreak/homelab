@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: cyber-power
   namespace: homeautomation
-pec:
+spec:
   selector:
     matchLabels:
       app: cyber-power
