@@ -168,3 +168,22 @@ spec:
         scheduled: true
       referencePolicy:
         type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: cyber-power
+  namespace: homeautomation
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      annotations: null
+      from:
+        kind: DockerImage
+        name: "quay.io/csfreak/cyber_power:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local

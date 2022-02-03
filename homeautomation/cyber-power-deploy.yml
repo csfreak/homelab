@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cyber-power
+  namespace: homeautomation
+pec:
+  selector:
+    matchLabels:
+      app: cyber-power
+  template:
+    metadata:
+      labels:
+        app: cyber-power
+    spec:
+      containers:
+      - name: cyber-power
+        image: cyber-power
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+          name: http-alt
