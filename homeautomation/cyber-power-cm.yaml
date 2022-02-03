@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cyberpower
+data:
+  HOST: '192.168.2.3'
+  USERNAME: admin
+  PORT: '8080'
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cyberpower
+type: Opaque
