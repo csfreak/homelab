@@ -356,7 +356,7 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "sum(machine_cpu_cores{role!=\"master\",role!=\"infra\"})*10\n",
+              "expr": "sum(machine_cpu_cores{node!~\"master.+\"})*10\n",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -502,7 +502,7 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "sum(machine_cpu_cores{role!=\"master\",role!=\"infra\"})",
+              "expr": "sum(machine_cpu_cores{node!~\"master.+\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -644,7 +644,7 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "sum (machine_memory_bytes{role!=\"master\",role!=\"infra\"})",
+              "expr": "sum (machine_memory_bytes{node!~\"master.+\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -721,7 +721,7 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "1/((sum(machine_cpu_cores{role!=\"master\",role!=\"infra\"})*10) / (sum (kube_pod_info{namespace!=\"default\",namespace!=\"openshift-infra\",namespace!=\"openshift-monitoring\",namespace!=\"logging\",created_by_kind!=\"<none>\"})))  * 100 ",
+              "expr": "1/((sum(machine_cpu_cores{node!~\"master.+\"})*10) / (sum (kube_pod_info{namespace!=~\"openshift-.+\",created_by_kind!=\"<none>\"})))  * 100 ",
               "format": "time_series",
               "hide": false,
               "interval": "10s",
@@ -3365,7 +3365,7 @@ spec:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum (container_memory_working_set_bytes{id=\"/\",role!=\"master\",role!=\"infra\"}) / sum (machine_memory_bytes{role!=\"master\",role!=\"infra\"}) * 100",
+              "expr": "sum (container_memory_working_set_bytes{id=\"/\",node!~\"master.+\"}) / sum (machine_memory_bytes{node!~\"master.+\"}) * 100",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 2,
