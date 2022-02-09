@@ -19,7 +19,6 @@ spec:
       - name: sonarr-metrics
         image: exportarr:latest
         command:
-          - "exportarr"
           - "sonarr"
         resources:
           limits:

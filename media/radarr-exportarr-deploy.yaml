@@ -19,7 +19,6 @@ spec:
       - name: radarr-metrics
         image: exportarr:latest
         command:
-          - "exportarr"
           - "radarr"
         resources:
           limits:
