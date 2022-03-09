@@ -47,3 +47,37 @@ spec:
           replacement: mikrotik
         - targetLabel: target
           replacement: corerouter
+    - interval: 30s
+      params:
+        module:
+          - ruckus_unleashed
+        target:
+          - 192.168.2.2
+      path: /snmp
+      port: snmp-exporter
+      metricRelabelings:
+        - sourceLabels:
+            - "__name__"
+          targetLabel: "__name__"
+          replacement: "snmp_value_$1"
+        - targetLabel: module
+          replacement: ruckus_unleashed
+        - targetLabel: target
+          replacement: homewireless
+    - interval: 30s
+      params:
+        module:
+          - synology
+        target:
+          - 172.31.1.199
+      path: /snmp
+      port: snmp-exporter
+      metricRelabelings:
+        - sourceLabels:
+            - "__name__"
+          targetLabel: "__name__"
+          replacement: "snmp_value_$1"
+        - targetLabel: module
+          replacement: synology
+        - targetLabel: target
+          replacement: CSfreakSAN
