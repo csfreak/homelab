@@ -32,5 +32,5 @@ spec:
           name: snmp-exporter
       volumes:
         - name: config
-          configMap:
-            name: snmp-exporter-config
+          persistentVolumeClaim:
+            claimName: snmp-exporter-config

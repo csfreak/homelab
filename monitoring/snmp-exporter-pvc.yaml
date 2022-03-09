@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: snmp-exporter-config
+  namespace: monitoring
+  annotations:
+    app.kubernetes.io/component: snmp-exporter
+    app.kubernetes.io/instance: snmp-exporter
+    app.kubernetes.io/part-of: snmp-exporter
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: synology-nfs-storage-hdd
+  volumeMode: Filesystem
