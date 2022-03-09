@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: mosquitto-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  selector:
+    matchLabels:
+      app: snmp-exporter
+  podMetricsEndpoints:
+    - port: snmp-exporter
+      path: /metrics
+      interval: 10s
+    - port: snmp-exporter
+      path: snmp?target=172.31.12&module=mikrotik
+      interval: 30s

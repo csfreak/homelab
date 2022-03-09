@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snmp-exporter
+  annotations:
+    app.kubernetes.io/component: snmp-exporter
+    app.kubernetes.io/instance: snmp-exporter
+    app.kubernetes.io/part-of: snmp-exporter
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"snmp-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"snmp-exporter")].image"}]
+spec:
+  selector:
+    matchLabels:
+      app: snmp-exporter
+  template:
+    metadata:
+      labels:
+        app: snmp-exporter
+    spec:
+      containers:
+      - name: snmp-exporter
+        image: snmp-exporter:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        volumeMounts:
+          - name: config
+            mountPath: /etc/snmp_exporter
+        ports:
+        - containerPort: 9116
+          name: snmp-exporter
+      volumes:
+        - name: config
+          configMap:
+            snmp-exporter-config
