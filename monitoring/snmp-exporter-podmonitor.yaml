@@ -13,6 +13,37 @@ spec:
     - port: snmp-exporter
       path: /metrics
       interval: 10s
-    - port: snmp-exporter
-      path: snmp?target=172.31.12&module=mikrotik
-      interval: 30s
+    - interval: 30s
+      params:
+        module:
+          - mikrotik
+        target:
+          - 172.31.1.2
+      path: /snmp
+      port: snmp-exporter
+      metricRelabelings:
+        - sourceLabels:
+            - "__name__"
+          targetLabel: "__name__"
+          replacement: "snmp_value_$1"
+        - targetLabel: module
+          replacement: mikrotik
+        - targetLabel: target
+          replacement: labrouter
+    - interval: 30s
+      params:
+        module:
+          - mikrotik
+        target:
+          - 172.31.1.1
+      path: /snmp
+      port: snmp-exporter
+      metricRelabelings:
+        - sourceLabels:
+            - "__name__"
+          targetLabel: "__name__"
+          replacement: "snmp_value_$1"
+        - targetLabel: module
+          replacement: mikrotik
+        - targetLabel: target
+          replacement: corerouter
