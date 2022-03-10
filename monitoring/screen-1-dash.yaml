@@ -380,7 +380,7 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(snmp_value_ifHCInOctets{ifName=\"ether1-Gateway-Suddenlink\",target=\"corerouter\"}[1m]) * 8",
+              "expr": "max(rate(snmp_value_ifHCInOctets{ifName=\"ether1-Gateway-Suddenlink\",target=\"corerouter\"}[1m]) *8)",
               "interval": "",
               "legendFormat": "",
               "queryType": "randomWalk",
@@ -388,6 +388,137 @@ spec:
             }
           ],
           "title": "Internet Download",
+          "type": "stat"
+        },
+        {
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "max": 512,
+              "min": 0,
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 50
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 2,
+            "x": 11,
+            "y": 25
+          },
+          "id": 19,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.15",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "max(snmp_value_ruckusUnleashedSystemStatsNumSta)",
+              "interval": "",
+              "legendFormat": "",
+              "queryType": "randomWalk",
+              "refId": "A"
+            }
+          ],
+          "title": "Wifi Clients",
+          "type": "stat"
+        },
+        {
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "#EAB839",
+                    "value": 75
+                  },
+                  {
+                    "color": "red",
+                    "value": 90
+                  }
+                ]
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 17,
+            "w": 4,
+            "x": 20,
+            "y": 25
+          },
+          "id": 17,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "center",
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "7.5.15",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "sum without(pod, instance) ((snmp_value_raidTotalSize{raidName=~\"Volume .+\"} - snmp_value_raidFreeSize{raidName=~\"Volume .+\"}) / snmp_value_raidTotalSize{raidName=~\"Volume .+\"})",
+              "interval": "",
+              "legendFormat": "{{raidName}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Storage Used Percent",
           "type": "stat"
         },
         {
@@ -447,7 +578,7 @@ spec:
           "targets": [
             {
               "exemplar": true,
-              "expr": "rate(snmp_value_ifHCOutOctets{ifName=\"ether1-Gateway-Suddenlink\",target=\"corerouter\"}[1m]) * 8",
+              "expr": "max(rate(snmp_value_ifHCOutOctets{ifName=\"ether1-Gateway-Suddenlink\",target=\"corerouter\"}[1m]) * 8)",
               "interval": "",
               "legendFormat": "",
               "queryType": "randomWalk",
@@ -470,7 +601,7 @@ spec:
         "to": "now"
       },
       "timepicker": {
-        "hidden": true,
+        "hidden": false,
         "refresh_intervals": [
           "5s",
           "10s",
@@ -487,5 +618,5 @@ spec:
       "timezone": "",
       "title": "Screen1",
       "uid": "cWQxiUL7k",
-      "version": 8
+      "version": 17
     }
