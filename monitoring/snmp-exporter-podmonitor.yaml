@@ -30,10 +30,6 @@ spec:
           replacement: mikrotik
         - targetLabel: target
           replacement: labrouter
-        - sourceLabels:
-            - "instance"
-            - "pod"
-          action: drop
     - interval: 30s
       params:
         module:
@@ -51,10 +47,6 @@ spec:
           replacement: mikrotik
         - targetLabel: target
           replacement: corerouter
-        - sourceLabels:
-            - "instance"
-            - "pod"
-          action: drop
     - interval: 30s
       params:
         module:
@@ -72,10 +64,6 @@ spec:
           replacement: ruckus_unleashed
         - targetLabel: target
           replacement: homewireless
-        - sourceLabels:
-            - "instance"
-            - "pod"
-          action: drop
     - interval: 30s
       params:
         module:
@@ -93,7 +81,3 @@ spec:
           replacement: synology
         - targetLabel: target
           replacement: CSfreakSAN
-        - sourceLabels:
-            - "instance"
-            - "pod"
-          action: drop
