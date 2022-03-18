@@ -70,8 +70,10 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
           volumeMounts:
-            - name: data
-              mountPath: /data
+            - name: datassd
+              mountPath: /data/ssd
+            - name: datahdd
+              mountPath: /data/hdd
             - name: config
               mountPath: /config
             - name: transcode
@@ -81,9 +83,12 @@ spec:
       nodeSelector:
         beta.kubernetes.io/arch: amd64
       volumes:
-        - name: data
+        - name: datassd
           persistentVolumeClaim:
-            claimName: shared-media
+            claimName: shared-media-ssd
+        - name: datahdd
+          persistentVolumeClaim:
+            claimName: shared-media-hdd
         - name: config
           persistentVolumeClaim:
             claimName: plex-config

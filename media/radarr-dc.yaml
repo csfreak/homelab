@@ -43,8 +43,10 @@ spec:
               name: radarr-config
             - mountPath: /downloads
               name: radarr-downloads
-            - mountPath: /media
-              name: radarr-media
+            - mountPath: /media/hdd
+              name: radarr-media-hdd
+            - mountPath: /media/ssd
+              name: radarr-media-ssd
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -58,9 +60,12 @@ spec:
         - name: radarr-downloads
           persistentVolumeClaim:
             claimName: nzbget-downloads
-        - name: radarr-media
+        - name: radarr-media-hdd
           persistentVolumeClaim:
-            claimName: shared-media
+            claimName: shared-media-hdd
+        - name: radarr-media-ssd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd
   triggers:
     - type: ConfigChange
     - imageChangeParams:

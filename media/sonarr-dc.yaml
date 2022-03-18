@@ -43,8 +43,10 @@ spec:
               name: sonarr-config
             - mountPath: /downloads
               name: sonarr-downloads
-            - mountPath: /media
-              name: sonarr-media
+            - mountPath: /media/hdd
+              name: sonarr-media-hdd
+            - mountPath: /media/ssd
+              name: sonarr-media-ssd
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -58,9 +60,12 @@ spec:
         - name: sonarr-downloads
           persistentVolumeClaim:
             claimName: nzbget-downloads
-        - name: sonarr-media
+        - name: sonarr-media-hdd
           persistentVolumeClaim:
-            claimName: shared-media
+            claimName: shared-media-hdd
+        - name: sonarr-media-ssd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd
   triggers:
     - type: ConfigChange
     - imageChangeParams:
