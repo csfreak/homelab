@@ -22,9 +22,7 @@ spec:
           values:
             - grafana
   ingress:
-    enabled: true
-    hostname: grafana.monitoring.apps.homelab.csfreak.com
-    ingressClassName: http
+    enabled: false
 ---
 apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDataSource
@@ -47,3 +45,38 @@ spec:
       url: 'https://thanos-querier.openshift-monitoring.svc:9091'
       version: 1
   name: prometheus-datasource.yaml
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-cert
+  namespace: monitoring
+spec:
+  secretName: grafana-cert
+  commonName: grafana.monitoring.apps.homelab.csfreak.com
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - grafana.monitoring.apps.homelab.csfreak.com
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: grafana-route-custom
+  namespace: monitoring
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: grafana-cert
+    cert-utils-operator.redhat-cop.io/inject-CA: 'false'
+spec:
+  host: grafana.monitoring.apps.homelab.csfreak.com
+  path: /
+  to:
+    kind: Service
+    name: grafana-service
+    weight: 100
+  port:
+    targetPort: 3000
+  tls:
+    termination: edge
+  wildcardPolicy: None

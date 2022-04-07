@@ -287,7 +287,7 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "sum (kube_pod_info{namespace!=\"default\",namespace!=\"openshift-infra\",namespace!=\"openshift-monitoring\",namespace!=\"logging\",created_by_kind!=\"<none>\"})",
+              "expr": "sum (kube_pod_info{namespace!=\"default\",namespace!=\"openshift-infra\",namespace!=\"openshift-monitoring\",namespace!=\"logging\",created_by_kind!~\".none.\"})",
               "format": "time_series",
               "intervalFactor": 2,
               "refId": "A",
@@ -721,7 +721,7 @@ spec:
           "pluginVersion": "7.5.11",
           "targets": [
             {
-              "expr": "1/((sum(machine_cpu_cores{node!~\"master.+\"})*10) / (sum (kube_pod_info{namespace!=~\"openshift-.+\",created_by_kind!=\"<none>\"})))  * 100 ",
+              "expr": "1/((sum(machine_cpu_cores{node!~\"master.+\"})*10) / (sum (kube_pod_info{namespace!=~\"openshift-.+\",created_by_kind!~\".none.\"})))  * 100 ",
               "format": "time_series",
               "hide": false,
               "interval": "10s",
