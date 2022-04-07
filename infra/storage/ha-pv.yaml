@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hass-db
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 100Gi
+  iscsi:
+    iqn: iqn.2000-01.com.synology:ocp4-hass-db
+    iscsiInterface: default
+    lun: 1
+    targetPortal: 172.31.1.199
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: synology-iscsi
+  volumeMode: Filesystem
