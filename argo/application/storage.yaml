@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: storage
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: infra
+  ignoreDifferences:
+  - jsonPointers:
+    - /spec/claimRef
+    kind: PersistentVolume
+  source:
+    path: infra/storage
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
