@@ -1,0 +1,182 @@
+apiVersion: v1
+data:
+  DATABASE: grafana
+kind: ConfigMap
+metadata:
+  name: grafana-db-config
+  namespace: monitoring
+  annotations:
+    app.kubernetes.io/component: grafana-db
+    app.kubernetes.io/instance: grafana-db
+    app.kubernetes.io/part-of: grafana-db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana-db
+  namespace: monitoring
+  annotations:
+    app.kubernetes.io/component: grafana-db
+    app.kubernetes.io/instance: grafana-db
+    app.kubernetes.io/part-of: grafana-db
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"mariadb:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mariadb\")].image"}]
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: grafana-db
+  template:
+    metadata:
+      labels:
+        deployment: grafana-db
+      annotations:
+        app.kubernetes.io/component: grafana-db
+        app.kubernetes.io/instance: grafana-db
+        app.kubernetes.io/part-of: grafana-db
+        alpha.image.policy.openshift.io/resolve-names: "*"
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb:latest
+          envFrom:
+            - configMapRef:
+                name: grafana-db-config
+              prefix: MYSQL_
+            - secretRef:
+                name: grafana-db-user
+              prefix: MYSQL_
+            - secretRef:
+                name: grafana-db-root
+              prefix: MYSQL_
+          volumeMounts:
+            - mountPath: /var/lib/mysql/data
+              name: db-data
+          resources: {}
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: grafana-db
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafanadb-exporter
+  namespace: monitoring
+  annotations:
+    app.kubernetes.io/component: grafanadb-exporter
+    app.kubernetes.io/instance: grafanadb-exporter
+    app.kubernetes.io/part-of: grafanadb-exporter
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"mysqld-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mysqld-exporter\")].image"}]
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: grafanadb-exporter
+  template:
+    metadata:
+      labels:
+        deployment: grafanadb-exporter
+      annotations:
+        app.kubernetes.io/component: grafanadb-exporter
+        app.kubernetes.io/instance: grafanadb-exporter
+        app.kubernetes.io/part-of: grafanadb-exporter
+        alpha.image.policy.openshift.io/resolve-names: "*"
+    spec:
+      containers:
+        - name: mysqld-exporter
+          image: mysqld-exporter:latest
+          envFrom:
+            - secretRef:
+                name: grafana-db-exporter-user
+              prefix: MYSQL_
+          env:
+            - name: DATA_SOURCE_NAME
+              value: >-
+                $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp($(GRAFANA_DB_SERVICE_HOST):$(GRAFANA_DB_SERVICE_PORT))/
+          resources:
+            limits:
+              memory: 50M
+              cpu: 100m
+            requests:
+              memory: 20M
+              cpu: 10m
+          args:
+            - --collect.info_schema.innodb_metrics
+            - --collect.info_schema.tables
+            - --collect.engine_innodb_status
+          ports:
+            - name: metrics
+              containerPort: 9104 
+              protocol: TCP
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: grafana-db-exporter-user
+  namespace: monitoring
+type: Opaque
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-db
+  namespace: monitoring
+  annotations:
+    app.kubernetes.io/component: grafana-db
+    app.kubernetes.io/instance: grafana-db
+    app.kubernetes.io/part-of: grafana-db
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: synology-iscsi
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    app.kubernetes.io/component: grafana-db
+    app.kubernetes.io/instance: grafana-db
+    app.kubernetes.io/part-of: grafana-db
+  name: grafana-db-user
+  namespace: monitoring
+type: Opaque
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    app.kubernetes.io/component: grafana-db
+    app.kubernetes.io/instance: grafana-db
+    app.kubernetes.io/part-of: grafana-db
+  name: grafana-db-root
+  namespace: monitoring
+type: Opaque
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana-db
+  name: grafana-db
+  namespace: monitoring
+spec:
+  ports:
+    - name: mysql
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+  selector:
+    deployment: grafana-db
+  sessionAffinity: None
+  type: ClusterIP
+---
