@@ -12,14 +12,8 @@ spec:
     log:
       level: warn
       mode: console
-    security:
-      admin_password: $GF_ADMIN_PASSWORD
-      admin_user: $GF_ADMIN_USER
     database:
       type: mysql
-      host: $GRAFANA_DB_SERVICE_HOST
-      user: $MYSQL_USER
-      password: $MYSQL_PASSWORD
   dashboardLabelSelector:
     - matchExpressions:
         - key: app
@@ -32,10 +26,10 @@ spec:
     envFrom: 
     - secretRef:
         name: grafana-db-user
-      prefix: MYSQL_
-    - secretRef:
-        name: grafana-admin
-      prefix: GF_ADMIN_
+      prefix: GF_DATABASE_
+    env:
+     - name: GF_DATABASE_HOST
+       value: $(GRAFANA_DB_SERVICE_HOST):$(GRAFANA_DB_SERVICE_PORT)
 ---
 apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDataSource
