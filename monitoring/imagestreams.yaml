@@ -25,7 +25,7 @@ kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
   name: mariadb
-  namespace: homeautomation
+  namespace: monitoring
 spec:
   lookupPolicy:
     local: true

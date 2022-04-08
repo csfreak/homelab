@@ -36,7 +36,6 @@ spec:
     - secretRef:
         name: grafana-admin
       prefix: GF_ADMIN_
-
 ---
 apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDataSource
