@@ -35,7 +35,7 @@ spec:
       prefix: MYSQL_
     - secretRef:
         name: grafana-admin
-      PREFIX: GF_ADMIN_
+      prefix: GF_ADMIN_
 
 ---
 apiVersion: integreatly.org/v1alpha1
