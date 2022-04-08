@@ -15,6 +15,11 @@ spec:
     security:
       admin_password: $GF_ADMIN_PASSWORD
       admin_user: $GF_ADMIN_USER
+    database:
+      type: mysql
+      host: $GRAFANA_DB_SERVICE_HOST
+      user: $MYSQL_USER
+      password: $MYSQL_PASSWORD
   dashboardLabelSelector:
     - matchExpressions:
         - key: app
@@ -23,11 +28,6 @@ spec:
             - grafana
   ingress:
     enabled: false
-  database:
-    type: mysql
-    host: $GRAFANA_DB_SERVICE_HOST
-    user: $MYSQL_USER
-    password: $MYSQL_PASSWORD
   deployment:
     envFrom: 
     - secretRef:
