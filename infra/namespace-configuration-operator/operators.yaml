@@ -8,7 +8,7 @@ spec:
   config:
     env:
     - name: ALLOW_SYSTEM_NAMESPACES
-      value: true
+      value: 'true'
   installPlanApproval: Automatic
   name: namespace-configuration-operator
   source: community-operators
