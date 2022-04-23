@@ -1,8 +1,8 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
-namespace: namespace-configuration-operator
 metadata:
   name: namespace-configuration-operator 
+  namespace: namespace-configuration-operator
 spec:
   channel: alpha
   config:
