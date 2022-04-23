@@ -1,16 +1,4 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: namespace-configuration-operator-admin
-rules:
-  - apiGroups:
-      - 'redhatcorp.redhat.io'
-    resources:
-      - namespaceconfig
-    verbs:
-      - '*'
----
-apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: namespace-configuration-operator-openshift-gitops
