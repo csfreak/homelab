@@ -1,8 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  name: argo
-  namespace: namespace-configuration-operator
+  name: namespace-configuration-operator-admin
 rules:
   - apiGroups:
       - 'redhatcorp.redhat.io'
@@ -12,15 +11,14 @@ rules:
       - '*'
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
-  name: argo-namespace-config-operator
-  namespace: namespace-configuration-operator
+  name: namespace-configuration-operator-openshift-gitops
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-argocd-application-controller
     namespace: openshift-gitops
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: argo
+  kind: ClusterRole
+  name: namespace-configuration-operator-admin
