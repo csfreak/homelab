@@ -16,7 +16,7 @@ spec:
         name: allow-from-private-ips
         namespace: {{ .Name }}
       spec:
-        podSelector:
+        podSelector: {}
         policyTypes:
         - Ingress
         ingress:
@@ -43,6 +43,8 @@ spec:
         name: allow-egress
         namespace: {{ .Name }}
       spec:
-        podSelector:
+        podSelector: {}
+        policyTypes:
+        - Egress
         egress:
         - {}
