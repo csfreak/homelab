@@ -3,6 +3,7 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: NamespaceConfig
 metadata:
   name: allow-private-ingress
+  namespace: namespace-configuration-operator
 spec:
   annotationSelector:
     matchExpressions:
@@ -29,6 +30,7 @@ apiVersion: redhatcop.redhat.io/v1alpha1
 kind: NamespaceConfig
 metadata:
   name: allow-all-egress
+  namespace: namespace-configuration-operator
 spec:
   annotationSelector:
     matchExpressions:

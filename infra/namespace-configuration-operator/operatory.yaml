@@ -1,5 +1,6 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
+namespace: namespace-configuration-operator
 metadata:
   name: namespace-configuration-operator 
 spec:
@@ -17,5 +18,6 @@ apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
   name: namespace-configuration-operator 
+  namespace: namespace-configuration-operator
 spec:
   targetNamespaces: []
