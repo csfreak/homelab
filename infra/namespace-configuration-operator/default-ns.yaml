@@ -7,7 +7,7 @@ metadata:
 spec:
   annotationSelector:
     matchExpressions:
-      - {Key: homelab.csfreak.com/ingresspolicy, Operator: DoesNotExist}
+      - {key: homelab.csfreak.com/ingresspolicy, operator: DoesNotExist}
   templates:
   - objectTemplate: |
       apiVersion: networking.k8s.io/v1
@@ -34,7 +34,7 @@ metadata:
 spec:
   annotationSelector:
     matchExpressions:
-      - {Key: homelab.csfreak.com/egresspolicy, Operator: DoesNotExist}
+      - {key: homelab.csfreak.com/egresspolicy, operator: DoesNotExist}
   templates:
   - objectTemplate: |
       apiVersion: networking.k8s.io/v1
