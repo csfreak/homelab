@@ -1,0 +1,46 @@
+
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: NamespaceConfig
+metadata:
+  name: allow-private-ingress
+spec:
+  annotationSelector:
+    matchExpressions:
+      - {Key: homelab.csfreak.com/ingresspolicy, Operator: DoesNotExist}
+  templates:
+  - objectTemplate: |
+      apiVersion: networking.k8s.io/v1
+      kind: NetworkPolicy
+      metadata:
+        name: allow-from-private-ips
+        namespace: {{ .Name }}
+      spec:
+        podSelector:
+        policyTypes:
+        - Ingress
+        ingress:
+        - from:
+          - ipBlock:
+              cidr: 172.31.0.0/20
+          - ipBlock:
+              cidr: 192.168.0.0/18
+---
+apiVersion: redhatcop.redhat.io/v1alpha1
+kind: NamespaceConfig
+metadata:
+  name: allow-all-egress
+spec:
+  annotationSelector:
+    matchExpressions:
+      - {Key: homelab.csfreak.com/egresspolicy, Operator: DoesNotExist}
+  templates:
+  - objectTemplate: |
+      apiVersion: networking.k8s.io/v1
+      kind: NetworkPolicy
+      metadata:
+        name: allow-egress
+        namespace: {{ .Name }}
+      spec:
+        podSelector:
+        egress:
+        - {}
