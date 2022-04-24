@@ -4,5 +4,5 @@ metadata:
   name: background
 value: 1
 preemptionPolicy: Never
-globalDefault: true
+globalDefault: false
 description: "This will be preemted by every other load."
