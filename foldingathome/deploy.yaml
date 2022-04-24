@@ -80,7 +80,7 @@ spec:
             # - "/etc/fahclient-config/config.xml"
             # - "/var/lib/fahclient/config.xml"
           securityContext:
-            runAsUser: 1234
+            runAsUser: 1000720000
           volumeMounts:
             - mountPath: /var/lib/fahclient
               name: fahclient
