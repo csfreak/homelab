@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: foldingathome-config
+  namespace: foldingathome
+data:
+  config.xml: |
+    <config>
+      <user value="csfreak"/>
+      <team value=""/>  
+      <passkey value=""/>
+      <power value="full"/>
+      <gpu value="true"/>
+      <fold-anon value="false"/>
+    </config>

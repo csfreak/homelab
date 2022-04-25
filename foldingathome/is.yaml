@@ -10,7 +10,25 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.io/richstokes20/fah-covid:latest"
+        name: "docker.io/foldingathome/fah-gpu:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: ubi8-micro
+  namespace: foldingathome
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "registry.access.redhat.com/ubi8/ubi-micro::latest"
       importPolicy:
         scheduled: true
       referencePolicy:

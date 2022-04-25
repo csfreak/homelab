@@ -7,7 +7,7 @@ metadata:
     app: fah-cpu
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"fah-covid:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"fah-cpu\")].image"},{"from":{"kind":"ImageStreamTag","name":"fah-covid:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"copy-config\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"fah-covid:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"fah-cpu\")].image"},{"from":{"kind":"ImageStreamTag","name":"ubi8-micro:latest"},"fieldPath":"spec.template.spec.init-containers[?(@.name==\"copy-config\")].image"}]
 
 spec:
   selector:
@@ -35,16 +35,20 @@ spec:
               weight: 100
       containers:
         - name: fah-cpu
+          lifecycle:
+            preStop:
+              exec: 
+                command: 
+                  - /usr/bin/FAHClient
+                  - '--finish'
           image: "fah-covid:latest"
           # --run-as UID should match runAsUser value in containers securityContext
-          command:
-            - "/usr/bin/FAHClient"
+          args:
+            - "--config=/fah/config.xml"
             - "--run-as"
             - "1000720000"
-            - "--pid-file=/var/lib/fahclient/fahclient.pid"
-            - "--user=csfreak"
-            - "--gui-enabled=false"
-            - "--gpu-beta=true"
+            - "--pid-file=/fah/fahclient.pid"
+            - "--gpu=false"
           resources:
             limits:
               cpu: 2000m # How much CPU you wish to donate per node
@@ -56,8 +60,29 @@ spec:
           securityContext:
             runAsUser: 1000720000
           volumeMounts:
-            - mountPath: /var/lib/fahclient
+            - mountPath: /fah
               name: fahclient
+      volumes:
+        - name: fah-cpu-config
+          configMap:
+            name: foldingathome-config
+      initContainers:
+        - name: copy-config
+          imagePullPolicy: Always
+          image: "ubi8-micro:latest"
+          command:
+            - "sh"
+            - "-c"
+            - "cp"
+            - "/etc/fahclient-config/config.xml"
+            - "/fah/config.xml"
+          securityContext:
+            runAsUser: 1000720000
+          volumeMounts:
+            - mountPath: /fah
+              name: fahclient
+            - name: fah-cpu-config
+              mountPath: /etc/fahclient-config
       priorityClassName: background
   volumeClaimTemplates:
   - metadata:
