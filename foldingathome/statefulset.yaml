@@ -39,13 +39,11 @@ spec:
           # --run-as UID should match runAsUser value in containers securityContext
           command:
             - "/usr/bin/FAHClient"
-            - "--config"
-            - "/var/lib/fahclient/config.xml"
-            - "--config-rotate=false"
             - "--run-as"
             - "1000720000"
             - "--pid-file=/var/lib/fahclient/fahclient.pid"
-            - "--gpu=false"
+            - "--user=csfreak"
+            - "--gui-enabled=false"
           resources:
             limits:
               cpu: 2000m # How much CPU you wish to donate per node
@@ -59,31 +57,6 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/fahclient
               name: fahclient
-      # We make an emptyDir to mount on the work directory /var/lib/fahclient
-      # so we can make the rest of the container's root filesystem read-only
-      volumes:
-        - name: fah-cpu-config
-          configMap:
-            name: foldingathome-config
-      initContainers:
-        - name: copy-config
-          imagePullPolicy: Always
-          image: "fah-covid:latest"
-          command:
-            - "sh"
-            - "-c"
-            - "cp /etc/fahclient/config.xml /var/lib/fahclient/config.xml"
-            # Use following lines if using ConfigMap config.xml
-            # - "cp"
-            # - "/etc/fahclient-config/config.xml"
-            # - "/var/lib/fahclient/config.xml"
-          securityContext:
-            runAsUser: 1000720000
-          volumeMounts:
-            - mountPath: /var/lib/fahclient
-              name: fahclient
-            - name: fah-cpu-config
-              mountPath: /etc/fahclient-config
       priorityClassName: background
   volumeClaimTemplates:
   - metadata:
