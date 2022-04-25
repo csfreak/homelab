@@ -8,6 +8,8 @@ metadata:
     app.kubernetes.io/component: plex
     app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: plex
+    image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -25,8 +27,6 @@ spec:
         app.kubernetes.io/component: plex
         app.kubernetes.io/instance: media
         app.kubernetes.io/part-of: plex
-        image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"}]
     spec:
       serviceAccountName: plex-run-user
       containers:

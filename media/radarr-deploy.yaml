@@ -4,13 +4,13 @@ metadata:
   annotations:
     app.openshift.io/vcs-ref: ""
     app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+    image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"radarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"radarr\")].image"}]
   labels:
     app: radarr
     app.kubernetes.io/component: radarr
     app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: radarr
-    image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"radarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"radarr\")].image"}]
   name: radarr
   namespace: media
 spec:

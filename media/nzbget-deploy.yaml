@@ -6,10 +6,11 @@ metadata:
     app.kubernetes.io/component: nzbget
     app.kubernetes.io/instance: nzbget
     app.kubernetes.io/part-of: nzbget
-    image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"snybet\")].image"}]
   name: nzbget
   namespace: media
+  annotations:
+    image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"snybet\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
