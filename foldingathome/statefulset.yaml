@@ -73,9 +73,7 @@ spec:
           command:
             - "sh"
             - "-c"
-            - "cp"
-            - "/etc/fahclient-config/config.xml"
-            - "/fah/config.xml"
+            - "cp /etc/fahclient-config/config.xml /fah/config.xml"
           securityContext:
             runAsUser: 1000720000
           volumeMounts:
