@@ -12,6 +12,11 @@ spec:
     jsonPointers:
     - /spec/template/spec/containers/0/image
     kind: Deployment
+  - group: apps
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
+    - /spec/template/spec/initContainers/0/image
+    kind: StatefulSet
   - group: apps.openshift.io
     jsonPointers:
     - /spec/template/spec/containers/0/image
