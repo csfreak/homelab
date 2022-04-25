@@ -44,6 +44,7 @@ spec:
             - "--pid-file=/var/lib/fahclient/fahclient.pid"
             - "--user=csfreak"
             - "--gui-enabled=false"
+            - "--gpu-beta=true"
           resources:
             limits:
               cpu: 2000m # How much CPU you wish to donate per node
