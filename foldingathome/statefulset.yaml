@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: fah-cpu
   namespace: foldingathome
@@ -8,16 +8,19 @@ metadata:
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"fah-covid:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"fah-cpu\")].image"},{"from":{"kind":"ImageStreamTag","name":"fah-covid:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"copy-config\")].image"}]
+
 spec:
   selector:
     matchLabels:
       app: fah-cpu
   replicas: 5
-  strategy:
+  podManagementPolicy: Parallel
+  updateStrategy:
     type: RollingUpdate
     rollingUpdate:
       maxUnavailable: 100%
       maxSurge: 100%
+  serviceName: fah
   template:
     metadata:
       labels:
@@ -48,10 +51,10 @@ spec:
             - "--gpu=false"
           resources:
             limits:
-              cpu: 1000m # How much CPU you wish to donate per node
+              cpu: 2000m # How much CPU you wish to donate per node
               memory: 512Mi
             requests:
-              cpu: 100m
+              cpu: 500m
               memory: 512Mi
           # Make the container harder to break out of or exploit
           securityContext:
@@ -62,8 +65,6 @@ spec:
       # We make an emptyDir to mount on the work directory /var/lib/fahclient
       # so we can make the rest of the container's root filesystem read-only
       volumes:
-        - name: fahclient
-          emptyDir: {}
         - name: fah-cpu-config
           configMap:
             name: foldingathome-config
@@ -87,3 +88,14 @@ spec:
             - name: fah-cpu-config
               mountPath: /etc/fahclient-config
       priorityClassName: background
+  volumeClaimTemplates:
+  - metadata:
+      name: fahclient
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Delete
+    whenScaled: Retain
