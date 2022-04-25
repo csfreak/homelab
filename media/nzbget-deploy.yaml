@@ -14,8 +14,9 @@ spec:
   replicas: 1
   revisionHistoryLimit: 2
   selector:
-    app: nzbget
-    deployment: nzbget
+    matchLabels:
+      app: nzbget
+      deployment: nzbget
   strategy:
     type: Recreate
   template:

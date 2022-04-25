@@ -14,7 +14,8 @@ spec:
   strategy:
     type: Recreate
   selector:
-    deployment: plex
+    matchLabels:
+      deployment: plex
   template:
     metadata:
       labels:
