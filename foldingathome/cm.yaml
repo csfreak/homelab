@@ -6,11 +6,10 @@ metadata:
 data:
   config.xml: |
     <config>
-      <!-- User Information -->
       <user value="csfreak"/>
       <team value=""/>  
       <passkey value=""/>
       <power value="full"/>
-      <gpu value="false"/>
+      <gpu value="true"/>
       <fold-anon value="false"/>
     </config>
