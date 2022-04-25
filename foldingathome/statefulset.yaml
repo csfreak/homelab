@@ -15,11 +15,6 @@ spec:
       app: fah-cpu
   replicas: 5
   podManagementPolicy: Parallel
-  updateStrategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 100%
-      maxSurge: 100%
   serviceName: fah
   template:
     metadata:
