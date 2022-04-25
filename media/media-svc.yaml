@@ -17,7 +17,7 @@ spec:
       targetPort: 32400
   selector:
     app: plex
-    deploymentconfig: plex
+    deployment: plex
 ---
 apiVersion: v1
 kind: Service
@@ -40,7 +40,7 @@ spec:
       targetPort: 6789
   selector:
     app: nzbget
-    deploymentconfig: nzbget
+    deployment: nzbget
   sessionAffinity: None
   type: ClusterIP
 ---
@@ -65,7 +65,7 @@ spec:
       targetPort: 7878
   selector:
     app: radarr
-    deploymentconfig: radarr
+    deployment: radarr
   sessionAffinity: None
   type: ClusterIP
 ---
@@ -90,6 +90,6 @@ spec:
       targetPort: 8989
   selector:
     app: sonarr
-    deploymentconfig: sonarr
+    deployment: sonarr
   sessionAffinity: None
   type: ClusterIP

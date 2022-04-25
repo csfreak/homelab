@@ -1,11 +1,13 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     app: nzbget
     app.kubernetes.io/component: nzbget
     app.kubernetes.io/instance: nzbget
     app.kubernetes.io/part-of: nzbget
+    image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"snybet\")].image"}]
   name: nzbget
   namespace: media
 spec:
@@ -13,30 +15,29 @@ spec:
   revisionHistoryLimit: 2
   selector:
     app: nzbget
-    deploymentconfig: nzbget
+    deployment: nzbget
   strategy:
-    activeDeadlineSeconds: 21600
-    resources: {}
-    rollingParams:
-      intervalSeconds: 1
-      maxSurge: 25%
-      maxUnavailable: 25%
-      timeoutSeconds: 600
-      updatePeriodSeconds: 1
-    type: Rolling
+    type: Recreate
   template:
     metadata:
       labels:
         app: nzbget
-        deploymentconfig: nzbget
+        deployment: nzbget
     spec:
       containers:
         - imagePullPolicy: Always
+          image: nzbget:latest
           name: nzbget
           ports:
             - containerPort: 6789
               protocol: TCP
-          resources: {}
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 10m
+            limits:
+              memory: 512Mi
+              cpu: 100m
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
@@ -56,14 +57,3 @@ spec:
         - name: nzbget-downloads
           persistentVolumeClaim:
             claimName: nzbget-downloads
-  triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - nzbget
-        from:
-          kind: ImageStreamTag
-          name: nzbget:latest
-          namespace: media
-      type: ImageChange
-    - type: ConfigChange
