@@ -28,7 +28,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "registry.access.redhat.com/ubi8/ubi-micro::latest"
+        name: "registry.access.redhat.com/ubi8/ubi-micro:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
