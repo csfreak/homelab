@@ -1,5 +1,5 @@
 FROM alpine:latest
-
+ARG UNRAR_VERSION=6.1.4
 RUN echo "**** install build packages ****" && \
     apk add --no-cache --upgrade --virtual=build-dependencies \
         cargo \
@@ -20,7 +20,6 @@ RUN echo "**** install build packages ****" && \
         p7zip \
         py3-pip \
         python3 \
-        unrar \
         wget && \
     echo "**** install python packages ****" && \
     pip3 install --no-cache-dir -U \
@@ -30,11 +29,25 @@ RUN echo "**** install build packages ****" && \
         chardet \
         lxml \
         pynzbget \
-        rarfile && \
+        py7zr \
+        rarfile \
+        six && \
     ln -s /usr/bin/python3 /usr/bin/python && \
+    echo "**** install unrar from source ****" && \
+    mkdir /tmp/unrar && \
+    curl -o \
+      /tmp/unrar.tar.gz -L \
+      "https://www.rarlab.com/rar/unrarsrc-${UNRAR_VERSION}.tar.gz" && \  
+    tar xf \
+      /tmp/unrar.tar.gz -C \
+      /tmp/unrar --strip-components=1 && \
+    cd /tmp/unrar && \
+    make && \
+    install -v -m755 unrar /usr/bin && \
+    cd \
     echo "**** download nzbget ****" && \
     wget https://nzbget.net/download/nzbget-latest-bin-linux.run && \
-    echo "**** download nzbget ****" && \
+    echo "**** install nzbget ****" && \
     sh nzbget-latest-bin-linux.run && \
     echo "**** cleanup ****" && \
     apk del --purge \
