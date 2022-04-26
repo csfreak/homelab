@@ -44,7 +44,7 @@ RUN echo "**** install build packages ****" && \
     cd /tmp/unrar && \
     make && \
     install -v -m755 unrar /usr/bin && \
-    cd \
+    cd /\
     echo "**** download nzbget ****" && \
     wget https://nzbget.net/download/nzbget-latest-bin-linux.run && \
     echo "**** install nzbget ****" && \
