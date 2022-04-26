@@ -10,7 +10,7 @@ metadata:
   namespace: media
   annotations:
     image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"snybet\")].image"}]
+          [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
