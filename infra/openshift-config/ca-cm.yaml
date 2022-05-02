@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: letsecrypt-ca-isgr-Root-X1
+  name: letsecrypt-ca-isgr-root-x1
   namespace: openshift-config
 data:
   ca-bundle.crt: |

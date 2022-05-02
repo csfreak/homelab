@@ -4,4 +4,4 @@ metadata:
   name: cluster
 spec:
   trustedCA:
-    name: "letsecrypt-ca-isgr-Root-X1"
+    name: "letsecrypt-ca-isgr-root-x1"
