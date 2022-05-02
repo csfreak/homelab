@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-ingress
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-ingress
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/openshift-ingress
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-ingress-operator
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-ingress-operator
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/oopenshift-ingress-operator
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
