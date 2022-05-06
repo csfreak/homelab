@@ -63,7 +63,7 @@ spec:
             - mountPath: /fah
               name: fahclient
         - name: fah-exporter
-          image: fah-exporter
+          image: fah-exporter:latest
           resources:
             limits:
               cpu: 100m # How much CPU you wish to donate per node
