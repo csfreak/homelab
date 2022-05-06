@@ -10,6 +10,6 @@ spec:
     matchLabels:
       app: fah-cpu
   podMetricsEndpoints:
-    - port: monitoring
+    - port: metrics
       path: /metrics
       interval: 10s
