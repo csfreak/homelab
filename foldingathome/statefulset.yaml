@@ -62,6 +62,19 @@ spec:
           volumeMounts:
             - mountPath: /fah
               name: fahclient
+        - name: fah-exporter
+          image: fah-exporter
+          resources:
+            limits:
+              cpu: 100m # How much CPU you wish to donate per node
+              memory: 100Mi
+            requests:
+              cpu: 50m
+              memory: 10Mi
+          ports:
+          - name: metrics
+            containerPort: 9659
+            protocol: TCP
       volumes:
         - name: fah-cpu-config
           configMap:

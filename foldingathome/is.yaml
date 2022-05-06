@@ -33,3 +33,17 @@ spec:
         scheduled: true
       referencePolicy:
         type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: fah-exporter
+  namespace: foldingathome
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      importPolicy: {}
+      referencePolicy:
+        type: Local

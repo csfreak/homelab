@@ -10,6 +10,5 @@ data:
       <team value=""/>  
       <passkey value=""/>
       <power value="full"/>
-      <gpu value="true"/>
       <fold-anon value="false"/>
     </config>
