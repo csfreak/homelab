@@ -587,6 +587,68 @@ spec:
           ],
           "title": "Internet Upload",
           "type": "stat"
+        },
+        {
+          "datasource": "Prometheus",
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  },
+                  {
+                    "color": "yellow",
+                    "value": 79
+                  },
+                  {
+                    "color": "green",
+                    "value": 99
+                  }
+                ]
+              },
+              "mappings": [],
+              "color": {
+                "mode": "thresholds"
+              },
+              "unit": "percentunit"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 2,
+            "x": 11,
+            "y": 31
+          },
+          "id": 21,
+          "options": {
+            "reduceOptions": {
+              "values": false,
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": ""
+            },
+            "text": {},
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "7.5.15",
+          "targets": [
+            {
+              "expr": "sum(fah_queue_info{state=\"RUNNING\"})/sum(fah_queue_info{state!=\"CLEANUP\"})",
+              "legendFormat": "",
+              "interval": "",
+              "exemplar": true,
+              "queryType": "randomWalk",
+              "refId": "A"
+            }
+          ],
+          "title": "FAH slots used",
+          "type": "gauge"
         }
       ],
       "refresh": "30s",
