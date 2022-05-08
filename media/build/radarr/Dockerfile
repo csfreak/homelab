@@ -43,3 +43,5 @@ VOLUME /media
 VOLUME /downloads
 
 CMD ["/app/radarr/bin/Radarr", "-nobrowser", "-data=/config"]
+
+LABEL com.servarr.radarr.version=${RADARR_RELEASE}}

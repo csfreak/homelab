@@ -46,3 +46,5 @@ VOLUME /media
 VOLUME /downloads
 
 CMD ["mono", "--debug", "/app/sonarr/bin/Sonarr.exe", "-nobrowser", "-data=/config"]
+
+LABEL tv.sonarr.version ${SONARR_VERSION}
