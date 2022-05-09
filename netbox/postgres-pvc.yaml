@@ -4,6 +4,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: netbox-postgres
   namespace: netbox
+  annotations:
+    app.kubernetes.io/component: postgress
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
 spec:
   accessModes:
   - ReadWriteOnce

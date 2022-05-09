@@ -4,8 +4,10 @@ metadata:
   creationTimestamp: "2021-05-02T18:56:20Z"
   labels:
     app: netbox
+  annotations:
     app.kubernetes.io/component: netbox
     app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
   name: netbox
   namespace: netbox
 spec:

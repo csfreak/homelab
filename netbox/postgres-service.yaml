@@ -3,7 +3,10 @@ kind: Service
 metadata:
   labels:
     app: netbox
+  annotations:
+    app.kubernetes.io/component: postgress
     app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
   name: netbox-postgres
   namespace: netbox
 spec:
@@ -12,7 +15,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    deploymentconfig: netbox-postgres
+    deployment: netbox-postgres
   sessionAffinity: None
   type: ClusterIP
 status:

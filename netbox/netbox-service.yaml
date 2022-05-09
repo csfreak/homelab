@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: netbox
+  annotations:
     app.kubernetes.io/component: netbox
     app.kubernetes.io/instance: netbox
     app.kubernetes.io/part-of: netbox
@@ -15,8 +16,7 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: netbox
-    deploymentconfig: netbox
+    deployment: netbox
   sessionAffinity: None
   type: ClusterIP
 status:

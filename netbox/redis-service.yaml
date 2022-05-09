@@ -3,7 +3,10 @@ kind: Service
 metadata:
   labels:
     app: netbox
+  annotations:
+    app.kubernetes.io/component: redis
     app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
   name: netbox-redis
   namespace: netbox
 spec:
@@ -12,7 +15,7 @@ spec:
       protocol: TCP
       targetPort: 6379
   selector:
-    deploymentconfig: netbox-redis
+    deployment: netbox-redis
   sessionAffinity: None
   type: ClusterIP
 status:

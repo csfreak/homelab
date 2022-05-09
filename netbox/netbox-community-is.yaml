@@ -3,6 +3,10 @@ apiVersion: image.openshift.io/v1
 metadata:
   name: netbox-community
   namespace: netbox
+  annotations:
+    app.kubernetes.io/component: netbox
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
 spec:
   lookupPolicy:
     local: true

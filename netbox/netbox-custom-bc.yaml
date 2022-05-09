@@ -2,6 +2,10 @@ kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
   name: "netbox-custom"
+  annotations:
+    app.kubernetes.io/component: netbox
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
 spec:
   runPolicy: "SerialLatestOnly"
   triggers:

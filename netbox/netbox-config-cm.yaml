@@ -9,3 +9,7 @@ kind: ConfigMap
 metadata:
   name: netbox-config
   namespace: netbox
+  annotations:
+    app.kubernetes.io/component: netbox
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox

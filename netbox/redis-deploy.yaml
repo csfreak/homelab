@@ -1,27 +1,34 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  annotations:
-    template.alpha.openshift.io/wait-for-ready: "true"
-  labels:
-    template: redis-ephemeral-template
   name: netbox-redis
   namespace: netbox
+  labels:
+    app: netbox
+  annotations:
+    app.kubernetes.io/component: redis
+    app.kubernetes.io/instance: netbox
+    app.kubernetes.io/part-of: netbox
+    image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"redis:5-el8","namespace":"openshift"},"fieldPath":"spec.template.spec.containers[?(@.name==\"redis\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 5
   selector:
-    name: netbox-redis
+    matchLabels:
+      deployment: netbox-redis
   strategy:
-    activeDeadlineSeconds: 21600
-    recreateParams:
-      timeoutSeconds: 600
-    resources: {}
     type: Recreate
   template:
     metadata:
       labels:
         name: netbox-redis
+        app: redis
+        deployment: netbox-redis
+      annotations:
+        app.kubernetes.io/component: redis
+        app.kubernetes.io/instance: netbox
+        app.kubernetes.io/part-of: netbox
     spec:
       containers:
         - env:
@@ -30,6 +37,7 @@ spec:
                 secretKeyRef:
                   key: database-password
                   name: netbox-redis
+          image: redis:5-el8
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -78,15 +86,3 @@ spec:
       volumes:
         - emptyDir: {}
           name: netbox-redis-data
-  test: false
-  triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - redis
-        from:
-          kind: ImageStreamTag
-          name: redis:5-el8
-          namespace: openshift
-      type: ImageChange
-    - type: ConfigChange

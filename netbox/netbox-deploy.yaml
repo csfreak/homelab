@@ -1,31 +1,30 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     app: netbox
+  annotations:
     app.kubernetes.io/component: netbox
     app.kubernetes.io/instance: netbox
-    app.kubernetes.io/name: netbox
-    app.openshift.io/runtime: netbox
-    app.openshift.io/runtime-namespace: netbox
-    app.openshift.io/runtime-version: latest
-  name: netbox
+    app.kubernetes.io/part-of: netbox
+    image.openshift.io/triggers: >-
+          [{"from":{"kind":"ImageStreamTag","name":"netbox-custom:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"netbox\")].image"}]
+
   namespace: netbox
+  name: netbox
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
-    app: netbox
-    deploymentconfig: netbox
+    matchLabels:
+      deployment: netbox
   strategy:
-    activeDeadlineSeconds: 21600
-    resources: {}
     type: Recreate
   template:
     metadata:
       labels:
         app: netbox
-        deploymentconfig: netbox
+        deployment: netbox
     spec:
       containers:
         - env:
@@ -82,15 +81,3 @@ spec:
         - name: netbox-media-data
           persistentVolumeClaim:
             claimName: netbox-media
-  test: false
-  triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - netbox
-        from:
-          kind: ImageStreamTag
-          name: netbox-custom:latest
-          namespace: netbox
-      type: ImageChange
-    - type: ConfigChange
