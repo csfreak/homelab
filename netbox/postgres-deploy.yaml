@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: netbox-postgres
   namespace: netbox
-  lables:
+  labels:
     app: netbox
   annotations:
     app.kubernetes.io/component: postgress
@@ -11,7 +11,6 @@ metadata:
     app.kubernetes.io/part-of: netbox
     image.openshift.io/triggers: >-
           [{"from":{"kind":"ImageStreamTag","name":"postgresql:10-el8","namespace":"openshift"},"fieldPath":"spec.template.spec.containers[?(@.name==\"postgresql\")].image"}]
-
 spec:
   replicas: 1
   revisionHistoryLimit: 5
