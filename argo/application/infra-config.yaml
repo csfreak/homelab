@@ -16,4 +16,4 @@ spec:
   syncPolicy:
     automated: {}
     syncOptions:
-      - Prune: false
+      - Prune=false
