@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: openshift-config
   namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -13,3 +15,5 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated: {}
+    syncOptions:
+      - Prune: false
