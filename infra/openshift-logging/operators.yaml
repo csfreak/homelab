@@ -3,6 +3,8 @@ kind: OperatorGroup
 metadata:
   generateName: openshift-operators-redhat-
   namespace: openshift-operators-redhat
+  annotations:
+    argocd.argoproj.io/hook: Skip
 spec: {}
 ---
 apiVersion: operators.coreos.com/v1alpha1
@@ -24,6 +26,8 @@ kind: OperatorGroup
 metadata:
   generateName: openshift-logging-
   namespace: openshift-logging
+  annotations:
+    argocd.argoproj.io/hook: Skip
 spec:
   targetNamespaces:
   - openshift-logging
