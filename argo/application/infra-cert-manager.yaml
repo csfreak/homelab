@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-config
+  name: openshift-cert-manager
   namespace: openshift-gitops
 spec:
   destination:
@@ -12,7 +12,7 @@ spec:
     - /data
     kind: Secret
   source:
-    path: infra/openshift-config
+    path: infra/openshift-cert-manager
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:

@@ -1,0 +1,19 @@
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+    - htpasswd:
+        fileData:
+          name: auth-config
+      mappingMethod: claim
+      name: homelab_htpasswd
+      type: HTPasswd
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: auth-config
+  namespace: openshift-config
+type: Opaque

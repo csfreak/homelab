@@ -15,8 +15,10 @@ spec:
       resources:
         limits:
           memory: 8Gi
+          cpu: 2000m
         requests:
           memory: 8Gi
+          cpu: 1000m
       storage:
         size: 200G
         storageClassName: synology-iscsi
