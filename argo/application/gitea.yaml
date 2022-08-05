@@ -20,6 +20,12 @@ spec:
           value: synology-nfs-storage-hdd
         - name: clusterDomain
           value: homelab.csfreak.com
+        - name: metrics.enabled
+          value: true
+        - name: metrics.serviceMonitor.enabled
+          value: true
+        - name: image.rootless
+          value: true
   syncPolicy:
     automated: {}
 ---
