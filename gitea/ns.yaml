@@ -5,8 +5,15 @@ metadata:
     kubernetes.io/metadata.name: gitea
     openshift.io/cluster-monitoring: "true"
     argocd.argoproj.io/managed-by: openshift-gitops
-  annotations:
-    openshift.io/sa.scc.supplemental-groups: 1000910000/10000
-    openshift.io/sa.scc.uid-range: 1000910000/10000
     name: gitea
+spec: {}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    kubernetes.io/metadata.name: bitnami
+    openshift.io/cluster-monitoring: "true"
+    argocd.argoproj.io/managed-by: openshift-gitops
+    name: bitnami
 spec: {}

@@ -14,11 +14,9 @@ spec:
     chart: gitea
     helm:
       values: |-
-        persistence:
-          storageClass: synology-nfs-storage-hdd
         global:
           storageClass: synology-nfs-storage-hdd
-          imageRegistry: image-registry.openshift-image-registry.svc:5000/gitea
+          imageRegistry: image-registry.openshift-image-registry.svc:5000/
         gitia:
           admin:
               email: gitea.homelab@csfreak.com
@@ -36,6 +34,9 @@ spec:
           capabilities:
             add: 
               - SYS_CHROOT  
+        persistence:
+          enabled: true
+          storageClass: synology-nfs-storage-hdd
         memcached:
           podSecurityContext:
             enabled: false  

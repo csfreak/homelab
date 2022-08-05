@@ -2,7 +2,7 @@ kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
   name: memcached
-  namespace: gitea
+  namespace: bitnami
 spec:
   lookupPolicy:
     local: true
@@ -11,7 +11,7 @@ kind: ImageStreamImport
 apiVersion: image.openshift.io/v1
 metadata:
   name: memcached
-  namespace: gitea
+  namespace: bitnami
 spec:
   import: true
   repository:
@@ -22,12 +22,13 @@ spec:
       scheduled: true
     referencePolicy:
       type: Local
+status: {}
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
   name: postgresql
-  namespace: gitea
+  namespace: bitnami
 spec:
   lookupPolicy:
     local: true
@@ -36,7 +37,7 @@ kind: ImageStreamImport
 apiVersion: image.openshift.io/v1
 metadata:
   name: postgresql
-  namespace: gitea
+  namespace: bitnami
 spec:
   import: true
   repository:
@@ -47,6 +48,7 @@ spec:
       scheduled: true
     referencePolicy:
       type: Local
+status: {}
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
@@ -72,3 +74,4 @@ spec:
       scheduled: true
     referencePolicy:
       type: Local
+status: {}

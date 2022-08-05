@@ -8,6 +8,9 @@ spec:
     - name: "*"
       namespace: gitea
       server: https://kubernetes.default.svc
+    - name: "*"
+      namespace: bitnami
+      server: https://kubernetes.default.svc
   roles:
     - name: default
       policies:
