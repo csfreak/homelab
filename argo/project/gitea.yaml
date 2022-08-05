@@ -17,3 +17,11 @@ spec:
   sourceRepos:
     - https://github.com/csfreak/homelab.git
     - https://dl.gitea.io/charts/
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  clusterResourceWhitelist:
+    - group: ""
+      kind: "Namespace"
+    - group: "rbac.authorization.k8s.io"
+      kind: "ClusterRole"
