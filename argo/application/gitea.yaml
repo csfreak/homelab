@@ -16,16 +16,50 @@ spec:
       parameters:
         - name: gitea.admin.email
           value: gitea.homelab@csfreak.com
-        - name: persistence.storageClass
+        - name: global.storageClass
           value: synology-nfs-storage-hdd
         - name: clusterDomain
           value: homelab.csfreak.com
-        - name: metrics.enabled
+        - name: getia.metrics.enabled
           value: "true"
-        - name: metrics.serviceMonitor.enabled
+        - name: gitea.metrics.serviceMonitor.enabled
           value: "true"
         - name: image.rootless
           value: "true"
+        - name: podSecurityContext.fsGroup
+          value: "1000909999"
+        - name: containerSecurityContext.runAsGroup
+          value: auto
+        - name: containerSecurityContext.runAsUser
+          value: auto
+        - name: containerSecurityContext.capabilities.add
+          value: '["SYS_CHROOT"]'
+        ###################################################
+        - name: memcached.podSecurityContext.enabled
+          value: "false"
+        - name: memcached.containerSecurityContext.enabled
+          value: "false"
+        - name: memcached.volumePermissions.enabled
+          value: "false"
+        - name: memcached.containerSecurityContext.runAsUser
+          value: "auto"
+        - name: memcached.metrics.enabled
+          value: "true"
+        - name: memcached.metrics.serviceMonitor.enabled
+          value: "true"
+        ###################################################
+        - name: postgresql.metrics.enabled
+          value: "true"
+        - name: postgresql.metrics.serviceMonitor.enabled
+          value: "true"
+        - name: postgresql.volumePermissions.enabled
+          value: "false"
+        - name: postgresql.podSecurityContext.enabled
+          value: "false"
+        - name: postgresql.containerSecurityContext.enabled
+          value: "false"
+        - name: postgresql.metrics.containerSecurityContext.enabled
+          value: "false"
   syncPolicy:
     automated: {}
 ---
