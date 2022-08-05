@@ -13,51 +13,52 @@ spec:
     targetRevision: v5.0.9
     chart: gitea
     helm:
-      parameters:
-        - name: gitea.admin.email
-          value: gitea.homelab@csfreak.com
-        - name: global.storageClass
-          value: synology-nfs-storage-hdd
-        - name: clusterDomain
-          value: homelab.csfreak.com
-        - name: getia.metrics.enabled
-          value: "true"
-        - name: gitea.metrics.serviceMonitor.enabled
-          value: "true"
-        - name: image.rootless
-          value: "true"
-        - name: podSecurityContext.fsGroup
-          value: "1000909999"
-        - name: containerSecurityContext.runAsGroup
-          value: "1000910001"
-        - name: containerSecurityContext.runAsUser
-          value: "1000910001"
-        - name: containerSecurityContext.capabilities.add
-          value: "- SYS_CHROOT"
-        ###################################################
-        - name: memcached.podSecurityContext.enabled
-          value: "false"
-        - name: memcached.containerSecurityContext.enabled
-          value: "false"
-        - name: memcached.volumePermissions.enabled
-          value: "false"
-        - name: memcached.metrics.enabled
-          value: "true"
-        - name: memcached.metrics.serviceMonitor.enabled
-          value: "true"
-        ###################################################
-        - name: postgresql.metrics.enabled
-          value: "true"
-        - name: postgresql.metrics.serviceMonitor.enabled
-          value: "true"
-        - name: postgresql.volumePermissions.enabled
-          value: "false"
-        - name: postgresql.podSecurityContext.enabled
-          value: "false"
-        - name: postgresql.containerSecurityContext.enabled
-          value: "false"
-        - name: postgresql.metrics.containerSecurityContext.enabled
-          value: "false"
+      values: |-
+        persistence:
+          storageClass: synology-nfs-storage-hdd
+        global:
+          storageClass: synology-nfs-storage-hdd
+          imageRegistry: image-registry.openshift-image-registry.svc:5000/gitea
+        gitia:
+          admin:
+              email: gitea.homelab@csfreak.com
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+        image:
+          rootless: true  
+        podSecurityContext:
+          fsGroup: 1000909999  
+        containerSecurityContext:
+          runAsGroup: 1000910001  
+          runAsUser: 1000910001  
+          capabilities:
+            add: 
+              - SYS_CHROOT  
+        memcached:
+          podSecurityContext:
+            enabled: false  
+          containerSecurityContext:
+            enabled: false  
+          volumePermissions:
+            enabled: false  
+          metrics:
+            enabled: true  
+            serviceMonitor:
+              enabled: true  
+        postgresql:
+          metrics:
+            enabled: true  
+            serviceMonitor:
+              enabled: true  
+            containerSecurityContext.enabled: false  
+          volumePermissions:
+            enabled: false  
+          podSecurityContext:
+            enabled: false  
+          containerSecurityContext:
+            enabled: false
   syncPolicy:
     automated: {}
 ---

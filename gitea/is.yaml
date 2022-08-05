@@ -1,0 +1,74 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: memcached
+  namespace: gitea
+spec:
+  lookupPolicy:
+    local: true
+---
+kind: ImageStreamImport
+apiVersion: image.openshift.io/v1
+metadata:
+  name: memcached
+  namespace: gitea
+spec:
+  import: true
+  repository:
+    from:
+      kind: DockerImage
+      name: "docker.io/bitnami/memcached"
+    importPolicy:
+      scheduled: true
+    referencePolicy:
+      type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: postgresql
+  namespace: gitea
+spec:
+  lookupPolicy:
+    local: true
+---
+kind: ImageStreamImport
+apiVersion: image.openshift.io/v1
+metadata:
+  name: postgresql
+  namespace: gitea
+spec:
+  import: true
+  repository:
+    from:
+      kind: DockerImage
+      name: "docker.io/bitnami/postgresql"
+    importPolicy:
+      scheduled: true
+    referencePolicy:
+      type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  lookupPolicy:
+    local: true
+---
+kind: ImageStreamImport
+apiVersion: image.openshift.io/v1
+metadata:
+  name: gitea
+  namespace: gitea
+spec:
+  import: true
+  repository:
+    from:
+      kind: DockerImage
+      name: "docker.io/gitea/gitea"
+    importPolicy:
+      scheduled: true
+    referencePolicy:
+      type: Local
