@@ -29,11 +29,11 @@ spec:
         - name: podSecurityContext.fsGroup
           value: "1000909999"
         - name: containerSecurityContext.runAsGroup
-          value: auto
+          value: "1000910001"
         - name: containerSecurityContext.runAsUser
-          value: auto
+          value: "1000910001"
         - name: containerSecurityContext.capabilities.add
-          value: '["SYS_CHROOT"]'
+          value: "- SYS_CHROOT"
         ###################################################
         - name: memcached.podSecurityContext.enabled
           value: "false"
@@ -41,8 +41,6 @@ spec:
           value: "false"
         - name: memcached.volumePermissions.enabled
           value: "false"
-        - name: memcached.containerSecurityContext.runAsUser
-          value: "auto"
         - name: memcached.metrics.enabled
           value: "true"
         - name: memcached.metrics.serviceMonitor.enabled
