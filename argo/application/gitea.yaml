@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: gitea
+    server: https://kubernetes.default.svc
+  project: gitea
+  source:
+    repoURL: https://dl.gitea.io/charts/
+    targetRevision: v5.0.9
+    chart: gitea
+    helm:
+      parameters:
+        - name: gitea.admin.email
+          value: gitea.homelab@csfreak.com
+        - name: persistence.storageClass
+          value: synology-nfs-storage-hdd
+        - name: clusterDomain
+          value: homelab.csfreak.com
+  syncPolicy:
+    automated: {}
