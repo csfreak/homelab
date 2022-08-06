@@ -37,7 +37,6 @@ spec:
               - SYS_CHROOT  
         persistence:
           enabled: true
-          existingClaim: data-gitea-0
           storageClass: synology-nfs-storage-hdd
         memcached:
           securityContext:
@@ -57,7 +56,6 @@ spec:
         postgresql:
           persistence:
             enabled: true
-            existingClaim: data-gitea-postgresql-0
           metrics:
             enabled: true  
             serviceMonitor:
