@@ -26,6 +26,7 @@ spec:
               enabled: true
         image:
           rootless: true  
+          repository: image-registry.openshift-image-registry.svc:5000/gitea/gitea
         podSecurityContext:
           fsGroup: 1000909999  
         containerSecurityContext:
@@ -36,6 +37,7 @@ spec:
               - SYS_CHROOT  
         persistence:
           enabled: true
+          existingClaim: data-gitea-0
           storageClass: synology-nfs-storage-hdd
         memcached:
           securityContext:
@@ -55,11 +57,11 @@ spec:
         postgresql:
           persistence:
             enabled: true
+            existingClaim: data-gitea-postgresql-0
           metrics:
             enabled: true  
             serviceMonitor:
               enabled: true  
-            containerSecurityContext.enabled: false  
           volumePermissions:
             enabled: false  
           shmVolume:
