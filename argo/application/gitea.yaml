@@ -38,17 +38,23 @@ spec:
           enabled: true
           storageClass: synology-nfs-storage-hdd
         memcached:
-          podSecurityContext:
-            enabled: false  
-          containerSecurityContext:
-            enabled: false  
+          securityContext:
+            runAsGroup: 1000910002
+            runAsUser: 1000910002 
+            fsGroup: 1000909999 
           volumePermissions:
             enabled: false  
           metrics:
             enabled: true  
             serviceMonitor:
-              enabled: true  
+              enabled: true 
+            service:
+              annotations: {}
+          serviceAccount:
+            create: false
         postgresql:
+          persistence:
+            enabled: true
           metrics:
             enabled: true  
             serviceMonitor:
@@ -56,10 +62,16 @@ spec:
             containerSecurityContext.enabled: false  
           volumePermissions:
             enabled: false  
-          podSecurityContext:
-            enabled: false  
-          containerSecurityContext:
-            enabled: false
+          shmVolume:
+            enabled: true
+            chmod:
+              enabled: false
+          securityContext:
+            fsGroup: 1000909999 
+          containterSecurityContext:
+            runAsGroup: 1000910003
+            runAsUser: 1000910003
+
   syncPolicy:
     automated: {}
 ---

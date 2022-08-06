@@ -27,6 +27,32 @@ status: {}
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
+  name: memcached-exporter
+  namespace: bitnami
+spec:
+  lookupPolicy:
+    local: true
+---
+kind: ImageStreamImport
+apiVersion: image.openshift.io/v1
+metadata:
+  name: memcached-exporter
+  namespace: bitnami
+spec:
+  import: true
+  repository:
+    from:
+      kind: DockerImage
+      name: "docker.io/bitnami/memcached-exporter"
+    importPolicy:
+      scheduled: true
+    referencePolicy:
+      type: Local
+status: {}
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
   name: postgresql
   namespace: bitnami
 spec:
@@ -44,6 +70,32 @@ spec:
     from:
       kind: DockerImage
       name: "docker.io/bitnami/postgresql"
+    importPolicy:
+      scheduled: true
+    referencePolicy:
+      type: Local
+status: {}
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: postgresql-exporter
+  namespace: bitnami
+spec:
+  lookupPolicy:
+    local: true
+---
+kind: ImageStreamImport
+apiVersion: image.openshift.io/v1
+metadata:
+  name: postgresql-exporter
+  namespace: bitnami
+spec:
+  import: true
+  repository:
+    from:
+      kind: DockerImage
+      name: "docker.io/bitnami/postgresql-exporter"
     importPolicy:
       scheduled: true
     referencePolicy:
