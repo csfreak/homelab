@@ -5,14 +5,15 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   project: infra
   ignoreDifferences:
-  - jsonPointers:
-    - /data
-    kind: Secret
+    - jsonPointers:
+        - /data
+      kind: Secret
   source:
-    path: infra/openshift-cert-manager
+    path: infra/cert-manager
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
