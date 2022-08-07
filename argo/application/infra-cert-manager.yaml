@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-cert-manager
+  name: cert-manager
   namespace: openshift-gitops
 spec:
   destination:
