@@ -13,6 +13,6 @@ spec:
     directory:
       recurse: true
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
+    targetRevision: snolab
   syncPolicy:
     automated: {}

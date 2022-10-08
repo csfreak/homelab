@@ -19,6 +19,5 @@ spec:
   source:
     path: netbox
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+    targetRevision: snolab
+  syncPolicy: {}

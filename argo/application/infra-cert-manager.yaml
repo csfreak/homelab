@@ -15,8 +15,7 @@ spec:
   source:
     path: infra/cert-manager
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+    targetRevision: snolab
+  syncPolicy: {}
     syncOptions:
       - Prune=false

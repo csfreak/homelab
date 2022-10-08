@@ -7,7 +7,7 @@ metadata:
   name: appdaemon
   namespace: homeautomation
 spec:
-  host: appdaemon.apps.homelab.csfreak.com
+  host: appdaemon.apps.snolab.csfreak.com
   port:
     targetPort: 5050
   tls:

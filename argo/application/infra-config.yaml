@@ -14,8 +14,7 @@ spec:
   source:
     path: infra/openshift-config
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+    targetRevision: snolab
+  syncPolicy: {}
     syncOptions:
       - Prune=false

@@ -10,7 +10,7 @@ metadata:
   name: plex
   namespace: media
 spec:
-  host: plex.apps.homelab.csfreak.com
+  host: plex.apps.snolab.csfreak.com
   port:
     targetPort: pms
   tls:
@@ -33,7 +33,7 @@ metadata:
   name: nzbget
   namespace: media
 spec:
-  host: nzbget-media.apps.homelab.csfreak.com
+  host: nzbget-media.apps.snolab.csfreak.com
   port:
     targetPort: 6789-tcp
   to:
@@ -53,7 +53,7 @@ metadata:
   name: sonarr
   namespace: media
 spec:
-  host: sonarr-media.apps.homelab.csfreak.com
+  host: sonarr-media.apps.snolab.csfreak.com
   port:
     targetPort: 8989-tcp
   to:
@@ -73,7 +73,7 @@ metadata:
   name: radarr
   namespace: media
 spec:
-  host: radarr-media.apps.homelab.csfreak.com
+  host: radarr-media.apps.snolab.csfreak.com
   port:
     targetPort: 7878-tcp
   to:

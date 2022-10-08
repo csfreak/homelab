@@ -6,9 +6,9 @@ metadata:
   labels:
     app.kubernetes.io/instance: monitoring
 spec:
-  commonName: grafana.monitoring.apps.homelab.csfreak.com
+  commonName: grafana.monitoring.apps.snolab.csfreak.com
   dnsNames:
-    - grafana.monitoring.apps.homelab.csfreak.com
+    - grafana.monitoring.apps.snolab.csfreak.com
   issuerRef:
     kind: ClusterIssuer
     name: letsencrypt

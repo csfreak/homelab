@@ -43,5 +43,5 @@ if update:
         {"data": update})
     secret = os.environ.get('WebHookSecretKey').strip("\n")
     requests.post(
-        f"https://api.homelab.csfreak.com:6443/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{image_name}/webhooks/{secret}/generic",
+        f"https://api.snolab.csfreak.com:6443/apis/build.openshift.io/v1/namespaces/{namespace}/buildconfigs/{image_name}/webhooks/{secret}/generic",
         verify=False)

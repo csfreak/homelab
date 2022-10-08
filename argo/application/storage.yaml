@@ -14,6 +14,5 @@ spec:
   source:
     path: infra/storage
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+    targetRevision: snolab
+  syncPolicy: {}

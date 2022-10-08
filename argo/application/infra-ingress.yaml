@@ -11,9 +11,8 @@ spec:
   source:
     path: infra/openshift-ingress
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+    targetRevision: snolab
+  syncPolicy: {}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -28,6 +27,5 @@ spec:
   source:
     path: infra/openshift-ingress-operator
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+    targetRevision: snolab
+  syncPolicy: {}

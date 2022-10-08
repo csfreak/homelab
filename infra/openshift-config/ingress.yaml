@@ -3,5 +3,5 @@ kind: Ingress
 metadata:
   name: cluster
 spec:
-  domain: apps.homelab.csfreak.com
+  domain: apps.snolab.csfreak.com
 

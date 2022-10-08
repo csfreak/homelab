@@ -19,7 +19,5 @@ spec:
   source:
     path: monitoring
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
-  syncPolicy:
-    automated: 
-      prune: true
+    targetRevision: snolab
+  syncPolicy: {}

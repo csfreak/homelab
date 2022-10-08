@@ -11,7 +11,7 @@ metadata:
   name: netbox
   namespace: netbox
 spec:
-  host: netbox.apps.homelab.csfreak.com
+  host: netbox.apps.snolab.csfreak.com
   port:
     targetPort: 8080-tcp
   tls:

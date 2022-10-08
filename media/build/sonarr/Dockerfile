@@ -30,7 +30,7 @@ RUN \
   tar xf \
     /tmp/sonarr.tar.gz -C \
     /app/sonarr/bin --strip-components=1 && \
-  echo "UpdateMethod=docker\nBranch=${SONARR_BRANCH}\nPackageVersion=${VERSION}\nPackageAuthor=[homelab.csfreak.com](https://console-openshift-console.apps.homelab.csfreak.com)" > /app/sonarr/package_info && \
+  echo "UpdateMethod=docker\nBranch=${SONARR_BRANCH}\nPackageVersion=${VERSION}\nPackageAuthor=[snolab.csfreak.com](https://console-openshift-console.apps.snolab.csfreak.com)" > /app/sonarr/package_info && \
   rm -rf /app/sonarr/bin/Sonarr.Update && \
   echo "**** cleanup ****" && \
   apt-get clean && \

@@ -9,7 +9,7 @@ metadata:
   name: zwavejs
   namespace: homeautomation
 spec:
-  host: zwavejs-homeautomation.apps.homelab.csfreak.com
+  host: zwavejs-homeautomation.apps.snolab.csfreak.com
   port:
     targetPort: zwavejs-http
   tls:

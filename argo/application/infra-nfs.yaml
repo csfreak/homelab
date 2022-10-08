@@ -19,4 +19,4 @@ spec:
   source:
     path: infra/nfs-external-provisioner
     repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
+    targetRevision: snolab

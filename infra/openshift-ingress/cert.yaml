@@ -5,9 +5,9 @@ metadata:
   namespace: openshift-ingress
 spec:
   secretName: wildcard-ingress-cert
-  commonName: '*.apps.homelab.csfreak.com'
+  commonName: '*.apps.snolab.csfreak.com'
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
-    - '*.apps.homelab.csfreak.com'
+    - '*.apps.snolab.csfreak.com'

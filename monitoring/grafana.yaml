@@ -60,12 +60,12 @@ metadata:
   namespace: monitoring
 spec:
   secretName: grafana-cert
-  commonName: grafana.monitoring.apps.homelab.csfreak.com
+  commonName: grafana.monitoring.apps.snolab.csfreak.com
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
-    - grafana.monitoring.apps.homelab.csfreak.com
+    - grafana.monitoring.apps.snolab.csfreak.com
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
@@ -76,7 +76,7 @@ metadata:
     cert-utils-operator.redhat-cop.io/certs-from-secret: grafana-cert
     cert-utils-operator.redhat-cop.io/inject-CA: 'false'
 spec:
-  host: grafana.monitoring.apps.homelab.csfreak.com
+  host: grafana.monitoring.apps.snolab.csfreak.com
   path: /
   to:
     kind: Service
