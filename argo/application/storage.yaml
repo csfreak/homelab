@@ -8,11 +8,12 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   ignoreDifferences:
-  - jsonPointers:
-    - /spec/claimRef
-    kind: PersistentVolume
+    - jsonPointers:
+        - /spec/claimRef
+      kind: PersistentVolume
   source:
     path: infra/storage
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}
