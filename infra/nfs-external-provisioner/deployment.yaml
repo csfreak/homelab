@@ -34,9 +34,8 @@ spec:
               value: /volume2/NFS_HDD_ROOT
       volumes:
         - name: nfs-hdd-root
-          nfs:
-            server: 172.31.1.194
-            path: /volume2/NFS_HDD_ROOT
+          persistentVolumeClaim:
+            claimName: nfs-hdd-root
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -74,6 +73,5 @@ spec:
               value: /volume1/NFS_SSD_ROOT
       volumes:
         - name: nfs-ssd-root
-          nfs:
-            server: 172.31.1.194
-            path: /volume1/NFS_SSD_ROOT
+          persistentVolumeClaim:
+            claimName: nfs-ssd-root
