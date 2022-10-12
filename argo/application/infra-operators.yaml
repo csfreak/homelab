@@ -15,4 +15,5 @@ spec:
     path: infra/openshift-operators
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}
