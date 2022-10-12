@@ -35,6 +35,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: nfs
+  volumeName: nfs-hdd-root
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -67,3 +68,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: nfs
+  volumeName: nfs-ssd-root
