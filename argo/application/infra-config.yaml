@@ -8,13 +8,11 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   ignoreDifferences:
-  - jsonPointers:
-    - /data
-    kind: Secret
+    - jsonPointers:
+        - /data
+      kind: Secret
   source:
     path: infra/openshift-config
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
   syncPolicy: {}
-    syncOptions:
-      - Prune=false
