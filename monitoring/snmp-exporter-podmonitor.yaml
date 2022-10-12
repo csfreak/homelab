@@ -69,7 +69,7 @@ spec:
         module:
           - synology
         target:
-          - 172.31.1.199
+          - 172.31.1.194
       path: /snmp
       port: snmp-exporter
       metricRelabelings:

@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: wordpress-base-build-config
-  namespace: wordpress
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"

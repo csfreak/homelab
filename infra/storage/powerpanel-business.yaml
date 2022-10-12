@@ -4,14 +4,14 @@ metadata:
   name: powerpanel-business
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 5Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-powerpanel-business
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem

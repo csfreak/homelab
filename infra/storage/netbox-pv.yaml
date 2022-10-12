@@ -4,14 +4,14 @@ metadata:
   name: netbox-media
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 50Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-netbox-media
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem
@@ -22,14 +22,14 @@ metadata:
   name: netbox-postgres
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 5Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-netbox-postgres
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem

@@ -17,3 +17,5 @@ metadata:
   name: auth-config
   namespace: openshift-config
 type: Opaque
+data:
+  htpasswd: amRyb3NzOiRhcHIxJDlkekRoaDcuJGdCT0VyUW1nRzZZeU9rLzU4cXV0ei8K

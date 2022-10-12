@@ -29,7 +29,7 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/synology-nfs-hdd-provisioner
             - name: NFS_SERVER
-              value: 172.31.1.199
+              value: 172.31.1.194
             - name: NFS_PATH
               value: //volume2/NFS_HDD_ROOT
       volumes:
@@ -68,7 +68,7 @@ spec:
             - name: PROVISIONER_NAME
               value: k8s-sigs.io/synology-nfs-ssd-provisioner
             - name: NFS_SERVER
-              value: 172.31.1.199
+              value: 172.31.1.194
             - name: NFS_PATH
               value: /volume1/NFS_SSD_ROOT
       volumes:
