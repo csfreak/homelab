@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metatdata:
+  name: synology-mgmt
+  labels:
+    kubernetes.io/metadata.name: synology-mgmt
+    argocd.argoproj.io/managed-by: openshift-gitops
