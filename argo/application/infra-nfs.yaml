@@ -8,10 +8,6 @@ spec:
     namespace: synology-mgmt
     server: https://kubernetes.default.svc
   ignoreDifferences:
-    - group: apps
-      jsonPointers:
-        - /spec/template/spec/containers/0/image
-      kind: Deployment
     - jsonPointers:
         - /data
       kind: Secret
