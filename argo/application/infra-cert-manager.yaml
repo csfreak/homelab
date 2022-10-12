@@ -17,5 +17,3 @@ spec:
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
   syncPolicy: {}
-    syncOptions:
-      - Prune=false
