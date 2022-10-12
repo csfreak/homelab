@@ -29,7 +29,7 @@ spec:
     path: /volume1/MediaSSD
     server: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: synology
+  storageClassName: synology-nfs
   volumeMode: Filesystem
 ---
 apiVersion: v1
@@ -45,7 +45,7 @@ spec:
     path: /volume2/MediaHDD
     server: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: synology
+  storageClassName: synology-nfs
   volumeMode: Filesystem
 ---
 apiVersion: v1

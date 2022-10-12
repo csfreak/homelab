@@ -1,7 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: nfs
+  name: synology-nfs
 provisioner: kubernetes.io/no-provisioner
 ---
 apiVersion: v1
@@ -15,7 +15,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: nfs
+  storageClassName: synology-nfs
   nfs:
     path: /volume2/NFS_HDD_ROOT
     server: 172.31.1.194
@@ -31,7 +31,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs
+  storageClassName: synology-nfs
   volumeName: nfs-hdd-root
 ---
 apiVersion: v1
@@ -45,7 +45,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: nfs
+  storageClassName: synology-nfs
   nfs:
     path: /volume1/NFS_SSD_ROOT
     server: 172.31.1.194
@@ -61,5 +61,5 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  storageClassName: nfs
+  storageClassName: synology-nfs
   volumeName: nfs-ssd-root
