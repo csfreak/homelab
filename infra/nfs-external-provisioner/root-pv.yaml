@@ -39,7 +39,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-hdd-root
+  name: nfs-ssd-root
 spec:
   capacity:
     storage: 1Ti
@@ -52,7 +52,7 @@ spec:
     - hard
     - nfsvers=4.1
   nfs:
-    path: /volume2/NFS_HDD_ROOT
+    path: /volume1/NFS_SSD_ROOT
     server: 172.31.1.194
 ---
 apiVersion: v1
