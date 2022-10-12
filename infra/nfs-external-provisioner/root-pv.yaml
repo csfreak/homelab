@@ -16,9 +16,6 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: nfs
-  mountOptions:
-    - hard
-    - nfsvers=4.1
   nfs:
     path: /volume2/NFS_HDD_ROOT
     server: 172.31.1.194
@@ -49,9 +46,6 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: nfs
-  mountOptions:
-    - hard
-    - nfsvers=4.1
   nfs:
     path: /volume1/NFS_SSD_ROOT
     server: 172.31.1.194
