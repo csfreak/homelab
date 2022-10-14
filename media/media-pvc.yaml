@@ -17,6 +17,7 @@ spec:
       storage: 100Gi
   storageClassName: synology-iscsi
   volumeMode: Filesystem
+  volumeName: plex-config
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -45,6 +46,7 @@ spec:
       storage: 1Gi
   storageClassName: synology-iscsi
   volumeMode: Filesystem
+  volumeName: radarr-config
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -59,6 +61,7 @@ spec:
       storage: 1Gi
   storageClassName: synology-iscsi
   volumeMode: Filesystem
+  volumeName: sonarr-config
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -99,8 +102,9 @@ spec:
   resources:
     requests:
       storage: 10Ti
-  storageClassName: synology
+  storageClassName: synology-nfs
   volumeMode: Filesystem
+  volumeName: shared-media-hdd
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -113,5 +117,6 @@ spec:
   resources:
     requests:
       storage: 10Ti
-  storageClassName: synology
+  storageClassName: synology-nfs
   volumeMode: Filesystem
+  volumeName: shared-media-ssd
