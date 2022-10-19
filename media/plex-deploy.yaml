@@ -73,8 +73,6 @@ spec:
               mountPath: /config
             - name: transcode
               mountPath: /transcode
-            - name: shared
-              mountPath: /shared
       nodeSelector:
         beta.kubernetes.io/arch: amd64
       volumes:
@@ -90,5 +88,3 @@ spec:
         - name: transcode
           persistentVolumeClaim:
             claimName: plex-transcode
-        - name: shared
-          emptyDir: {}

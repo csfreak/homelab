@@ -73,7 +73,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100Gi
+      storage: 100G
   storageClassName: synology-nfs-storage-hdd
   volumeMode: Filesystem
 ---
