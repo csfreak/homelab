@@ -7,8 +7,8 @@ rules:
   - apiGroups:
       - integreatly.org
     resources:
-      - grafanadashboard
-      - grafanadatasource
+      - grafanadashboards
+      - grafanadatasources
       - grafana
     verbs:
       - list
