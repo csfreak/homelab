@@ -20,7 +20,7 @@ RUN \
     \
 # Setup directories
     mkdir -p \
-      /config \
+      /config/Library/Application\ Support \
       /transcode \
       /data \
     && \
