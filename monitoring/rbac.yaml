@@ -9,7 +9,7 @@ rules:
     resources:
       - grafanadashboards
       - grafanadatasources
-      - grafana
+      - grafanas
     verbs:
       - list
       - get
