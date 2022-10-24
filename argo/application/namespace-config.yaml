@@ -12,4 +12,5 @@ spec:
     path: infra/namespace-configuration-operator
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}

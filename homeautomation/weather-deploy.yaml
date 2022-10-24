@@ -7,6 +7,7 @@ metadata:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"weather-station:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"weather\")].image"}]
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: weather
@@ -16,12 +17,12 @@ spec:
         app: weather
     spec:
       containers:
-      - name: weather
-        image: weather-station
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        ports:
-        - containerPort: 8080
-          name: http-alt
+        - name: weather
+          image: weather-station
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+              name: http-alt

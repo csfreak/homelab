@@ -24,4 +24,5 @@ spec:
     path: homeautomation
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
-  syncPolicy: {}
+  syncPolicy: 
+    automated: {}
