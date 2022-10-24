@@ -4,5 +4,4 @@ metadata:
   name: synology-mgmt
   labels:
     kubernetes.io/metadata.name: synology-mgmt
-    argocd.argoproj.io/managed-by: openshift-gitops
 spec: {}

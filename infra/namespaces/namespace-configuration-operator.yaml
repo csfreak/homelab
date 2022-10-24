@@ -4,6 +4,5 @@ metadata:
   labels:
     kubernetes.io/metadata.name: namespace-configuration-operator
     openshift.io/cluster-monitoring: "true"
-    argocd.argoproj.io/managed-by: openshift-gitops
   name: namespace-configuration-operator
 spec: {}

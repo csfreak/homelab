@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespace-onboarding
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/namespaces
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: snolab
+  syncPolicy:
+    automated: {}

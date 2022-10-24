@@ -3,6 +3,5 @@ kind: Namespace
 metadata:
   labels:
     kubernetes.io/metadata.name: homeautomation
-    argocd.argoproj.io/managed-by: openshift-gitops
   name: homeautomation
 spec: {}
