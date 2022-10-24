@@ -8,14 +8,15 @@ metadata:
     app.kubernetes.io/component: plex
     app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: plex
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "media"
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: pms
       port: 32400
       protocol: TCP
       targetPort: pms
-      nodePort: 32400
   selector:
     app: plex
     deployment: plex
