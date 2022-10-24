@@ -6,5 +6,6 @@ resources:
   - cert-manager.yaml
   - media.yaml
   - homeautomation.yaml
-commonAnnotations:
-  argocd.argoproj.io/managed-by: openshift-gitops
+labels:
+  - pairs:
+      argocd.argoproj.io/managed-by: openshift-gitops
