@@ -11,15 +11,6 @@ metadata:
 spec:
   lookupPolicy:
     local: true
-  tags:
-    - name: latest
-      from:
-        kind: DockerImage
-        name: "docker.io/plexinc/pms-docker:latest"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local
 ---
 apiVersion: image.openshift.io/v1
 kind: ImageStream

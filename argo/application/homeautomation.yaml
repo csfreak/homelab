@@ -8,17 +8,17 @@ spec:
     namespace: homeautomation
     server: https://kubernetes.default.svc
   ignoreDifferences:
-  - group: apps
-    jsonPointers:
-    - /spec/template/spec/containers/0/image
-    kind: Deployment
-  - group: apps.openshift.io
-    jsonPointers:
-    - /spec/template/spec/containers/0/image
-    kind: DeploymentConfig
-  - jsonPointers:
-    - /data
-    kind: Secret
+    - group: apps
+      jsonPointers:
+        - /spec/template/spec/containers/0/image
+      kind: Deployment
+    - group: apps.openshift.io
+      jsonPointers:
+        - /spec/template/spec/containers/0/image
+      kind: DeploymentConfig
+    - jsonPointers:
+        - /data
+      kind: Secret
   project: homeautomation
   source:
     path: homeautomation

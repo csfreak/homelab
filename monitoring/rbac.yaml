@@ -1,0 +1,34 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: grafana-edit
+  namespace: monitoring
+rules:
+  - apiGroups:
+      - integreatly.org
+    resources:
+      - grafanadashboards
+      - grafanadatasources
+      - grafanas
+    verbs:
+      - list
+      - get
+      - create
+      - update
+      - patch
+      - delete
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: grafana-openshift-gitops
+  namespace: monitoring
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: grafana-edit

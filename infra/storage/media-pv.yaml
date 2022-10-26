@@ -4,14 +4,14 @@ metadata:
   name: plex-config
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 100Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-plex-config
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem
@@ -22,14 +22,14 @@ metadata:
   name: shared-media-ssd
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   capacity:
     storage: 12Ti
   nfs:
     path: /volume1/MediaSSD
-    server: 172.31.1.199
+    server: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: synology
+  storageClassName: synology-nfs
   volumeMode: Filesystem
 ---
 apiVersion: v1
@@ -38,14 +38,14 @@ metadata:
   name: shared-media-hdd
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   capacity:
     storage: 12Ti
   nfs:
     path: /volume2/MediaHDD
-    server: 172.31.1.199
+    server: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: synology
+  storageClassName: synology-nfs
   volumeMode: Filesystem
 ---
 apiVersion: v1
@@ -54,14 +54,14 @@ metadata:
   name: radarr-config
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 1Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-radarr-config
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem
@@ -72,14 +72,14 @@ metadata:
   name: sonarr-config
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 1Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-sonarr-config
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem

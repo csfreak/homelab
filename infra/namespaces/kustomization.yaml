@@ -1,0 +1,11 @@
+resources:
+  - namespace-configuration-operator.yaml
+  - openshift-config.yaml
+  - synology-mgmt.yaml
+  - monitoring.yaml
+  - cert-manager.yaml
+  - media.yaml
+  - homeautomation.yaml
+labels:
+  - pairs:
+      argocd.argoproj.io/managed-by: openshift-gitops

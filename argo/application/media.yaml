@@ -8,13 +8,13 @@ spec:
     namespace: media
     server: https://kubernetes.default.svc
   ignoreDifferences:
-  - group: apps
-    jsonPointers:
-    - /spec/template/spec/containers/0/image
-    kind: Deployment
-  - jsonPointers:
-    - /data
-    kind: Secret
+    - group: apps
+      jsonPointers:
+        - /spec/template/spec/containers/0/image
+      kind: Deployment
+    - jsonPointers:
+        - /data
+      kind: Secret
   project: media
   source:
     path: media

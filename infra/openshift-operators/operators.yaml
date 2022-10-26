@@ -9,20 +9,6 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   labels:
-    operators.coreos.com/cert-manager.openshift-operators: ""
-  name: cert-manager
-  namespace: openshift-operators
-spec:
-  channel: stable
-  installPlanApproval: Automatic
-  name: cert-manager
-  source: community-operators
-  sourceNamespace: openshift-marketplace
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  labels:
     operators.coreos.com/openshift-gitops-operator.openshift-operators: ""
   name: openshift-gitops-operator
   namespace: openshift-operators
@@ -30,19 +16,5 @@ spec:
   channel: stable
   installPlanApproval: Automatic
   name: openshift-gitops-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  labels:
-    operators.coreos.com/openshift-pipelines-operator-rh.openshift-operators: ""
-  name: openshift-pipelines-operator-rh
-  namespace: openshift-operators
-spec:
-  channel: pipelines-1.7
-  installPlanApproval: Automatic
-  name: openshift-pipelines-operator-rh
   source: redhat-operators
   sourceNamespace: openshift-marketplace

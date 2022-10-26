@@ -18,24 +18,7 @@ spec:
         module:
           - mikrotik
         target:
-          - 172.31.1.2
-      path: /snmp
-      port: snmp-exporter
-      metricRelabelings:
-        - sourceLabels:
-            - "__name__"
-          targetLabel: "__name__"
-          replacement: "snmp_value_$1"
-        - targetLabel: module
-          replacement: mikrotik
-        - targetLabel: target
-          replacement: labrouter
-    - interval: 30s
-      params:
-        module:
-          - mikrotik
-        target:
-          - 172.31.1.1
+          - 172.31.1.65
       path: /snmp
       port: snmp-exporter
       metricRelabelings:
@@ -50,26 +33,9 @@ spec:
     - interval: 30s
       params:
         module:
-          - ruckus_unleashed
-        target:
-          - 192.168.2.2
-      path: /snmp
-      port: snmp-exporter
-      metricRelabelings:
-        - sourceLabels:
-            - "__name__"
-          targetLabel: "__name__"
-          replacement: "snmp_value_$1"
-        - targetLabel: module
-          replacement: ruckus_unleashed
-        - targetLabel: target
-          replacement: homewireless
-    - interval: 30s
-      params:
-        module:
           - synology
         target:
-          - 172.31.1.199
+          - 172.31.1.194
       path: /snmp
       port: snmp-exporter
       metricRelabelings:

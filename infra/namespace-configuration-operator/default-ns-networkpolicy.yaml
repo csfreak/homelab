@@ -1,4 +1,3 @@
-
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: NamespaceConfig
 metadata:
@@ -7,24 +6,24 @@ metadata:
 spec:
   annotationSelector:
     matchExpressions:
-      - {key: homelab.csfreak.com/ingresspolicy, operator: DoesNotExist}
+      - { key: homelab.csfreak.com/ingresspolicy, operator: DoesNotExist }
   templates:
-  - objectTemplate: |
-      apiVersion: networking.k8s.io/v1
-      kind: NetworkPolicy
-      metadata:
-        name: allow-from-private-ips
-        namespace: {{ .Name }}
-      spec:
-        podSelector: {}
-        policyTypes:
-        - Ingress
-        ingress:
-        - from:
-          - ipBlock:
-              cidr: 172.31.0.0/20
-          - ipBlock:
-              cidr: 192.168.0.0/18
+    - objectTemplate: |
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: allow-from-private-ips
+          namespace: {{ .Name }}
+        spec:
+          podSelector: {}
+          policyTypes:
+          - Ingress
+          ingress:
+          - from:
+            - ipBlock:
+                cidr: 172.31.0.0/20
+            - ipBlock:
+                cidr: 192.168.0.0/18
 ---
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: NamespaceConfig
@@ -34,17 +33,17 @@ metadata:
 spec:
   annotationSelector:
     matchExpressions:
-      - {key: homelab.csfreak.com/egresspolicy, operator: DoesNotExist}
+      - { key: homelab.csfreak.com/egresspolicy, operator: DoesNotExist }
   templates:
-  - objectTemplate: |
-      apiVersion: networking.k8s.io/v1
-      kind: NetworkPolicy
-      metadata:
-        name: allow-egress
-        namespace: {{ .Name }}
-      spec:
-        podSelector: {}
-        policyTypes:
-        - Egress
-        egress:
-        - {}
+    - objectTemplate: |
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: allow-egress
+          namespace: {{ .Name }}
+        spec:
+          podSelector: {}
+          policyTypes:
+          - Egress
+          egress:
+          - {}

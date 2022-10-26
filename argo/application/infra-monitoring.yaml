@@ -13,8 +13,7 @@ spec:
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
-    automated: 
-      prune: true
+    automated: {}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -31,5 +30,4 @@ spec:
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
-    automated: 
-      prune: true
+    automated: {}

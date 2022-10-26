@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: storage
+  name: openshift-operators
   namespace: openshift-gitops
 spec:
   destination:
@@ -9,10 +9,10 @@ spec:
   project: infra
   ignoreDifferences:
     - jsonPointers:
-        - /spec/claimRef
-      kind: PersistentVolume
+        - /data
+      kind: Secret
   source:
-    path: infra/storage
+    path: infra/openshift-operators
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:

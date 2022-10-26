@@ -10,14 +10,14 @@ spec:
       name: letsencrypt-key
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
-    - dns01:
-        cnameStrategy: None
-        route53:
-          accessKeyID: AKIAZTZI55J75ZWTQSTV
-          region: us-east-1
-          secretAccessKeySecretRef:
-            key: secret-access-key
-            name: route53-secret
+      - dns01:
+          cnameStrategy: None
+          route53:
+            accessKeyID: AKIAZTZI55J7US7FJXFK
+            region: us-east-1
+            secretAccessKeySecretRef:
+              key: secret-access-key
+              name: route53-secret
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -31,11 +31,11 @@ spec:
       name: letsencrypt-staging-key
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     solvers:
-    - dns01:
-        cnameStrategy: None
-        route53:
-          accessKeyID: AKIAZTZI55J75ZWTQSTV
-          region: us-east-1
-          secretAccessKeySecretRef:
-            key: secret-access-key
-            name: route53-secret
+      - dns01:
+          cnameStrategy: None
+          route53:
+            accessKeyID: AKIAZTZI55J7US7FJXFK
+            region: us-east-1
+            secretAccessKeySecretRef:
+              key: secret-access-key
+              name: route53-secret

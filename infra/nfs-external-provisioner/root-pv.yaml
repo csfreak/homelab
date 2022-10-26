@@ -1,0 +1,65 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: synology-nfs
+provisioner: kubernetes.io/no-provisioner
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-hdd-root
+spec:
+  capacity:
+    storage: 1Ti
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: synology-nfs
+  nfs:
+    path: /volume2/NFS_HDD_ROOT
+    server: 172.31.1.194
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-hdd-root
+spec:
+  resources:
+    requests:
+      storage: 1Ti
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: synology-nfs
+  volumeName: nfs-hdd-root
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-ssd-root
+spec:
+  capacity:
+    storage: 1Ti
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: synology-nfs
+  nfs:
+    path: /volume1/NFS_SSD_ROOT
+    server: 172.31.1.194
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-ssd-root
+spec:
+  resources:
+    requests:
+      storage: 1Ti
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: synology-nfs
+  volumeName: nfs-ssd-root

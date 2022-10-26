@@ -4,4 +4,3 @@ metadata:
   name: cluster
 spec:
   domain: apps.homelab.csfreak.com
-

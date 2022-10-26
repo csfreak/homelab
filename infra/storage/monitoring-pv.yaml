@@ -4,14 +4,14 @@ metadata:
   name: grafana-db
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   capacity:
     storage: 1Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-grafana-db
     iscsiInterface: default
     lun: 1
-    targetPortal: 172.31.1.199
+    targetPortal: 172.31.1.194
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
   volumeMode: Filesystem

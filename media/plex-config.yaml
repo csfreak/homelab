@@ -1,0 +1,7 @@
+apiVersion: v1
+data: {}
+immutable: false
+kind: ConfigMap
+metadata:
+  name: plex-config
+  namespace: media

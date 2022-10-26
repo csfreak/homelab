@@ -3,9 +3,11 @@ kind: Application
 metadata:
   name: cert-manager
   namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   destination:
-    namespace: cert-manager
+    namespace: openshift-cert-manager
     server: https://kubernetes.default.svc
   project: infra
   ignoreDifferences:

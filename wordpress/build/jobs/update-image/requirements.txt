@@ -1,2 +1,0 @@
-kubernetes==18.17.0a1
-requests==2.25.1

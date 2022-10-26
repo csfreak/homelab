@@ -10,7 +10,7 @@ metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: "zwavejs"
 spec:
-  replicas: 1
+  replicas: 0
   revisionHistoryLimit: 10
   selector:
     app: zwavejs
