@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: image-registry-iscsi
+  name: image-registry-shared
   namespace: openshift-image-registry
 spec:
   accessModes:
@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  storageClassName: synology-nfs-ssd
+  storageClassName: synology-nfs-storage-ssd
   volumeMode: Filesystem

@@ -10,5 +10,5 @@ spec:
   storage:
     managementState: Unmanaged
     pvc:
-      claim: image-registry
+      claim: image-registry-shared
   replicas: 2

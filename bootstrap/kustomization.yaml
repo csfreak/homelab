@@ -1,0 +1,3 @@
+resources:
+  - gitops-operator.yaml
+  - ../argo/application/argo.yaml

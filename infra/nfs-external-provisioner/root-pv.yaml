@@ -40,7 +40,7 @@ metadata:
   name: nfs-ssd-root
 spec:
   capacity:
-    storage: 1Ti
+    storage: 14Ti
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
@@ -57,7 +57,7 @@ metadata:
 spec:
   resources:
     requests:
-      storage: 1Ti
+      storage: 11Ti
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce

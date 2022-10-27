@@ -29,7 +29,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Ti
+      storage: 100Gi
   storageClassName: synology-nfs-storage-hdd
   volumeMode: Filesystem
 ---
@@ -73,7 +73,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 100G
+      storage: 10Gi
   storageClassName: synology-nfs-storage-hdd
   volumeMode: Filesystem
 ---
@@ -87,7 +87,7 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Ti
+      storage: 100Gi
   storageClassName: synology-nfs-storage-hdd
   volumeMode: Filesystem
 ---

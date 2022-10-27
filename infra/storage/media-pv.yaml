@@ -24,7 +24,7 @@ spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 12Ti
+    storage: 10Ti
   nfs:
     path: /volume1/MediaSSD
     server: 172.31.1.194
@@ -40,7 +40,7 @@ spec:
   accessModes:
     - ReadWriteMany
   capacity:
-    storage: 12Ti
+    storage: 10Ti
   nfs:
     path: /volume2/MediaHDD
     server: 172.31.1.194
