@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: infra/openshift-image-registry
+    path: infra/image-registry-operator
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
