@@ -1,0 +1,14 @@
+apiVersion: imageregistry.operator.openshift.io/v1
+kind: Config
+metadata:
+  name: cluster
+spec:
+  logLevel: Normal
+  rolloutStrategy: Recreate
+  operatorLogLevel: Normal
+  managementState: Managed
+  storage:
+    managementState: Unmanaged
+    pvc:
+      claim: image-registry
+  replicas: 2

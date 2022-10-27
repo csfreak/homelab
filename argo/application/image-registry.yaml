@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openshift-image-registry
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: openshift-image-registry
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/openshift-image-registry
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - Prune=false
