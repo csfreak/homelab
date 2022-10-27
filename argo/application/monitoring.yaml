@@ -20,7 +20,4 @@ spec:
     path: monitoring
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
-  syncPolicy: 
-    syncOptions:
-      - SkipDryRunOnMissingResource=true
-      
+  syncPolicy: {}

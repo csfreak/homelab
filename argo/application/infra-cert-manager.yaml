@@ -22,4 +22,3 @@ spec:
     automated: {}
     syncOptions:
       - Prune=false
-      - SkipDryRunOnMissingResource=true

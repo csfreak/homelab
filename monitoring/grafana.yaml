@@ -3,6 +3,9 @@ kind: Grafana
 metadata:
   name: grafana
   namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   config:
     auth:
@@ -36,6 +39,9 @@ kind: GrafanaDataSource
 metadata:
   name: prometheus-grafanadatasource
   namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   datasources:
     - access: proxy

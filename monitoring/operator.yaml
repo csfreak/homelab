@@ -3,6 +3,8 @@ kind: OperatorGroup
 metadata:
   name: grafana-operators
   namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   targetNamespaces:
     - monitoring
@@ -15,6 +17,8 @@ metadata:
     operators.coreos.com/grafana-operator.monitoring: ""
   name: grafana-operator
   namespace: monitoring
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   channel: v4
   installPlanApproval: Automatic
