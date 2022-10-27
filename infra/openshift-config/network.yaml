@@ -4,12 +4,8 @@ metadata:
   name: cluster
 spec:
   clusterNetwork:
-    - cidr: 172.31.4.0/22
-      hostPrefix: 23
-  externalIP:
-    autoAssignCIDRs:
-      - 172.31.1.64/26
-    policy: {}
-  networkType: OVNKubernetes
+    - cidr: 172.31.8.0/21
+      hostPrefix: 24
+  networkType: OpenshiftSDN
   serviceNetwork:
-    - 172.31.2.0/23
+    - 172.31.4.0/23
