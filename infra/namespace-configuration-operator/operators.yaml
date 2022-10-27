@@ -1,14 +1,16 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: namespace-configuration-operator 
+  name: namespace-configuration-operator
   namespace: namespace-configuration-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   channel: alpha
   config:
     env:
-    - name: ALLOW_SYSTEM_NAMESPACES
-      value: 'true'
+      - name: ALLOW_SYSTEM_NAMESPACES
+        value: "true"
   installPlanApproval: Automatic
   name: namespace-configuration-operator
   source: community-operators
@@ -17,6 +19,8 @@ spec:
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: namespace-configuration-operator 
+  name: namespace-configuration-operator
   namespace: namespace-configuration-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
 spec: {}
