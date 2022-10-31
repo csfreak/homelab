@@ -16,5 +16,4 @@ spec:
     path: infra/nfs-external-provisioner
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
-  syncPolicy:
-    automated: {}
+  syncPolicy: {}
