@@ -17,7 +17,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: cert-manager-clusterissuer-openshift-gitops
+  name: image-registry-config-openshift-gitops
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-argocd-application-controller
