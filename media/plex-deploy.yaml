@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: plex
     image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -32,6 +32,8 @@ spec:
       containers:
         - name: plex-server
           image: image-registry.openshift-image-registry.svc:5000/media/plex
+          command:
+            - /usr/lib/plexmediaserver/Plex Media Server
           readinessProbe:
             httpGet:
               path: /identity
