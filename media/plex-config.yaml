@@ -1,5 +1,12 @@
 apiVersion: v1
-data: {}
+data:
+  HOME: /config
+  PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR: /config/Library/Application Support
+  PLEX_MEDIA_SERVER_HOME: /usr/lib/plexmediaserver
+  PLEX_MEDIA_SERVER_INFO_VENDOR: Red Hat Enterprise Linux
+  PLEX_MEDIA_SERVER_INFO_DEVICE: Openshift Container Platform 4
+  PLEX_MEDIA_SERVER_INFO_MODEL: Container
+  PLEX_MEDIA_SERVER_INFO_PLATFORM_VERSION: ubi8
 immutable: false
 kind: ConfigMap
 metadata:
