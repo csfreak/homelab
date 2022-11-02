@@ -7,7 +7,6 @@ ENV \
 
 
 COPY plex.repo /etc/yum.repos.d/
-COPY entrypoint.sh /
 
 RUN \
 # Enable plex repo
