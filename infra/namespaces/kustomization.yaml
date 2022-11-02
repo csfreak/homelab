@@ -6,6 +6,7 @@ resources:
   - cert-manager.yaml
   - media.yaml
   - homeautomation.yaml
+  - metallb-system.yaml
 labels:
   - pairs:
       argocd.argoproj.io/managed-by: openshift-gitops
