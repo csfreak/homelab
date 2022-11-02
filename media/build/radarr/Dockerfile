@@ -11,7 +11,7 @@ RUN \
   apt-get install -y \
     jq \
     curl \
-    libicu70 \
+    libicu71 \
 	libmediainfo0v5 \
     sqlite3 && \
   echo "**** install radarr ****" && \
