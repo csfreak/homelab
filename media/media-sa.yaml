@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: media-run-user
+  labels:
+    app: media
+    app.kubernetes.io/component: media
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: media
