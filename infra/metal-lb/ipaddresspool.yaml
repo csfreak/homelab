@@ -1,0 +1,8 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: default-address-pool
+spec:
+  addresses:
+    - 172.31.1.132-172.31.1.149
+  autoAssign: true
