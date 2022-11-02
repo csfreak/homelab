@@ -21,3 +21,4 @@ spec:
   syncPolicy:
     syncOptions:
       - Prune=false
+    automated: {}

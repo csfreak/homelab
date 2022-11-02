@@ -11,4 +11,5 @@ spec:
     path: infra/namespaces
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}
