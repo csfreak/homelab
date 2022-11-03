@@ -75,8 +75,6 @@ spec:
               mountPath: /config
             - name: transcode
               mountPath: /transcode
-      nodeSelector:
-        beta.kubernetes.io/arch: amd64
       volumes:
         - name: datassd
           persistentVolumeClaim:
