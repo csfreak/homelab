@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: hass
+    app.kubernetes.io/component: hass
+    app.kubernetes.io/instance: homeautomation
+    app.kubernetes.io/part-of: hass
+  name: hass-run-user
+  namespace: homeautomation

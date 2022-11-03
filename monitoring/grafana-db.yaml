@@ -112,7 +112,7 @@ spec:
             - --collect.engine_innodb_status
           ports:
             - name: metrics
-              containerPort: 9104 
+              containerPort: 9104
               protocol: TCP
 ---
 kind: Secret
@@ -180,3 +180,4 @@ spec:
   sessionAffinity: None
   type: ClusterIP
 ---
+
