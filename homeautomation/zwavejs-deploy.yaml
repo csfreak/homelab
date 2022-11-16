@@ -1,46 +1,34 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: zwavejs
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")]"}]'
   labels:
     app: zwavejs
     app.kubernetes.io/component: zwavejs
     app.kubernetes.io/name: zwavejs
   name: zwavejs
   namespace: homeautomation
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: "zwavejs"
 spec:
   replicas: 0
+  paused: true
   revisionHistoryLimit: 10
   selector:
-    app: zwavejs
-    deploymentconfig: zwavejs
+    matchLabels:
+      app: zwavejs
+      deployment: zwavejs
   strategy:
     type: Recreate
-    activeDeadlineSeconds: 21600
   template:
     metadata:
       labels:
         app: zwavejs
-        deploymentconfig: zwavejs
+        deployment: zwavejs
     spec:
-      serviceAccountName: zwave-run-user
       containers:
-        - name: zwavejs-server
-          image: zwavejs:latest
+        - image: zwavejs:latest
           imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 8091
-              protocol: TCP
-              name: http
-            - containerPort: 3000
-              protocol: TCP
-              name: zwajvejs-ws
-          volumeMounts:
-            - name: zwave-config
-              mountPath: "/usr/src/app/store"
-            - name: zwave-stick
-              mountPath: "/dev/ttyUSB1"
           livenessProbe:
             failureThreshold: 10
             httpGet:
@@ -54,32 +42,36 @@ spec:
             periodSeconds: 3
             successThreshold: 1
             timeoutSeconds: 1
+          name: zwavejs-server
+          ports:
+            - containerPort: 8091
+              name: http
+              protocol: TCP
+            - containerPort: 3000
+              name: zwajvejs-ws
+              protocol: TCP
           resources: {}
           securityContext:
             allowPrivilegeEscalation: true
             privileged: true
             runAsUser: 0
+          volumeMounts:
+            - mountPath: /usr/src/app/store
+              name: zwave-config
+            - mountPath: /dev/ttyUSB1
+              name: zwave-stick
       dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      terminationGracePeriodSeconds: 30
       nodeSelector:
         feature.node.kubernetes.io/usb-0658_0200.present: "true"
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccountName: zwave-run-user
+      terminationGracePeriodSeconds: 30
       volumes:
         - name: zwave-config
           persistentVolumeClaim:
             claimName: zwavejs-config
-        - name: zwave-stick
-          hostPath:
+        - hostPath:
             path: /dev/serial/by-id/usb-0658_0200-if00
-  triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - zwavejs-server
-        from:
-          kind: ImageStreamTag
-          name: zwavejs:latest
-          namespace: homeautomation
-      type: ImageChange
-    - type: ConfigChange
+          name: zwave-stick
+status: {}

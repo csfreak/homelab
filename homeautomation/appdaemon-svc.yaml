@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       targetPort: 5050
   selector:
-    deploymentconfig: appdaemon
+    deployment: appdaemon
   type: ClusterIP

@@ -1,45 +1,48 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: appdaemon
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"appdaemon:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"appdaemon\")]"}]'
   labels:
     app: appdaemon
     app.kubernetes.io/component: appdaemon
     app.kubernetes.io/name: appdaemon
   name: appdaemon
   namespace: homeautomation
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: "appdaemon"
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
-    app: appdaemon
-    deploymentconfig: appdaemon
+    matchLabels:
+      app: appdaemon
+      deployment: appdaemon
   strategy:
-    type: Rolling
-    activeDeadlineSeconds: 21600
+    rollingUpdate: {}
+    type: RollingUpdate
   template:
     metadata:
       labels:
         app: appdaemon
-        deploymentconfig: appdaemon
+        deployment: appdaemon
     spec:
       containers:
-        - name: appdaemon
-          image: appdaemon:latest
-          imagePullPolicy: IfNotPresent
-          envFrom:
+        - envFrom:
             - configMapRef:
                 name: appdaemon-config
             - secretRef:
                 name: appdaemon-secrets
+          image: appdaemon:latest
+          imagePullPolicy: IfNotPresent
+          name: appdaemon
           ports:
             - containerPort: 5050
-              protocol: TCP
               name: http
+              protocol: TCP
+          resources: {}
           volumeMounts:
-            - name: config-shared
-              mountPath: /conf
+            - mountPath: /conf
+              name: config-shared
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -49,14 +52,4 @@ spec:
         - name: config-shared
           persistentVolumeClaim:
             claimName: appdaemon-config-shared
-  triggers:
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - appdaemon
-        from:
-          kind: ImageStreamTag
-          name: appdaemon:latest
-          namespace: homeautomation
-      type: ImageChange
-    - type: ConfigChange
+status: {}

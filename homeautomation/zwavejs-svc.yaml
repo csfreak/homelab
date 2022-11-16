@@ -16,6 +16,6 @@ spec:
       protocol: TCP
       targetPort: 8091
   selector:
-    deploymentconfig: zwavejs
+    deployment: zwavejs
   sessionAffinity: None
   type: ClusterIP

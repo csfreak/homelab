@@ -12,6 +12,6 @@ spec:
       protocol: TCP
       targetPort: 8123
   selector:
-    deploymentconfig: hass
+    deployment: hass
   sessionAffinity: None
   type: ClusterIP

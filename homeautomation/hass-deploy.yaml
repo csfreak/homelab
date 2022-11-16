@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: homeassistant
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"homeassistant:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"hass-server\")]"}]'
+  labels:
+    app: hass
+    app.kubernetes.io/component: hass
+    app.kubernetes.io/name: hass
+  name: hass
+  namespace: homeautomation
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: hass
+      deployment: hass
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hass
+        deployment: hass
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_URL
+              value: mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db.homeautomation.svc:3306/$(MYSQL_DATABASE)?charset-utf8mb4
+          envFrom:
+            - prefix: MYSQL_
+              secretRef:
+                name: hass-db-user
+            - configMapRef:
+                name: hass-db-config
+              prefix: MYSQL_
+          image: homeassistant:latest
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /config/info
+              port: 8123
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: hass-server
+          ports:
+            - containerPort: 8123
+              name: hass-http
+              protocol: TCP
+          resources: {}
+          securityContext:
+            runAsUser: 0
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /config
+              name: hass-config
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext:
+        runAsUser: 0
+      serviceAccount: hass-run-user
+      serviceAccountName: hass-run-user
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: hass-config
+          persistentVolumeClaim:
+            claimName: hass-config-shared
+status: {}
