@@ -1,25 +1,6 @@
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
-  name: mosquitto
-  namespace: homeautomation
-spec:
-  lookupPolicy:
-    local: true
-  tags:
-    - name: latest
-      annotations: null
-      from:
-        kind: DockerImage
-        name: "eclipse-mosquitto:latest"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local
----
-kind: ImageStream
-apiVersion: image.openshift.io/v1
-metadata:
   name: zwavejs
   namespace: homeautomation
 spec:
@@ -50,25 +31,6 @@ spec:
       from:
         kind: DockerImage
         name: "homeassistant/home-assistant:latest"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local
----
-kind: ImageStream
-apiVersion: image.openshift.io/v1
-metadata:
-  name: appdaemon
-  namespace: homeautomation
-spec:
-  lookupPolicy:
-    local: true
-  tags:
-    - name: latest
-      annotations: null
-      from:
-        kind: DockerImage
-        name: "acockburn/appdaemon:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -126,25 +88,6 @@ spec:
       from:
         kind: DockerImage
         name: "quay.io/prometheus/mysqld-exporter:latest"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local
----
-kind: ImageStream
-apiVersion: image.openshift.io/v1
-metadata:
-  name: mosquitto-exporter
-  namespace: homeautomation
-spec:
-  lookupPolicy:
-    local: true
-  tags:
-    - name: latest
-      annotations: null
-      from:
-        kind: DockerImage
-        name: "sapcc/mosquitto-exporter:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
