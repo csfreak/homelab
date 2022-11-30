@@ -12,12 +12,16 @@ spec:
     configData: |
       core:
         sleepInterval: 60s
-        sources: 
+        labelSources: 
+          - usb
+        featureSources:
           - usb
       sources:
         usb:
           deviceClassWhitelist:
             - "00"
+            - "02"
+            - "ff"
           deviceLabelFields:
             - "vendor"
             - "device"
