@@ -9,4 +9,16 @@ metadata:
   name: zwave-run-user
   namespace: homeautomation
 ---
-
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: zwave-run-user-scc
+  namespace: homeautomation
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:privileged
+subjects:
+  - kind: ServiceAccount
+    name: zwave-run-user
+    namespace: homeautomation

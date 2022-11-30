@@ -11,8 +11,7 @@ metadata:
   name: zwavejs
   namespace: homeautomation
 spec:
-  replicas: 0
-  paused: true
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
@@ -58,11 +57,11 @@ spec:
           volumeMounts:
             - mountPath: /usr/src/app/store
               name: zwave-config
-            - mountPath: /dev/ttyUSB1
+            - mountPath: /dev/ttyUSB0
               name: zwave-stick
       dnsPolicy: ClusterFirst
       nodeSelector:
-        feature.node.kubernetes.io/usb-0658_0200.present: "true"
+        feature.node.kubernetes.io/usb-10c4_ea60.present: "true"
       restartPolicy: Always
       schedulerName: default-scheduler
       serviceAccountName: zwave-run-user
@@ -72,6 +71,6 @@ spec:
           persistentVolumeClaim:
             claimName: zwavejs-config
         - hostPath:
-            path: /dev/serial/by-id/usb-0658_0200-if00
+            path: /dev/serial/by-id/usb-Silicon_Labs_Zooz_ZST10_700_Z-Wave_Stick_7c06e8acc160ec11baaa387625bfaa52-if00-port0
           name: zwave-stick
 status: {}

@@ -11,7 +11,7 @@ spec:
       annotations: null
       from:
         kind: DockerImage
-        name: "zwavejs/zwavejs2mqtt:latest"
+        name: "zwavejs/zwave-js-ui:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
