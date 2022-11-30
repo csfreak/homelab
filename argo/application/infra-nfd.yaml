@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: node-feature-discovery
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  destination:
+    namespace: openshift-nfd
+    server: https://kubernetes.default.svc
+  project: infra
+  ignoreDifferences:
+    - jsonPointers:
+        - /data
+      kind: Secret
+  source:
+    path: infra/node-feature-discovery
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+      - Prune=false
+    automated: {}
