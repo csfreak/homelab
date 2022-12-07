@@ -32,7 +32,7 @@ spec:
           volumeMounts:
             - mountPath: /home/coder/project/hass
               name: hass-config
-            - mountPath: /home/coder/.config
+            - mountPath: /home/coder/
               name: code-server-config
           env:
             - name: HOME
