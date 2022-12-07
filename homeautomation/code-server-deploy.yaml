@@ -32,13 +32,11 @@ spec:
           volumeMounts:
             - mountPath: /home/coder/project/hass
               name: hass-config
-            - mountPath: /home/coder/project/appdaemon
-              name: appdaemon-config
             - mountPath: /home/coder/.config
               name: code-server-config
           env:
-          - name: HOME
-            value: /home/coder
+            - name: HOME
+              value: /home/coder
           resources:
             limits:
               memory: 1G
@@ -53,6 +51,3 @@ spec:
         - name: code-server-config
           persistentVolumeClaim:
             claimName: hass-code-server-config
-        - name: appdaemon-config
-          persistentVolumeClaim:
-            claimName: appdaemon-config-shared
