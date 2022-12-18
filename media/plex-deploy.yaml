@@ -29,6 +29,20 @@ spec:
         app.kubernetes.io/part-of: plex
     spec:
       serviceAccountName: plex-run-user
+      terminationGracePeriodSeconds: 120
+      initContainers:
+        - name: cleanup-pidfile
+          image: image-registry.openshift-image-registry.svc:5000/openshift/cli
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          env:
+            - name: PIDFILE
+              value: "/config/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid"
+          command:
+            - sh
+            - -c
+            - "if [ -e \"${PIDFILE}\" ] ; then echo \"Deleting ${PIDFILE}\"; rm ${PIDFILE}; else echo \"Nothing to do\n${PIDFILE} not found\"; fi; exit 0"
       containers:
         - name: plex-server
           image: image-registry.openshift-image-registry.svc:5000/media/plex
