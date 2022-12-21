@@ -9,6 +9,7 @@ resources:
   - metallb-system.yaml
   - openshift-nfd.yaml
   - cert-utils-operator.yaml
+  - kubernetes-secret-generator.yaml
 labels:
   - pairs:
       argocd.argoproj.io/managed-by: openshift-gitops
