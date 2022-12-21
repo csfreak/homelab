@@ -62,4 +62,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: grafana-thanos
-    namespace: grafanatest
+    namespace: monitoring
