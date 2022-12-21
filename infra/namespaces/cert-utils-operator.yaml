@@ -3,7 +3,6 @@ kind: Namespace
 metadata:
   labels:
     kubernetes.io/metadata.name: cert-utils-operator
+    openshift.io/cluster-monitoring: "true"
   name: cert-utils-operator
-spec:
-  finalizers:
-  - kubernetes
+spec: {}

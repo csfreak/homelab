@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  generateName: cert-utils-operator-
+  name: cert-utils-operator
   namespace: cert-utils-operator
 ---
 apiVersion: operators.coreos.com/v1alpha1
@@ -17,4 +17,3 @@ spec:
   name: cert-utils-operator
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: cert-utils-operator.v1.3.9
