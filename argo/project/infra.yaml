@@ -5,20 +5,21 @@ metadata:
   namespace: openshift-gitops
 spec:
   destinations:
-  - name: '*'
-    namespace: '*'
-    server: https://kubernetes.default.svc
+    - name: "*"
+      namespace: "*"
+      server: https://kubernetes.default.svc
   roles:
-  - name: default
-    policies:
-      - p, proj:infra:default, applications, *, infra/*, allow
-    groups:
-      - system:authenticated:oauth
+    - name: default
+      policies:
+        - p, proj:infra:default, applications, *, infra/*, allow
+      groups:
+        - system:authenticated:oauth
   sourceRepos:
-  - https://github.com/csfreak/homelab.git
+    - https://github.com/csfreak/homelab.git
+    - https://helm.mittwald.de/kubernetes-secret-generator
   namespaceResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    - group: "*"
+      kind: "*"
   clusterResourceWhitelist:
-    - group: '*'
-      kind: '*'
+    - group: "*"
+      kind: "*"
