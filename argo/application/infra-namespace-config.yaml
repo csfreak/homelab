@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespace-configuration-operator
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  destination:
+    namespace: namespace-configuration-operator
+    server: https://kubernetes.default.svc
+  project: infra
+  ignoreDifferences:
+    - jsonPointers:
+        - /data
+      kind: Secret
+  source:
+    path: infra/namespace-configuration-operator
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+      automated: {}
