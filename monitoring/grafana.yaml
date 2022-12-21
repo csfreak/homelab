@@ -90,6 +90,7 @@ spec:
     enabled: True
     targetPort: grafana-proxy
     termination: reencrypt
+    hostname: grafana.monitoring.apps.homelab.csfreak.com
   client:
     preferService: True
   serviceAccount:
