@@ -28,7 +28,7 @@ spec:
         - name: script-cm
           configMap:
             defaultMode: 0777
-            name: setup-scripts
+            name: datasource-setup-scripts
         - name: thanos-token
           projected:
             sources:
