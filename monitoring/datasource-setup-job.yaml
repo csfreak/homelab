@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: grafana-setup-job
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true,ApplyOutOfSyncOnly=true
 spec:
   parallelism: 1
   completions: 1
