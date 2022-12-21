@@ -8,6 +8,7 @@ resources:
   - homeautomation.yaml
   - metallb-system.yaml
   - openshift-nfd.yaml
+  - cert-utils-operator.yaml
 labels:
   - pairs:
       argocd.argoproj.io/managed-by: openshift-gitops
