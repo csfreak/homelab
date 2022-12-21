@@ -1,6 +1,9 @@
 apiVersion: v1
 data:
   config.yaml: |
+    alertmanager:		
+      enable: true		
+      enableAlertmanagerConfig: true
     prometheus:
       volumeClaimTemplate:
         spec:
