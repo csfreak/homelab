@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/part-of: snmp-exporter
 spec:
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 100G
