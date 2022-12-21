@@ -24,5 +24,7 @@ spec:
     path: monitoring
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
+    kustomize: {}
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
