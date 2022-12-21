@@ -16,6 +16,10 @@ spec:
     - jsonPointers:
         - /data
       kind: Secret
+    - group: integreatly.org
+      jsonPointers:
+        - /spec/datasources/0/secureJsonData/httpHeaderValue1
+      kind: GrafanaDataSource
   source:
     path: monitoring
     repoURL: https://github.com/csfreak/homelab.git
