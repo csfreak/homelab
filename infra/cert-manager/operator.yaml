@@ -15,6 +15,7 @@ metadata:
   namespace: openshift-cert-manager-operator
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   channel: tech-preview
   installPlanApproval: Automatic
