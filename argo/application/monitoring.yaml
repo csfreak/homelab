@@ -27,3 +27,5 @@ spec:
   syncPolicy:
     automated:
       prune: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
