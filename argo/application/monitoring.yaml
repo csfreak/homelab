@@ -29,3 +29,5 @@ spec:
       prune: true
     syncOptions:
       - ApplyOutOfSyncOnly=true
+      - RespectIgnoreDifferences=true
+
