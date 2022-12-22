@@ -13,6 +13,13 @@ spec:
       jsonPointers:
         - /spec/datasources/0/secureJsonData/httpHeaderValue1
       kind: GrafanaDataSource
+    - group: apps
+      jsonPointers:
+        - /spec/template/spec/containers/0/image
+      kind: Deployment
+    - jsonPointers:
+        - /data
+      kind: Secret
   source:
     path: monitoring
     repoURL: https://github.com/csfreak/homelab.git
