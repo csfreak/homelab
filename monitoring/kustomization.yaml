@@ -7,7 +7,7 @@ resources:
   - datasource.yaml
   - grafana-db.yaml
   - grafana.yaml
-  - session-secret-string.yaml
+  - grafana-k8s-proxy-secret.yaml
   - datasource-setup-cronjob.yaml
   - datasource-setup-job.yaml
   # grafana dashboards
