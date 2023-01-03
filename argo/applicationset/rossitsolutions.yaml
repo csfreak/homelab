@@ -29,4 +29,3 @@ spec:
         automated: {}
         syncOptions:
           - RespectIgnoreDifferences=true
-          - CreateNamespace=true

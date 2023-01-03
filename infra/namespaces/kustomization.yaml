@@ -10,6 +10,7 @@ resources:
   - openshift-nfd.yaml
   - cert-utils-operator.yaml
   - kubernetes-secret-generator.yaml
+  - rossit.yaml
 labels:
   - pairs:
       argocd.argoproj.io/managed-by: openshift-gitops
