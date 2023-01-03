@@ -9,7 +9,7 @@ spec: {}
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: rossitsolutions-dev
+  name: rossitsolutions-prod
   labels:
-    kubernetes.io/metadata.name: rossitsolutions-dev
+    kubernetes.io/metadata.name: rossitsolutions-prod
 spec: {}
