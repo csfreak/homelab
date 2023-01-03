@@ -5,9 +5,11 @@ metadata:
   namespace: openshift-gitops
 spec:
   destinations:
-    - name: "*"
-      namespace: rossitsolutions-*
+    - namespace: rossitsolutions-*
       server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - kind: "Namespace"
+    - kind: "PersistentVolume"
   roles:
     - name: default
       policies:
