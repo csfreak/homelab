@@ -21,13 +21,12 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: "rossitsolutions-{{path.basenameNormalized}}"
-    ignoreDifferences:
-      - jsonPointers:
-          - /data
-        kind: Secret
-    syncPolicy:
-      automated: {}
-      syncOptions:
-        - RespectIgnoreDifferences=true
-        - CreateNamespace=true
-  
+      ignoreDifferences:
+        - jsonPointers:
+            - /data
+          kind: Secret
+      syncPolicy:
+        automated: {}
+        syncOptions:
+          - RespectIgnoreDifferences=true
+          - CreateNamespace=true
