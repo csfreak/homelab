@@ -16,4 +16,4 @@ spec:
         - system:authenticated:oauth
   sourceRepos:
     - https://github.com/csfreak/homelab.git
-    - https://github.com/rossitsolutions/deployment.git
+    - git@github.com:rossitsolutions/deployment.git

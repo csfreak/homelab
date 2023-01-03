@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/rossitsolutions/deployment.git
+        repoURL: git@github.com:rossitsolutions/deployment.git
         revision: HEAD
         directories:
           - path: ./overlays/*
@@ -15,7 +15,7 @@ spec:
     spec:
       project: rossitsolutions
       source:
-        repoURL: https://github.com/rossitsolutions/deployment.git
+        repoURL: git@github.com:rossitsolutions/deployment.git
         targetRevision: HEAD
         path: "{{path}}"
       destination:
