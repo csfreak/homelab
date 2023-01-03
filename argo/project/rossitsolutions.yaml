@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: rossitsolutions
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: "*"
+      namespace: rossitsolutions-*
+      server: https://kubernetes.default.svc
+  roles:
+    - name: default
+      policies:
+        - p, proj:rossitsolutions:default, applications, *, rossitsolutions/*, allow
+      groups:
+        - system:authenticated:oauth
+  sourceRepos:
+    - https://github.com/csfreak/homelab.git
+    - https://github.com/rossitsolutions/deployment.git

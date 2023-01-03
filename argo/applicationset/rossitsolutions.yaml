@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: rossitsolutions
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/rossitsolutions/deployment.git
+        revision: HEAD
+        directories:
+          - path: ./overlays/*
+  template:
+    metadata:
+      name: "rossitsolutions-{{path[0]}}"
+    spec:
+      project: rossitsolutions
+      source:
+        repoURL: https://github.com/rossitsolutions/deployment.git
+        targetRevision: HEAD
+        path: "{{path}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: "rossitsolutions-{{path.basename}}"
