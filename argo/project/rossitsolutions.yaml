@@ -9,9 +9,9 @@ spec:
       server: https://kubernetes.default.svc
   clusterResourceWhitelist:
     - kind: "Namespace"
-      group: "v1"
+      group: "*"
     - kind: "PersistentVolume"
-      group: "v1"
+      group: "*"
   roles:
     - name: default
       policies:
