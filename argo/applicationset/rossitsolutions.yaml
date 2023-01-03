@@ -8,10 +8,10 @@ spec:
         repoURL: git@github.com:rossitsolutions/deployment.git
         revision: HEAD
         directories:
-          - path: ./overlays/*
+          - path: overlay/*
   template:
     metadata:
-      name: "rossitsolutions-{{path[0]}}"
+      name: "rossitsolutions-{{path.basenameNormalized}}"
     spec:
       project: rossitsolutions
       source:
@@ -20,4 +20,4 @@ spec:
         path: "{{path}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "rossitsolutions-{{path.basename}}"
+        namespace: "rossitsolutions-{{path.basenameNormalized}}"
