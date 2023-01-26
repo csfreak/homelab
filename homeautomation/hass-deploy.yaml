@@ -56,7 +56,13 @@ spec:
             - containerPort: 8123
               name: hass-http
               protocol: TCP
-          resources: {}
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 10m
+            limits:
+              memory: 1Gi
+              cpu: 100m
           securityContext:
             runAsUser: 0
           terminationMessagePath: /dev/termination-log
