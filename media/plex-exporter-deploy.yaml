@@ -16,19 +16,21 @@ spec:
         app: plex-metrics
     spec:
       containers:
-      - name: plex-metrics
-        image: plex_exporter
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        volumeMounts:
-          - name: plex-exporter-config
-            mountPath: /etc/plex_exporter
-        ports:
-        - containerPort: 9594
-      volumes: 
+        - name: plex-metrics
+          image: plex_exporter
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          volumeMounts:
+            - name: plex-exporter-config
+              mountPath: /etc/plex_exporter
+          ports:
+            - containerPort: 9594
+      volumes:
         - configMap:
             name: plex-exporter-config
           name: plex-exporter-config
-        

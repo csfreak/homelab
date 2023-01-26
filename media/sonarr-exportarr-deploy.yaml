@@ -16,22 +16,25 @@ spec:
         app: sonarr-metrics
     spec:
       containers:
-      - name: sonarr-metrics
-        image: exportarr:latest
-        command:
-          - "/exportarr"
-          - "sonarr"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        envFrom:
-          - secretRef:
-              name: sonarr-exportarr-secret
-        env:
-          - name: URL
-            value: "http://sonarr.media.svc:8989"
-          - name: PORT
-            value: "9707"
-        ports:
-        - containerPort: 9707
+        - name: sonarr-metrics
+          image: exportarr:latest
+          command:
+            - "/exportarr"
+            - "sonarr"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          envFrom:
+            - secretRef:
+                name: sonarr-exportarr-secret
+          env:
+            - name: URL
+              value: "http://sonarr.media.svc:8989"
+            - name: PORT
+              value: "9707"
+          ports:
+            - containerPort: 9707

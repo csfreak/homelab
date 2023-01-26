@@ -16,22 +16,25 @@ spec:
         app: radarr-metrics
     spec:
       containers:
-      - name: radarr-metrics
-        image: exportarr:latest
-        command:
-          - "/exportarr"
-          - "radarr"
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        envFrom:
-          - secretRef:
-              name: radarr-exportarr-secret
-        env:
-          - name: URL
-            value: "http://radarr.media.svc:7878"
-          - name: PORT
-            value: "9708"
-        ports:
-        - containerPort: 9708
+        - name: radarr-metrics
+          image: exportarr:latest
+          command:
+            - "/exportarr"
+            - "radarr"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          envFrom:
+            - secretRef:
+                name: radarr-exportarr-secret
+          env:
+            - name: URL
+              value: "http://radarr.media.svc:7878"
+            - name: PORT
+              value: "9708"
+          ports:
+            - containerPort: 9708

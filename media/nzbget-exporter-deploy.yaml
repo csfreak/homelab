@@ -16,19 +16,22 @@ spec:
         app: nzbget-metrics
     spec:
       containers:
-      - name: nzbget-metrics
-        image: nzbget-exporter
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        envFrom:
-          - configMapRef:
-              name: nzbget-exporter-config
-          - secretRef:
-              name: nzbget-exporter-secret
-        env:
-          - name: NZBGET_HOST
-            value: "http://nzbget.media.svc:6789"
-        ports:
-        - containerPort: 9452
+        - name: nzbget-metrics
+          image: nzbget-exporter
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          envFrom:
+            - configMapRef:
+                name: nzbget-exporter-config
+            - secretRef:
+                name: nzbget-exporter-secret
+          env:
+            - name: NZBGET_HOST
+              value: "http://nzbget.media.svc:6789"
+          ports:
+            - containerPort: 9452
