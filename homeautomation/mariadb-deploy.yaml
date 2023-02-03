@@ -47,7 +47,7 @@ spec:
               memory: 128Mi
               cpu: 10m
             limits:
-              memory: 256 Mi
+              memory: 256Mi
               cpu: 50m
       volumes:
         - name: db-data
