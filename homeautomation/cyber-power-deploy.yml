@@ -16,19 +16,22 @@ spec:
         app: cyber-power
     spec:
       containers:
-      - name: cyber-power
-        image: cyber-power
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
-        envFrom:
-          - configMapRef: 
-              name: cyberpower
-            prefix: CYBERPOWER_
-          - secretRef:
-              name: cyberpower
-            prefix: CYBERPOWER_
-        ports:
-        - containerPort: 8080
-          name: http-alt
+        - name: cyber-power
+          image: cyber-power
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "50m"
+            requests:
+              memory: "64Mi"
+              cpu: "10m"
+          envFrom:
+            - configMapRef:
+                name: cyberpower
+              prefix: CYBERPOWER_
+            - secretRef:
+                name: cyberpower
+              prefix: CYBERPOWER_
+          ports:
+            - containerPort: 8080
+              name: http-alt
