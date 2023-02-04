@@ -47,3 +47,20 @@ spec:
           replacement: synology
         - targetLabel: target
           replacement: CSfreakSAN
+    - interval: 30s
+      params:
+        module:
+          - cyberpower
+        target:
+          - 172.31.1.5
+      path: /snmp
+      port: snmp-exporter
+      metricRelabelings:
+        - sourceLabels:
+            - "__name__"
+          targetLabel: "__name__"
+          replacement: "snmp_value_$1"
+        - targetLabel: module
+          replacement: cyberpower
+        - targetLabel: target
+          replacement: UPS
