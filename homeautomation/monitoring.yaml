@@ -14,7 +14,7 @@ spec:
     - port: hass-http
       path: /api/prometheus
       interval: 10s
-      bearerTokenSecret: 
+      bearerTokenSecret:
         key: TOKEN
         name: hass-token-secret
 ---
@@ -46,6 +46,6 @@ spec:
     matchLabels:
       deployment: zwavejs
   podMetricsEndpoints:
-    - port: zwavejs-http
+    - port: http
       path: /metrics
       interval: 10s
