@@ -12,6 +12,7 @@ spec:
     path: argo
     directory:
       recurse: true
+      exclude: "{*/rossitsolutions.yaml}"
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
