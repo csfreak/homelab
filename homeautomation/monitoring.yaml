@@ -37,15 +37,15 @@ spec:
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
-  name: mosquitto-metrics
+  name: zwavejs-metrics
 spec:
   namespaceSelector:
     matchNames:
       - homeautomation
   selector:
     matchLabels:
-      deployment: mosquitto-exporter
+      deployment: zwavejs
   podMetricsEndpoints:
-    - port: metrics
+    - port: zwavejs-http
       path: /metrics
       interval: 10s

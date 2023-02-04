@@ -48,6 +48,7 @@ spec:
         - targetLabel: target
           replacement: CSfreakSAN
     - interval: 30s
+      scrapeTimeout: 30s
       params:
         module:
           - cyberpower
