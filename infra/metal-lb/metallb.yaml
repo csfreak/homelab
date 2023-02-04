@@ -2,4 +2,20 @@ apiVersion: metallb.io/v1beta1
 kind: MetalLB
 metadata:
   name: metallb
-spec: {}
+spec:
+  controllerConfig:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 50m
+        memory: 128Mi
+  speakerConfig:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 256Mi
+      limits:
+        cpu: 100m
+        memory: 512Mi
