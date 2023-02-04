@@ -29,7 +29,20 @@ spec:
         - image: zwavejs:latest
           imagePullPolicy: IfNotPresent
           livenessProbe:
-            failureThreshold: 10
+            failureThreshold: 3
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /health
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 300
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 24
             httpGet:
               httpHeaders:
                 - name: Accept
@@ -38,7 +51,7 @@ spec:
               port: http
               scheme: HTTP
             initialDelaySeconds: 30
-            periodSeconds: 3
+            periodSeconds: 5
             successThreshold: 1
             timeoutSeconds: 1
           name: zwavejs-server
