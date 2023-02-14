@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:kinetic
 
 ENV RADARR_BRANCH="master"
 ARG RADARR_RELEASE
