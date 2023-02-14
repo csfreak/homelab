@@ -42,7 +42,7 @@ spec:
           command:
             - sh
             - -c
-            - "if [ -e \"${PIDFILE}\" ] ; then echo \"Deleting ${PIDFILE}\"; rm ${PIDFILE}; else echo \"Nothing to do\n${PIDFILE} not found\"; fi; exit 0"
+            - "if [ -e \"${PIDFILE}\" ] ; then echo \"Deleting ${PIDFILE}\"; rm \"${PIDFILE}\"; else echo \"Nothing to do\n${PIDFILE} not found\"; fi; exit 0"
       containers:
         - name: plex-server
           image: image-registry.openshift-image-registry.svc:5000/media/plex
@@ -87,8 +87,6 @@ spec:
               mountPath: /data/hdd
             - name: config
               mountPath: /config
-            - name: transcode
-              mountPath: /transcode
       volumes:
         - name: datassd
           persistentVolumeClaim:
@@ -99,6 +97,3 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: plex-config
-        - name: transcode
-          persistentVolumeClaim:
-            claimName: plex-transcode
