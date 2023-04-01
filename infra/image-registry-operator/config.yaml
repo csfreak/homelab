@@ -12,3 +12,12 @@ spec:
     pvc:
       claim: image-registry-shared
   replicas: 2
+  nodePlacement:
+    nodeSelector:
+      matchLabels:
+        node-role.kubernetes.io/master: ""
+    tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      - effect: NoExecute
+        key: node-role.kubernetes.io/master
