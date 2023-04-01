@@ -3,7 +3,7 @@ kind: Scheduler
 metadata:
   name: cluster
 spec:
-  mastersSchedulable: true
+  mastersSchedulable: false
   policy:
     name: ""
   profile: LowNodeUtilization
