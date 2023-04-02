@@ -14,3 +14,4 @@ resources:
 labels:
   - pairs:
       argocd.argoproj.io/managed-by: openshift-gitops
+      app.openshift.io/vcs-uri: https://github.com/csfreak/homelab.git
