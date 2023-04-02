@@ -64,3 +64,32 @@ rules:
       - patch
       - delete
       - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: openshift-gitops-self
+subjects:
+  - kind: ServiceAccount
+    name: openshift-gitops-argocd-application-controller
+    namespace: openshift-gitops
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: openshift-gitops-gitopsservice
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: openshift-gitops-gitopsservice
+rules:
+  - apiGroups:
+      - pipelines.openshift.io
+    resources:
+      - gitopsservices
+    verbs:
+      - list
+      - get
+      - update
+      - patch
+      - watch
