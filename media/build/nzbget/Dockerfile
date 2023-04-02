@@ -32,7 +32,7 @@ RUN echo "**** install build packages ****" && \
         py7zr \
         rarfile \
         six && \
-    ln -s /usr/bin/python3 /usr/bin/python && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
     echo "**** install unrar from source ****" && \
     mkdir /tmp/unrar && \
     curl -o \
