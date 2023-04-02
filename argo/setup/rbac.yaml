@@ -32,42 +32,6 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: openshift-gitops-kubernetes-secrets-generator
-subjects:
-  - kind: ServiceAccount
-    name: openshift-gitops-argocd-application-controller
-    namespace: openshift-gitops
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: kubernetes-secrets-generator-admin
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: kubernetes-secrets-generator-admin
-rules:
-  - apiGroups:
-      - secretgenerator.mittwald.de
-    resources:
-      - basicauths
-      - basicauths/status
-      - sshkeypairs
-      - sshkeypairs/status
-      - stringsecrets
-      - stringsecrets/status
-    verbs:
-      - list
-      - get
-      - create
-      - update
-      - patch
-      - delete
-      - watch
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
   name: openshift-gitops-self
 subjects:
   - kind: ServiceAccount
