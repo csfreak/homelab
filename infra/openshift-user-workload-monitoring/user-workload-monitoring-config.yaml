@@ -5,8 +5,7 @@ data:
       enable: true		
       enableAlertmanagerConfig: true
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -21,8 +20,7 @@ data:
               storage: 100G
       retention: 30d
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -30,8 +28,7 @@ data:
           key: node-role.kubernetes.io/master
     thanosRuler:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -39,8 +36,7 @@ data:
           key: node-role.kubernetes.io/master
     prometheusOperator:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master

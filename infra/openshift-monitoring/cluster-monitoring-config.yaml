@@ -11,8 +11,7 @@ data:
               storage: 100G
       retention: 30d
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -26,8 +25,7 @@ data:
             requests:
               storage: 100G
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -35,8 +33,7 @@ data:
           key: node-role.kubernetes.io/master
     prometheusOperator:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -44,8 +41,7 @@ data:
           key: node-role.kubernetes.io/master
     k8sPrometheusAdapter:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -53,8 +49,7 @@ data:
           key: node-role.kubernetes.io/master
     kubeStateMetrics:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -62,8 +57,7 @@ data:
           key: node-role.kubernetes.io/master
     telemeterClient:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -71,8 +65,7 @@ data:
           key: node-role.kubernetes.io/master
     openshiftStateMetrics:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
@@ -80,8 +73,7 @@ data:
           key: node-role.kubernetes.io/master
     thanosQuerier:
       nodeSelector:
-        matchLabels:
-          node-role.kubernetes.io/master: ""
+        node-role.kubernetes.io/master: ""
       tolerations:
         - effect: NoSchedule
           key: node-role.kubernetes.io/master
