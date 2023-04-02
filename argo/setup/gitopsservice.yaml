@@ -1,0 +1,12 @@
+apiVersion: pipelines.openshift.io/v1alpha1
+kind: GitopsService
+metadata:
+  name: cluster
+spec:
+  nodeSelector:
+    node-role.kubernetes.io/master: ""
+  tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+    - effect: NoExecute
+      key: node-role.kubernetes.io/master
