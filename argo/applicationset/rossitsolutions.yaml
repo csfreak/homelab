@@ -12,6 +12,8 @@ spec:
   template:
     metadata:
       name: "rossitsolutions-{{path.basenameNormalized}}"
+      labels:
+        app.kubernetes.io/name: "rossitsolutions-{{path.basenameNormalized}}"
     spec:
       project: rossitsolutions
       source:
