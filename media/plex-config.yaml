@@ -12,3 +12,7 @@ kind: ConfigMap
 metadata:
   name: plex-config
   namespace: media
+  labels:
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex

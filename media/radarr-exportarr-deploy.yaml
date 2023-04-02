@@ -3,6 +3,11 @@ kind: Deployment
 metadata:
   name: radarr-metrics
   namespace: media
+  labels:
+    app: radarr-metrics
+    app.kubernetes.io/component: radarr
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: radarr
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"exportarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"radarr-metrics\")].image"}]
@@ -14,6 +19,9 @@ spec:
     metadata:
       labels:
         app: radarr-metrics
+        app.kubernetes.io/component: radarr
+        app.kubernetes.io/instance: media
+        app.kubernetes.io/part-of: radarr
     spec:
       containers:
         - name: radarr-metrics

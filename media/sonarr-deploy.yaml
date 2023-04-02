@@ -5,11 +5,11 @@ metadata:
     app.openshift.io/vcs-ref: ""
     app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
     image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"sonarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"sonarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr\")].image"}]
   labels:
     app: sonarr
     app.kubernetes.io/component: sonarr
-    app.kubernetes.io/instance: sonarr
+    app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: sonarr
   name: sonarr
   namespace: media
@@ -27,6 +27,9 @@ spec:
       labels:
         app: sonarr
         deployment: sonarr
+        app.kubernetes.io/component: sonarr
+        app.kubernetes.io/instance: media
+        app.kubernetes.io/part-of: sonarr
     spec:
       containers:
         - imagePullPolicy: Always

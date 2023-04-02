@@ -4,13 +4,13 @@ metadata:
   labels:
     app: nzbget
     app.kubernetes.io/component: nzbget
-    app.kubernetes.io/instance: nzbget
+    app.kubernetes.io/instance: media
     app.kubernetes.io/part-of: nzbget
   name: nzbget
   namespace: media
   annotations:
     image.openshift.io/triggers: >-
-          [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -25,6 +25,9 @@ spec:
       labels:
         app: nzbget
         deployment: nzbget
+        app.kubernetes.io/component: nzbget
+        app.kubernetes.io/instance: media
+        app.kubernetes.io/part-of: nzbget
     spec:
       containers:
         - imagePullPolicy: Always

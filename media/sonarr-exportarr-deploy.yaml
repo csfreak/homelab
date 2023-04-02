@@ -3,6 +3,11 @@ kind: Deployment
 metadata:
   name: sonarr-metrics
   namespace: media
+  labels:
+    app: sonar-metrics
+    app.kubernetes.io/component: sonarr
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: sonarr
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"exportarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr-metrics\")].image"}]
@@ -14,6 +19,9 @@ spec:
     metadata:
       labels:
         app: sonarr-metrics
+        app.kubernetes.io/component: sonarr
+        app.kubernetes.io/instance: media
+        app.kubernetes.io/part-of: sonarr
     spec:
       containers:
         - name: sonarr-metrics

@@ -3,6 +3,11 @@ kind: Deployment
 metadata:
   name: plex-metrics
   namespace: media
+  labels:
+    app: plex-metrics
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"plex_exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-metrics\")].image"}]
@@ -14,6 +19,9 @@ spec:
     metadata:
       labels:
         app: plex-metrics
+        app.kubernetes.io/component: plex
+        app.kubernetes.io/instance: media
+        app.kubernetes.io/part-of: plex
     spec:
       containers:
         - name: plex-metrics

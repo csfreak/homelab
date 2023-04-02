@@ -4,11 +4,19 @@ kind: ConfigMap
 metadata:
   name: nzbget-exporter-config
   namespace: media
+  labels:
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: nzbget
 data:
-    NZBGET_USERNAME: nzbget
+  NZBGET_USERNAME: nzbget
 ---
 apiVersion: v1
 kind: Secret
 metadata:
   name: nzbget-exporter-secret
   namespace: media
+  labels:
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: nzbget
