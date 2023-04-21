@@ -4,7 +4,7 @@ metadata:
   name: rossit-ingress-cert
   namespace: openshift-ingress
 spec:
-  secretName: wildcard-ingress-cert
+  secretName: rossit-ingress-cert
   commonName: "*.mgmt.rossitsolutions.com"
   issuerRef:
     name: letsencrypt
