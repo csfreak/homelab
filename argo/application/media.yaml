@@ -22,4 +22,14 @@ spec:
     path: media
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
-  syncPolicy: {}
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+      annotations:
+        app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+        app.openshift.io/vcs-ref: main

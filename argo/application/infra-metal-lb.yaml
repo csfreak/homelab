@@ -19,6 +19,12 @@ spec:
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
+    automated: {}
     syncOptions:
       - Prune=false
-    automated: {}
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+        openshift.io/cluster-monitoring: "true"

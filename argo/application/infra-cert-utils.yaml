@@ -20,3 +20,10 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     automated: {}
+    syncOptions:
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+        openshift.io/cluster-monitoring: "true"

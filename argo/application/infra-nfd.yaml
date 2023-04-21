@@ -21,4 +21,10 @@ spec:
   syncPolicy:
     syncOptions:
       - Prune=false
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+        openshift.io/cluster-monitoring: "true"
     automated: {}

@@ -8,7 +8,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "zwavejs/zwave-js-ui:latest"
@@ -27,7 +26,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "homeassistant/home-assistant:latest"
@@ -46,7 +44,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "registry.redhat.io/rhel8/mariadb-105:latest"
@@ -65,7 +62,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "codercom/code-server:latest"
@@ -84,7 +80,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "quay.io/prometheus/mysqld-exporter:latest"
@@ -103,7 +98,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "quay.io/csfreak/weather_station:latest"
@@ -122,7 +116,6 @@ spec:
     local: true
   tags:
     - name: latest
-      annotations: null
       from:
         kind: DockerImage
         name: "quay.io/csfreak/cyber_power:latest"
