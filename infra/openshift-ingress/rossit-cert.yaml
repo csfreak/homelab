@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: rossit-ingress-cert
+  namespace: openshift-ingress
+spec:
+  secretName: wildcard-ingress-cert
+  commonName: "*.mgmt.rossitsolutions.com"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.mgmt.rossitsolutions.com"
+    - "*.rossitsolutions.com"
