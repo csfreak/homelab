@@ -4,8 +4,6 @@ metadata:
   name: openshift-distributed-tracing
   namespace: openshift-distributed-tracing
 spec:
-  targetNamespaces:
-    - openshift-distributed-tracing
   upgradeStrategy: Default
 ---
 apiVersion: operators.coreos.com/v1alpha1
