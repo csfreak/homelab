@@ -5,14 +5,17 @@ metadata:
   namespace: openshift-gitops
 spec:
   destinations:
-  - name: '*'
-    namespace: media
-    server: https://kubernetes.default.svc
+    - name: "*"
+      namespace: media
+      server: https://kubernetes.default.svc
   roles:
-  - name: default
-    policies:
-      - p, proj:media:default, applications, *, media/*, allow
-    groups:
-      - system:authenticated:oauth
+    - name: default
+      policies:
+        - p, proj:media:default, applications, *, media/*, allow
+      groups:
+        - system:authenticated:oauth
   sourceRepos:
-  - https://github.com/csfreak/homelab.git
+    - https://github.com/csfreak/homelab.git
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
