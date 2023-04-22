@@ -31,7 +31,7 @@ spec:
           image: mysqld-exporter:latest
           envFrom:
             - secretRef:
-                name: hass-db-exporter-user
+                name: hass-db-user
               prefix: MYSQL_
           env:
             - name: DATA_SOURCE_NAME
@@ -50,5 +50,5 @@ spec:
             - --collect.engine_innodb_status
           ports:
             - name: metrics
-              containerPort: 9104 
+              containerPort: 9104
               protocol: TCP
