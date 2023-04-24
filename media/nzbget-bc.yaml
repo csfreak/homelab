@@ -1,0 +1,39 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+  labels:
+    app: nzbget
+    app.kubernetes.io/component: nzbget
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: nzbget
+  name: nzbget
+  namespace: media
+spec:
+  failedBuildsHistoryLimit: 2
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: nzbget:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: /media/build/nzbget
+    git:
+      uri: https://github.com/csfreak/homelab
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+    type: Docker
+  successfulBuildsHistoryLimit: 2
+  triggers:
+    - github:
+        secretReference:
+          name: nzbget-github-webhook-secret
+      type: GitHub
+    - type: ConfigChange

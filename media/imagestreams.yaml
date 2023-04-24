@@ -51,7 +51,7 @@ kind: ImageStream
 metadata:
   annotations:
     app.openshift.io/vcs-ref: ""
-    app.openshift.io/vcs-uri: https://github.com/csfreak/docker-nzbget-ng
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
   labels:
     app: nzbget
     app.kubernetes.io/component: nzbget
@@ -62,15 +62,6 @@ metadata:
 spec:
   lookupPolicy:
     local: true
-  tags:
-    - name: latest
-      from:
-        kind: DockerImage
-        name: "ghcr.io/csfreak/nzbget-ng:v21.1"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local
 ---
 kind: ImageStream
 apiVersion: image.openshift.io/v1
