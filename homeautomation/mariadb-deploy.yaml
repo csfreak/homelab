@@ -56,7 +56,10 @@ spec:
           envFrom:
             - secretRef:
                 name: hass-db-user
-              prefix: MYSQLD_EXPORTER_
+              prefix: MYSQL_
+          env:
+            - name: DATA_SOURCE_NAME
+              value: $(MYSQL_USER):$(MYSQL_PASSWORD)@/
           resources:
             limits:
               memory: 50M
@@ -68,7 +71,6 @@ spec:
             - --collect.info_schema.innodb_metrics
             - --collect.info_schema.tables
             - --collect.engine_innodb_status
-            - --mysqld.username=${MYSQLD_EXPORTER_USERNAME}
           ports:
             - name: metrics
               containerPort: 9104
