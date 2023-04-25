@@ -59,7 +59,7 @@ spec:
               prefix: MYSQL_
           env:
             - name: DATA_SOURCE_NAME
-              value: $(MYSQL_USER):$(MYSQL_PASSWORD)@/
+              value: $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp(localhost:3306)/
           resources:
             limits:
               memory: 50M
