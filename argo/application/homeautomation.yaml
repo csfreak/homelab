@@ -13,11 +13,8 @@ spec:
     - group: apps
       jsonPointers:
         - /spec/template/spec/containers/0/image
+        - /spec/template/spec/containers/1/image
       kind: Deployment
-    - group: apps.openshift.io
-      jsonPointers:
-        - /spec/template/spec/containers/0/image
-      kind: DeploymentConfig
     - jsonPointers:
         - /data
       kind: Secret
