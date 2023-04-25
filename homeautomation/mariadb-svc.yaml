@@ -11,6 +11,10 @@ spec:
       port: 3306
       protocol: TCP
       targetPort: 3306
+    - name: metrics
+      port: 9104
+      protocol: TCP
+      targetPort: 9104
   selector:
     deployment: hass-db
   sessionAffinity: None

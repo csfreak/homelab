@@ -46,6 +46,32 @@ spec:
             limits:
               memory: 256Mi
               cpu: 50m
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+        - name: mysqld-exporter
+          image: mysqld-exporter:latest
+          envFrom:
+            - secretRef:
+                name: hass-db-user
+              prefix: MYSQLD_EXPORTER_
+          resources:
+            limits:
+              memory: 50M
+              cpu: 100m
+            requests:
+              memory: 20M
+              cpu: 10m
+          args:
+            - --collect.info_schema.innodb_metrics
+            - --collect.info_schema.tables
+            - --collect.engine_innodb_status
+            - --mysqld.username=${MYSQLD_EXPORTER_USERNAME}
+          ports:
+            - name: metrics
+              containerPort: 9104
+              protocol: TCP
       volumes:
         - name: db-data
           persistentVolumeClaim:

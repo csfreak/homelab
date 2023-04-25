@@ -28,7 +28,7 @@ spec:
       - homeautomation
   selector:
     matchLabels:
-      deployment: hassdb-exporter
+      deployment: hassdb
   podMetricsEndpoints:
     - port: metrics
       path: /metrics
