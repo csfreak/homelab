@@ -17,7 +17,7 @@ spec:
       - dns01:
           cnameStrategy: None
           route53:
-            accessKeyID: AKIAZTZI55J77CPCNJMU
+            accessKeyID: AKIAZTZI55J7T5FMUCVH
             region: us-east-1
             secretAccessKeySecretRef:
               key: secret-access-key
@@ -42,7 +42,7 @@ spec:
       - dns01:
           cnameStrategy: None
           route53:
-            accessKeyID: AKIAZTZI55J77CPCNJMU
+            accessKeyID: AKIAZTZI55J7T5FMUCVH
             region: us-east-1
             secretAccessKeySecretRef:
               key: secret-access-key
