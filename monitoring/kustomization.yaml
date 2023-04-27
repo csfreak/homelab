@@ -2,4 +2,4 @@ resources:
   - imagestreams.yaml
   - snmp-exporter-deploy.yaml
   - snmp-exporter-podmonitor.yaml
-  - snmp-exporter-pvc.yaml
+  
