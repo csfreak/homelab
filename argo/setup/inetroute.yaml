@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: openshift-gitops-server-inet
+  namespace: openshift-gitops
+  annotations:
+    haproxy.router.openshift.io/rate-limit-connections: "true"
+    haproxy.router.openshift.io/rate-limit-connections.rate-tcp: "10"
+    haproxy.router.openshift.io/rate-limit-connections.rate-http: "8"
+spec:
+  host: argocd.homelab.csfreak.com
+  port:
+    targetPort: https
+  tls:
+    termination: reencrypt
+    insecureEdgeTerminationPolicy: Redirect
+  to:
+    kind: Service
+    name: openshift-gitops-server
+    weight: 100
+  path: /api/webhook
+  wildcardPolicy: None
