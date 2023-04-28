@@ -7,3 +7,6 @@ configMapGenerator:
   - name: snmp-exporter-config
     files:
       - snmp.yml
+    options:
+      annotations:
+        argocd.argoproj.io/sync-options: ServerSideApply=true
