@@ -27,3 +27,10 @@ spec:
           ports:
             - containerPort: 9116
               name: snmp-exporter
+          volumeMounts:
+            - name: config
+              mountPath: /etc/snmp_exporter
+      volumes:
+        - name: config
+          configMap:
+            name: snmp-exporter-config
