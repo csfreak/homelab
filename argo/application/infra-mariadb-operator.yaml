@@ -10,7 +10,7 @@ spec:
   source:
     chart: mariadb-operator
     repoURL: https://mariadb-operator.github.io/mariadb-operator
-    targetRevision: latest
+    targetRevision: 0.11.0
     helm:
       releaseName: mariadb-operator
       parameters:
