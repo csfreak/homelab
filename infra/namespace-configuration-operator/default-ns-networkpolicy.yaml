@@ -64,7 +64,7 @@ spec:
       - {
           key: homelab.csfreak.com/ingresspolicy,
           operator: In,
-          value: RossITPrivate,
+          values: ["RossITPrivate"],
         }
   templates:
     - objectTemplate: |
