@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets-operator
+  name: mariadb-operator
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: infra/external-secrets-operator
+    path: infra/mariadb-operator
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
