@@ -6,7 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
-  project: default
+  project: infra
   source:
     chart: mariadb-operator
     repoURL: https://mariadb-operator.github.io/mariadb-operator
