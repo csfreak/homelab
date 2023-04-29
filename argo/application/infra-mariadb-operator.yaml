@@ -22,3 +22,14 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: mariadb-operator
+  syncPolicy:
+    syncOptions:
+      - Prune=true
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+      annotations:
+        app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+        app.openshift.io/vcs-ref: main
+    automated: {}
