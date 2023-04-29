@@ -16,7 +16,7 @@ spec:
         - system:authenticated:oauth
   sourceRepos:
     - https://github.com/csfreak/homelab.git
-    - https://helm.mittwald.de
+    - https://mariadb-operator.github.io/mariadb-operator
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"
