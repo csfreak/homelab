@@ -18,10 +18,7 @@ spec:
           value: "true"
         - name: webhook.certificate.certManager
           value: "true"
-        - name: webhook.certificate.default.annotations.helm\\.sh/hook
-          value: pre-install
-        - name: webhook.annotations.helm\\.sh/hook
-          value: pre-install
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: mariadb-operator
