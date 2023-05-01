@@ -7,17 +7,20 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   project: infra
-  source:
-    chart: mariadb-operator
-    repoURL: https://mariadb-operator.github.io/mariadb-operator
-    targetRevision: 0.11.0
-    helm:
-      releaseName: mariadb-operator
-      parameters:
-        - name: metrics.enabled
-          value: "true"
-        - name: webhook.certificate.certManager
-          value: "true"
+  sources:
+    - chart: mariadb-operator
+      repoURL: https://mariadb-operator.github.io/mariadb-operator
+      targetRevision: 0.11.0
+      helm:
+        releaseName: mariadb-operator
+        parameters:
+          - name: metrics.enabled
+            value: "true"
+          - name: webhook.certificate.certManager
+            value: "true"
+    - path: infra/mariadb-operator
+      repoURL: https://github.com/csfreak/homelab.git
+      targetRevision: HEAD
 
   destination:
     server: "https://kubernetes.default.svc"
