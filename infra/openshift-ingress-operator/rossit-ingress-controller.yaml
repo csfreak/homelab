@@ -18,10 +18,9 @@ spec:
         operator: In
         values:
           - rossitsolutions-dev
-          - rossitsolutions-sm
-
+          - rossitsolutions-shared
+          - rossitsolutions-sso
   httpEmptyRequestsPolicy: Respond
-
   logging:
     access:
       destination:
