@@ -12,6 +12,8 @@ spec:
       group: "*"
     - kind: "PersistentVolume"
       group: "*"
+    - kind: "ClusterSecretStore"
+      group: "external-secrets.io"
   roles:
     - name: default
       policies:
