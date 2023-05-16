@@ -118,7 +118,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "quay.io/csfreak/cyber_power:latest"
+        name: "ghcr.io/csfreak/cyber_power:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
