@@ -17,7 +17,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
-  channel: tech-preview
+  channel: stable-v1
   installPlanApproval: Automatic
   name: openshift-cert-manager-operator
   source: redhat-operators
