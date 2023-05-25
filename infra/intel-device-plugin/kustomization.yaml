@@ -15,6 +15,11 @@ patches:
         value: true
       - op: remove
         path: "/spec/template/spec/containers/0/securityContext/allowPrivilegeEscalation"
+      - op: add
+        path: "/spec/template/spec/containers/0/args"
+        value: 
+          - "-enable-monitoring"
+          - "-v=2"
     target:
       kind: DaemonSet
       name: intel-gpu-plugin
