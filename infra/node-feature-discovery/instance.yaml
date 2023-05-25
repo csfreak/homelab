@@ -12,10 +12,7 @@ spec:
     configData: |
       core:
         sleepInterval: 60s
-        labelSources: 
-          - usb
-          - pci
-          - cpu
+        labelWhitelist: '^cpu-cpuid|^usp|^pci'
         featureSources:
           - usb
           - pci
