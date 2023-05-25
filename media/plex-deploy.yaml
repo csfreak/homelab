@@ -89,6 +89,25 @@ spec:
               mountPath: /data/hdd
             - name: config
               mountPath: /config
+        - name: logs
+          image: ghcr.io/fluent/fluent-bit
+          args:
+            - -o
+            - stdout
+            - -i
+            - tail
+            - -p
+            - path=/config/Library/Application\ Support/Plex\ Media\ Server/Logs/Plex\ Media\ Server.log
+          resources:
+            requests:
+              memory: 10m
+              cpu: 10m
+            limits:
+              memory: 100m
+              cpu: 100m
+          volumeMounts:
+            - name: config
+              mountPath: /config
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
       volumes:
