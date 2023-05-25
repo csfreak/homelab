@@ -1,5 +1,7 @@
 apiversion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
+metadata:
+  name: intel-gpu-privileged
 subjects:
   - kind: ServiceAccount
     name: intel-gpu-plugin
