@@ -4,8 +4,9 @@ metadata:
   name: 05-worker-devicemgr
 spec:
   machineConfigPoolSelector:
-    matchLabels:
-      pools.operator.machineconfiguration.openshift.io/worker:
+    matchExpressions:
+      - key: pools.operator.machineconfiguration.openshift.io/worker
+        operator: Exists
   kubeletConfig:
     feature-gates:
       - DevicePlugins=true
