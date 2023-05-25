@@ -12,18 +12,14 @@ spec:
     configData: |
       core:
         sleepInterval: 60s
-        labelWhitelist: '^cpu-cpuid|^usp|^pci'
+        labelSources:
+          - usb
         featureSources:
           - usb
           - pci
           - cpu
           - kernel
       sources:
-        pci:
-          deviceLabelFields:
-            - "class"
-            - "vendor"
-            - "device"
         usb:
           deviceClassWhitelist:
             - "00"
