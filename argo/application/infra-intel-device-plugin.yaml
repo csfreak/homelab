@@ -1,21 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: node-feature-discovery
+  name: intel-device-plugin
   namespace: openshift-gitops
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   destination:
-    namespace: openshift-nfd
+    namespace: intel-device-plugin
     server: https://kubernetes.default.svc
   project: infra
-  ignoreDifferences:
-    - jsonPointers:
-        - /data
-      kind: Secret
   source:
-    path: infra/openshift-nfd
+    path: infra/intel-device-plugin
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
