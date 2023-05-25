@@ -1,4 +1,15 @@
 resources:
+  - sa.yaml
+  - scc.yaml
   - github.com/intel/intel-device-plugins-for-kubernetes/deployments/gpu_plugin/overlays/nfd_labeled_nodes?ref=v0.26.1
 
 namespace: intel-device-plugin
+
+patches:
+  - patch: |-
+      - op: add
+        path: "/spec/template/spec/serviceAccountName"
+        value: intel-gpu-plugin
+    target:
+      kind: DaemonSet
+      name: intel-gpu-plugin
