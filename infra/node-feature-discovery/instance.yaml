@@ -14,9 +14,18 @@ spec:
         sleepInterval: 60s
         labelSources: 
           - usb
+          - pci
+          - cpu
         featureSources:
           - usb
+          - pci
+          - cpu
       sources:
+        pci:
+          deviceLabelFields:
+            - "class"
+            - "vendor"
+            - "device"
         usb:
           deviceClassWhitelist:
             - "00"
