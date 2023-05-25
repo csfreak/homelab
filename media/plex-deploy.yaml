@@ -76,12 +76,12 @@ spec:
           resources:
             requests:
               memory: 4Gi
-              cpu: 1000m
-              gpu.intel.com/i915: 1
+              cpu: 3000m
+              gpu.intel.com/i915: "1"
             limits:
               memory: 8Gi
-              cpu: 4000m
-              gpu.intel.com/i915: 1
+              cpu: 6000m
+              gpu.intel.com/i915: "1"
           volumeMounts:
             - name: datassd
               mountPath: /data/ssd
@@ -89,6 +89,8 @@ spec:
               mountPath: /data/hdd
             - name: config
               mountPath: /config
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
       volumes:
         - name: datassd
           persistentVolumeClaim:
