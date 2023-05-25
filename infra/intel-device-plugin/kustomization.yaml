@@ -10,6 +10,11 @@ patches:
       - op: add
         path: "/spec/template/spec/serviceAccountName"
         value: intel-gpu-plugin
+      - op: add
+        path: "/spec/template/spec/containers/0/securityContext/privileged"
+        value: true
+      - op: remove
+        path: "/spec/template/spec/containers/0/securityContext/allowPrivilegeEscalation"
     target:
       kind: DaemonSet
       name: intel-gpu-plugin
