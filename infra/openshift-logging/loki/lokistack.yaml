@@ -1,0 +1,24 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: lokistack-logging
+  namespace: openshift-logging
+spec:
+  limits:
+    global:
+      queries:
+        queryTimeout: 1m
+      retention:
+        days: 21
+  managementState: Managed
+  size: 1x.extra-small
+  storage:
+    schemas:
+      - effectiveDate: "2022-06-01"
+        version: v12
+    secret:
+      name: logging-loki-minio
+      type: s3
+  storageClassName: synology-iscsi
+  tenants:
+    mode: openshift-logging
