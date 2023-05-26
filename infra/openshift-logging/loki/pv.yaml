@@ -28,7 +28,7 @@ spec:
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-storage-lokistack-logging-index-gateway-0
     iscsiInterface: default
-    lun: 2
+    lun: 1
     targetPortal: storage.homelab.csfreak.com
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
@@ -46,7 +46,7 @@ spec:
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-storage-lokistack-logging-ingester-0
     iscsiInterface: default
-    lun: 3
+    lun: 1
     targetPortal: storage.homelab.csfreak.com
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
@@ -64,7 +64,7 @@ spec:
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-wal-lokistack-logging-ingester-0
     iscsiInterface: default
-    lun: 4
+    lun: 1
     targetPortal: storage.homelab.csfreak.com
   persistentVolumeReclaimPolicy: Retain
   storageClassName: synology-iscsi
