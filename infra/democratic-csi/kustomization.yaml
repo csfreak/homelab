@@ -1,2 +1,3 @@
 resources:
   - synology-iscsi-hdd-external-secret.yaml
+  - imagestreams.yaml

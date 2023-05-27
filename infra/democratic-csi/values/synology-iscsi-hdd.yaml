@@ -10,10 +10,23 @@ storageClasses:
     parameters:
       fsType: ext4
 
+node:
+  rbac:
+    openshift:
+      privileged: true
+  driver:
+    localtimeHostPath: false
+    image: image-registry.openshift-image-registry.svc:5000/democratic-csi/democratic-csi:latest
+  cleanup:
+    image: image-registry.openshift-image-registry.svc:5000/democratic-csi/busybox:1.32.0
 controller:
   externalResizer:
     enabled: true
-
+  driver:
+    image: image-registry.openshift-image-registry.svc:5000/democratic-csi/democratic-csi:latest  
+csiProxy:
+  enabled: true
+  image: image-registry.openshift-image-registry.svc:5000/democratic-csi/democratic-csi-grpc-proxy:v0.5.3
 driver:
   config:
     driver: synology-iscsi

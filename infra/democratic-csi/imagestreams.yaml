@@ -1,0 +1,50 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: democratic-csi
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "docker.io/democraticcsi/democratic-csi:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: democratic-csi-grpc-proxy
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: v0.5.3
+      from:
+        kind: DockerImage
+        name: "docker.io/democraticcsi/csi-grpc-proxy:v0.5.3"
+      importPolicy:
+        scheduled: false
+      referencePolicy:
+        type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: busybox
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: 1.32.0
+      from:
+        kind: DockerImage
+        name: "docker.io/busybox:1.32.0"
+      importPolicy:
+        scheduled: false
+      referencePolicy:
+        type: Local
