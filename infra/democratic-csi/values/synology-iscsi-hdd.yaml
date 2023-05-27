@@ -10,14 +10,8 @@ storageClasses:
     parameters:
       fsType: ext4
 
-volumeSnapshotClasses:
-  - name: synology-iscsi-hdd
-
 controller:
   externalResizer:
-    enabled: true
-
-  externalSnapshotter:
     enabled: true
 
 driver:
