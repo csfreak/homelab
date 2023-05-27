@@ -28,7 +28,7 @@ spec:
         kind: DockerImage
         name: "docker.io/democraticcsi/csi-grpc-proxy:v0.5.3"
       importPolicy:
-        scheduled: false
+        importMode: Legacy
       referencePolicy:
         type: Local
 ---
@@ -45,6 +45,6 @@ spec:
         kind: DockerImage
         name: "docker.io/busybox:1.32.0"
       importPolicy:
-        scheduled: false
+        importMode: Legacy
       referencePolicy:
         type: Local
