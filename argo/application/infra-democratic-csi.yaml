@@ -14,7 +14,7 @@ spec:
       helm:
         releaseName: synology-iscsi-hdd
         valueFiles:
-          - "$homelab/values/synology-iscsi-hdd.yaml"
+          - "$homelab//values/synology-iscsi-hdd.yaml"
     - path: infra/democratic-csi
       repoURL: https://github.com/csfreak/homelab.git
       targetRevision: HEAD
