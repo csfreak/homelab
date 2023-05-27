@@ -19,6 +19,6 @@ spec:
     secret:
       name: logging-loki-minio
       type: s3
-  storageClassName: synology-iscsi
+  storageClassName: synology-iscsi-hdd
   tenants:
     mode: openshift-logging

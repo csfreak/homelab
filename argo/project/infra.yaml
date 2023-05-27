@@ -17,6 +17,7 @@ spec:
   sourceRepos:
     - https://github.com/csfreak/homelab.git
     - https://mariadb-operator.github.io/mariadb-operator
+    - https://demoratic-csi.github.com/charts
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"

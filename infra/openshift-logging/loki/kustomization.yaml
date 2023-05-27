@@ -1,5 +1,4 @@
 resources:
   - operator.yaml
-  - pv.yaml
   - externalsecret.yaml
   - lokistack.yaml

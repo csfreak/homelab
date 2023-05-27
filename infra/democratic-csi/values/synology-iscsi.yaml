@@ -1,0 +1,26 @@
+csiDriver:
+  name: "org.democratic-csi.iscsi-synology-hdd"
+
+storageClasses:
+  - name: synology-iscsi-hdd
+    defaultClass: false
+    reclaimPolicy: Retain
+    volumeBindingMode: Immediate
+    allowVolumeExpansion: true
+    parameters:
+      fsType: ext4
+
+volumeSnapshotClasses:
+  - name: synology-iscsi-hdd
+
+controller:
+  externalResizer:
+    enabled: true
+
+  externalSnapshotter:
+    enabled: true
+
+driver:
+  config:
+    driver: synology-iscsi
+    existingConfigSecret: true
