@@ -2,12 +2,10 @@ apiVersion: operator.external-secrets.io/v1alpha1
 kind: OperatorConfig
 metadata:
   name: external-secrets-webhook
-  namespace: external-secrets-operator
   annotations:
     argocd.argoproj.io/sync-options: Validate=false
 spec:
   createOperator: false
-
   certController:
     create: false
   installCRDs: false
