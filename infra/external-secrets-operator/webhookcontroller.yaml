@@ -7,7 +7,8 @@ metadata:
 spec:
   createOperator: false
   certController:
-    create: false
+    securityContext:
+      runAsUser: null
   installCRDs: false
   rbac:
     enabled: false
