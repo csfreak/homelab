@@ -1,0 +1,3 @@
+resources:
+  - external-secrets-config.yaml
+  - cluster-secret-store.yaml
