@@ -12,3 +12,22 @@ spec:
   managementState: Managed
   visualization:
     type: ocp-console
+---
+apiVersion: logging.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+spec:
+  pipelines:
+    - detectMultilineErrors: true
+      inputRefs:
+        - application
+      name: application-logs
+      outputRefs:
+        - default
+    - inputRefs:
+        - infrastructure
+        - audit
+      name: infra-audit-logs
+      outputRefs:
+        - default
