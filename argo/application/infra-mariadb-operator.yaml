@@ -18,6 +18,8 @@ spec:
             value: "true"
           - name: webhook.certificate.certManager
             value: "true"
+          - name: logLevel
+            value: "DEBUG"
     - path: infra/mariadb-operator
       repoURL: https://github.com/csfreak/homelab.git
       targetRevision: HEAD
