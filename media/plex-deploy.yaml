@@ -89,6 +89,8 @@ spec:
               mountPath: /data/hdd
             - name: config
               mountPath: /config
+            - name: transcode
+              mountPath: /data/transcode
         - name: logs
           image: ghcr.io/fluent/fluent-bit
           args:
@@ -120,3 +122,5 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: plex-config
+        - name: transcode
+          emptyDir: {}
