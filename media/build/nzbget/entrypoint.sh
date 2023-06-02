@@ -6,8 +6,7 @@ if [ ! -e /config/nzbget.conf ]; then
     env -0 | while IFS='=' read -r -d '' n v; do
         case $n in 
             "NZBGET_CONFIG_"*) 
-            echo "${n#NZBGET_CONFIG_}=${v}" >> /config/nzbget.conf
-            unset -v $n ;;
+            echo "${n#NZBGET_CONFIG_}=${v}" >> /config/nzbget.conf ;;
         esac
     done
 fi
