@@ -26,7 +26,10 @@ spec:
         deployment: zwavejs
     spec:
       containers:
-        - image: zwavejs:latest
+        - env:
+            - name: NO_LOG_COLORS
+              value: "true"
+          image: zwavejs:latest
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
