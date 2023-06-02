@@ -27,7 +27,7 @@ spec:
             - configMapRef:
                 name: nzbget-env-config
               prefix: NZBGET_
-            - configMapRef:
+            - secretRef:
                 name: nzbget-env-secret
               prefix: NZBGET_
           ports:
