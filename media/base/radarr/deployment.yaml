@@ -59,9 +59,6 @@ spec:
             requests:
               memory: "28Mi"
               cpu: "10m"
-          envFrom:
-            - secretRef:
-                name: radarr-exportarr-secret
           env:
             - name: URL
               value: "http://localhost:7878"
