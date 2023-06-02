@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"sonarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"exportarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr-metrics\")].image"}]
+  name: sonarr
+  namespace: media
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: sonarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: sonarr
+    spec:
+      containers:
+        - imagePullPolicy: Always
+          image: sonarr:latest
+          name: sonarr
+          ports:
+            - containerPort: 8989
+              name: sonarr
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 2Gi
+              cpu: 1000m
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+            - mountPath: /downloads
+              name: sonarr-downloads
+            - mountPath: /media/hdd
+              name: sonarr-media-hdd
+            - mountPath: /media/ssd
+              name: sonarr-media-ssd
+        - name: sonarr-metrics
+          image: exportarr:latest
+          command:
+            - "/exportarr"
+            - "sonarr"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          env:
+            - name: URL
+              value: "http://localhost:8989"
+            - name: PORT
+              value: "9707"
+            - name: CONFIG
+              value: "/config/config.xml"
+          ports:
+            - containerPort: 9707
+              name: metrics
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+      serviceAccountName: media-runas-user
+      volumes:
+        - name: sonarr-config
+          persistentVolumeClaim:
+            claimName: sonarr-config
+        - name: sonarr-downloads
+          persistentVolumeClaim:
+            claimName: nzbget-downloads
+        - name: sonarr-media-hdd
+          persistentVolumeClaim:
+            claimName: shared-media-hdd
+        - name: sonarr-media-ssd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd

@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"plex_exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-metrics\")].image"}]
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: plex
+  template:
+    metadata:
+      deployment: plex
+    spec:
+      serviceAccountName: media-runas-user
+      terminationGracePeriodSeconds: 120
+      initContainers:
+        - name: cleanup-pidfile
+          image: image-registry.openshift-image-registry.svc:5000/openshift/cli
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          env:
+            - name: PIDFILE
+              value: "/config/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid"
+          command:
+            - sh
+            - -c
+            - "if [ -e \"${PIDFILE}\" ] ; then echo \"Deleting ${PIDFILE}\"; rm \"${PIDFILE}\"; else echo \"Nothing to do\n${PIDFILE} not found\"; fi; exit 0"
+      containers:
+        - name: plex-server
+          image: image-registry.openshift-image-registry.svc:5000/media/plex
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          ports:
+            - name: pms
+              containerPort: 32400
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: plex-token
+          env:
+            - name: KUBE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: 4Gi
+              cpu: 3000m
+              gpu.intel.com/i915: "1"
+            limits:
+              memory: 8Gi
+              cpu: 6000m
+              gpu.intel.com/i915: "1"
+          volumeMounts:
+            - name: datassd
+              mountPath: /data/ssd
+            - name: datahdd
+              mountPath: /data/hdd
+            - name: config
+              mountPath: /config
+            - name: transcode
+              mountPath: /data/transcode
+        - name: logs
+          image: ghcr.io/fluent/fluent-bit
+          args:
+            - -o
+            - stdout
+            - -i
+            - tail
+            - -p
+            - path=/config/Library/Application\ Support/Plex\ Media\ Server/Logs/Plex\ Media\ Server.log
+          resources:
+            requests:
+              memory: 10Mi
+              cpu: 10m
+            limits:
+              memory: 100Mi
+              cpu: 100m
+          volumeMounts:
+            - name: config
+              mountPath: /config
+        - name: plex-metrics
+          image: plex_exporter
+          env:
+            - name: PLEX_SERVER
+              value: http://localhost:32400
+            - name: PLEX_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: PLEX_CLAIM
+                  name: plex-token
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          ports:
+            - containerPort: 9594
+              name: metrics
+              protocol: TCP
+      nodeSelector:
+        intel.feature.node.kubernetes.io/gpu: "true"
+      volumes:
+        - name: datassd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd
+        - name: datahdd
+          persistentVolumeClaim:
+            claimName: shared-media-hdd
+        - name: config
+          persistentVolumeClaim:
+            claimName: plex-config
+        - name: transcode
+          emptyDir: {}

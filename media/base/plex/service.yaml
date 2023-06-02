@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plex
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "media"
+spec:
+  type: LoadBalancer
+  ports:
+    - name: pms
+      port: 32400
+      protocol: TCP
+      targetPort: pms
+      appProtocol: http
+    - name: metrics
+      protocol: TCP
+      port: 9594
+      targetPort: metrics
+      appProtocol: http
+  selector:
+    deployment: plex

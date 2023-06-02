@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nzbget
+spec:
+  ports:
+    - name: nzbget
+      appProtocol: http
+      port: 6789
+      protocol: TCP
+      targetPort: nzbget
+    - name: metrics
+      appProtocol: http
+      port: 9452
+      protocol: TCP
+      targetPort: metrics
+  selector:
+    deployment: nzbget
+  sessionAffinity: None
+  type: ClusterIP

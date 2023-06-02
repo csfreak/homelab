@@ -1,0 +1,21 @@
+resources:
+  - imagestream.yaml
+  - buildconfig.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+  - nzbget-env-secret.yaml
+
+commonLabels:
+  app: nzbget
+labels:
+  - pairs:
+      app.kubernetes.io/component: downloader
+      app.kubernetes.io/name: nzbget
+    includeTemplates: true
+
+configMapGenerator:
+  - name: nzbget-env-config
+    envs:
+      - nzbget-config.ini

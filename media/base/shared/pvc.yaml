@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shared-media-hdd
+  labels:
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/name: hdd
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Ti
+  storageClassName: synology-nfs
+  volumeMode: Filesystem
+  volumeName: shared-media-hdd
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shared-media-ssd
+  labels:
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/name: ssd
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Ti
+  storageClassName: synology-nfs
+  volumeMode: Filesystem
+  volumeName: shared-media-ssd

@@ -1,0 +1,18 @@
+resources:
+  - imagestream.yaml
+  - buildconfig.yaml
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+
+commonLabels:
+  app: radarr
+commonAnnotations:
+  app.openshift.io/connects-to: '["nzbget","ssd"]'
+labels:
+  - pairs:
+      app.kubernetes.io/component: manager
+      app.kubernetes.io/name: radarr
+    includeTemplates: true

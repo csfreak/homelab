@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nzbget
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"nzbget-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget-metrics\")].image"}]
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: nzbget
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: nzbget
+    spec:
+      containers:
+        - imagePullPolicy: Always
+          image: nzbget:latest
+          name: nzbget
+          envFrom:
+            - configMapRef:
+                name: nzbget-env-config
+              prefix: NZBGET_
+            - configMapRef:
+                name: nzbget-env-secret
+              prefix: NZBGET_
+          ports:
+            - containerPort: 6789
+              protocol: TCP
+              name: nzbget
+          resources:
+            requests:
+              memory: 100Mi
+              cpu: 100m
+            limits:
+              memory: 512Mi
+              cpu: 1000m
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /config
+              name: nzbget-config
+            - mountPath: /downloads
+              name: nzbget-downloads
+        - name: nzbget-metrics
+          image: nzbget-exporter
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          env:
+            - name: NZBGET_HOST
+              value: "http://localhost:6789"
+            - name: NZBGET_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: ControlUsername
+                  name: nzbget-env-config
+            - name: NZBGET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: ControlPassword
+                  name: nzbget-env-secret
+          ports:
+            - containerPort: 9452
+              name: metrics
+              protocol: TCP
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: nzbget-config
+          emptyDir: {}
+        - name: nzbget-downloads
+          persistentVolumeClaim:
+            claimName: nzbget-downloads

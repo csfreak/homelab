@@ -1,0 +1,29 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: nzbget
+  namespace: media
+spec:
+  failedBuildsHistoryLimit: 0
+  output:
+    to:
+      kind: ImageStreamTag
+      name: nzbget:latest
+  runPolicy: Serial
+  source:
+    contextDir: /media/build/nzbget
+    git:
+      uri: https://github.com/csfreak/homelab
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+      imageOptimizationPolicy: SkipLayers
+    type: Docker
+  successfulBuildsHistoryLimit: 0
+  triggers:
+    - github:
+        secretReference:
+          name: nzbget-github-webhook-secret
+      type: GitHub
+    - type: ConfigChange

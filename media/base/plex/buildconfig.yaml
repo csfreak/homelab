@@ -1,0 +1,28 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: plex
+spec:
+  failedBuildsHistoryLimit: 0
+  output:
+    to:
+      kind: ImageStreamTag
+      name: plex:latest
+  runPolicy: Serial
+  source:
+    contextDir: /media/build/plex
+    git:
+      uri: https://github.com/csfreak/homelab
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+      imageOptimizationPolicy: SkipLayers
+    type: Docker
+  successfulBuildsHistoryLimit: 0
+  triggers:
+    - github:
+        secretReference:
+          name: plex-generic-webhook-secret
+      type: GitHub
+    - type: ConfigChange

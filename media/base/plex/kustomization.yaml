@@ -1,0 +1,19 @@
+resources:
+  - imagestream.yaml
+  - buildconfig.yaml
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+  - secret.yaml
+
+commonLabels:
+  app: plex
+commonAnnotations:
+  app.openshift.io/connects-to: '["ssd","hdd"]'
+labels:
+  - pairs:
+      app.kubernetes.io/component: streamer
+      app.kubernetes.io/name: plex
+    includeTemplates: true

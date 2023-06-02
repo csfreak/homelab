@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/csfreak/homelab
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"radarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"radarr\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"exportarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"radarr-metrics\")].image"}]
+  name: radarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: radarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: radarr
+    spec:
+      containers:
+        - imagePullPolicy: Always
+          image: radarr:latest
+          name: radarr
+          ports:
+            - containerPort: 7878
+              name: radarr
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 2Gi
+              cpu: 1000m
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /config
+              name: radarr-config
+            - mountPath: /downloads
+              name: radarr-downloads
+            - mountPath: /media/hdd
+              name: radarr-media-hdd
+            - mountPath: /media/ssd
+              name: radarr-media-ssd
+        - name: radarr-metrics
+          image: exportarr:latest
+          command:
+            - "/exportarr"
+            - "radarr"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          envFrom:
+            - secretRef:
+                name: radarr-exportarr-secret
+          env:
+            - name: URL
+              value: "http://localhost:7878"
+            - name: PORT
+              value: "9708"
+            - name: CONFIG
+              value: "/config/config.xml"
+          ports:
+            - containerPort: 9708
+              name: metrics
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: radarr-config
+      serviceAccountName: media-runas-user
+      volumes:
+        - name: radarr-config
+          persistentVolumeClaim:
+            claimName: radarr-config
+        - name: radarr-downloads
+          persistentVolumeClaim:
+            claimName: nzbget-downloads
+        - name: radarr-media-hdd
+          persistentVolumeClaim:
+            claimName: shared-media-hdd
+        - name: radarr-media-ssd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd

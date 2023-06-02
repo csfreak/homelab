@@ -1,5 +1,6 @@
 FROM alpine:latest
 ARG UNRAR_VERSION=6.1.4
+
 RUN echo "**** install build packages ****" && \
     apk add --no-cache --upgrade --virtual=build-dependencies \
         cargo \
@@ -10,8 +11,9 @@ RUN echo "**** install build packages ****" && \
         libxslt-dev \
         make \
         openssl-dev \
-        python3-dev && \
-    echo "**** install packages ****" && \
+        python3-dev
+
+RUN echo "**** install packages ****" && \
     apk add --no-cache \
         curl \
         libxml2 \
@@ -20,8 +22,9 @@ RUN echo "**** install build packages ****" && \
         p7zip \
         py3-pip \
         python3 \
-        wget && \
-    echo "**** install python packages ****" && \
+        wget
+
+RUN echo "**** install python packages ****" && \
     pip3 install --no-cache-dir -U \
         pip && \
     pip install --no-cache-dir \
@@ -32,8 +35,8 @@ RUN echo "**** install build packages ****" && \
         py7zr \
         rarfile \
         six && \
-    ln -sf /usr/bin/python3 /usr/bin/python && \
-    echo "**** install unrar from source ****" && \
+    ln -sf /usr/bin/python3 /usr/bin/python
+RUN echo "**** install unrar from source ****" && \
     mkdir /tmp/unrar && \
     curl -o \
       /tmp/unrar.tar.gz -L \
@@ -44,12 +47,14 @@ RUN echo "**** install build packages ****" && \
     cd /tmp/unrar && \
     make && \
     install -v -m755 unrar /usr/bin && \
-    cd /\
-    echo "**** download nzbget ****" && \
+    cd /
+
+RUN echo "**** download nzbget ****" && \
     wget https://nzbget.net/download/nzbget-latest-bin-linux.run && \
     echo "**** install nzbget ****" && \
-    sh nzbget-latest-bin-linux.run && \
-    echo "**** cleanup ****" && \
+    sh nzbget-latest-bin-linux.run
+
+RUN echo "**** cleanup ****" && \
     apk del --purge \
         build-dependencies && \
     rm -rf \
@@ -57,9 +62,28 @@ RUN echo "**** install build packages ****" && \
         /root/.cargo \
         /tmp/* && \
     rm nzbget-latest-bin-linux.run
-    
+
+COPY --chown=0:0 --chmod=555 entrypoint.sh /
+
+
+ENV NZBGET_OutputMode=log \
+    NZBGET_WriteLog=none \
+    NZBGET_ConfigTemplate=/nzbget/webui/nzbget.conf.template \
+    NZBGET_ControlIP=0.0.0.0 \
+    NZBGET_ControlPort=6789 \
+    NZBGET_ControlUsername= \
+    NZBGET_ControlPassword= \
+    NZBGET_MainDir=/downloads \
+    NZBGET_WebDir=/nzbget/webui/ \
+    NZBGET_ErrorTarget=screen \
+    NZBGET_WarningTarget=screen \
+    NZBGET_InfoTarget=screen \
+    NZBGET_DetailTarget=none
+
 EXPOSE 6789
 VOLUME /config
 VOLUME /downloads
 
-CMD ["/nzbget/nzbget", "-s", "-c", "/config/nzbget.conf", "-o", "OutputMode=log"]
+ENTRYPOINT [ "/entrypoint.sh" ]
+
+CMD ["/nzbget/nzbget", "-s", "-c", "/config/nzbget.conf"]

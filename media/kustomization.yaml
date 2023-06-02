@@ -1,0 +1,15 @@
+resources:
+  - base/shared
+  - base/nzbget
+  - base/sonarr
+  - base/radarr
+  - base/plex
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: media
+    includeTemplates: true
+
+commonAnnotations:
+  app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+  app.openshift.io/vcs-ref: main
