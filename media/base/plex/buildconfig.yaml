@@ -21,8 +21,4 @@ spec:
     type: Docker
   successfulBuildsHistoryLimit: 0
   triggers:
-    - github:
-        secretReference:
-          name: plex-generic-webhook-secret
-      type: GitHub
     - type: ConfigChange

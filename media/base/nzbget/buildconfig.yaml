@@ -22,8 +22,4 @@ spec:
     type: Docker
   successfulBuildsHistoryLimit: 0
   triggers:
-    - github:
-        secretReference:
-          name: nzbget-github-webhook-secret
-      type: GitHub
     - type: ConfigChange
