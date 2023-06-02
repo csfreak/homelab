@@ -26,10 +26,10 @@ spec:
           envFrom:
             - configMapRef:
                 name: nzbget-env-config
-              prefix: NZBGET_
+              prefix: NZBGET_CONFIG_
             - secretRef:
                 name: nzbget-env-secret
-              prefix: NZBGET_
+              prefix: NZBGET_CONFIG_
           ports:
             - containerPort: 6789
               protocol: TCP
