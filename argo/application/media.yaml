@@ -12,7 +12,7 @@ spec:
   ignoreDifferences:
     - group: apps
       jqPathExpressions:
-        - .spec.template.spec.containers[] | .image
+        - .spec.template.spec.containers[].image
       kind: Deployment
     - jsonPointers:
         - /data
