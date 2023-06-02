@@ -1,6 +1,7 @@
 resources:
   - imagestream.yaml
   - buildconfig.yaml
+  - pvc.yaml
   - deployment.yaml
   - service.yaml
   - route.yaml
