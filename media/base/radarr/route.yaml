@@ -4,7 +4,7 @@ metadata:
   name: radarr
 spec:
   port:
-    targetPort: radar
+    targetPort: radarr
   to:
     kind: Service
     name: radarr
