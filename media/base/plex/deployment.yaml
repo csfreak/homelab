@@ -16,7 +16,8 @@ spec:
       deployment: plex
   template:
     metadata:
-      deployment: plex
+      labels:
+        deployment: plex
     spec:
       serviceAccountName: media-runas-user
       terminationGracePeriodSeconds: 120
