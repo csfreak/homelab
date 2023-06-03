@@ -14,7 +14,7 @@ spec:
         ingestionRate: 10
         maxGlobalStreamsPerTenant: 25000
       retention:
-        days: 7
+        days: 1
   managementState: Managed
   size: 1x.extra-small
   storage:
