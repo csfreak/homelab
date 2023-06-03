@@ -7,6 +7,9 @@ spec:
     global:
       queries:
         queryTimeout: 1m
+        maxChunksPerQuery: 2000000
+        maxEntriesLimitPerQuery: 10000
+        maxQuerySeries: 3000
       retention:
         days: 7
   managementState: Managed
