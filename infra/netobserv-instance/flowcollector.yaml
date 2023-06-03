@@ -6,7 +6,7 @@ spec:
   agent:
     type: EBPF
     ebpf:
-      sampling: 20
+      sampling: 100
       logLevel: info
       resources:
         requests:
