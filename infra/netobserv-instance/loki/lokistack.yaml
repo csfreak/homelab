@@ -6,13 +6,12 @@ spec:
   limits:
     global:
       queries:
-        queryTimeout: 1m
         maxChunksPerQuery: 2000000
         maxEntriesLimitPerQuery: 10000
         maxQuerySeries: 3000
       ingestion:
-        ingestionBurstSize: 40
-        ingestionRate: 20
+        ingestionBurstSize: 10
+        ingestionRate: 10
         maxGlobalStreamsPerTenant: 25000
       retention:
         days: 7
@@ -26,5 +25,8 @@ spec:
       name: netobserv-loki-minio
       type: s3
   storageClassName: synology-iscsi-hdd
+  template:
+    ingester:
+      replicas: 2
   tenants:
     mode: openshift-network
