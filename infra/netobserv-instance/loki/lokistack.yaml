@@ -1,0 +1,23 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: lokistack-netobserv
+spec:
+  limits:
+    global:
+      queries:
+        queryTimeout: 1m
+      retention:
+        days: 7
+  managementState: Managed
+  size: 1x.extra-small
+  storage:
+    schemas:
+      - effectiveDate: "2022-06-01"
+        version: v12
+    secret:
+      name: netobserv-loki-minio
+      type: s3
+  storageClassName: synology-iscsi-hdd
+  tenants:
+    mode: openshift-network

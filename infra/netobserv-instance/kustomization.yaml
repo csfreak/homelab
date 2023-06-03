@@ -1,0 +1,4 @@
+resources:
+  - loki
+  - rbac.yaml
+  - flowcollector.yaml
