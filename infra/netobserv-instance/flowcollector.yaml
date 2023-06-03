@@ -8,7 +8,6 @@ spec:
     ebpf:
       sampling: 20
       logLevel: info
-      privileged: false
       resources:
         requests:
           memory: 50Mi
