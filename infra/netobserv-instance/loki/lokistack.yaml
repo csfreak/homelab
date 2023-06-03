@@ -10,6 +10,10 @@ spec:
         maxChunksPerQuery: 2000000
         maxEntriesLimitPerQuery: 10000
         maxQuerySeries: 3000
+      ingestion:
+        ingestionBurstSize: 40
+        ingestionRate: 20
+        maxGlobalStreamsPerTenant: 25000
       retention:
         days: 7
   managementState: Managed
