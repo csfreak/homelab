@@ -9,8 +9,6 @@ resources:
 
 commonLabels:
   app: sonarr
-commonAnnotations:
-  app.openshift.io/connects-to: '["nzbget","hdd"]'
 labels:
   - pairs:
       app.kubernetes.io/component: manager

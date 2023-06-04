@@ -4,7 +4,6 @@ metadata:
   name: shared-media-hdd
   labels:
     app.kubernetes.io/component: storage
-    app.kubernetes.io/name: hdd
 spec:
   accessModes:
     - ReadWriteMany
@@ -21,7 +20,6 @@ metadata:
   name: shared-media-ssd
   labels:
     app.kubernetes.io/component: storage
-    app.kubernetes.io/name: ssd
 spec:
   accessModes:
     - ReadWriteMany

@@ -10,8 +10,6 @@ resources:
 
 commonLabels:
   app: plex
-commonAnnotations:
-  app.openshift.io/connects-to: '["ssd","hdd"]'
 labels:
   - pairs:
       app.kubernetes.io/component: streamer

@@ -6,6 +6,7 @@ metadata:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"},
       {"from":{"kind":"ImageStreamTag","name":"plex_exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-metrics\")].image"}]
+    app.openshift.io/connects-to: '[{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-ssd"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
 spec:
   replicas: 1
   revisionHistoryLimit: 2

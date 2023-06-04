@@ -9,8 +9,6 @@ resources:
 
 commonLabels:
   app: radarr
-commonAnnotations:
-  app.openshift.io/connects-to: '["nzbget","ssd"]'
 labels:
   - pairs:
       app.kubernetes.io/component: manager
