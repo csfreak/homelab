@@ -5,7 +5,8 @@ metadata:
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"plex_exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-metrics\")].image"}]
+      {"from":{"kind":"ImageStreamTag","name":"plex_exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-metrics\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"vector:latest-distroless-libc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-logs\")].image"}]
     app.openshift.io/connects-to: '[{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-ssd"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
 spec:
   replicas: 1
@@ -80,23 +81,24 @@ spec:
               mountPath: /config
             - name: transcode
               mountPath: /data/transcode
-        - name: logs
-          image: ghcr.io/fluent/fluent-bit
-          args:
-            - -o
-            - stdout
-            - -i
-            - tail
-            - -p
-            - path=/config/Library/Application\ Support/Plex\ Media\ Server/Logs/Plex\ Media\ Server.log
-          resources:
-            requests:
-              memory: 10Mi
-              cpu: 10m
-            limits:
-              memory: 100Mi
-              cpu: 100m
+        - args:
+            - "--config"
+            - "/etc/vector/plex-logs.toml"
+          image: vector:latest-distroless-libc
+          imagePullPolicy: IfNotPresent
+          name: plex-logs
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
           volumeMounts:
+            - name: log-config
+              mountPath: /etc/vector
             - name: config
               mountPath: /config
         - name: plex-metrics
@@ -136,3 +138,6 @@ spec:
             claimName: plex-config
         - name: transcode
           emptyDir: {}
+        - name: log-config
+          configMap:
+            name: plex-log-config

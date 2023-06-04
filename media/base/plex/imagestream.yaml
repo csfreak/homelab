@@ -23,3 +23,20 @@ spec:
         scheduled: true
       referencePolicy:
         type: Local
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: vector
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest-distroless-libc
+      from:
+        kind: DockerImage
+        name: "docker.io/timberio/vector:latest-distroless-libc"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local

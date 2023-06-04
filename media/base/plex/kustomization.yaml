@@ -15,3 +15,8 @@ labels:
       app.kubernetes.io/component: streamer
       app.kubernetes.io/name: plex
     includeTemplates: true
+
+configMapGenerator:
+  - name: plex-log-config
+    files:
+      - plex-logs.toml
