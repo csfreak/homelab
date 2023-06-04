@@ -109,6 +109,8 @@ spec:
                 secretKeyRef:
                   key: PLEX_CLAIM
                   name: plex-token
+            - name: PLEX_LOG_LEVEL
+              value: debug
           resources:
             limits:
               memory: "128Mi"
