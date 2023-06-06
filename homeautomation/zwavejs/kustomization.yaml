@@ -2,6 +2,7 @@ resources:
   - imagestream.yaml
   - pvc.yaml
   - serviceaccount.yaml
+  - secret.yaml
   - deployment.yaml
   - service.yaml
   - monitoring.yaml
@@ -16,3 +17,8 @@ labels:
       app.kubernetes.io/part-of: homeassistant
       app.kubernetes.io/component: zwavejs
     includeTemplates: true
+
+configMapGenerator:
+  - name: zwavejs-env
+    envs:
+      - zwavejs.env
