@@ -1,0 +1,18 @@
+resources:
+  - imagestream.yaml
+  - pvc.yaml
+  - config.yaml
+  - deployment.yaml
+  - service.yaml
+  - monitoring.yaml
+  - secret.yaml
+
+commonLabels:
+  app: hass-db
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: hass-db
+      app.kubernetes.io/part-of: homeassistant
+      app.kubernetes.io/component: database
+    includeTemplates: true

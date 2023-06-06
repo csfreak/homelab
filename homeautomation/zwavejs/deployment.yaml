@@ -4,25 +4,18 @@ metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: zwavejs
     image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")]"}]'
-  labels:
-    app: zwavejs
-    app.kubernetes.io/component: zwavejs
-    app.kubernetes.io/name: zwavejs
   name: zwavejs
-  namespace: homeautomation
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: zwavejs
       deployment: zwavejs
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: zwavejs
         deployment: zwavejs
     spec:
       containers:

@@ -1,20 +1,18 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  labels:
-    app: hass
-    app.kubernetes.io/instance: homeautomation
-  name: hass
-  namespace: homeautomation
+  annotations:
+    openshift.io/host.generated: "true"
+  name: zwavejs
 spec:
-  host: homeassistant.apps.homelab.csfreak.com
+  host: zwavejs-homeautomation.apps.homelab.csfreak.com
   port:
-    targetPort: hass-http
+    targetPort: zwavejs-http
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
   to:
     kind: Service
-    name: hass
+    name: zwavejs
     weight: 100
   wildcardPolicy: None

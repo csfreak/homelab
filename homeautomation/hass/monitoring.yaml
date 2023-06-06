@@ -1,0 +1,25 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hass-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - homeautomation
+  selector:
+    matchLabels:
+      deployment: hass
+  endpoints:
+    - port: hass-http
+      path: /api/prometheus
+      interval: 10s
+      bearerTokenSecret:
+        key: TOKEN
+        name: hass-token-secret
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: hass-token-secret
+type: Opaque

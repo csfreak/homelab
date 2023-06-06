@@ -3,11 +3,9 @@ kind: Deployment
 metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: homeassistant
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"homeassistant:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"hass-server\")]"}]'
-  labels:
-    app: hass
-    app.kubernetes.io/component: hass
-    app.kubernetes.io/name: hass
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"homeassistant:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"hass-server\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"code-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"code-server\")].image"}]
   name: hass
   namespace: homeautomation
 spec:
@@ -15,18 +13,23 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: hass
       deployment: hass
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: hass
         deployment: hass
     spec:
       containers:
-        - env:
+        - command:
+            - python3
+            - "-m"
+            - homeassistant
+            - "--config"
+            - /config/homeassistant
+            - "--log-no-color"
+          env:
             - name: DATABASE_URL
               value: mysql+pymysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db:3306/$(MYSQL_DATABASE)?charset-utf8mb4
           envFrom:
@@ -63,23 +66,32 @@ spec:
             limits:
               memory: 1Gi
               cpu: "1"
-          securityContext:
-            runAsUser: 0
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
           volumeMounts:
             - mountPath: /config
               name: hass-config
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
+        - name: code-server
+          image: code-server:latest
+          volumeMounts:
+            - mountPath: /home/coder/
+              name: hass-config
+          env:
+            - name: HOME
+              value: /home/coder
+          resources:
+            limits:
+              memory: 768Mi
+              cpu: "1"
+            requests:
+              memory: 128Mi
+              cpu: 10m
+          ports:
+            - containerPort: 8080
+              name: codeserver-http
+              protocol: TCP
       securityContext:
-        runAsUser: 0
-      serviceAccount: hass-run-user
-      serviceAccountName: hass-run-user
-      terminationGracePeriodSeconds: 30
+        runAsNonRoot: true
       volumes:
         - name: hass-config
           persistentVolumeClaim:
-            claimName: hass-config-shared
+            claimName: hass-config
 status: {}

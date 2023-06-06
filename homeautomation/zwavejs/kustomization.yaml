@@ -1,0 +1,18 @@
+resources:
+  - imagestream.yaml
+  - pvc.yaml
+  - serviceaccount.yaml
+  - deployment.yaml
+  - service.yaml
+  - monitoring.yaml
+  - route.yaml
+
+commonLabels:
+  app: zwavejs
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: zwavejs
+      app.kubernetes.io/part-of: homeassistant
+      app.kubernetes.io/component: zwavejs
+    includeTemplates: true

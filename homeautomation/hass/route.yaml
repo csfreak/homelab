@@ -1,0 +1,33 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hass
+spec:
+  host: homeassistant.apps.homelab.csfreak.com
+  port:
+    targetPort: hass-http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hass
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hass-code-server
+spec:
+  host: code-server.homeautomation.apps.homelab.csfreak.com
+  port:
+    targetPort: code-server-http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: hass
+    weight: 100
+  wildcardPolicy: None

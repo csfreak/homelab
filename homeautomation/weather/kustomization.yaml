@@ -1,0 +1,5 @@
+resources:
+  - imagestream.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml

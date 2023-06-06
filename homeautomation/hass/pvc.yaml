@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: zwavejs-config
+  name: hass-config
   namespace: homeautomation
 spec:
   accessModes:
@@ -9,5 +9,5 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: synology-nfs-storage-hdd
+  storageClassName: synology-iscsi-hdd
   volumeMode: Filesystem

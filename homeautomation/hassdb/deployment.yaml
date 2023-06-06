@@ -2,11 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hass-db
-  namespace: homeautomation
   annotations:
-    app.kubernetes.io/component: hass-db
-    app.kubernetes.io/instance: hass-db
-    app.kubernetes.io/part-of: hass-db
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"mariadb:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mariadb\")].image"},
       {"from":{"kind":"ImageStreamTag","name":"mysqld-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mysqld-exporter\")].image"}]
@@ -22,9 +18,6 @@ spec:
       labels:
         deployment: hass-db
       annotations:
-        app.kubernetes.io/component: hass-db
-        app.kubernetes.io/instance: hass-db
-        app.kubernetes.io/part-of: hass-db
         alpha.image.policy.openshift.io/resolve-names: "*"
     spec:
       containers:

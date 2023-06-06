@@ -1,0 +1,16 @@
+resources:
+  - imagestream.yaml
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - monitoring.yaml
+  - route.yaml
+
+commonLabels:
+  app: homeassistant
+  app.kubernetes.io/component: homeassistant
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: hass
+    includeTemplates: true

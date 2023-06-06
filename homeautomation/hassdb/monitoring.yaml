@@ -1,0 +1,15 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: hassdb-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - homeautomation
+  selector:
+    matchLabels: {}
+  podMetricsEndpoints:
+    - port: metrics
+      path: /metrics
+      interval: 10s
