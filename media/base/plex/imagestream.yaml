@@ -40,20 +40,20 @@ spec:
         scheduled: true
       referencePolicy:
         type: Local
----
-kind: ImageStream
-apiVersion: image.openshift.io/v1
-metadata:
-  name: sqlite-web
-spec:
-  lookupPolicy:
-    local: true
-  tags:
-    - name: latest
-      from:
-        kind: DockerImage
-        name: "docker.io/coleifer/sqlite-web:latest"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local
+# ---
+# kind: ImageStream
+# apiVersion: image.openshift.io/v1
+# metadata:
+#   name: sqlite-web
+# spec:
+#   lookupPolicy:
+#     local: true
+#   tags:
+#     - name: latest
+#       from:
+#         kind: DockerImage
+#         name: "docker.io/coleifer/sqlite-web:latest"
+#       importPolicy:
+#         scheduled: true
+#       referencePolicy:
+#         type: Local

@@ -18,9 +18,9 @@ spec:
       port: 9594
       targetPort: metrics
       appProtocol: http
-    - name: sqlite-web-http
-      port: 8080
-      targetPort: sqlite-web-http
-      appProtocol: http
+    # - name: sqlite-web-http
+    #   port: 8080
+    #   targetPort: sqlite-web-http
+    #   appProtocol: http
   selector:
     deployment: plex

@@ -132,34 +132,34 @@ spec:
             - containerPort: 9594
               name: metrics
               protocol: TCP
-        - name: sqlite-web
-          image: sqlite-web
-          env:
-            - name: SQLITE_WEB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: plex-sqlite-web
-                  key: sqlite-web-password
-          command:
-            - sqlite_web
-            - -H
-            - "0.0.0.0"
-            - -x
-            - /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db
-          ports:
-            - containerPort: 8080
-              name: sqlite-web-http
-              protocol: TCP
-          resources:
-            limits:
-              memory: 128Mi
-              cpu: 100m
-            requests:
-              memory: 32Mi
-              cpu: 10m
-          volumeMounts:
-            - name: config
-              mountPath: /config
+        # - name: sqlite-web
+        #   image: sqlite-web
+        #   env:
+        #     - name: SQLITE_WEB_PASSWORD
+        #       valueFrom:
+        #         secretKeyRef:
+        #           name: plex-sqlite-web
+        #           key: sqlite-web-password
+        #   command:
+        #     - sqlite_web
+        #     - -H
+        #     - "0.0.0.0"
+        #     - -x
+        #     - /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db
+        #   ports:
+        #     - containerPort: 8080
+        #       name: sqlite-web-http
+        #       protocol: TCP
+        #   resources:
+        #     limits:
+        #       memory: 128Mi
+        #       cpu: 100m
+        #     requests:
+        #       memory: 32Mi
+        #       cpu: 10m
+        #   volumeMounts:
+        #     - name: config
+        #       mountPath: /config
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
       volumes:
