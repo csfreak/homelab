@@ -25,7 +25,6 @@ spec:
   syncPolicy:
     automated: {}
     syncOptions:
-      - RespectIgnoreDifferences=true
       - CreateNamespace=true
     managedNamespaceMetadata:
       labels:

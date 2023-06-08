@@ -21,6 +21,8 @@ spec:
     metadata:
       labels:
         deployment: radarr
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: "*"
     spec:
       containers:
         - imagePullPolicy: Always

@@ -18,6 +18,8 @@ spec:
       deployment: plex
   template:
     metadata:
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: "*"
       labels:
         deployment: plex
     spec:
