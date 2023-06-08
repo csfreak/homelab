@@ -87,7 +87,13 @@ spec:
           image: vector:latest-distroless-libc
           imagePullPolicy: IfNotPresent
           name: plex-logs
-          resources: {}
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 250Mi
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:
@@ -115,15 +121,42 @@ spec:
               value: debug
           resources:
             limits:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: 64Mi
+              cpu: 10m
             requests:
-              memory: "28Mi"
-              cpu: "10m"
+              memory: 32Mi
+              cpu: 1m
           ports:
             - containerPort: 9594
               name: metrics
               protocol: TCP
+        - name: sqlite-web
+          image: sqlite-web
+          env:
+            - name: SQLITE_DATABASE
+              value: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db
+            - name: SQLITE_WEB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: plex-sqlite-web
+                  key: sqlite-web-password
+          cmd:
+            - sqlite_web
+            - -H
+            - "0.0.0.0"
+            - -x
+            - -p
+            - /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 100m
+            requests:
+              memory: 32Mi
+              cpu: 10m
+          volumeMounts:
+            - name: config
+              mountPath: /config
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
       volumes:
