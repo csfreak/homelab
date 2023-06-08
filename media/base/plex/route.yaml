@@ -17,3 +17,25 @@ spec:
     name: plex
     weight: 100
   wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: plex-db
+  annotations:
+    haproxy.router.openshift.io/rewrite-target: /
+    haproxy.router.openshift.io/ip_whitelist: 192.168.2.0/24
+spec:
+  host: plex.apps.homelab.csfreak.com
+  path: /sqlite-web
+  port:
+    targetPort: sqlite-web-http
+
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: plex
+    weight: 100
+  wildcardPolicy: None

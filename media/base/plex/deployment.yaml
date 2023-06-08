@@ -147,6 +147,10 @@ spec:
             - -x
             - -p
             - /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db
+          ports:
+            - containerPort: 8080
+              name: sqlite-web-http
+              protocol: TCP
           resources:
             limits:
               memory: 128Mi
