@@ -145,7 +145,7 @@ spec:
             - -H
             - "0.0.0.0"
             - -x
-            - /config/Library/Application\ Support/Plex\ Media\ Server/Plug-in\ Support/Databases/com.plexapp.plugins.library.db
+            - /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db
           ports:
             - containerPort: 8080
               name: sqlite-web-http
