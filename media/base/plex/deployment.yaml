@@ -135,8 +135,6 @@ spec:
         - name: sqlite-web
           image: sqlite-web
           env:
-            - name: SQLITE_DATABASE
-              value: /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db
             - name: SQLITE_WEB_PASSWORD
               valueFrom:
                 secretKeyRef:
