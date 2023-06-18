@@ -1,6 +1,6 @@
 resources:
   - imagestream.yaml
-  - configy.yaml
+  - config.yaml
   - statefulset.yaml
   - service.yaml
   - monitoring.yaml
