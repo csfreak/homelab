@@ -31,7 +31,7 @@ spec:
             - "--log-no-color"
           env:
             - name: DATABASE_URL
-              value: mysql+pymysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db:3306/$(MYSQL_DATABASE)?charset-utf8mb4
+              value: mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db:3306/$(MYSQL_DATABASE)?charset-utf8mb4
           envFrom:
             - prefix: MYSQL_
               secretRef:
