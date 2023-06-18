@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: minecraft
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: "*"
+      namespace: minecraft
+      server: https://kubernetes.default.svc
+  roles:
+    - name: default
+      policies:
+        - p, proj:minecraft:default, applications, *, minecraft/*, allow
+      groups:
+        - system:authenticated:oauth
+  sourceRepos:
+    - https://github.com/csfreak/homelab.git
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
