@@ -10,5 +10,4 @@ spec:
     - port: 19132
       name: bds
       protocol: UDP
-  ipFamily: IPv4
   type: LoadBalancer

@@ -32,7 +32,7 @@ spec:
                 name: minecraft-bedrock
           volumeMounts:
             - mountPath: /data
-              name: data
+              name: minecraft-data
           ports:
             - name: bds
               containerPort: 19132
