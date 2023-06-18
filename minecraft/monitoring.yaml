@@ -1,0 +1,16 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: bds-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - minecraft
+  selector:
+    matchLabels:
+      app: bds
+  podMetricsEndpoints:
+    - port: bds-metrics
+      path: /metrics
+      interval: 10s

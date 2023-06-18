@@ -1,0 +1,15 @@
+resources:
+  - imagestream.yaml
+  - configy.yaml
+  - statefulset.yaml
+  - service.yaml
+  - monitoring.yaml
+
+commonLabels:
+  app: bds
+  app.kubernetes.io/component: bds
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: minecraft
+    includeTemplates: true

@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minecraft
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/name: minecraft
+spec:
+  destination:
+    namespace: minecraft
+    server: https://kubernetes.default.svc
+  ignoreDifferences:
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.spec.containers[].image
+      kind: Deployment
+    - jsonPointers:
+        - /data
+      kind: Secret
+  project: minecraft
+  source:
+    path: minecraft
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+      annotations:
+        app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+        app.openshift.io/vcs-ref: main

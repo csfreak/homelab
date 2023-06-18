@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: bds
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"minecraft-bedrock-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"main\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"mc-monitor:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mc-monitor\")].image"}]
+  name: bds
+spec:
+  # never more than 1 since BDS is not horizontally scalable
+  replicas: 1
+  serviceName: bds
+  selector:
+    matchLabels:
+      app: bds
+  template:
+    metadata:
+      labels:
+        app: bds
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: "*"
+    spec:
+      containers:
+        - name: main
+          image: minecraft-bedrock-server
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: minecraft-bedrock
+          volumeMounts:
+            - mountPath: /data
+              name: data
+          ports:
+            - name: bds
+              containerPort: 19132
+              protocol: UDP
+          readinessProbe: &probe
+            exec:
+              command:
+                - mc-monitor
+                - status-bedrock
+                - --host
+                # force health check against IPv4 port
+                - 127.0.0.1
+            initialDelaySeconds: 30
+          livenessProbe: *probe
+          tty: true
+          stdin: true
+          resources:
+            requests:
+              cpu: "2"
+              memory: "1Gi"
+            limits:
+              cpu: "4"
+              memory: "4Gi"
+        - name: mc-monitor
+          image: mc-monitor
+          command: export-for-prometheus
+          env:
+            - name: EXPORT_SERVERS
+              value: localhost
+            - name: DEBUG
+              value: "true"
+          ports:
+            - name: bds-metrics
+              containerPort: 8080
+              protocol: TCP
+  volumeClaimTemplates:
+    - metadata:
+        name: minecraft-data
+      spec:
+        storageClassName: synology-nfs-storage-hdd
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
