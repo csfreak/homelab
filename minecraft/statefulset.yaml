@@ -59,6 +59,7 @@ spec:
         - name: mc-monitor
           image: mc-monitor
           command:
+            - mc-monitor
             - export-for-prometheus
           env:
             - name: EXPORT_SERVERS
