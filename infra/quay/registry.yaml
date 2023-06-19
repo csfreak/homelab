@@ -10,7 +10,7 @@ spec:
     - kind: postgres
       managed: true
     - kind: objectstorage
-      managed: false
+      managed: true
     - kind: redis
       managed: true
     - kind: horizontalpodautoscaler
