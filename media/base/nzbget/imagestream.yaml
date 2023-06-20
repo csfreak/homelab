@@ -17,7 +17,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "frebib/nzbget-exporter:latest"
+        name: "docker.homelab.csfreak.com/frebib/nzbget-exporter:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
