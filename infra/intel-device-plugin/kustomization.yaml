@@ -5,6 +5,12 @@ resources:
 
 namespace: intel-device-plugin
 
+images:
+  - name: intel/intel-gpu-initcontainer
+    newName: docker.homelab.csfreak.com/intel/intel-gpu-initcontainer
+  - name: intel/intel-gpu-plugin
+    newName: docker.homelab.csfreak.com/intel/intel-gpu-plugin
+
 patches:
   - patch: |-
       - op: add

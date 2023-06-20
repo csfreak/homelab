@@ -9,4 +9,3 @@ spec:
       - docker.com
     containerRuntimeSearchRegistries:
       - docker.homelab.csfreak.com
-      - registry.access.redhat.com
