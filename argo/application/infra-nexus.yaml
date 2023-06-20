@@ -16,7 +16,8 @@ spec:
     syncOptions:
       - Prune=true
       - CreateNamespace=true
-    automated: {}
+    automated:
+      selfHeal: true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
