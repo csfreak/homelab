@@ -6,8 +6,6 @@ spec:
   automaticUpdate:
     disabled: true
   image: registry.connect.redhat.com/sonatype/nexus-repository-manager
-  networking:
-    expose: false
   persistence:
     persistent: true
     storageClass: synology-iscsi-hdd
