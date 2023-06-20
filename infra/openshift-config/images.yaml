@@ -1,0 +1,12 @@
+apiVersion: config.openshift.io/v1
+kind: Image
+metadata:
+  name: cluster
+spec:
+  registrySources:
+    blockedRegistries:
+      - docker.io
+      - docker.com
+    containerRuntimeSearchRegistries:
+      - docker.homelab.csfreak.com
+      - registry.access.redhat.com
