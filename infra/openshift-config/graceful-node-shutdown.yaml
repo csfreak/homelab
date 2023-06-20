@@ -1,0 +1,27 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: graceful-shutdown-worker
+  namespace: openshift-machine-config-operator
+spec:
+  machineConfigPoolSelector:
+    matchExpressions:
+      - key: pools.operator.machineconfiguration.openshift.io/worker
+        operator: Exists
+  kubeletConfig:
+    shutdownGracePeriod: "2m"
+    shutdownGracePeriodCriticalPods: "1m"
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: graceful-shutdown-control
+  namespace: openshift-machine-config-operator
+spec:
+  machineConfigPoolSelector:
+    matchExpressions:
+      - key: pools.operator.machineconfiguration.openshift.io/master
+        operator: Exists
+  kubeletConfig:
+    shutdownGracePeriod: "2m"
+    shutdownGracePeriodCriticalPods: "1m"
