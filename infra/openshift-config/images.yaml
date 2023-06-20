@@ -8,27 +8,24 @@ spec:
       - docker.io
       - docker.com
 ---
-apiVersion: config.openshift.io/v1 
-kind: ImageDigestMirrorSet 
+apiVersion: config.openshift.io/v1
+kind: ImageDigestMirrorSet
 metadata:
   name: docker.io
 spec:
-  imageDigestMirrors: 
-  - mirrors:
-    - docker.homelab.csfreak.com
-    source: docker.io
-    mirrorSourcePolicy: NeverContactSource
+  imageDigestMirrors:
+    - mirrors:
+        - docker.homelab.csfreak.com
+      source: docker.io
+      mirrorSourcePolicy: NeverContactSource
 ---
 apiVersion: config.openshift.io/v1
 kind: ImageTagMirrorSet
 metadata:
   name: docker.io
 spec:
-  imageDigestMirrors:
-  - mirrors:
-    - docker.homelab.csfreak.com
-    source: docker.io
-    mirrorSourcePolicy: NeverContactSource
-~
-~
-~
+  imageTagMirrors:
+    - mirrors:
+        - docker.homelab.csfreak.com
+      source: docker.io
+      mirrorSourcePolicy: NeverContactSource

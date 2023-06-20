@@ -18,7 +18,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.homelab.csfreak.com/granra/plex_exporter:latest"
+        name: "granra/plex_exporter:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -35,7 +35,7 @@ spec:
     - name: latest-distroless-libc
       from:
         kind: DockerImage
-        name: "docker.homelab.csfreak.com/timberio/vector:latest-distroless-libc"
+        name: "timberio/vector:latest-distroless-libc"
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -52,7 +52,7 @@ spec:
 #     - name: latest
 #       from:
 #         kind: DockerImage
-#         name: "docker.homelab.csfreak.com/coleifer/sqlite-web:latest"
+#         name: "coleifer/sqlite-web:latest"
 #       importPolicy:
 #         scheduled: true
 #       referencePolicy:

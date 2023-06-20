@@ -10,7 +10,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.homelab.csfreak.com/homeassistant/home-assistant:latest"
+        name: "homeassistant/home-assistant:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -28,7 +28,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.homelab.csfreak.com/codercom/code-server:latest"
+        name: "codercom/code-server:latest"
       importPolicy:
         scheduled: true
       referencePolicy:

@@ -9,7 +9,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.homelab.csfreak.com/zwavejs/zwave-js-ui:latest"
+        name: "zwavejs/zwave-js-ui:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
