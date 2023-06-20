@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nexus3
+spec:
+  secretName: nexus3-tls
+  commonName: "nexus.homelab.csfreak.com"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - "nexus.homelab.csfreak.com"
+    - "docker.homelab.csfreak.com"
