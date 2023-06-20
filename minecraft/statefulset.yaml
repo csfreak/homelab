@@ -58,8 +58,7 @@ spec:
               memory: "4Gi"
         - name: mc-monitor
           image: mc-monitor
-          command:
-            - mc-monitor
+          args:
             - export-for-prometheus
           env:
             - name: EXPORT_SERVERS
