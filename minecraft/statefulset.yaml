@@ -61,7 +61,7 @@ spec:
           args:
             - export-for-prometheus
           env:
-            - name: EXPORT_SERVERS
+            - name: EXPORT_BEDROCK_SERVERS
               value: localhost
             - name: DEBUG
               value: "true"
