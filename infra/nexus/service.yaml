@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: docker
+  labels:
+    app: nexus3-docker
+spec:
+  ports:
+    - appProtocol: http
+      port: 80
+      protocol: TCP
+      targetPort: 8082
+  selector:
+    app: nexus3

@@ -1,0 +1,33 @@
+apiVersion: apps.m88i.io/v1alpha1
+kind: Nexus
+metadata:
+  name: nexus3
+spec:
+  automaticUpdate:
+    disabled: true
+  image: registry.connect.redhat.com/sonatype/nexus-repository-manager
+  networking:
+    expose: false
+  persistence:
+    persistent: true
+    storageClass: synology-iscsi-hdd
+    volumeSize: 50Gi
+  readinessProbe:
+    failureThreshold: 12
+    initialDelaySeconds: 180
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 15
+  replicas: 1
+  resources:
+    limits:
+      cpu: "2"
+      memory: 2Gi
+    requests:
+      cpu: "1"
+      memory: 2Gi
+  serverOperations:
+    disableOperatorUserCreation: true
+    disableRepositoryCreation: true
+  serviceAccountName: nexus3
+  useRedHatImage: true
