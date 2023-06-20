@@ -10,7 +10,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.io/itzg/mc-monitor:latest"
+        name: "itzg/mc-monitor:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -27,7 +27,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "docker.io/itzg/minecraft-bedrock-server:latest"
+        name: "itzg/minecraft-bedrock-server:latest"
       importPolicy:
         scheduled: true
       referencePolicy:

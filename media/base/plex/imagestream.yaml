@@ -35,7 +35,7 @@ spec:
     - name: latest-distroless-libc
       from:
         kind: DockerImage
-        name: "docker.io/timberio/vector:latest-distroless-libc"
+        name: "timberio/vector:latest-distroless-libc"
       importPolicy:
         scheduled: true
       referencePolicy:
@@ -52,7 +52,7 @@ spec:
 #     - name: latest
 #       from:
 #         kind: DockerImage
-#         name: "docker.io/coleifer/sqlite-web:latest"
+#         name: "coleifer/sqlite-web:latest"
 #       importPolicy:
 #         scheduled: true
 #       referencePolicy:
