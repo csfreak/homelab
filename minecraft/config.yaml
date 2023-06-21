@@ -31,3 +31,6 @@ data:
   #VIEW_DISTANCE: "10"
   #TICK_DISTANCE: "4"
   #MAX_THREADS: "8"
+
+  ALLOW_LIST_USERS: "csfreakazoid"
+  ONLINE_MODE: TRUE
