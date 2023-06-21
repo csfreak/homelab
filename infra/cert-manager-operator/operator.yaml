@@ -1,8 +1,8 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: openshift-cert-manager-operator
-  namespace: openshift-cert-manager-operator
+  name: cert-manager-operator
+  namespace: cert-manager-operator
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
@@ -11,15 +11,14 @@ spec:
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: openshift-cert-manager-operator
-  namespace: openshift-cert-manager-operator
+  name: cert-manager-operator
+  namespace: cert-manager-operator
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
     argocd.argoproj.io/compare-options: IgnoreExtraneous
 spec:
   channel: stable-v1
   installPlanApproval: Automatic
-  name: openshift-cert-manager-operator
+  name: cert-manager-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: openshift-cert-manager.v1.7.1
