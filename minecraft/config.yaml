@@ -33,4 +33,4 @@ data:
   #MAX_THREADS: "8"
 
   ALLOW_LIST_USERS: "csfreakazoid"
-  ONLINE_MODE: TRUE
+  ONLINE_MODE: "true"
