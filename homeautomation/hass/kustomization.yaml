@@ -3,7 +3,7 @@ resources:
   - pvc.yaml
   - deployment.yaml
   - service.yaml
-  # - monitoring.yaml
+  - monitoring.yaml
   - route.yaml
 
 commonLabels:
