@@ -13,11 +13,13 @@ spec:
       WORKDIR /app
       ADD https://github.com/Pugmatt/BedrockConnect/releases/latest/download/BedrockConnect-1.0-SNAPSHOT.jar .
       EXPOSE 19132/udp
+
       ENV SERVERSFILE \
-          FEATUREDSERVERS=false
+          FEATUREDSERVERS=false \
           USERSERVERS=false \
           NODB=true
-      CMD [\
+
+      CMD [ \
         "java", \
         "-Xms256M", \
         "-Xmx256M", \
@@ -25,8 +27,9 @@ spec:
         "BedrockConnect-1.0-SNAPSHOT.jar", \
         "nodb=${NODB}", \
         "featured_servers=${FEATUREDSERVERS}", \
-        "user_servers=${USERSERVERS}"
+        "user_servers=${USERSERVERS}", \
         "custom_servers=${SERVERFILE}"]
+
   strategy:
     dockerStrategy:
       from:
