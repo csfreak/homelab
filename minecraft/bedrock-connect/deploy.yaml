@@ -18,7 +18,12 @@ spec:
         alpha.image.policy.openshift.io/resolve-names: "*"
     spec:
       containers:
-        - args:
+        - command:
+            - java
+            - -Xms128M
+            - -Xms256M
+            - -jar
+            - BedrockConnect-1.0-SNAPSHOT.jar
             - nodb=true
             - featured_servers=false
             - user_servers=false

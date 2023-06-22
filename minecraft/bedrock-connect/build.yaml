@@ -16,19 +16,6 @@ spec:
       .
 
       EXPOSE 19132/udp
-
-      ENV SERVERSFILE="/config/serverlist.json
-          FEATUREDSERVERS=false
-          USERSERVERS=false
-          NODB=true
-          HOME=/app
-
-      CMD ["java",
-           "-Xms128M",
-           "-Xmx256M",
-           "-jar",
-           "BedrockConnect-1.0-SNAPSHOT.jar"]
-
   strategy:
     dockerStrategy:
       from:
