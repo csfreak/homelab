@@ -1,0 +1,42 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: bedrock-connect
+spec:
+  runPolicy: SerialLatestOnly
+  triggers:
+    - type: ImageChange
+      imageChange: {}
+  source:
+    dockerfile: |-
+      FROM openjdk:11
+      WORKDIR /app
+      ADD https://github.com/Pugmatt/BedrockConnect/releases/latest/download/BedrockConnect-1.0-SNAPSHOT.jar 
+      EXPOSE 19132/udp
+      ENV SERVERSFILE \
+          FEATUREDSERVERS=false
+          USERSERVERS=false \
+          NODB=true
+      CMD [\
+        "java", \
+        "-Xms256M", \
+        "-Xmx256M", \
+        "-jar", \
+        "BedrockConnect-1.0-SNAPSHOT.jar", \
+        "nodb=${NODB}", \
+        "featured_servers=${FEATUREDSERVERS}", \
+        "user_servers=${USERSERVERS}"
+        "custom_servers=${SERVERFILE}"]
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: java-runtime:openjdk-11-ubi8
+        namespace: openshift
+      imageOptimizationPolicy: SkipLayers
+  output:
+    to:
+      kind: ImageStreamTag
+      name: bedrock-connect:latest
+  successfulBuildsHistoryLimit: 2
+  failedBuildsHistoryLimit: 2

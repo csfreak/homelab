@@ -2,24 +2,21 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  labels:
-    app: bds
   annotations:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"minecraft-bedrock-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"main\")].image"},
       {"from":{"kind":"ImageStreamTag","name":"mc-monitor:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mc-monitor\")].image"}]
-  name: bds
+  name: bedrock-server
 spec:
   # never more than 1 since BDS is not horizontally scalable
   replicas: 1
-  serviceName: bds
   selector:
     matchLabels:
-      app: bds
+      deployment: bedrock-server
   template:
     metadata:
       labels:
-        app: bds
+        deployment: bedrock-server
       annotations:
         alpha.image.policy.openshift.io/resolve-names: "*"
     spec:
@@ -29,7 +26,7 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: minecraft-bedrock
+                name: bedrock-config
           volumeMounts:
             - mountPath: /data
               name: minecraft-data
@@ -71,7 +68,7 @@ spec:
               protocol: TCP
   volumeClaimTemplates:
     - metadata:
-        name: minecraft-data
+        name: bedrock-data
       spec:
         storageClassName: synology-nfs-storage-hdd
         accessModes:

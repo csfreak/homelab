@@ -1,0 +1,14 @@
+resources:
+  - imagestream.yaml
+  - build.yaml
+  - service.yaml
+  - deploy.yaml
+
+commonLabels:
+  app: bdc
+  app.kubernetes.io/component: bedrock-connect
+
+configMapGenerator:
+  - name: minecraft-serverlist
+    files:
+      - serverlist.json

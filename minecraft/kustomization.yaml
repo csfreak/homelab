@@ -1,13 +1,6 @@
 resources:
-  - imagestream.yaml
-  - config.yaml
-  - statefulset.yaml
-  - service.yaml
-  - monitoring.yaml
-
-commonLabels:
-  app: bds
-  app.kubernetes.io/component: bds
+  - bedrock-server/
+  - bedrock-connect/
 
 labels:
   - pairs:

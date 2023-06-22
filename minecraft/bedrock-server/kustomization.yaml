@@ -1,0 +1,14 @@
+resources:
+  - imagestream.yaml
+  - statefulset.yaml
+  - service.yaml
+  - monitoring.yaml
+
+commonLabels:
+  app: bds
+  app.kubernetes.io/component: bedrock-server
+
+configMapGenerator:
+  - name: bedrock-config
+    envs:
+      - bedrockconfig.env

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bedrock-connect
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"bedrock-connect:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"bedrock-conect\")].image"}]
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: bedrock-connect
+  template:
+    metadata:
+      labels:
+        deployment: bedrock-connect
+      annotations:
+        alpha.image.policy.openshift.io/resolve-names: "*"
+    spec:
+      containers:
+        - env:
+            - name: SERVERLIST
+              value: /config/serverlist.json
+          name: bedrock-connect
+          image: bedrock-connect:latest
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 50m
+            requests:
+              memory: 256Mi
+              cpu: 10m
+          ports:
+            - containerPort: 19132
+              name: bds
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: minecraft-serverlist
