@@ -11,7 +11,7 @@ spec:
     dockerfile: >-
       FROM openjdk:11
 
-      ADD --chown=jboss:jboss 
+      ADD --chown=jboss:jboss --chmod=777
       https://github.com/Pugmatt/BedrockConnect/releases/latest/download/BedrockConnect-1.0-SNAPSHOT.jar
       .
 
