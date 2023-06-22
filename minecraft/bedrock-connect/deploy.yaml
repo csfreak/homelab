@@ -18,9 +18,16 @@ spec:
         alpha.image.policy.openshift.io/resolve-names: "*"
     spec:
       containers:
-        - env:
-            - name: SERVERLIST
-              value: /config/serverlist.json
+        - command:
+            - java
+            - -Xms256M
+            - -Xmx256M
+            - -jar
+            - BedrockConnect-1.0-SNAPSHOT.jar
+            - nodb=true
+            - featured_servers=false
+            - user_servers=false
+            - custom_servers=/config/serverlist.json
           name: bedrock-connect
           image: bedrock-connect:latest
           resources:

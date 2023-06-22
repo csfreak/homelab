@@ -14,22 +14,6 @@ spec:
       ADD --chown=jboss:jboss https://github.com/Pugmatt/BedrockConnect/releases/latest/download/BedrockConnect-1.0-SNAPSHOT.jar .
       EXPOSE 19132/udp
 
-      ENV SERVERSFILE \
-          FEATUREDSERVERS=false \
-          USERSERVERS=false \
-          NODB=true
-
-      CMD [ \
-        "java", \
-        "-Xms256M", \
-        "-Xmx256M", \
-        "-jar", \
-        "BedrockConnect-1.0-SNAPSHOT.jar", \
-        "nodb=${NODB}", \
-        "featured_servers=${FEATUREDSERVERS}", \
-        "user_servers=${USERSERVERS}", \
-        "custom_servers=${SERVERFILE}"]
-
   strategy:
     dockerStrategy:
       from:
