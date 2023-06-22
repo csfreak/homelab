@@ -2,4 +2,6 @@ kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:
   name: bedrock-connect
-spec: {}
+spec:
+  lookupPolicy:
+    local: true
