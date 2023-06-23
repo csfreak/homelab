@@ -10,6 +10,6 @@ spec:
     matchLabels:
       app: zwavejs
   endpoints:
-    - port: http
+    - port: zwavejs-http
       path: /metrics
       interval: 10s
