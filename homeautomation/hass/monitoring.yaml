@@ -9,7 +9,7 @@ spec:
       - homeautomation
   selector:
     matchLabels:
-      deployment: hass
+      app: homeassistant
   endpoints:
     - port: hass-http
       path: /api/prometheus

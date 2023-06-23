@@ -8,7 +8,7 @@ spec:
       - homeautomation
   selector:
     matchLabels:
-      deployment: zwavejs
+      app: zwavejs
   endpoints:
     - port: http
       path: /metrics
