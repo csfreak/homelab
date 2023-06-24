@@ -49,10 +49,7 @@ spec:
           envFrom:
             - secretRef:
                 name: hass-db-user
-              prefix: MYSQL_
-          env:
-            - name: DATA_SOURCE_NAME
-              value: $(MYSQL_USER):$(MYSQL_PASSWORD)@tcp(localhost:3306)/
+              prefix: MYSQLD_EXPORTER_
           resources:
             limits:
               memory: 50M
@@ -61,6 +58,8 @@ spec:
               memory: 20M
               cpu: 10m
           args:
+            - --mysqld.address=localhost:3306
+            - --mysqld.username=$(MYSQLD_EXPORTER_USER)
             - --collect.info_schema.innodb_metrics
             - --collect.info_schema.tables
             - --collect.engine_innodb_status
