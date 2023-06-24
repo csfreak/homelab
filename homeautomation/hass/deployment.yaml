@@ -10,7 +10,7 @@ metadata:
   namespace: homeautomation
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: hass
