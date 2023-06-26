@@ -83,7 +83,6 @@ spec:
               name: zwave-stick
         - name: backup
           image: minio-backup-sidecar:latest
-          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: zwavejs-backup
