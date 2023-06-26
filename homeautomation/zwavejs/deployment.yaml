@@ -81,6 +81,7 @@ spec:
               name: zwave-stick
         - name: backup
           image: ghcr.io/csfreak/minio-backup-sidecar:latest
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: zwavejs-backup

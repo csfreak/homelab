@@ -11,9 +11,8 @@ spec:
     server: https://kubernetes.default.svc
   ignoreDifferences:
     - group: apps
-      jsonPointers:
-        - /spec/template/spec/containers/0/image
-        - /spec/template/spec/containers/1/image
+      jqPathExpressions:
+        - .spec.template.spec.containers[].image
       kind: Deployment
     - jsonPointers:
         - /data
