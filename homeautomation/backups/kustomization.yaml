@@ -1,0 +1,11 @@
+resources:
+  - imagestream.yaml
+  - backup-secret.yaml
+
+commonLabels:
+  app: backups
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: backups
+      app.kubernetes.io/component: backups

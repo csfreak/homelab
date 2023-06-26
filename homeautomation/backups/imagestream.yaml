@@ -1,0 +1,16 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: minio-backup-sidecar
+spec:
+  lookupPolicy:
+    local: true
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: "minio-backup-sidecar:latest"
+      importPolicy:
+        scheduled: true
+      referencePolicy:
+        type: Local

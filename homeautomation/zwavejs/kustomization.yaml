@@ -3,7 +3,6 @@ resources:
   - pvc.yaml
   - serviceaccount.yaml
   - secret.yaml
-  - backup-secret.yaml
   - deployment.yaml
   - service.yaml
   - monitoring.yaml

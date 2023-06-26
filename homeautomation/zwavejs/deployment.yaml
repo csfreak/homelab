@@ -2,7 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")]"}]'
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")]"},
+      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")]"}]'
   name: zwavejs
 spec:
   replicas: 1
@@ -15,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        alpha.image.policy.openshift.io/resolve-names: zwavejs
+        alpha.image.policy.openshift.io/resolve-names: "*"
       labels:
         deployment: zwavejs
     spec:
@@ -80,14 +82,14 @@ spec:
             - mountPath: /dev/ttyUSB0
               name: zwave-stick
         - name: backup
-          image: ghcr.io/csfreak/minio-backup-sidecar:latest
+          image: minio-backup-sidecar:latest
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: zwavejs-backup
               prefix: CONF_
             - secretRef:
-                name: zwavejs-backup
+                name: backup-credentials
               prefix: CONF_MINIO__
           resources:
             requests:

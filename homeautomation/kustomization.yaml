@@ -3,3 +3,4 @@ resources:
   - hassdb
   - zwavejs
   - cyberpower
+  - backups
