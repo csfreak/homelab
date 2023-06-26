@@ -9,7 +9,7 @@ spec:
     - name: latest
       from:
         kind: DockerImage
-        name: "minio-backup-sidecar:latest"
+        name: "ghcr.io/csfreak/minio-backup-sidecar:latest"
       importPolicy:
         scheduled: true
       referencePolicy:
