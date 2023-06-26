@@ -87,7 +87,7 @@ spec:
               prefix: CONF_
             - secretRef:
                 name: zwavejs-backup
-              PREFIX: CONF_MINIO__
+              prefix: CONF_MINIO__
           resources:
             requests:
               memory: 64Mi
