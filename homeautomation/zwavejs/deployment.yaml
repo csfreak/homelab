@@ -79,6 +79,25 @@ spec:
               name: backups
             - mountPath: /dev/ttyUSB0
               name: zwave-stick
+        - name: backup
+          image: ghcr.io/csfreak/minio-backup-sidecar:latest
+          envFrom:
+            - configMapRef:
+                name: zwavejs-backup
+              prefix: CONF_
+            - secretRef:
+                name: zwavejs-backup
+              PREFIX: CONF_MINIO__
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 1m
+            limits:
+              memory: 128Mi
+              cpu: 10m
+          volumeMounts:
+            - mountPath: /zwavejs
+              name: backups
       nodeSelector:
         feature.node.kubernetes.io/usb-10c4_ea60.present: "true"
       serviceAccountName: zwave-run-user
