@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")]"},
-      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")]"}]'
+      [{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")].image"},
+      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")].image"}]'
   name: zwavejs
 spec:
   replicas: 1
@@ -92,10 +92,10 @@ spec:
               prefix: CONF_MINIO__
           resources:
             requests:
-              memory: 64Mi
+              memory: 16Mi
               cpu: 1m
             limits:
-              memory: 128Mi
+              memory: 32Mi
               cpu: 10m
           volumeMounts:
             - mountPath: /zwavejs
