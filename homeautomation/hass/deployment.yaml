@@ -109,7 +109,7 @@ spec:
               cpu: 10m
           volumeMounts:
             - mountPath: /config
-              name: backups
+              name: hass-config
       securityContext:
         runAsNonRoot: true
       volumes:
