@@ -39,7 +39,7 @@ spec:
   targets:
     staticConfig:
       static:
-        - storage.homelab.csfreak.com
+        - ups.homelab.csfreak.com
   metricRelabelings:
     - sourceLabels:
         - "__name__"
@@ -65,7 +65,7 @@ spec:
   targets:
     staticConfig:
       static:
-        - ups.homelab.csfreak.com
+        - storage.homelab.csfreak.com
   metricRelabelings:
     - sourceLabels:
         - "__name__"
