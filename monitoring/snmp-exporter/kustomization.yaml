@@ -3,6 +3,7 @@ resources:
   - deploy.yaml
   - service.yaml
   - probes.yaml
+  - service-monitor.yaml
 
 commonLabels:
   app: snmp-exporter
@@ -11,11 +12,3 @@ labels:
   - pairs:
       app.kubernetes.io/component: exporter
       app.kubernetes.io/part-of: snmp-exporter
-
-configMapGenerator:
-  - name: snmp-exporter-config
-    files:
-      - snmp.yml
-    options:
-      annotations:
-        argocd.argoproj.io/sync-options: ServerSideApply=true

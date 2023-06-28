@@ -13,15 +13,16 @@ spec:
   targets:
     staticConfig:
       static:
-        - 172.31.1.65
+        - router.homelab.csfreak.com
   metricRelabelings:
     - sourceLabels:
         - "__name__"
       targetLabel: "__name__"
       regex: "^(?:snmp_){0}(.*)"
       replacement: "snmp_value_$1"
-    - targetLabel: module
-      replacement: mikrotik
+    - sourceLabels:
+        - "__params_module"
+      targetLabel: "module"
 ---
 kind: Probe
 apiVersion: monitoring.coreos.com/v1
@@ -38,15 +39,16 @@ spec:
   targets:
     staticConfig:
       static:
-        - 172.31.1.5
+        - storage.homelab.csfreak.com
   metricRelabelings:
     - sourceLabels:
         - "__name__"
       targetLabel: "__name__"
       regex: "^(?:snmp_){0}(.*)"
       replacement: "snmp_value_$1"
-    - targetLabel: module
-      replacement: cyberpower
+    - sourceLabels:
+        - "__params_module"
+      targetLabel: "module"
 ---
 kind: Probe
 apiVersion: monitoring.coreos.com/v1
@@ -63,12 +65,13 @@ spec:
   targets:
     staticConfig:
       static:
-        - 172.31.1.194
+        - ups.homelab.csfreak.com
   metricRelabelings:
     - sourceLabels:
         - "__name__"
       targetLabel: "__name__"
       regex: "^(?:snmp_){0}(.*)"
       replacement: "snmp_value_$1"
-    - targetLabel: module
-      replacement: synology
+    - sourceLabels:
+        - "__params_module"
+      targetLabel: "module"

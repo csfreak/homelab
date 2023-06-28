@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: snmp-exporter-metrics
+spec:
+  selector:
+    matchLabels:
+      app: snmp-exporter
+  endpoints:
+    - port: snmp-exporter
+      path: /metrics
+      interval: 10s
