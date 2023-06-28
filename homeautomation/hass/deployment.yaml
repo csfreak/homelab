@@ -6,9 +6,8 @@ metadata:
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"homeassistant:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"hass-server\")].image"},
       {"from":{"kind":"ImageStreamTag","name":"code-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"code-server\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest","namespace":"homeautomation"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")].image"}]'
+      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")].image"}]
   name: hass
-  namespace: homeautomation
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -95,7 +94,7 @@ spec:
           image: minio-backup-sidecar:latest
           envFrom:
             - configMapRef:
-                name: hass-backup
+                name: hass-backup-8bdgfg5cgf
               prefix: CONF_
             - secretRef:
                 name: backup-credentials

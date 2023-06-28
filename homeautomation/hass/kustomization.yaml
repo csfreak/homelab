@@ -15,7 +15,12 @@ labels:
       app.kubernetes.io/name: hass
     includeTemplates: true
 
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
 configMapGenerator:
   - name: hass-backup
+    behavior: create
     envs:
       - backup-conf.env

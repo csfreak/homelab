@@ -18,6 +18,10 @@ labels:
       app.kubernetes.io/component: zwavejs
     includeTemplates: true
 
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
 configMapGenerator:
   - name: zwavejs-env
     envs:
