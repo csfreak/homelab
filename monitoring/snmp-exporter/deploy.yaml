@@ -3,19 +3,16 @@ kind: Deployment
 metadata:
   name: snmp-exporter
   annotations:
-    app.kubernetes.io/component: snmp-exporter
-    app.kubernetes.io/instance: snmp-exporter
-    app.kubernetes.io/part-of: snmp-exporter
     image.openshift.io/triggers: >-
       [{"from":{"kind":"ImageStreamTag","name":"snmp-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"snmp-exporter")].image"}]
 spec:
   selector:
     matchLabels:
-      app: snmp-exporter
+      deploy: snmp-exporter
   template:
     metadata:
       labels:
-        app: snmp-exporter
+        deploy: snmp-exporter
     spec:
       containers:
         - name: snmp-exporter

@@ -1,12 +1,2 @@
 resources:
-  - imagestreams.yaml
-  - snmp-exporter-deploy.yaml
-  - snmp-exporter-podmonitor.yaml
-
-configMapGenerator:
-  - name: snmp-exporter-config
-    files:
-      - snmp.yml
-    options:
-      annotations:
-        argocd.argoproj.io/sync-options: ServerSideApply=true
+  - snmp-exporter/

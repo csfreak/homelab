@@ -1,0 +1,74 @@
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: snmp-metrics-mikrotik
+  namespace: monitoring
+spec:
+  interval: 30s
+  module: mikrotik
+  prober:
+    url: snmp-exporter.monitoring.svc.cluster.local:9116
+    path: /snmp
+    scheme: http
+  targets:
+    staticConfig:
+      static:
+        - 172.31.1.65
+  metricRelabelings:
+    - sourceLabels:
+        - "__name__"
+      targetLabel: "__name__"
+      regex: "^(?:snmp_){0}(.*)"
+      replacement: "snmp_value_$1"
+    - targetLabel: module
+      replacement: mikrotik
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: snmp-metrics-cyberpower
+  namespace: monitoring
+spec:
+  interval: 30s
+  module: cyberpower
+  prober:
+    url: snmp-exporter.monitoring.svc.cluster.local:9116
+    path: /snmp
+    scheme: http
+  targets:
+    staticConfig:
+      static:
+        - 172.31.1.5
+  metricRelabelings:
+    - sourceLabels:
+        - "__name__"
+      targetLabel: "__name__"
+      regex: "^(?:snmp_){0}(.*)"
+      replacement: "snmp_value_$1"
+    - targetLabel: module
+      replacement: cyberpower
+---
+kind: Probe
+apiVersion: monitoring.coreos.com/v1
+metadata:
+  name: snmp-metrics-synology
+  namespace: monitoring
+spec:
+  interval: 30s
+  module: synology
+  prober:
+    url: snmp-exporter.monitoring.svc.cluster.local:9116
+    path: /snmp
+    scheme: http
+  targets:
+    staticConfig:
+      static:
+        - 172.31.1.194
+  metricRelabelings:
+    - sourceLabels:
+        - "__name__"
+      targetLabel: "__name__"
+      regex: "^(?:snmp_){0}(.*)"
+      replacement: "snmp_value_$1"
+    - targetLabel: module
+      replacement: synology

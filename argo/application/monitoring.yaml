@@ -11,13 +11,9 @@ spec:
     server: https://kubernetes.default.svc
   project: monitoring
   ignoreDifferences:
-    - group: integreatly.org
-      jsonPointers:
-        - /spec/datasources/0/secureJsonData/httpHeaderValue1
-      kind: GrafanaDataSource
     - group: apps
-      jsonPointers:
-        - /spec/template/spec/containers/0/image
+      jqPathExpressions:
+        - .spec.template.spec.containers[] | .image
       kind: Deployment
     - jsonPointers:
         - /data
@@ -30,7 +26,6 @@ spec:
     automated:
       prune: true
     syncOptions:
-      - ApplyOutOfSyncOnly=true
       - RespectIgnoreDifferences=true
       - CreateNamespace=true
     managedNamespaceMetadata:
