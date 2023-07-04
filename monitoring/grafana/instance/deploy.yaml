@@ -54,8 +54,13 @@ spec:
           volumeMounts:
             - mountPath: /etc/grafana
               name: grafana-config
+            - mountPath: /etc/grafana/provisioning/datasources
+              name: grafana-datasources
       serviceAccountName: grafana
       volumes:
         - name: grafana-config
           configMap:
             name: grafana-config
+        - name: grafana-datasources
+          configMap:
+            name: grafana-datasources
