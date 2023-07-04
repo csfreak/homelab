@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: grafana
-          image: grafana/grafana:10
+          image: grafana/grafana:10.0.1
           imagePullPolicy: Always
           envFrom:
             - secretRef:
