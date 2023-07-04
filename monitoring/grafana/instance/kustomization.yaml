@@ -1,0 +1,22 @@
+commonLabels:
+  app: grafana
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: grafana
+      app.kubernetes.io/component: grafana
+
+resources:
+  - serviceaccount.yaml
+  - rolebinding.yaml
+  - deploy.yaml
+  - service.yaml
+  - route.yaml
+
+configMapGenerator:
+  - name: grafana-config
+    files:
+      - grafana.ini
+  - name: grafana-env
+    envs:
+      - grafana.env

@@ -1,0 +1,51 @@
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: MariaDB
+metadata:
+  name: grafana-db
+spec:
+  rootPasswordSecretKeyRef:
+    name: grafana-db-root
+    key: PASSWORD
+  image:
+    repository: mariadb
+    tag: "10.11"
+    pullPolicy: IfNotPresent
+  port: 3306
+  volumeClaimTemplate:
+    resources:
+      requests:
+        storage: 10Gi
+    storageClassName: synology-iscsi-hdd
+    accessModes:
+      - ReadWriteOnce
+  myCnfConfigMapKeyRef:
+    name: grafana-db-config
+    key: my.cnf
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
+  env:
+    - name: TZ
+      value: UTC
+  securityContext:
+    allowPrivilegeEscalation: false
+  metrics:
+    exporter:
+      image:
+        repository: prometheus/mysqld-exporter
+        pullPolicy: IfNotPresent
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 300m
+          memory: 512Mi
+    serviceMonitor:
+      prometheusRelease: openshift-user-workload-monitoring
+      interval: 10s
+      scrapeTimeout: 10s

@@ -1,0 +1,22 @@
+commonLabels:
+  app: grafana-db
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: mariadb
+      app.kubernetes.io/component: database
+      app.kubernetes.io/version: "10.11"
+
+resources:
+  - external-secret.yaml
+  - mariadb.yaml
+  - database.yaml
+  - user.yaml
+  - grant.yaml
+
+configMapGenerator:
+  - name: grafana-db-config
+    files:
+      - my.cnf
+    options:
+      disableNameSuffixHash: true

@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: grafana-metrics
+spec:
+  selector:
+    matchLabels:
+      app: grafana
+  endpoints:
+    - port: http-grafana
+      path: /metrics
+      interval: 10s

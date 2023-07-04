@@ -1,0 +1,11 @@
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Grant
+metadata:
+  name: grafana-db
+spec:
+  mariaDbRef:
+    name: grafana-db
+  privileges:
+    - "ALL"
+  database: "grafana"
+  username: grafana
