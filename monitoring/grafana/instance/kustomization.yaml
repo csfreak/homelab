@@ -7,6 +7,7 @@ labels:
       app.kubernetes.io/component: grafana
 
 resources:
+  - config/
   - serviceaccount.yaml
   - rolebinding.yaml
   - deploy.yaml
@@ -14,9 +15,6 @@ resources:
   - route.yaml
 
 configMapGenerator:
-  - name: grafana-config
-    files:
-      - grafana.ini
   - name: grafana-env
     envs:
       - grafana.env

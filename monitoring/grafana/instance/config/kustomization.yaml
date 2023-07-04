@@ -1,0 +1,10 @@
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+configMapGenerator:
+  - name: grafana-config
+    files:
+      - grafana.ini
+      - provisioning/datasources/openshift.yaml=datasources/openshift.yaml

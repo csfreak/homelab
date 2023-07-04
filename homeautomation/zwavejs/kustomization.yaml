@@ -21,6 +21,7 @@ labels:
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
 
 configMapGenerator:
   - name: zwavejs-env
