@@ -36,7 +36,7 @@ spec:
   metrics:
     exporter:
       image:
-        repository: prometheus/mysqld-exporter
+        repository: prom/mysqld-exporter
         pullPolicy: IfNotPresent
       resources:
         requests:
