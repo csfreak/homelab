@@ -28,6 +28,7 @@ spec:
     syncOptions:
       - RespectIgnoreDifferences=true
       - CreateNamespace=true
+      - PruneLast=true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
