@@ -4,7 +4,7 @@ metadata:
   name: grafana-db
 spec:
   mariaDbRef:
-    name: grafana
+    name: grafana-db
   passwordSecretKeyRef:
     name: grafana-db-user
     key: PASSWORD
