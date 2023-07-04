@@ -36,7 +36,8 @@ spec:
   metrics:
     exporter:
       image:
-        repository: prom/mysqld-exporter:v0.14.0
+        repository: prom/mysqld-exporter
+        tag: v0.14.0
         pullPolicy: IfNotPresent
       resources:
         requests:
