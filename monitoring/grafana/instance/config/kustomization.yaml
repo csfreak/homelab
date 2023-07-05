@@ -7,6 +7,12 @@ configMapGenerator:
   - name: grafana-config
     files:
       - grafana.ini
-  - name: grafana-datasources
+  - name: grafana-provisoning
     files:
-      - datasources/openshift.yaml
+      - provisioning/datasources.yaml
+      - provisioning/dashboards.yaml
+  - name: grafana-dashboards
+    files:
+      - dashboards/argocd.json
+    options:
+      disableNameSuffixHash: true
