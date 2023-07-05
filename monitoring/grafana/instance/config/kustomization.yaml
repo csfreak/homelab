@@ -16,3 +16,4 @@ configMapGenerator:
       - dashboards/argocd.json
     options:
       disableNameSuffixHash: true
+      immutable: false
