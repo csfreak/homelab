@@ -7,7 +7,7 @@ configMapGenerator:
   - name: grafana-config
     files:
       - grafana.ini
-  - name: grafana-provisoning
+  - name: grafana-provisioning
     files:
       - provisioning/datasources.yaml
       - provisioning/dashboards.yaml
