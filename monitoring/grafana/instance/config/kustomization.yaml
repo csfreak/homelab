@@ -17,5 +17,6 @@ configMapGenerator:
   - name: grafana-dashboards
     files:
       - dashboards/argocd.json
+      - dashboards/closet.json
     options:
       disableNameSuffixHash: true
