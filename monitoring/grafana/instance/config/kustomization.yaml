@@ -1,19 +1,21 @@
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
-  immutable: true
 
 configMapGenerator:
   - name: grafana-config
     files:
       - grafana.ini
+    options:
+      immutable: true
   - name: grafana-provisioning
     files:
       - provisioning/datasources.yaml
       - provisioning/dashboards.yaml
+    options:
+      immutable: true
   - name: grafana-dashboards
     files:
       - dashboards/argocd.json
     options:
       disableNameSuffixHash: true
-      immutable: false
