@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: grafana
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: grafana
