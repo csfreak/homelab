@@ -15,3 +15,11 @@ datasources:
       httpHeaderValue1: Bearer $__file{/run/secrets/kubernetes.io/serviceaccount/token}
     version: 1
     editable: false
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://lokistack-logging-querier-http.openshift-logging.svc.cluster.local:3100
+    basicAuth: false
+    jsonData:
+      maxLines: 1000
+    secureJsonData: {}
