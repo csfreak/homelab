@@ -45,7 +45,8 @@ spec:
             - name: http-data
               mountPath: /var/www/html/
             - name: nginx-conf
-              mountPath: /etc/nginx/
+              mountPath: /etc/nginx/nginx.conf
+              subpath: nginx.conf
       volumes:
         - name: data
           persistentVolumeClaim:
