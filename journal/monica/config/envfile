@@ -10,3 +10,4 @@ CACHE_DRIVER=redis
 SESSION_DRIVER=redis
 QUEUE_DRIVER=redis
 REDIS_HOST=redis.journal.svc
+REDIS_CLIENT=predis
