@@ -18,8 +18,9 @@ datasources:
   - name: Loki
     type: loki
     access: proxy
-    url: http://lokistack-logging-querier-http.openshift-logging.svc.cluster.local:3100
+    url: http://lokistack-logging-query-frontend-http.openshift-logging.svc.cluster.local:3100
     basicAuth: false
     jsonData:
       maxLines: 1000
     secureJsonData: {}
+    version: 2
