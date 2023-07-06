@@ -7,7 +7,7 @@ spec:
     deployment: monica-web
   ports:
     - port: 80
-      targetPort: http
+      targetPort: http-alt
       name: http
       protocol: TCP
       appProtocol: http
