@@ -23,7 +23,7 @@ spec:
             - sh
             - -c
             - >-
-              cp /var/www/html /http-data; 
+              cp -a /var/www/html /http-data; 
               ln -sf /http-data/storage/app/public /http-data/public/storage
           volumeMounts:
             - name: http-data
