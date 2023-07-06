@@ -10,14 +10,6 @@ spec:
     namespace: journal
     server: https://kubernetes.default.svc
   project: tools
-  ignoreDifferences:
-    - group: apps
-      jqPathExpressions:
-        - .spec.template.spec.containers[].image
-      kind: Deployment
-    - jsonPointers:
-        - /data
-      kind: Secret
   source:
     path: journal
     repoURL: https://github.com/csfreak/homelab.git
@@ -26,7 +18,6 @@ spec:
     automated:
       prune: true
     syncOptions:
-      - RespectIgnoreDifferences=true
       - CreateNamespace=true
       - PruneLast=true
     managedNamespaceMetadata:

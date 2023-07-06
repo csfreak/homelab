@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: nginx
     app.kubernetes.io/component: webserver
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: monica-web

@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: monica
     app.kubernetes.io/component: monica
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: monica-app

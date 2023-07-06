@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: cron
     app.kubernetes.io/component: cron
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: monica-cron

@@ -6,6 +6,7 @@ metadata:
     app.kubernetes.io/name: queue
     app.kubernetes.io/component: queue
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: monica-queue
