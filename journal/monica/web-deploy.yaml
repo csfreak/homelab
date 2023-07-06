@@ -46,6 +46,8 @@ spec:
               mountPath: /var/www/html/
             - name: nginx-conf
               mountPath: /etc/nginx/conf.d/
+            - name: cache
+              mountPath: /var/cache/nginx
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -54,4 +56,6 @@ spec:
           configMap:
             name: monica-nginx-config
         - name: http-data
+          emptydir: {}
+        - name: cache
           emptydir: {}
