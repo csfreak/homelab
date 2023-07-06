@@ -18,5 +18,7 @@ configMapGenerator:
     files:
       - dashboards/argocd.json
       - dashboards/closet.json
+      - dashboards/mysql.json
+      - dashboards/redis.json
     options:
       disableNameSuffixHash: true
