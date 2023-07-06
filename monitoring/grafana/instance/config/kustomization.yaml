@@ -23,3 +23,5 @@ configMapGenerator:
       - dashboards/metallb.json
     options:
       disableNameSuffixHash: true
+      annotations:
+        argocd.argoproj.io/sync-options: ServerSideApply=true
