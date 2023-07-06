@@ -13,14 +13,47 @@ datasources:
       httpHeaderName1: Authorization
     secureJsonData:
       httpHeaderValue1: Bearer $__file{/run/secrets/kubernetes.io/serviceaccount/token}
-    version: 1
+    version: 3
     editable: false
-  - name: Loki
+  - name: Loki - Application
     type: loki
     access: proxy
-    url: http://lokistack-logging-query-frontend-http.openshift-logging.svc.cluster.local:3100
+    orgId: 1
+    url: https://lokistack-logging-gateway-http.openshift-logging.svc.cluster.local:8080/api/logs/v1/application/
     basicAuth: false
     jsonData:
       maxLines: 1000
-    secureJsonData: {}
-    version: 2
+      tlsSkipVerify: true
+      manageAlerts: false
+      httpHeaderName1: Authorization
+    secureJsonData:
+      httpHeaderValue1: Bearer $__file{/run/secrets/kubernetes.io/serviceaccount/token}
+    version: 3
+  - name: Loki - Infrastructure
+    type: loki
+    access: proxy
+    orgId: 1
+    url: https://lokistack-logging-gateway-http.openshift-logging.svc.cluster.local:8080/api/logs/v1/infrastructur/
+    basicAuth: false
+    jsonData:
+      maxLines: 1000
+      tlsSkipVerify: true
+      manageAlerts: false
+      httpHeaderName1: Authorization
+    secureJsonData:
+      httpHeaderValue1: Bearer $__file{/run/secrets/kubernetes.io/serviceaccount/token}
+    version: 3
+  - name: Loki - Audit
+    type: loki
+    access: proxy
+    orgId: 1
+    url: https://lokistack-logging-gateway-http.openshift-logging.svc.cluster.local:8080/api/logs/v1/audit/
+    basicAuth: false
+    jsonData:
+      maxLines: 1000
+      tlsSkipVerify: true
+      manageAlerts: false
+      httpHeaderName1: Authorization
+    secureJsonData:
+      httpHeaderValue1: Bearer $__file{/run/secrets/kubernetes.io/serviceaccount/token}
+    version: 3
