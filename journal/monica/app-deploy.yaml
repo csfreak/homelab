@@ -20,12 +20,16 @@ spec:
       containers:
         - name: app
           image: monica:fpm
+          command:
+            - /launch/launch-php.sh
           envFrom:
             - configMapRef:
                 name: monica-env
             - secretRef:
                 name: monica-db-user
               prefix: DB_
+            - secretRef:
+                name: monica-app-key
           ports:
             - name: monica-fcgi
               containerPort: 9000
@@ -39,6 +43,8 @@ spec:
               mountPath: /var/www/html/storage
             - name: php-ini
               mountPath: /usr/local/etc/php
+            - name: launch-script
+              mountPath: /launch
       volumes:
         - name: data
           persistentVolumeClaim:
@@ -46,3 +52,7 @@ spec:
         - name: php-ini
           configMap:
             name: monica-php-ini
+        - name: launch-script
+          configMap:
+            name: monica-launch-script
+            defaultMode: 0777

@@ -1,4 +1,5 @@
 resources:
+  - external-secret.yaml
   - pvc.yaml
   - app-deploy.yaml
   - cron-deploy.yaml
@@ -32,3 +33,6 @@ configMapGenerator:
   - name: monica-nginx-config
     files:
       - config/nginx.conf
+  - name: monica-launch-script
+    files:
+      - config/launch-php.sh
