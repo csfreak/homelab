@@ -28,6 +28,10 @@ spec:
     queryFrontend:
       replicas: 2
     indexGateway:
-      replicas: 3
+      replicas: 2
     gateway:
       replicas: 3
+    ingester:
+      replicas: 2
+    distributer:
+      replicas: 2
