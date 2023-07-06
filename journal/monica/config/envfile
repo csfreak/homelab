@@ -4,6 +4,7 @@ APP_URL=https://journal.apps.homelab.csfreak.com/
 APP_TRUSTED_PROXIES=172.30.0.0/20
 DB_CONNECTION=mysql
 DB_HOST=journal-db.journal.svc
+DB_USERNAME=${DB_USER}
 MAIL_DRIVER=log
 LOG_CHANNEL=stderr
 CACHE_DRIVER=redis
