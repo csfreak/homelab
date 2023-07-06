@@ -22,3 +22,12 @@ spec:
   storageClassName: synology-iscsi-hdd
   tenants:
     mode: openshift-logging
+  template:
+    querier:
+      replicas: 2
+    queryFrontend:
+      replicas: 2
+    indexGateway:
+      replicas: 3
+    gateway:
+      replicas: 3
