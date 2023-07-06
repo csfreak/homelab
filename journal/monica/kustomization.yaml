@@ -1,4 +1,5 @@
 resources:
+  - pvc.yaml
   - app-deploy.yaml
   - cron-deploy.yaml
   - queue-deploy.yaml
