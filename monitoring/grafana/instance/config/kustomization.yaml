@@ -20,5 +20,6 @@ configMapGenerator:
       - dashboards/closet.json
       - dashboards/mysql.json
       - dashboards/redis.json
+      - dashboards/metallb.json
     options:
       disableNameSuffixHash: true
