@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monica-app
+  labels:
+    app.kubernetes.io/name: monica
+    app.kubernetes.io/component: monica
+spec:
+  selector:
+    matchLabels:
+      deployment: monica-app
+  template:
+    metadata:
+      labels:
+        deployment: monica-app
+        app.kubernetes.io/name: monica
+        app.kubernetes.io/component: monica
+    spec:
+      containers:
+        - name: app
+          image: monica:fpm
+          envFrom:
+            - configMapRef:
+                name: monica-env
+            - secretRef:
+                name: monica-db-user
+              prefix: DB_
+          ports:
+            - name: monica-fcgi
+              containerPort: 9000
+              protocol: TCP
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/html/storage
+            - name: php-ini
+              mountPath: /usr/local/etc/php
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: monica-data
+        - name: php-ini
+          configMap:
+            name: monica-php-ini

@@ -1,0 +1,9 @@
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Database
+metadata:
+  name: monica
+spec:
+  mariaDbRef:
+    name: journal-db
+  characterSet: utf8
+  collate: utf8_general_ci

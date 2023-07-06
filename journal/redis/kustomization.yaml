@@ -1,0 +1,14 @@
+commonLabels:
+  app.kubernetes.io/name: redis
+  app.kubernetes.io/component: redis
+  app.kubernetes.io/version: "6"
+
+images:
+  - name: redis
+    newName: image-registry.openshift-image-registry.svc:5000/openshift/redis
+    newTag: 6-el9
+
+resources:
+  - deploy.yaml
+  - service.yaml
+  - servicemonitor.yaml

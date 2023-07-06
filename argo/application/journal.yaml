@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: journal
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/name: journal
+spec:
+  destination:
+    namespace: journal
+    server: https://kubernetes.default.svc
+  project: tools
+  ignoreDifferences:
+    - group: apps
+      jqPathExpressions:
+        - .spec.template.spec.containers[].image
+      kind: Deployment
+    - jsonPointers:
+        - /data
+      kind: Secret
+  source:
+    path: journal
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - RespectIgnoreDifferences=true
+      - CreateNamespace=true
+      - PruneLast=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+      annotations:
+        app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+        app.openshift.io/vcs-ref: main

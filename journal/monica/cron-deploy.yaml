@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monica-cron
+  labels:
+    app.kubernetes.io/name: cron
+    app.kubernetes.io/component: cron
+spec:
+  selector:
+    matchLabels:
+      deployment: monica-cron
+  template:
+    metadata:
+      labels:
+        deployment: monica-cron
+        app.kubernetes.io/name: cron
+        app.kubernetes.io/component: cron
+    spec:
+      containers:
+        - name: cron
+          image: monica:fpm
+          envFrom:
+            - configMapRef:
+                name: monica-env
+            - secretRef:
+                name: monica-db-user
+              prefix: DB_
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          command:
+            - cron.sh
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/html/storage
+            - name: php-ini
+              mountPath: /usr/local/etc/php
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: monica-data
+        - name: php-ini
+          configMap:
+            name: monica-php-ini

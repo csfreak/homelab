@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tools
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: "*"
+      namespace: "*"
+      server: https://kubernetes.default.svc
+  roles:
+    - name: default
+      policies:
+        - p, proj:tools:default, applications, *, tools/*, allow
+      groups:
+        - system:authenticated:oauth
+  sourceRepos:
+    - https://github.com/csfreak/homelab.git
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace

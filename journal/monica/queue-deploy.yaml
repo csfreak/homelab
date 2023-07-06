@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monica-queue
+  labels:
+    app.kubernetes.io/name: queue
+    app.kubernetes.io/component: queue
+spec:
+  selector:
+    matchLabels:
+      deployment: monica-queue
+  template:
+    metadata:
+      labels:
+        deployment: monica-queue
+        app.kubernetes.io/name: queue
+        app.kubernetes.io/component: queue
+    spec:
+      containers:
+        - name: queue
+          image: monica:fpm
+          envFrom:
+            - configMapRef:
+                name: monica-env
+            - secretRef:
+                name: monica-db-user
+              prefix: DB_
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          command:
+            - queue.sh
+          volumeMounts:
+            - name: data
+              mountPath: /var/www/html/storage
+            - name: php-ini
+              mountPath: /usr/local/etc/php
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: monica-data
+        - name: php-ini
+          configMap:
+            name: monica-php-ini

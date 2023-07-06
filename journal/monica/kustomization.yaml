@@ -1,0 +1,33 @@
+resources:
+  - app-deploy.yaml
+  - cron-deploy.yaml
+  - queue-deploy.yaml
+  - web-deploy.yaml
+  - service.yaml
+  - route.yaml
+
+images:
+  - name: monica
+    newTag: 4.0.0-fpm
+
+labels:
+  - pairs:
+      app: monica
+    includeTemplates: true
+    includeSelectors: false
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+configMapGenerator:
+  - name: monica-php-ini
+    files:
+      - config/php.ini
+  - name: monica-env
+    envs:
+      - config/envfile
+  - name: monica-nginx-config
+    files:
+      - config/nginx.conf

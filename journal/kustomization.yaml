@@ -1,0 +1,10 @@
+resources:
+  - database/
+  - redis/
+  - monica/
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: journal
+    includeTemplates: true
+    includeSelectors: false
