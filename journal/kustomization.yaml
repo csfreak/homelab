@@ -1,7 +1,6 @@
 resources:
   - database/
   - redis/
-  - monica/
 
 labels:
   - pairs:
