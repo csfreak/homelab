@@ -1,0 +1,48 @@
+apiVersion: operator.openshift.io/v1
+kind: Network
+metadata:
+  name: cluster
+spec:
+  logLevel: Normal
+  operatorLogLevel: Normal
+  disableNetworkDiagnostics: false
+  observedConfig: null
+  additionalNetworks:
+    - name: homeautomation
+      namespace: homeautomation
+      rawCNIConfig: |-
+        {
+          "name": "homeautomation",
+          "cniVersion": "0.3.1",
+          "type": "vlan",
+          "master": "eno1",
+          "mtu": 1500,
+          "vlanId": 104, 
+          "linkInContainer": false,
+          "ipam": {
+            "type": "host-local",
+            "ranges": [
+              [
+                {
+                  "subnet": "192.168.4.0/24",
+                  "rangeStart": "192.168.4.3",
+                  "rangeEnd": "192.168.4.9",
+                  "gateway": "192.168.4.1"
+                }
+              ]
+            ]
+          },
+          "dns": {
+            "nameservers": [ "192.168.4.1"]
+          }
+        }
+      type: Raw
+  defaultNetwork:
+    type: OpenShiftSDN
+  managementState: Managed
+  unsupportedConfigOverrides: null
+  clusterNetwork:
+    - cidr: 172.30.0.0/17
+      hostPrefix: 23
+  serviceNetwork:
+    - 172.30.128.0/17
