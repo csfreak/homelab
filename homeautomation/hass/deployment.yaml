@@ -7,7 +7,6 @@ metadata:
       [{"from":{"kind":"ImageStreamTag","name":"homeassistant:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"hass-server\")].image"},
       {"from":{"kind":"ImageStreamTag","name":"code-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"code-server\")].image"},
       {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")].image"}]
-    k8s.v1.cni.cncf.io/networks: homeautomation
   name: hass
 spec:
   replicas: 1
@@ -21,6 +20,7 @@ spec:
     metadata:
       annotations:
         alpha.image.policy.openshift.io/resolve-names: "*"
+        k8s.v1.cni.cncf.io/networks: homeautomation
       labels:
         deployment: hass
     spec:
