@@ -33,5 +33,5 @@ spec:
       replicas: 3
     ingester:
       replicas: 2
-    distributer:
+    distributor:
       replicas: 2
