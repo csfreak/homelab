@@ -1,7 +1,7 @@
 apiVersion: mariadb.mmontes.io/v1alpha1
 kind: Database
 metadata:
-  name: monica
+  name: flask-journal
 spec:
   mariaDbRef:
     name: journal-db

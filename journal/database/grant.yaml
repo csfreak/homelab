@@ -1,11 +1,11 @@
 apiVersion: mariadb.mmontes.io/v1alpha1
 kind: Grant
 metadata:
-  name: journal-db-monica
+  name: journal-db-flask
 spec:
   mariaDbRef:
     name: journal-db
   privileges:
     - "ALL"
-  database: monica
-  username: monica
+  database: flask-journal
+  username: flask
