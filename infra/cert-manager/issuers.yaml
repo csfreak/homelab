@@ -17,11 +17,13 @@ spec:
       - dns01:
           cnameStrategy: None
           route53:
-            accessKeyID: AKIAZTZI55J7T5FMUCVH
+            accessKeyIDSecretRef:
+              key: access-key-id
+              name: cert-manager-route53-access-key
             region: us-east-1
             secretAccessKeySecretRef:
               key: secret-access-key
-              name: route53-secret
+              name: cert-manager-route53-access-key
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
