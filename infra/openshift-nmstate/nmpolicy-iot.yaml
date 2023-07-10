@@ -22,8 +22,8 @@ spec:
         bridge:
           options:
             multicast-snooping: true
-        port:
-          - name: iot-vlan
+          port:
+            - name: iot-vlan
   maxUnavailable: 1
   nodeSelector:
     node-role.kubernetes.io/worker: ""
