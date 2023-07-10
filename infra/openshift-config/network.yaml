@@ -16,7 +16,7 @@ spec:
           "cniVersion": "0.3.1",
           "type": "bridge",
           "bridge": "iot-vlan-bridge",
-          "mtu": 1500
+          "mtu": 1500,
           "linkInContainer": false,
           "ipam": {
             "type": "host-local",
