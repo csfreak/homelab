@@ -1,0 +1,20 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: create-iot-vlan
+spec:
+  capture:
+    ethernet: interfaces.type=="ethernet"
+    ethernet-active: capture.ethernet | interfaces.ipv4.enabled==true
+  desiredState:
+    interfaces:
+      - mtu: 1500
+        name: iot-vlan
+        state: up
+        type: vlan
+        vlan:
+          base-iface: '{{ capture.ethernet-active.interfaces.0.name }}'
+          id: 104
+  maxUnavailable: 1
+  nodeSelector:
+    node-role.kubernetes.io/worker: ''

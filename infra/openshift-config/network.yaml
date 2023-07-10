@@ -14,10 +14,9 @@ spec:
         {
           "name": "homeautomation",
           "cniVersion": "0.3.1",
-          "type": "vlan",
-          "master": "eno1",
-          "mtu": 1500,
-          "vlanId": 104, 
+          "type": "bridge",
+          "master": "iot-vlan",
+          "mtu": 1500
           "linkInContainer": false,
           "ipam": {
             "type": "host-local",
