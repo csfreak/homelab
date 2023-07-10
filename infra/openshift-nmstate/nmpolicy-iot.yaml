@@ -13,8 +13,17 @@ spec:
         state: up
         type: vlan
         vlan:
-          base-iface: '{{ capture.ethernet-active.interfaces.0.name }}'
+          base-iface: "{{ capture.ethernet-active.interfaces.0.name }}"
           id: 104
+      - mtu: 1500
+        name: iot-vlan-bridge
+        state: up
+        type: linux-bridge
+        bridge:
+          options:
+            multicast-snooping: true
+        port:
+          - name: iot-vlan
   maxUnavailable: 1
   nodeSelector:
-    node-role.kubernetes.io/worker: ''
+    node-role.kubernetes.io/worker: ""
