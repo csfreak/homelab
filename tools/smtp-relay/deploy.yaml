@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smtp-relay
+spec:
+  selector:
+    matchLabels:
+      deployment: smtp-relay
+  template:
+    metadata:
+      labels:
+        deployment: smtp-relay
+    spec:
+      containers:
+        - name: smtp-relay
+          image: juanluisbaptiste/postfix:latest
+          imagePullPolicy: Always
+          command:
+            - /scripts/setup.sh
+          envFrom:
+            - configMapRef:
+                name: postfix-env
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 100m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          ports:
+            - containerPort: 25
+              name: smtp
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+          volumeMounts:
+            - name: postfix-data
+              mountPath: /var/spool/postfix
+            - name: postfix-scripts
+              mountPath: /scripts
+            - name: postfix-secrets
+              mountPath: /var/run/secrets/postfix
+        - name: postfix-exporter
+          image: blackflysolutions/postfix-exporter:latest
+          imagePullPolicy: Always
+          args:
+            - --postfix.logfile_path
+            - /var/spool/postfix/logs/postfix.log
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 100m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          ports:
+            - containerPort: 9154
+              name: metrics
+              protocol: TCP
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+          volumeMounts:
+            - name: postfix-data
+              mountPath: /var/spool/postfix
+        - args:
+            - "--config"
+            - "/etc/vector/logs.toml"
+          image: vector:latest-distroless-libc
+          imagePullPolicy: IfNotPresent
+          name: logs
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 250Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+          volumeMounts:
+            - name: log-config
+              mountPath: /etc/vector
+            - name: postfix-data
+              mountPath: /var/spool/postfix
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - name: postfix-data
+          emptyDir: {}
+        - name: postfix-scripts
+          configMap:
+            name: postfix-scripts
+        - name: postfix-secrets
+          secret:
+            secretName: smtp-relay-auth
+        - name: log-config
+          configMap:
+            name: log-config

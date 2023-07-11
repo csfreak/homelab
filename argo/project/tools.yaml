@@ -16,6 +16,7 @@ spec:
         - system:authenticated:oauth
   sourceRepos:
     - https://github.com/csfreak/homelab.git
+    - https://bokysan.github.io/docker-postfix/
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
