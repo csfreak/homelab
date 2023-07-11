@@ -36,6 +36,10 @@ fi
 
 CMD_ARGS="${CMD_ARGS} -c ${POSTFIX_CONFIG_DIR}"
 
+if [ ! -z ${LOGFILE} ] && [ "$(dirname ${LOGFILE})" != "/dev" ]; then
+  mkdir -p $(dirname ${LOGFILE})
+  touch ${LOGFILE}
+fi
 
 # Set needed config options
 add_config_value "maillog_file" "${LOGFILE:-/dev/stdout}"
