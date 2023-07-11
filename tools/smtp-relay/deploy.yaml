@@ -71,7 +71,7 @@ spec:
         - args:
             - "--config"
             - "/etc/vector/logs.toml"
-          image: vector:latest-distroless-libc
+          image: timberio/vector:latest-distroless-libc
           imagePullPolicy: IfNotPresent
           name: logs
           resources:
