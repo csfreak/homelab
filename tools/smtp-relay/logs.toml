@@ -1,7 +1,7 @@
 [sources.postfix]
 type = "file"
 include = [ "/var/spool/postfix/logs/postfix.log" ]
-data_dir = /var/spool/postfix/logs/
+data_dir = "/var/spool/postfix/logs/"
 host_key = ""
 
 [sinks.stdout]
