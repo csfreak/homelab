@@ -1,10 +1,23 @@
 resources:
   - external-secret.yaml
+  - deployment.yaml
+  - service.yaml
+  - monitoring.yaml
 
 commonLabels:
   app: stmp-relay
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: smtprelay
+      app.kubernetes.io/component: smtp-relay
 
 generatorOptions:
   immutable: true
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
+
+configMapGenerator:
+  - name: smtprelay-config
+    files:
+      - smtprelay.ini

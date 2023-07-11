@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      deployment: smtprelay
+  template:
+    metadata:
+      labels:
+        deployment: smtprelay
+    spec:
+      containers:
+        - name: smtprelay
+          image: grafana/smtprelay
+          envFrom:
+            - secretRef:
+                name: smtp-relay-auth
+              prefix: ses_
+          args:
+            - -config
+            - /config/smtprelay.ini
+            - -remote_host
+            - $(ses_hostname)
+            - -remote_user
+            - $(ses_username)
+            - -remote_pass
+            - $(ses_password)
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          ports:
+            - containerPort: 25
+              name: smtp
+              protocol: TCP
+            - containerPort: 9125
+              name: metrics
+              protocol: TCP
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: smtprelay-config
