@@ -15,3 +15,6 @@ spec:
       appProtocol: http
   selector:
     deployment: smtprelay
+  namespaceSelector:
+    matchNames:
+      - smtp-relay
