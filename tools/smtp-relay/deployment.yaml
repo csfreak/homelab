@@ -101,6 +101,7 @@ spec:
         - name: postfix-scripts
           configMap:
             name: postfix-scripts
+            defaultMode: 0777
         - name: postfix-secrets
           secret:
             secretName: smtp-relay-auth
