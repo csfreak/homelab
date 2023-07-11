@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: smtp-relay
 spec:
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       deployment: smtp-relay
