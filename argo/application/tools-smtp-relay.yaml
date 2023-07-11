@@ -18,7 +18,7 @@ spec:
       kind: Secret
   syncPolicy:
     syncOptions:
-      - Prune=true
+      - PruneLast=true
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
     managedNamespaceMetadata:
