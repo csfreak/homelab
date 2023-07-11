@@ -10,7 +10,7 @@ function add_config_value() {
   [ "${value}" == "" ] && echo "ERROR: No value set !!" && exit 1
 
   echo "Setting configuration option ${key} with value: ${value}"
- postconf -e "${key} = ${value}"
+ postconf ${CMD_ARGS} -e "${key} = ${value}"
 }
 
 # Read password and username from file to avoid unsecure env variables
@@ -27,6 +27,16 @@ SMTP_PORT="${SMTP_PORT:-587}"
 #Get the domain from the server host name
 DOMAIN=`echo ${SERVER_HOSTNAME} | awk 'BEGIN{FS=OFS="."}{print $(NF-1),$NF}'`
 
+if [ ! -z "${POSTFIX_CONFIG_DIR}" ]; then
+    echo "Copying Configs to ${POSTFIX_CONFIG_DIR}"
+    cp -Rnv /etc/postfix/* ${POSTFIX_CONFIG_DIR}
+else
+    POSTFIX_CONFIG_DIR="/etc/postfix"
+fi
+
+CMD_ARGS="${CMD_ARGS} -c ${POSTFIX_CONFIG_DIR}"
+
+
 # Set needed config options
 add_config_value "maillog_file" "${LOGFILE:-/dev/stdout}"
 add_config_value "myhostname" ${SERVER_HOSTNAME}
@@ -38,7 +48,7 @@ add_config_value "smtp_use_tls" "yes"
 add_config_value "smtp_transport_rate_delay" "${SMTP_RATE_DELAY:-0s}"
 if [ ! -z "${SMTP_USERNAME}" ]; then
   add_config_value "smtp_sasl_auth_enable" "yes"
-  add_config_value "smtp_sasl_password_maps" "lmdb:/etc/postfix/sasl_passwd"
+  add_config_value "smtp_sasl_password_maps" "lmdb:${POSTFIX_CONFIG_DIR}/sasl_passwd"
   add_config_value "smtp_sasl_security_options" "noanonymous"
 fi
 add_config_value "always_add_missing_headers" "${ALWAYS_ADD_MISSING_HEADERS:-no}"
@@ -55,30 +65,30 @@ fi
 add_config_value "inet_protocols" "all"
 
 # Create sasl_passwd file with auth credentials
-if [ ! -f /etc/postfix/sasl_passwd -a ! -z "${SMTP_USERNAME}" ]; then
-  grep -q "${SMTP_SERVER}" /etc/postfix/sasl_passwd  > /dev/null 2>&1
+if [ ! -f ${POSTFIX_CONFIG_DIR}/sasl_passwd -a ! -z "${SMTP_USERNAME}" ]; then
+  grep -q "${SMTP_SERVER}" ${POSTFIX_CONFIG_DIR}/sasl_passwd  > /dev/null 2>&1
   if [ $? -gt 0 ]; then
     echo "Adding SASL authentication configuration"
-    echo "[${SMTP_SERVER}]:${SMTP_PORT} ${SMTP_USERNAME}:${SMTP_PASSWORD}" >> /etc/postfix/sasl_passwd
-    postmap /etc/postfix/sasl_passwd
+    echo "[${SMTP_SERVER}]:${SMTP_PORT} ${SMTP_USERNAME}:${SMTP_PASSWORD}" >> ${POSTFIX_CONFIG_DIR}/sasl_passwd
+    postmap ${CMD_ARGS} ${POSTFIX_CONFIG_DIR}/sasl_passwd
   fi
 fi
 
 #Set header tag
 if [ ! -z "${SMTP_HEADER_TAG}" ]; then
-  postconf -e "header_checks = regexp:/etc/postfix/header_checks"
-  echo -e "/^MIME-Version:/i PREPEND RelayTag: $SMTP_HEADER_TAG\n/^Content-Transfer-Encoding:/i PREPEND RelayTag: $SMTP_HEADER_TAG" >> /etc/postfix/header_checks
+  postconf ${CMD_ARGS} -e "header_checks = regexp:${POSTFIX_CONFIG_DIR}/header_checks"
+  echo -e "/^MIME-Version:/i PREPEND RelayTag: $SMTP_HEADER_TAG\n/^Content-Transfer-Encoding:/i PREPEND RelayTag: $SMTP_HEADER_TAG" >> ${POSTFIX_CONFIG_DIR}/header_checks
   echo "Setting configuration option SMTP_HEADER_TAG with value: ${SMTP_HEADER_TAG}"
 fi
 
 add_config_value "mynetworks" "${SMTP_NETWORKS:-10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16}"
 
 if [ ! -z "${SMTP_ALLOWED_SENDERS}" ]; then
-    postconf -e "smtpd_sender_restrictions = check_sender_access lmdb:/etc/postfix/allowed_senders, reject"
+    postconf ${CMD_ARGS} -e "smtpd_sender_restrictions = check_sender_access lmdb:${POSTFIX_CONFIG_DIR}/allowed_senders, reject"
     for i in $(sed 's/,/\ /g' <<<$SMTP_NETWORKS); do
-        echo "${i} OK" >> /etc/postfix/allowed_senders
+        echo "${i} OK" >> ${POSTFIX_CONFIG_DIR}/allowed_senders
     done
-    postmap lmdb:/etc/postfix/allowed_senders
+    postmap ${CMD_ARGS} lmdb:${POSTFIX_CONFIG_DIR}/allowed_senders
 fi
     
 
@@ -99,4 +109,4 @@ fi
 # starting services
 rm -f /var/spool/postfix/pid/master.pid
 
-exec /usr/sbin/postfix -c /etc/postfix start-fg
+exec /usr/sbin/postfix ${CMD_ARGS} start-fg
