@@ -10,3 +10,6 @@ spec:
     - port: metrics
       path: /metrics
       interval: 10s
+  namespaceSelector:
+    matchNames:
+      - smtp-relay
