@@ -8,11 +8,11 @@ spec:
       port: 25
       protocol: TCP
       targetPort: smtp
+      appProtocol: smtp
     - name: metrics
       protocol: TCP
       port: 9125
       targetPort: metrics
       appProtocol: http
   selector:
-    deployment: smtprelay
-
+    deployment: smtp-relay

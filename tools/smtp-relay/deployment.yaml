@@ -5,11 +5,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      deployment: smtprelay
+      deployment: smtp-relay
   template:
     metadata:
       labels:
-        deployment: smtprelay
+        deployment: smtp-relay
     spec:
       containers:
         - name: smtprelay

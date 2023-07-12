@@ -6,6 +6,7 @@ spec:
   selector:
     matchLabels:
       app: smtp-relay
+  jobLabel: stmp-relay
   endpoints:
     - port: metrics
       path: /metrics

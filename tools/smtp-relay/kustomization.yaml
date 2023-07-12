@@ -5,7 +5,7 @@ resources:
   - monitoring.yaml
 
 commonLabels:
-  app: stmp-relay
+  app: smtp-relay
 
 labels:
   - pairs:
