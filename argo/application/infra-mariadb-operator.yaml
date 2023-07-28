@@ -22,14 +22,14 @@ spec:
             value: "debug"
           - name: ha.enabled
             value: "true"
-          - name: resources
-            value:
-              requests:
-                cpu: 5m
-                memory: 128Mi
-              limits:
-                cpu: 10m
-                memory: 256Mi
+          - name: resources.requests.cpu
+            value: 5m
+          - name: resources.requests.memory
+            value: 128Mi
+          - name: resources.limits.cpu
+            value: 10m
+          - name: resources.limits.memory
+            value: 256Mi
     - path: infra/mariadb-operator
       repoURL: https://github.com/csfreak/homelab.git
       targetRevision: HEAD
