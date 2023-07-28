@@ -45,6 +45,7 @@ spec:
       - Prune=true
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
+      - ServerSideApply=true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
