@@ -29,6 +29,7 @@ spec:
     certificate:
       certManager: true
       default:
+        hook: pre-install
         caExpirationDays: 365
         certExpirationDays: 365
       path: /tmp/k8s-webhook-server/serving-certs
