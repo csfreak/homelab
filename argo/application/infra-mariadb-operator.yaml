@@ -21,7 +21,7 @@ spec:
           - name: logLevel
             value: "debug"
           - name: ha.enabled
-            value: "true"
+            value: "false"
           - name: resources.requests.cpu
             value: 5m
           - name: resources.requests.memory
