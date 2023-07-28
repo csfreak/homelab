@@ -1,0 +1,39 @@
+kind: MariadbOperator
+apiVersion: helm.mariadb.mmontes.io/v1alpha1
+metadata:
+  name: mariadb-operator
+  namespace: mariadb-operator
+spec:
+  ha:
+    enabled: true
+    leaseId: mariadb.mmontes.io
+    replicas: 3
+  image:
+    pullPolicy: IfNotPresent
+    repository: ghcr.io/mariadb-operator/mariadb-operator
+  logLevel: INFO
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      interval: 30s
+      scrapeTimeout: 25s
+  resources:
+    requests:
+      cpu: 5m
+      memory: 128Mi
+    limits:
+      cpu: 10m
+      memory: 256Mi
+  webhook:
+    certificate:
+      certManager: true
+      default:
+        caExpirationDays: 365
+        certExpirationDays: 365
+      path: /tmp/k8s-webhook-server/serving-certs
+    enabled: true
+    serviceMonitor:
+      enabled: true
+      interval: 30s
+      scrapeTimeout: 25s
