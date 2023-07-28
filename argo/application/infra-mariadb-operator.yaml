@@ -8,6 +8,28 @@ metadata:
 spec:
   project: infra
   sources:
+    - chart: mariadb-operator
+      repoURL: https://mariadb-operator.github.io/mariadb-operator
+      targetRevision: 0.19.0
+      helm:
+        releaseName: mariadb-operator
+        parameters:
+          - name: metrics.enabled
+            value: "true"
+          - name: webhook.certificate.certManager
+            value: "true"
+          - name: logLevel
+            value: "info"
+          - name: ha.enabled
+            value: "false"
+          - name: resources.requests.cpu
+            value: 5m
+          - name: resources.requests.memory
+            value: 128Mi
+          - name: resources.limits.cpu
+            value: 10m
+          - name: resources.limits.memory
+            value: 256Mi
     - path: infra/mariadb-operator
       repoURL: https://github.com/csfreak/homelab.git
       targetRevision: HEAD
@@ -23,6 +45,7 @@ spec:
       - Prune=true
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
+      - ServerSideApply=true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
