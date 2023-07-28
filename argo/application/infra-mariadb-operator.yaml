@@ -13,26 +13,12 @@ spec:
       targetRevision: 0.19.0
       helm:
         releaseName: mariadb-operator
-        parameters:
-          - name: metrics.enabled
-            value: "true"
-          - name: webhook.certificate.certManager
-            value: "true"
-          - name: logLevel
-            value: "info"
-          - name: ha.enabled
-            value: "false"
-          - name: resources.requests.cpu
-            value: 5m
-          - name: resources.requests.memory
-            value: 128Mi
-          - name: resources.limits.cpu
-            value: 10m
-          - name: resources.limits.memory
-            value: 256Mi
+        valueFiles:
+          - "$homelab/infra/mariadb-operator/values/mariadb-operator.yaml"
     - path: infra/mariadb-operator
       repoURL: https://github.com/csfreak/homelab.git
       targetRevision: HEAD
+      ref: homelab
   destination:
     server: "https://kubernetes.default.svc"
     namespace: mariadb-operator

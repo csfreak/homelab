@@ -1,0 +1,54 @@
+logLevel: INFO
+
+clusterName: cluster.local
+
+ha:
+  enabled: true
+  replicas: 3
+  leaseId: mariadb.mmontes.io
+
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    scrapeTimeout: 25s
+
+serviceAccount:
+  enabled: true
+  automount: true
+
+rbac:
+  enabled: true
+
+resources:
+  requests:
+    cpu: 5m
+    memory: 128Mi
+  limits:
+    cpu: 10m
+    memory: 256Mi
+
+webhook:
+  enabled: true
+  certificate:
+    certManager: true
+    default:
+      caExpirationDays: 365
+      certExpirationDays: 365
+      hook: "pre-install"
+    path: /tmp/k8s-webhook-server/serving-certs
+  serviceMonitor:
+    enabled: true
+    interval: 30s
+    scrapeTimeout: 25s
+  serviceAccount:
+    enabled: true
+    automount: true
+  resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    cpu: 20m
+    memory: 64Mi
