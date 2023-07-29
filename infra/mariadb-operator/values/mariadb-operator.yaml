@@ -3,7 +3,7 @@ logLevel: INFO
 clusterName: cluster.local
 
 ha:
-  enabled: true
+  enabled: false
   replicas: 3
   leaseId: mariadb.mmontes.io
 
