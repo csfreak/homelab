@@ -16,7 +16,7 @@ metrics:
 
 serviceAccount:
   enabled: true
-  automount: false
+  automount: true
 
 nodeSelector:
   node-role.kubernetes.io/master: ""
