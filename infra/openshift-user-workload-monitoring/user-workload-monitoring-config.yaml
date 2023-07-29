@@ -4,13 +4,6 @@ data:
     alertmanager:		
       enable: true		
       enableAlertmanagerConfig: true
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
     prometheus:
       volumeClaimTemplate:
         spec:
@@ -19,21 +12,6 @@ data:
             requests:
               storage: 100G
       retention: 30d
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
-    thanosRuler:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
     prometheusOperator:
       nodeSelector:
         node-role.kubernetes.io/master: ""

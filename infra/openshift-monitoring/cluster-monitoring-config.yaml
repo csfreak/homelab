@@ -10,13 +10,6 @@ data:
             requests:
               storage: 100G
       retention: 30d
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
     alertmanagerMain:
       volumeClaimTemplate:
         spec:
@@ -24,13 +17,6 @@ data:
           resources:
             requests:
               storage: 100G
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
     prometheusOperator:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -71,15 +57,6 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
-    thanosQuerier:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
-
 kind: ConfigMap
 metadata:
   name: cluster-monitoring-config
