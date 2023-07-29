@@ -8,3 +8,17 @@ spec:
       name: certified-operators
     - disabled: true
       name: redhat-marketplace
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: opertatorhubio
+  namespace: openshift-marketplace
+spec:
+  displayName: Operatorhub.IO
+  image: quay.io/operatorhubio/catalog
+  publisher: OperatorHub
+  sourceType: grpc
+  updateStrategy:
+    registryPoll:
+      interval: 1h
