@@ -4,8 +4,7 @@ metadata:
   name: nzbget
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"nzbget-exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget-metrics\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -49,7 +48,8 @@ spec:
             - mountPath: /downloads
               name: nzbget-downloads
         - name: nzbget-metrics
-          image: nzbget-exporter
+          image: frebib/nzbget-exporter:latest
+          imagePullPolicy: Always
           resources:
             limits:
               memory: "128Mi"

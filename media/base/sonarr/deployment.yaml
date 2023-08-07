@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"sonarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"exportarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr-metrics\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"sonarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr\")].image"}]
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"nzbget"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
   name: sonarr
   namespace: media
@@ -48,7 +47,8 @@ spec:
             - mountPath: /media/ssd
               name: sonarr-media-ssd
         - name: sonarr-metrics
-          image: exportarr:latest
+          image: ghcr.io/onedr0p/exportarr:latest
+          imagePullPolicy: always
           command:
             - "/exportarr"
             - "sonarr"

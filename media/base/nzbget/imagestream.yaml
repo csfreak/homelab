@@ -5,20 +5,3 @@ metadata:
 spec:
   lookupPolicy:
     local: true
----
-kind: ImageStream
-apiVersion: image.openshift.io/v1
-metadata:
-  name: nzbget-exporter
-spec:
-  lookupPolicy:
-    local: true
-  tags:
-    - name: latest
-      from:
-        kind: DockerImage
-        name: "frebib/nzbget-exporter:latest"
-      importPolicy:
-        scheduled: true
-      referencePolicy:
-        type: Local

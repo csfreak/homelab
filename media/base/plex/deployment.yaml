@@ -4,9 +4,7 @@ metadata:
   name: plex
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"plex_exporter:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-metrics\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"vector:latest-distroless-libc"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-logs\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"}]
     app.openshift.io/connects-to: '[{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-ssd"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
 spec:
   replicas: 1
@@ -86,8 +84,8 @@ spec:
         - args:
             - "--config"
             - "/etc/vector/plex-logs.toml"
-          image: vector:latest-distroless-libc
-          imagePullPolicy: IfNotPresent
+          image: timberio/vector:latest-distroless-libc
+          imagePullPolicy: Always
           name: plex-logs
           resources:
             requests:
@@ -110,7 +108,8 @@ spec:
             - name: config
               mountPath: /config
         - name: plex-metrics
-          image: plex_exporter
+          image: granra/plex_exporter:latest
+          imagePullPolicy: Always
           env:
             - name: PLEX_SERVER
               value: http://localhost:32400
@@ -132,34 +131,6 @@ spec:
             - containerPort: 9594
               name: metrics
               protocol: TCP
-        # - name: sqlite-web
-        #   image: sqlite-web
-        #   env:
-        #     - name: SQLITE_WEB_PASSWORD
-        #       valueFrom:
-        #         secretKeyRef:
-        #           name: plex-sqlite-web
-        #           key: sqlite-web-password
-        #   command:
-        #     - sqlite_web
-        #     - -H
-        #     - "0.0.0.0"
-        #     - -x
-        #     - /config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db
-        #   ports:
-        #     - containerPort: 8080
-        #       name: sqlite-web-http
-        #       protocol: TCP
-        #   resources:
-        #     limits:
-        #       memory: 128Mi
-        #       cpu: 100m
-        #     requests:
-        #       memory: 32Mi
-        #       cpu: 10m
-        #   volumeMounts:
-        #     - name: config
-        #       mountPath: /config
       nodeSelector:
         intel.feature.node.kubernetes.io/gpu: "true"
       volumes:

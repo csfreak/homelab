@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM docker.homelab.csfreak.com/library/ubuntu:latest
 
 ENV SONARR_BRANCH="main"
 ARG SONARR_VERSION

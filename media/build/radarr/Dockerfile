@@ -1,4 +1,4 @@
-FROM ubuntu:kinetic
+FROM docker.homelab.csfreak.com/library/ubuntu:kinetic
 
 ENV RADARR_BRANCH="master"
 ARG RADARR_RELEASE

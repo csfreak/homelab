@@ -1,4 +1,3 @@
 resources:
-  - imagestream.yaml
   - pvc.yaml
   - sa.yaml

@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM docker.homelab.csfreak.com/library/alpine:latest
 ARG UNRAR_VERSION=6.1.4
 
 RUN echo "**** install build packages ****" && \
