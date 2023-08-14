@@ -31,11 +31,11 @@ rbac:
 
 resources:
   requests:
-    cpu: 50m
-    memory: 256Mi
+    cpu: 10m
+    memory: 192Mi
   limits:
-    cpu: 100m
-    memory: 512Mi
+    cpu: 20m
+    memory: 256Mi
 
 webhook:
   enabled: true
