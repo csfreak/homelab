@@ -34,8 +34,8 @@ resources:
     cpu: 10m
     memory: 192Mi
   limits:
-    cpu: 20m
-    memory: 256Mi
+    cpu: 50m
+    memory: 320Mi
 
 webhook:
   enabled: true
