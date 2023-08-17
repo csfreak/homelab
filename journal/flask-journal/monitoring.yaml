@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: journal-metrics
+spec:
+  namespaceSelector:
+    matchNames:
+      - journal
+  selector:
+    matchLabels:
+      app: flask-journal
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 10s

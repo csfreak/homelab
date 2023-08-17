@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-journal
+spec:
+  selector:
+    deployment: flask-journal
+  ports:
+    - port: 80
+      targetPort: gunicorn-http
+      name: http
+      protocol: TCP
+      appProtocol: http

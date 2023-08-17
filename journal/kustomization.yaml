@@ -1,6 +1,7 @@
 resources:
   - database/
   - redis/
+  - flask-journal/
 
 labels:
   - pairs:

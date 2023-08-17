@@ -1,0 +1,13 @@
+resources:
+  - deploy.yaml
+  - service.yaml
+  - monitoring.yaml
+  - route.yaml
+
+commonLabels:
+  app: flask-journal
+labels:
+  - pairs:
+      app.kubernetes.io/component: appServer
+      app.kubernetes.io/name: flask-journal
+    includeTemplates: true
