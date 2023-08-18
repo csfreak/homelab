@@ -1,4 +1,5 @@
 resources:
+  - external-secret.yaml
   - deploy.yaml
   - service.yaml
   - monitoring.yaml
