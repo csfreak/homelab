@@ -11,3 +11,8 @@ labels:
       app.kubernetes.io/component: appServer
       app.kubernetes.io/name: flask-journal
     includeTemplates: true
+
+configMapGenerator:
+  - name: flask-journal-env
+    envs:
+      - flask-journal.env
