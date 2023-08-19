@@ -40,7 +40,6 @@ spec:
             - containerPort: 5000
               name: gunicorn-http
               protocol: TCP
-              appProtocol: http
           volumeMounts:
             - name: prom-data
               mountPath: /prom-data
