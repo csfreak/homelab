@@ -19,16 +19,18 @@ spec:
           "mtu": 1500,
           "linkInContainer": false,
           "ipam": {
-            "type": "host-local",
-            "ranges": [
-              [
-                {
-                  "subnet": "192.168.4.0/24",
-                  "rangeStart": "192.168.4.3",
-                  "rangeEnd": "192.168.4.9",
-                  "gateway": "192.168.4.1"
-                }
-              ]
+            "type": "dhcp",
+            "provide": [
+              {
+                "option": "host-name",
+                "fromArg": "K8S_POD_NAME"
+              }
+            ],
+            "request": [
+              { 
+                "skipDefault": true,
+                "option": "routers"
+              }
             ]
           },
           "dns": {
