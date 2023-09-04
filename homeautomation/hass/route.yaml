@@ -20,7 +20,7 @@ kind: Route
 metadata:
   name: hass-code-server
 spec:
-  host: code-server.homeautomation.apps.homelab.csfreak.com
+  host: config-homeautomation.apps.homelab.csfreak.com
   port:
     targetPort: code-server-http
   tls:
