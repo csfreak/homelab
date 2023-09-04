@@ -35,10 +35,10 @@ spec:
               name: nzbget
           resources:
             requests:
-              memory: 256Mi
+              memory: 1024Mi
               cpu: 250m
             limits:
-              memory: 1536Mi
+              memory: 2048Mi
               cpu: 2000m
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -47,6 +47,8 @@ spec:
               name: nzbget-config
             - mountPath: /downloads
               name: nzbget-downloads
+            - mountPath: /downloads/local
+              name: nzbget-tmp
         - name: nzbget-metrics
           image: frebib/nzbget-exporter:latest
           imagePullPolicy: Always
@@ -85,3 +87,5 @@ spec:
         - name: nzbget-downloads
           persistentVolumeClaim:
             claimName: nzbget-downloads
+        - name: nzbget-tmp
+          emptyDir: {}
