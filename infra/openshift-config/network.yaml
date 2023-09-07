@@ -33,9 +33,6 @@ spec:
             "request": [
               {
                 "option": "subnet-mask"
-              },
-              {
-                "option": "routers",
                 "skipDefault": true 
               }
             ]
