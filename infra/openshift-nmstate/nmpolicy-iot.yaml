@@ -22,6 +22,8 @@ spec:
         bridge:
           options:
             multicast-snooping: true
+            stp:
+              enabled: false
           port:
             - name: iot-vlan
   maxUnavailable: 1
