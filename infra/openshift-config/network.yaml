@@ -27,12 +27,12 @@ spec:
               }
             ],
             "request": [
-              { 
-                "skipDefault": true,
-                "option": "routers"
-              },
               {
                 "option": "subnet-mask"
+              },
+              {
+                "option": "60",
+                "value": "openshift"
               }
             ]
           },
