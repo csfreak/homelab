@@ -30,6 +30,9 @@ spec:
               { 
                 "skipDefault": true,
                 "option": "routers"
+              },
+              {
+                "options": "subnet-mask"
               }
             ]
           },
