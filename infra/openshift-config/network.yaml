@@ -32,7 +32,7 @@ spec:
             ],
             "request": [
               {
-                "option": "subnet-mask"
+                "option": "subnet-mask",
                 "skipDefault": true 
               }
             ]
