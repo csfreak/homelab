@@ -36,9 +36,6 @@ spec:
                 "skipDefault": true 
               }
             ]
-          },
-          "dns": {
-            "nameservers": [ "192.168.4.1"]
           }
         }
       type: Raw
