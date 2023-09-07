@@ -32,7 +32,7 @@ spec:
                 "option": "routers"
               },
               {
-                "options": "subnet-mask"
+                "option": "subnet-mask"
               }
             ]
           },
