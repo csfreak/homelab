@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: smtp-relay
+  name: pi-hole
   namespace: openshift-gitops
 spec:
   project: tools
