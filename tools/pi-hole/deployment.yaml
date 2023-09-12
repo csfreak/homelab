@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pi-hole
+spec:
+  selector:
+    matchLabels:
+      deployment: pi-hole
+  template:
+    metadata:
+      labels:
+        deployment: pi-hole
+    spec:
+      containers:
+        - name: pi-hole
+          image: pihole/pihole:latest
+          envFrom:
+            - configMapRef:
+                name: pihole-env
+            - secretRef:
+                name: pihole-webpassword
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          ports:
+            - containerPort: 53
+              name: udpdns
+              protocol: UDP
+            - containerPort: 53
+              name: tcpdns
+              protocol: TCP
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          securityContext:
+            runAsNonRoot: true
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+                - CHOWN
+              drop:
+                - NET_ADMIN
+                - NET_RAW
+          volumeMounts:
+            - name: pihole-config
+              mountPath: /etc/pihole
+            - name: dnsmasq-config
+              mountPath: /etc/dnsmasq.d
+        - name: pihole-exporter
+          image: ekofr/pihole-exporter:latest
+          env:
+            - name: PIHOLE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: WEBPASSWORD
+                  name: pihole-webpassword
+          ports:
+            - containerPort: 9617
+              name: metrics
+              protocol: TCP
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 50m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+      volumes:
+        - name: pihole-config
+          persistentVolumeClaim:
+            claimName: pihole-config
+        - name: dnsmasq-config
+          persistentVolumeClaim:
+            claimName: dnsmasq-config

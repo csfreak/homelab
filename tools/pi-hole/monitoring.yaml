@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: pihole-metrics
+spec:
+  selector:
+    matchLabels:
+      metrics: pihole
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 10s
+  namespaceSelector:
+    matchNames:
+      - pihole

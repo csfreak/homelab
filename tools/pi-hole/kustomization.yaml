@@ -1,0 +1,24 @@
+resources:
+  - external-secret.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+
+commonLabels:
+  app: pi-hole
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: pihole
+      app.kubernetes.io/component: dns
+
+generatorOptions:
+  immutable: true
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
+configMapGenerator:
+  - name: pihole-env
+    envs:
+      - pihole.env

@@ -1,0 +1,19 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: pihole
+  annotations:
+    console.alpha.openshift.io/overview-app-route: "true"
+spec:
+  host: pihole.apps.homelab.csfreak.com
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: pihole-tcp
+    weight: 100
+  wildcardPolicy: None
