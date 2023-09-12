@@ -23,4 +23,4 @@ spec:
     - group: rbac.authorization.k8s.io
       kind: ClusterRoleBinding
     - group: security.openshift.io
-      kind: SecurityContextConstraint
+      kind: SecurityContextConstraints
