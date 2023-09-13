@@ -2,11 +2,11 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: pihole
+  name: adguardhome
   annotations:
     console.alpha.openshift.io/overview-app-route: "true"
 spec:
-  host: pihole.apps.homelab.csfreak.com
+  host: adguardhome.apps.homelab.csfreak.com
   port:
     targetPort: http
   tls:
@@ -14,6 +14,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: pihole-tcp
+    name: dns-tcp
     weight: 100
   wildcardPolicy: None

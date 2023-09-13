@@ -1,12 +1,12 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: "system:openshift:scc:pihole-capabilities"
+  name: "system:openshift:scc:dns-capabilities"
 subjects:
   - kind: ServiceAccount
-    name: pihole
-    namespace: pihole
+    name: dns-runner
+    namespace: dnsblock
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: "system:openshift:scc:pihole-capabilities"
+  name: "system:openshift:scc:dns-capabilities"

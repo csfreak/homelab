@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adguardhome
+spec:
+  selector:
+    matchLabels:
+      deployment: adguardhome
+  serviceAccountName: dns-runner
+  template:
+    metadata:
+      labels:
+        deployment: adguardhome
+    spec:
+      containers:
+        - name: adguardhome
+          image: adguard/adguardhome
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          ports:
+            - containerPort: 5353
+              name: udpdns
+              protocol: UDP
+            - containerPort: 5353
+              name: tcpdns
+              protocol: TCP
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          securityContext:
+            runAsNonRoot: true
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - NET_ADMIN
+                - NET_RAW
+          volumeMounts:
+            - name: adguard-config
+              mountPath: /opt/adguardhome/conf
+            - name: adguard-work
+              mountPath: /opt/adguardhome/work
+      volumes:
+        - name: adguard-config
+          persistentVolumeClaim:
+            claimName: adguard-config
+        - name: adguard-work
+          persistentVolumeClaim:
+            claimName: adguard-work
