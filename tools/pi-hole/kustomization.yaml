@@ -1,6 +1,4 @@
 resources:
-  - scc.yaml
-  - rbac.yaml
   - pvc.yaml
   - external-secret.yaml
   - deployment.yaml
