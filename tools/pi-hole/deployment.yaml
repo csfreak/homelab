@@ -6,6 +6,7 @@ spec:
   selector:
     matchLabels:
       deployment: pi-hole
+  serviceAccountName: pihole
   template:
     metadata:
       labels:

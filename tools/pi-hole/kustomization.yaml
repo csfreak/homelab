@@ -1,4 +1,5 @@
 resources:
+  - sa.yaml
   - scc.yaml
   - rbac.yaml
   - pvc.yaml
