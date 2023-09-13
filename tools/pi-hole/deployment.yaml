@@ -16,7 +16,14 @@ spec:
           image: pihole/pihole:latest
           command:
             - /usr/local/bin/_startup.sh
-
+          securityContext:
+            runAsNonRoot: true
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
+              drop:
+                - NET_ADMIN
+                - NET_RAW
       containers:
         - name: ftl
           image: pihole/pihole:latest
