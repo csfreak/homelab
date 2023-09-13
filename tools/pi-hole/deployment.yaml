@@ -13,6 +13,11 @@ spec:
     spec:
       initContainers:
         - name: setup-ftl
+          envFrom:
+            - configMapRef:
+                name: pihole-env
+            - secretRef:
+                name: pihole-webpassword
           image: pihole/pihole:latest
           command:
             - /usr/local/bin/_startup.sh
