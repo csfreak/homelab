@@ -24,10 +24,7 @@ spec:
             - /bin/bash
             - -c
             - |
-              set -e
-              if [ "${PH_VERBOSE:-0}" -gt 0 ] ; then
-                  set -x ;
-              fi
+              set -x ;
 
               # The below functions are all contained in bash_functions.sh
               # shellcheck source=/dev/null
