@@ -11,14 +11,18 @@ spec:
       labels:
         deployment: pi-hole
     spec:
-      containers:
-        - name: pi-hole
+      initContainers:
+        - name: setup-ftl
           image: pihole/pihole:latest
-          envFrom:
-            - configMapRef:
-                name: pihole-env
-            - secretRef:
-                name: pihole-webpassword
+          command:
+            - /usr/local/bin/_startup.sh
+
+      containers:
+        - name: ftl
+          image: pihole/pihole:latest
+          command:
+            - /usr/bin/pihole-FTL
+            - no-daemon
           resources:
             limits:
               memory: 128Mi
@@ -41,10 +45,54 @@ spec:
             capabilities:
               add:
                 - NET_BIND_SERVICE
-                - CHOWN
               drop:
                 - NET_ADMIN
                 - NET_RAW
+          volumeMounts:
+            - name: pihole-config
+              mountPath: /etc/pihole
+            - name: dnsmasq-config
+              mountPath: /etc/dnsmasq.d
+        - name: cron
+          image: pihole/pihole:latest
+          command:
+            - /usr/bin/cron
+            - -f
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          volumeMounts:
+            - name: pihole-config
+              mountPath: /etc/pihole
+            - name: dnsmasq-config
+              mountPath: /etc/dnsmasq.d
+        - name: web-ui
+          image: pihole/pihole:latest
+          command:
+            - lighttpd
+            - -D
+            - -f
+            - /etc/lighttpd/lighttpd.conf
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 500m
+            requests:
+              memory: 64Mi
+              cpu: 10m
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          securityContext:
+            runAsNonRoot: true
+            capabilities:
+              add:
+                - NET_BIND_SERVICE
           volumeMounts:
             - name: pihole-config
               mountPath: /etc/pihole
