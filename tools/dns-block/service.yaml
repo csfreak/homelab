@@ -6,6 +6,7 @@ metadata:
     metallb.universe.tf/allow-shared-ip: "dns"
 spec:
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - name: udpdns
       port: 53
@@ -23,6 +24,7 @@ metadata:
     metallb.universe.tf/allow-shared-ip: "dns"
 spec:
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - name: tcpdns
       port: 53
