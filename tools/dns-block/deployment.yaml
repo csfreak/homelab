@@ -6,7 +6,6 @@ spec:
   selector:
     matchLabels:
       deployment: adguardhome
-  serviceAccountName: dns-runner
   template:
     metadata:
       labels:
@@ -52,6 +51,7 @@ spec:
               mountPath: /opt/adguardhome/conf
             - name: adguard-work
               mountPath: /opt/adguardhome/work
+      serviceAccountName: dns-runner
       volumes:
         - name: adguard-config
           persistentVolumeClaim:
