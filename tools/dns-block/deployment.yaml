@@ -20,7 +20,7 @@ spec:
             - -c
             - /opt/adguardhome/conf/AdGuardHome.yaml
             - -w
-            - opt/adguardhome/work
+            - /opt/adguardhome/work
             - --verbose
           resources:
             limits:
