@@ -20,11 +20,10 @@ spec:
             - /opt/adguardhome/conf/AdGuardHome.yaml
             - -w
             - /opt/adguardhome/work
-            - --verbose
           resources:
             limits:
               memory: 128Mi
-              cpu: 500m
+              cpu: 50m
             requests:
               memory: 64Mi
               cpu: 10m
