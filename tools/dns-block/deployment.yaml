@@ -15,6 +15,13 @@ spec:
       containers:
         - name: adguardhome
           image: adguard/adguardhome
+          args:
+            - --no-check-update
+            - -c
+            - /opt/adguardhome/conf/AdGuardHome.yaml
+            - -w
+            - opt/adguardhome/work
+            - --verbose
           resources:
             limits:
               memory: 128Mi
