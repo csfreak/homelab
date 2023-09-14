@@ -22,10 +22,10 @@ spec:
             - /opt/adguardhome/work
           resources:
             limits:
-              memory: 128Mi
-              cpu: 50m
+              memory: 256Mi
+              cpu: 100m
             requests:
-              memory: 64Mi
+              memory: 128Mi
               cpu: 10m
           ports:
             - containerPort: 5353
