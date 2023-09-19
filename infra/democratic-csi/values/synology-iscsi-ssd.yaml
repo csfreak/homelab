@@ -1,8 +1,8 @@
 csiDriver:
-  name: "org.democratic-csi.iscsi-synology-hdd"
+  name: "org.democratic-csi.iscsi-synology-ssd"
 
 storageClasses:
-  - name: synology-iscsi-hdd
+  - name: synology-iscsi-ssd
     defaultClass: false
     reclaimPolicy: Retain
     volumeBindingMode: Immediate
@@ -19,6 +19,7 @@ node:
 controller:
   externalResizer:
     enabled: true
+  driver:
 csiProxy:
   enabled: true
 driver:
