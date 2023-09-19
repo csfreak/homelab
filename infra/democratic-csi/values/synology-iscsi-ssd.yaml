@@ -15,13 +15,7 @@ node:
     openshift:
       privileged: true
   driver:
-    localtimeHostPath: false
-controller:
-  externalResizer:
-    enabled: true
-  driver:
-csiProxy:
-  enabled: true
+    localtimeHostPath: null
 driver:
   config:
     driver: synology-iscsi
