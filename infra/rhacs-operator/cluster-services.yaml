@@ -1,0 +1,36 @@
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  finalizers:
+    - uninstall-helm-release
+  name: stackrox-secured-cluster-services
+  namespace: rhacs-operator
+spec:
+  admissionControl:
+    bypass: BreakGlassAnnotation
+    contactImageScanners: DoNotScanInline
+    listenOnCreates: true
+    listenOnEvents: true
+    listenOnUpdates: true
+    replicas: 3
+    timeoutSeconds: 20
+  auditLogs:
+    collection: Auto
+  clusterName: homelab
+  monitoring:
+    openshift:
+      enabled: true
+  perNode:
+    collector:
+      collection: EBPF
+      imageFlavor: Slim
+    taintToleration: TolerateTaints
+  registryOverride: docker.homelab.csfreak.com
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: AutoSense
