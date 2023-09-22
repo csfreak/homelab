@@ -4,31 +4,36 @@ metadata:
   name: openshift-gitops
   namespace: openshift-gitops
 spec:
-  applicationSet:
-    resources:
-      limits:
-        cpu: "2"
-        memory: 1Gi
-      requests:
-        cpu: 250m
-        memory: 512Mi
-    webhookServer:
+  nodePlacement:
+    nodeSelector:
+      node-role.kubernetes.io/master: ''
+    tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      - effect: NoExecute
+        key: node-role.kubernetes.io/master
+  server:
+    autoscale:
+      enabled: false
+    grpc:
       ingress:
         enabled: false
-      route:
-        enabled: false
-  controller:
-    processors: {}
+    ingress:
+      enabled: false
+    replicas: 2
     resources:
       limits:
-        cpu: "2"
-        memory: 2Gi
+        cpu: 500m
+        memory: 256Mi
       requests:
-        cpu: 250m
-        memory: 1Gi
-    sharding: {}
-  extraConfig:
-    application.resourceTrackingMethod: annotation+label
+        cpu: 125m
+        memory: 128Mi
+    route:
+      enabled: true
+      tls:
+        termination: reencrypt
+    service:
+      type: ''
   grafana:
     enabled: false
     ingress:
@@ -42,26 +47,8 @@ spec:
         memory: 128Mi
     route:
       enabled: false
-  ha:
-    enabled: false
-    resources:
-      limits:
-        cpu: 500m
-        memory: 256Mi
-      requests:
-        cpu: 250m
-        memory: 128Mi
-  initialSSHKnownHosts: {}
   monitoring:
     enabled: false
-  nodePlacement:
-    nodeSelector:
-      node-role.kubernetes.io/master: ""
-    tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-      - effect: NoExecute
-        key: node-role.kubernetes.io/master
   notifications:
     enabled: false
   prometheus:
@@ -70,22 +57,43 @@ spec:
       enabled: false
     route:
       enabled: false
+  initialSSHKnownHosts: {}
+  sso:
+    dex:
+      openShiftOAuth: true
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 128Mi
+    provider: dex
+  applicationSet:
+    resources:
+      limits:
+        cpu: '2'
+        memory: 1Gi
+      requests:
+        cpu: 250m
+        memory: 512Mi
+    webhookServer:
+      ingress:
+        enabled: false
+      route:
+        enabled: false
   rbac:
     policy: |
       g, cluster-admins, role:admin
-    scopes: "[groups]"
-  redis:
-    resources:
-      limits:
-        cpu: 500m
-        memory: 256Mi
-      requests:
-        cpu: 250m
-        memory: 128Mi
+    scopes: '[groups]'
+  extraConfig:
+    application.resourceTrackingMethod: annotation+label
+    exec.enabled: 'true'
   repo:
+    replicas: 2
     resources:
       limits:
-        cpu: "1"
+        cpu: '1'
         memory: 1Gi
       requests:
         cpu: 250m
@@ -98,37 +106,34 @@ spec:
       kinds:
       - TaskRun
       - PipelineRun
-  server:
-    autoscale:
-      enabled: false
-    grpc:
-      ingress:
-        enabled: false
-    ingress:
-      enabled: false
+  ha:
+    enabled: true
     resources:
       limits:
         cpu: 500m
         memory: 256Mi
       requests:
-        cpu: 125m
+        cpu: 250m
         memory: 128Mi
-    route:
-      enabled: true
-      tls:
-        termination: reencrypt
-    service:
-      type: ""
-  sso:
-    dex:
-      openShiftOAuth: true
-      resources:
-        limits:
-          cpu: 500m
-          memory: 256Mi
-        requests:
-          cpu: 250m
-          memory: 128Mi
-    provider: dex
   tls:
     ca: {}
+  redis:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 250m
+        memory: 128Mi
+  controller:
+    processors: {}
+    resources:
+      limits:
+        cpu: '2'
+        memory: 2Gi
+      requests:
+        cpu: 250m
+        memory: 1Gi
+    sharding: 
+      enabled: true
+      replicas: 2
