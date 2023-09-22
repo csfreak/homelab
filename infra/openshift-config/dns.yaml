@@ -12,7 +12,7 @@ spec:
     upstreams:
       - type: Network
         port: 53
-        address: 172.31.1.151
+        address: 172.31.1.129
       - type: Network
         port: 53
         address: 1.1.1.1
