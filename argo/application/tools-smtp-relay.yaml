@@ -11,7 +11,7 @@ spec:
       targetRevision: HEAD
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: smtp-relay
+    namespace: tools-smtp-relay
   ignoreDifferences:
     - jsonPointers:
         - /data
