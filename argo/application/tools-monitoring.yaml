@@ -7,9 +7,9 @@ metadata:
     app.kubernetes.io/name: monitoring
 spec:
   destination:
-    namespace: monitoring
+    namespace: tools-monitoring
     server: https://kubernetes.default.svc
-  project: monitoring
+  project: tools
   ignoreDifferences:
     - group: apps
       jqPathExpressions:
@@ -19,7 +19,7 @@ spec:
         - /data
       kind: Secret
   source:
-    path: monitoring
+    path: tools/monitoring
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
