@@ -10,14 +10,14 @@ spec:
   sources:
     - chart: democratic-csi
       repoURL: https://democratic-csi.github.io/charts/
-      targetRevision: 0.14.1
+      targetRevision: 0.14.*
       helm:
         releaseName: synology-iscsi-hdd
         valueFiles:
           - "$homelab/infra/democratic-csi/values/synology-iscsi-hdd.yaml"
     - chart: democratic-csi
       repoURL: https://democratic-csi.github.io/charts/
-      targetRevision: 0.14.1
+      targetRevision: 0.14.*
       helm:
         releaseName: synology-iscsi-ssd
         valueFiles:
