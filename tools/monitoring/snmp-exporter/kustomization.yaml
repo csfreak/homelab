@@ -1,5 +1,4 @@
 resources:
-  - imagestreams.yaml
   - deploy.yaml
   - service.yaml
   - probes.yaml
