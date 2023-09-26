@@ -28,7 +28,7 @@ spec:
       ref: homelab
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: ifnra-democratic-csi
+    namespace: infra-democratic-csi
   ignoreDifferences:
     - jsonPointers:
         - /data
