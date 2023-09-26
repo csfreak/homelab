@@ -2,12 +2,11 @@ kind: Probe
 apiVersion: monitoring.coreos.com/v1
 metadata:
   name: snmp-metrics-mikrotik
-  namespace: monitoring
 spec:
   interval: 30s
   module: mikrotik
   prober:
-    url: snmp-exporter.monitoring.svc.cluster.local:9116
+    url: snmp-exporter.tools-monitoring.svc.cluster.local:9116
     path: /snmp
     scheme: http
   targets:
@@ -28,12 +27,11 @@ kind: Probe
 apiVersion: monitoring.coreos.com/v1
 metadata:
   name: snmp-metrics-cyberpower
-  namespace: monitoring
 spec:
   interval: 30s
   module: cyberpower
   prober:
-    url: snmp-exporter.monitoring.svc.cluster.local:9116
+    url: snmp-exporter.tools-monitoring.svc.cluster.local:9116
     path: /snmp
     scheme: http
   targets:
@@ -54,12 +52,11 @@ kind: Probe
 apiVersion: monitoring.coreos.com/v1
 metadata:
   name: snmp-metrics-synology
-  namespace: monitoring
 spec:
   interval: 30s
   module: synology
   prober:
-    url: snmp-exporter.monitoring.svc.cluster.local:9116
+    url: snmp-exporter.tools-monitoring.svc.cluster.local:9116
     path: /snmp
     scheme: http
   targets:
