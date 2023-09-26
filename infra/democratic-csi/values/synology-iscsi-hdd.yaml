@@ -21,3 +21,55 @@ driver:
   config:
     driver: synology-iscsi
     existingConfigSecret: true
+
+controller:
+  replicaCount: 2
+  driver:
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 64Mi
+      limits:
+        cpu: 0.1m
+        memory: 128Mi
+  externalAttacher:
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 32Mi
+      limits:
+        cpu: 0.1m
+        memory: 64Mi
+  externalProvisioner:
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 32Mi
+      limits:
+        cpu: 0.1m
+        memory: 64Mi
+  externalResizer:
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 64Mi
+      limits:
+        cpu: 0.1m
+        memory: 128Mi
+  externalSnapshotter:
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 32Mi
+      limits:
+        cpu: 0.1m
+        memory: 64Mi
+  
+csiProxy:
+  resources:
+    requests:
+      cpu: 0.01m
+      memory: 16Mi
+    limits:
+      cpu: 0.1m
+      memory: 32Mi

@@ -16,7 +16,11 @@ node:
       privileged: true
   driver:
     localtimeHostPath: null
+
 driver:
   config:
     driver: synology-iscsi
     existingConfigSecret: true
+
+controller:
+  replicaCount: 2
