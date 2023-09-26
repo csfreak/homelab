@@ -38,7 +38,7 @@ driver:
   existingConfigSecret: synology-iscsi-ssd-democratic-csi-driver-config
 
 controller:
-  replicaCount: 2
+  replicaCount: 1
   driver:
     resources:
       requests:
@@ -64,6 +64,7 @@ controller:
         cpu: 10m
         memory: 64Mi
   externalResizer:
+    enabled: true
     resources:
       requests:
         cpu: 1m
@@ -81,6 +82,7 @@ controller:
         memory: 64Mi
 
 csiProxy:
+  enabled: true
   resources:
     requests:
       cpu: 1m
