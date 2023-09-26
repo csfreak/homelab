@@ -1,6 +1,7 @@
 resources:
   - database/
   - instance/
+  - console-link.yaml
 
 labels:
   - pairs:

@@ -16,7 +16,6 @@ spec:
         - system:authenticated:oauth
   sourceRepos:
     - https://github.com/csfreak/homelab.git
-    - https://bokysan.github.io/docker-postfix/
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
@@ -24,3 +23,5 @@ spec:
       kind: ClusterRoleBinding
     - group: security.openshift.io
       kind: SecurityContextConstraints
+    - group: console.openshift.io
+      kind: ConsoleLink

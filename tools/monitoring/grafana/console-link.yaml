@@ -1,0 +1,13 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: grafana-link
+spec:
+  href: "https://grafana.apps.homelab.csfreak.com/"
+  location: ApplicationMenu
+  text: Grafana
+  applicationMenu:
+    section: Monitoring
+    # image that is 24x24 in size
+    imageURL: >-
+      https://grafana.apps.homelab.csfreak.com/public/img/grafana_icon.svg
