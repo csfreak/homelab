@@ -10,14 +10,14 @@ spec:
   sources:
     - chart: democratic-csi
       repoURL: https://democratic-csi.github.io/charts/
-      targetRevision: 0.13.7
+      targetRevision: 0.14.*
       helm:
         releaseName: synology-iscsi-hdd
         valueFiles:
           - "$homelab/infra/democratic-csi/values/synology-iscsi-hdd.yaml"
     - chart: democratic-csi
       repoURL: https://democratic-csi.github.io/charts/
-      targetRevision: 0.13.7
+      targetRevision: 0.14.*
       helm:
         releaseName: synology-iscsi-ssd
         valueFiles:
@@ -28,7 +28,7 @@ spec:
       ref: homelab
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: infra-democratic-csi
+    namespace: democratic-csi
   ignoreDifferences:
     - jsonPointers:
         - /data
