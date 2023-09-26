@@ -44,4 +44,5 @@ spec:
       annotations:
         app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
         app.openshift.io/vcs-ref: main
+        openshift.io/node-selector: ""
     automated: {}
