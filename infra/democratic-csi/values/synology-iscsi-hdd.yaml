@@ -18,18 +18,18 @@ node:
     localtimeHostPath: null
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 128Mi
   driverRegistrar:
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 16Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 32Mi
 
 driver:
@@ -38,55 +38,55 @@ driver:
   existingConfigSecret: synology-iscsi-hdd-democratic-csi-driver-config
 
 controller:
-  replicaCount: 1
+  replicaCount: 2
   driver:
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 128Mi
   externalAttacher:
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 32Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 64Mi
   externalProvisioner:
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 32Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 64Mi
   externalResizer:
     enabled: true
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 128Mi
   externalSnapshotter:
     resources:
       requests:
-        cpu: 1m
+        cpu: 10m
         memory: 32Mi
       limits:
-        cpu: 10m
+        cpu: 100m
         memory: 64Mi
 
 csiProxy:
   enabled: true
   resources:
     requests:
-      cpu: 1m
+      cpu: 10m
       memory: 16Mi
     limits:
-      cpu: 10m
+      cpu: 100m
       memory: 32Mi
