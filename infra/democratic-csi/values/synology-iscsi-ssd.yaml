@@ -35,7 +35,7 @@ node:
 driver:
   config:
     driver: synology-iscsi
-    existingConfigSecret: true
+  existingConfigSecret: synology-iscsi-ssd-democratic-csi-driver-config
 
 controller:
   replicaCount: 2
