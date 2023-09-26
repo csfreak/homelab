@@ -18,10 +18,10 @@ node:
     localtimeHostPath: null
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 64Mi
       limits:
-        cpu: 100m
+        cpu: 1000m
         memory: 128Mi
   driverRegistrar:
     resources:
@@ -42,10 +42,10 @@ controller:
   driver:
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 64Mi
       limits:
-        cpu: 100m
+        cpu: 1000m
         memory: 128Mi
   externalAttacher:
     resources:
