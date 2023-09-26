@@ -18,18 +18,18 @@ node:
     localtimeHostPath: null
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 64Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 128Mi
   driverRegistrar:
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 16Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 32Mi
 
 driver:
@@ -42,49 +42,49 @@ controller:
   driver:
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 64Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 128Mi
   externalAttacher:
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 32Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 64Mi
   externalProvisioner:
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 32Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 64Mi
   externalResizer:
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 64Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 128Mi
   externalSnapshotter:
     resources:
       requests:
-        cpu: 0.01m
+        cpu: 1m
         memory: 32Mi
       limits:
-        cpu: 0.1m
+        cpu: 10m
         memory: 64Mi
 
 csiProxy:
   resources:
     requests:
-      cpu: 0.01m
+      cpu: 1m
       memory: 16Mi
     limits:
-      cpu: 0.1m
+      cpu: 10m
       memory: 32Mi
