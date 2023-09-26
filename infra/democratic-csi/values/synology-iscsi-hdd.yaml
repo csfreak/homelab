@@ -16,6 +16,21 @@ node:
       privileged: true
   driver:
     localtimeHostPath: null
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 64Mi
+      limits:
+        cpu: 0.1m
+        memory: 128Mi
+  driverRegistrar:
+    resources:
+      requests:
+        cpu: 0.01m
+        memory: 16Mi
+      limits:
+        cpu: 0.1m
+        memory: 32Mi
 
 driver:
   config:
@@ -64,7 +79,7 @@ controller:
       limits:
         cpu: 0.1m
         memory: 64Mi
-  
+
 csiProxy:
   resources:
     requests:
