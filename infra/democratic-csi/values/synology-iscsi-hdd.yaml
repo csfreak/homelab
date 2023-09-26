@@ -26,10 +26,10 @@ node:
   driverRegistrar:
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 16Mi
       limits:
-        cpu: 100m
+        cpu: 200m
         memory: 32Mi
 
 driver:
@@ -50,43 +50,43 @@ controller:
   externalAttacher:
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 32Mi
       limits:
-        cpu: 100m
+        cpu: 200m
         memory: 64Mi
   externalProvisioner:
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 32Mi
       limits:
-        cpu: 100m
+        cpu: 200m
         memory: 64Mi
   externalResizer:
     enabled: true
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 64Mi
       limits:
-        cpu: 100m
+        cpu: 200m
         memory: 128Mi
   externalSnapshotter:
     resources:
       requests:
-        cpu: 10m
+        cpu: 100m
         memory: 32Mi
       limits:
-        cpu: 100m
+        cpu: 200m
         memory: 64Mi
 
 csiProxy:
   enabled: true
   resources:
     requests:
-      cpu: 10m
+      cpu: 100m
       memory: 16Mi
     limits:
-      cpu: 100m
+      cpu: 200m
       memory: 32Mi
