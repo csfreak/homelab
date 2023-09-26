@@ -3,6 +3,7 @@ kind: Route
 metadata:
   name: grafana
 spec:
+  hostname: grafana.apps.homelab.csfreak.com
   port:
     targetPort: http-grafana
   tls:
