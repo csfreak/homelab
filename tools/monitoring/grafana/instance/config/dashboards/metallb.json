@@ -55,7 +55,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "${datasource}"
+                "uid": "$datasource"
             },
             "description": "",
             "fieldConfig": {
