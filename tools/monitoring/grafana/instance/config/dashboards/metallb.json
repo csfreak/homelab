@@ -458,7 +458,7 @@
                     "text": "Openshift",
                     "value": "Openshift"
                 },
-                "hide": 1,
+                "hide": 2,
                 "includeAll": false,
                 "multi": false,
                 "name": "datasource",
