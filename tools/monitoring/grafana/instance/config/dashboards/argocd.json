@@ -60,7 +60,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -122,7 +122,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -177,7 +177,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "count(sum(argocd_app_info) by (name))",
@@ -254,7 +254,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -321,7 +321,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "count(sum(argocd_app_info) by (name,project)) by (project)",
@@ -348,7 +348,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -525,7 +525,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "count(sum(argocd_app_info) by (health_status, name)) by (health_status)",
@@ -543,7 +543,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -750,7 +750,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(count(argocd_app_info) by (sync_status, name)) by (sync_status)",
@@ -781,7 +781,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -905,7 +905,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(round(increase(argocd_app_sync_total[1h]))) by (project)",
@@ -922,7 +922,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1049,7 +1049,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1253,7 +1253,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1390,7 +1390,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1497,7 +1497,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(workqueue_depth{namespace=\"openshift-gitops\"}) by (name)",
@@ -1514,7 +1514,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1626,7 +1626,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1711,7 +1711,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_memstats_heap_alloc_bytes{job=\"openshift-gitops-metrics\",}",
@@ -1728,7 +1728,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1855,7 +1855,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "irate(process_cpu_seconds_total{job=\"openshift-gitops-metrics\"}[1m])",
@@ -1872,7 +1872,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -1957,7 +1957,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_goroutines{job=\"openshift-gitops-metrics\",}",
@@ -1988,7 +1988,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2071,7 +2071,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(argocd_cluster_api_resource_objects)",
@@ -2088,7 +2088,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2192,7 +2192,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "  sum(argocd_cluster_api_resources)",
@@ -2209,7 +2209,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2293,7 +2293,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(argocd_cluster_events_total[1h]))",
@@ -2504,7 +2504,7 @@
                     "dataFormat": "tsbuckets",
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2577,7 +2577,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(argocd_git_request_duration_seconds_bucket{request_type=\"fetch\", }[1h])) by (le)",
@@ -2616,7 +2616,7 @@
                     "dataFormat": "tsbuckets",
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2689,7 +2689,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(argocd_git_request_duration_seconds_bucket{request_type=\"ls-remote\", }[1h])) by (le)",
@@ -2719,7 +2719,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2800,7 +2800,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_memstats_heap_alloc_bytes{job=\"openshift-gitops-repo-server\",}",
@@ -2817,7 +2817,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -2898,7 +2898,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_goroutines{job=\"openshift-gitops-repo-server\",}",
@@ -2929,7 +2929,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3010,7 +3010,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_memstats_heap_alloc_bytes{job=\"openshift-gitops-server-metrics\",}",
@@ -3027,7 +3027,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3107,7 +3107,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_goroutines{job=\"openshift-gitops-server-metrics\",}",
@@ -3124,7 +3124,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3204,7 +3204,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "go_gc_duration_seconds{job=\"openshift-gitops-server-metrics\", quantile=\"1\"}",
@@ -3243,7 +3243,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3368,7 +3368,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"application.ApplicationService\",}[1h])) by (grpc_code, grpc_method)",
@@ -3385,7 +3385,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3510,7 +3510,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"cluster.ClusterService\",}[1h])) by (grpc_code, grpc_method)",
@@ -3527,7 +3527,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3652,7 +3652,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"project.ProjectService\",}[1h])) by (grpc_code, grpc_method)",
@@ -3669,7 +3669,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3793,7 +3793,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"repository.RepositoryService\",}[1h])) by (grpc_code, grpc_method)",
@@ -3810,7 +3810,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -3935,7 +3935,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"session.SessionService\",}[1h])) by (grpc_code, grpc_method)",
@@ -3952,7 +3952,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -4077,7 +4077,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"version.VersionService\",}[1h])) by (grpc_code, grpc_method)",
@@ -4094,7 +4094,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -4219,7 +4219,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"account.AccountService\",}[1h])) by (grpc_code, grpc_method)",
@@ -4236,7 +4236,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -4361,7 +4361,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(increase(grpc_server_handled_total{job=\"openshift-gitops-server-metrics\",grpc_service=\"settings.SettingsService\",}[1h])) by (grpc_code, grpc_method)",

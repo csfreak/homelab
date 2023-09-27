@@ -34,7 +34,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -81,7 +81,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "(time() - (snmp_value_hrSystemUptime))/ 1000",
@@ -96,7 +96,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -146,7 +146,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "snmp_value_mtxrFirmwareVersion",
@@ -162,7 +162,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -220,7 +220,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "sum(snmp_value_hrProcessorLoad{instance=\"router.homelab.csfreak.com\"} != 0) / count(snmp_value_hrProcessorLoad{instance=\"router.homelab.csfreak.com\"} != 0)",
@@ -236,7 +236,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -294,7 +294,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "snmp_value_hrStorageUsed{instance=\"router.homelab.csfreak.com\",hrStorageDescr=\"main memory\"} / snmp_value_hrStorageSize{instance=\"router.homelab.csfreak.com\",hrStorageDescr=\"main memory\"}",
@@ -310,7 +310,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -371,7 +371,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "(snmp_value_mtxrGaugeValue + on (mtxrGaugeIndex) group_right(mtxrGuageName) snmp_value_mtxrGaugeName{mtxrGaugeName=~\".*temperature\"} - 1) * 9 / 5 + 32",
@@ -386,7 +386,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -471,7 +471,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "rate(snmp_value_ifHCInOctets{ifName=\"NetINETv5\"}[$__rate_interval]) * 8",
@@ -484,7 +484,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "rate(snmp_value_ifHCOutOctets{ifName=\"NetINETv5\"}[$__rate_interval]) * 8",
@@ -502,7 +502,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "fieldConfig": {
                         "defaults": {
@@ -561,7 +561,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "rate(snmp_value_ifHCInOctets{ifName=\"NetINETv5\"}[1h]) * 8",
@@ -573,7 +573,7 @@
                         {
                             "datasource": {
                                 "type": "prometheus",
-                                "uid": "P0C885DF0255B120C"
+                                "uid": "$datasource"
                             },
                             "editorMode": "code",
                             "expr": "rate(snmp_value_ifHCOutOctets{ifName=\"NetINETv5\"}[1h]) * 8",
@@ -608,7 +608,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -668,7 +668,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "snmp_value_upsAdvanceBatteryRunTimeRemaining / 100",
@@ -683,7 +683,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -749,7 +749,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "snmp_value_upsAdvanceOutputPower",
@@ -764,7 +764,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -835,7 +835,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "snmp_value_upsAdvanceInputLineVoltage / 10",
@@ -847,7 +847,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "snmp_value_upsAdvanceOutputVoltage / 10",
@@ -864,7 +864,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "P0C885DF0255B120C"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -913,7 +913,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "P0C885DF0255B120C"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "snmp_value_envirTemperature / 10",
@@ -933,7 +933,25 @@
     "style": "dark",
     "tags": [],
     "templating": {
-        "list": []
+        "list": [
+            {
+                "current": {
+                    "selected": false,
+                    "text": "Openshift",
+                    "value": "Openshift"
+                },
+                "hide": 1,
+                "includeAll": false,
+                "multi": false,
+                "name": "datasource",
+                "options": [],
+                "query": "prometheus",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "type": "datasource"
+            }
+        ]
     },
     "time": {
         "from": "now-2d",

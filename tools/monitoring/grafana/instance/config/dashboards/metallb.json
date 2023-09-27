@@ -1,14 +1,5 @@
 {
-    "__inputs": [
-        {
-            "name": "DS_OPENSHIFT",
-            "label": "Openshift",
-            "description": "",
-            "type": "datasource",
-            "pluginId": "prometheus",
-            "pluginName": "Prometheus"
-        }
-    ],
+    "__inputs": [],
     "__elements": {},
     "__requires": [
         {
@@ -64,7 +55,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "${DS_OPENSHIFT}"
+                "uid": "${datasource}"
             },
             "description": "",
             "fieldConfig": {
@@ -144,7 +135,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "metallb_allocator_addresses_total",
@@ -156,7 +147,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "metallb_allocator_addresses_in_use_total",
@@ -172,7 +163,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "${DS_OPENSHIFT}"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -217,7 +208,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "editorMode": "code",
                     "expr": "sum(metallb_k8s_client_config_stale_bool)",
@@ -234,7 +225,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "${DS_OPENSHIFT}"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -313,7 +304,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "expr": "rate(metallb_layer2_gratuitous_sent{ip=~\"$layer2ip\"}[1m]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "hide": false,
@@ -325,7 +316,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "expr": "rate(metallb_layer2_requests_received{instance=~\"$layer2ip\"}[1m]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "hide": false,
@@ -336,7 +327,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "expr": "rate(metallb_layer2_responses_sent{instance=~\"$layer2ip\"}[1m]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "hide": false,
@@ -351,7 +342,7 @@
         {
             "datasource": {
                 "type": "prometheus",
-                "uid": "${DS_OPENSHIFT}"
+                "uid": "$datasource"
             },
             "fieldConfig": {
                 "defaults": {
@@ -430,7 +421,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "expr": "rate(metallb_k8s_client_update_errors_total[5m])",
                     "interval": "",
@@ -440,7 +431,7 @@
                 {
                     "datasource": {
                         "type": "prometheus",
-                        "uid": "${DS_OPENSHIFT}"
+                        "uid": "$datasource"
                     },
                     "expr": "rate(metallb_k8s_client_updates_total[5m])",
                     "interval": "",
@@ -462,7 +453,27 @@
     "templating": {
         "list": [
             {
+                "current": {
+                    "selected": false,
+                    "text": "Openshift",
+                    "value": "Openshift"
+                },
+                "hide": 1,
+                "includeAll": false,
+                "multi": false,
+                "name": "datasource",
+                "options": [],
+                "query": "prometheus",
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "type": "datasource"
+            },
+            {
                 "current": {},
+                "datasource": {
+                    "uid": "$datasource"
+                },
                 "definition": "label_values(metallb_layer2_gratuitous_sent,ip)",
                 "hide": 0,
                 "includeAll": true,

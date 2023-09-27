@@ -3930,7 +3930,7 @@
                     "text": "Openshift",
                     "value": "Openshift"
                 },
-                "hide": 0,
+                "hide": 1,
                 "includeAll": false,
                 "multi": false,
                 "name": "datasource",
