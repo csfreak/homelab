@@ -1348,8 +1348,8 @@
             {
                 "current": {
                     "selected": false,
-                    "text": "prometheus",
-                    "value": "prometheus"
+                    "text": "Openshift",
+                    "value": "Openshift"
                 },
                 "hide": 2,
                 "includeAll": false,

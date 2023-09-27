@@ -306,7 +306,7 @@
                         "type": "prometheus",
                         "uid": "$datasource"
                     },
-                    "expr": "rate(metallb_layer2_gratuitous_sent{ip=~\"$layer2ip\"}[1m]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
+                    "expr": "rate(metallb_layer2_gratuitous_sent{ip=~\"$layer2ip\"}[$__rate_interval]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "hide": false,
                     "instant": false,
                     "interval": "",
@@ -318,7 +318,7 @@
                         "type": "prometheus",
                         "uid": "$datasource"
                     },
-                    "expr": "rate(metallb_layer2_requests_received{instance=~\"$layer2ip\"}[1m]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
+                    "expr": "rate(metallb_layer2_requests_received{ip=~\"$layer2ip\"}[$__rate_interval]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "{{node}} - {{ip}} - RECEIVED",
@@ -329,7 +329,7 @@
                         "type": "prometheus",
                         "uid": "$datasource"
                     },
-                    "expr": "rate(metallb_layer2_responses_sent{instance=~\"$layer2ip\"}[1m]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
+                    "expr": "rate(metallb_layer2_responses_sent{ip=~\"$layer2ip\"}[$__rate_interval]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "hide": false,
                     "interval": "",
                     "legendFormat": "{{node}} - {{ip}} - SENT",
