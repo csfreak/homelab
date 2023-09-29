@@ -128,5 +128,4 @@ spec:
         cpu: 250m
         memory: 1Gi
     sharding:
-      enabled: true
-      replicas: 2
+      enabled: false
