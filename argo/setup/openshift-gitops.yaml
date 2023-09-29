@@ -6,7 +6,7 @@ metadata:
 spec:
   nodePlacement:
     nodeSelector:
-      node-role.kubernetes.io/master: ''
+      node-role.kubernetes.io/master: ""
     tolerations:
       - effect: NoSchedule
         key: node-role.kubernetes.io/master
@@ -33,18 +33,11 @@ spec:
       tls:
         termination: reencrypt
     service:
-      type: ''
+      type: ""
   grafana:
     enabled: false
     ingress:
       enabled: false
-    resources:
-      limits:
-        cpu: 500m
-        memory: 256Mi
-      requests:
-        cpu: 250m
-        memory: 128Mi
     route:
       enabled: false
   monitoring:
@@ -72,7 +65,7 @@ spec:
   applicationSet:
     resources:
       limits:
-        cpu: '2'
+        cpu: "2"
         memory: 1Gi
       requests:
         cpu: 250m
@@ -85,15 +78,15 @@ spec:
   rbac:
     policy: |
       g, cluster-admins, role:admin
-    scopes: '[groups]'
+    scopes: "[groups]"
   extraConfig:
     application.resourceTrackingMethod: annotation+label
-    exec.enabled: 'true'
+    exec.enabled: "true"
   repo:
     replicas: 2
     resources:
       limits:
-        cpu: '1'
+        cpu: "1"
         memory: 1Gi
       requests:
         cpu: 250m
@@ -129,11 +122,11 @@ spec:
     processors: {}
     resources:
       limits:
-        cpu: '2'
+        cpu: "2"
         memory: 2Gi
       requests:
         cpu: 250m
         memory: 1Gi
-    sharding: 
+    sharding:
       enabled: true
       replicas: 2
