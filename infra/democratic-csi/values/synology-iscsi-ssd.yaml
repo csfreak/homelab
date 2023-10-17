@@ -31,6 +31,9 @@ node:
       limits:
         cpu: 200m
         memory: 32Mi
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      operator: Exists
 
 driver:
   config:
