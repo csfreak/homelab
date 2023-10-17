@@ -14,11 +14,11 @@ spec:
           storageClassName: synology-iscsi-ssd
       resources:
         limits:
-          cpu: '4'
-          memory: 8Gi
+          cpu: 500m
+          memory: 1Gi
         requests:
-          cpu: '2'
-          memory: 4Gi
+          cpu: 50m
+          memory: 512Mi
     exposure:
       loadBalancer:
         enabled: false
@@ -34,11 +34,11 @@ spec:
         storageClassName: synology-iscsi-ssd
     resources:
       limits:
-        cpu: '2'
-        memory: 4Gi
+        cpu: 200m
+        memory: 1Gi
       requests:
-        cpu: '1'
-        memory: 2Gi
+        cpu: 50m
+        memory: 512Mi
     telemetry:
       enabled: true
   egress:
@@ -50,20 +50,20 @@ spec:
     analyzer:
       resources:
         limits:
-          cpu: '2'
-          memory: 2Gi
-        requests:
-          cpu: '1'
+          cpu: 500m
           memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 512Mi
       scaling:
         autoScaling: Enabled
         maxReplicas: 5
-        minReplicas: 2
+        minReplicas: 1
         replicas: 3
     db:
       resources:
         limits:
-          cpu: '1'
+          cpu: "1"
           memory: 2Gi
         requests:
           cpu: 500m
