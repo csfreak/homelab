@@ -362,7 +362,7 @@
                         "axisPlacement": "auto",
                         "barAlignment": 0,
                         "drawStyle": "line",
-                        "fillOpacity": 10,
+                        "fillOpacity": 0,
                         "gradientMode": "none",
                         "hideFrom": {
                             "legend": false,
@@ -385,7 +385,9 @@
                             "mode": "off"
                         }
                     },
+                    "decimals": 0,
                     "mappings": [],
+                    "noValue": "0",
                     "thresholds": {
                         "mode": "absolute",
                         "steps": [
@@ -429,9 +431,11 @@
                         "type": "prometheus",
                         "uid": "$datasource"
                     },
-                    "expr": "rate(metallb_k8s_client_update_errors_total[5m])",
+                    "editorMode": "code",
+                    "expr": "increase(metallb_k8s_client_update_errors_total[$__rate_interval]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "interval": "",
-                    "legendFormat": "",
+                    "legendFormat": "{{node}} - Errors",
+                    "range": true,
                     "refId": "A"
                 },
                 {
@@ -439,9 +443,11 @@
                         "type": "prometheus",
                         "uid": "$datasource"
                     },
-                    "expr": "rate(metallb_k8s_client_updates_total[5m])",
+                    "editorMode": "code",
+                    "expr": "increase(metallb_k8s_client_updates_total[$__rate_interval]) * on (pod, namespace) group_left(node) kube_pod_info{namespace=\"metallb-system\"} > 0",
                     "interval": "",
-                    "legendFormat": "",
+                    "legendFormat": "{{node}} - Updates",
+                    "range": true,
                     "refId": "B"
                 }
             ],
