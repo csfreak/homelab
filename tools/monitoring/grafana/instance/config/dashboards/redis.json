@@ -61,7 +61,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "Average taken across instances",
+            "description": "Average taken across namespaces",
             "editable": true,
             "error": false,
             "fieldConfig": {
@@ -110,7 +110,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "avg(irate(redis_commands_total{instance=~\"$instance\"} [1m])) by (cmd)",
+                    "expr": "avg(irate(redis_commands_total{namespace=~\"$namespace\"} [1m])) by (cmd)",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 2,
@@ -168,7 +168,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "Average taken across instances",
+            "description": "Average taken across namespaces",
             "editable": true,
             "error": false,
             "fieldConfig": {
@@ -217,7 +217,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "avg(irate(redis_commands_duration_seconds_total{instance=~\"$instance\"}[1m])) by (cmd)\n  /\navg(irate(redis_commands_total{instance=~\"$instance\"}[1m])) by (cmd)\n",
+                    "expr": "avg(irate(redis_commands_duration_seconds_total{namespace=~\"$namespace\"}[1m])) by (cmd)\n  /\navg(irate(redis_commands_total{namespace=~\"$namespace\"}[1m])) by (cmd)\n",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 2,
@@ -334,12 +334,12 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "avg(irate(redis_keyspace_hits_total{instance=~\"$instance\"}[1m]) / (irate(redis_keyspace_misses_total{instance=~\"$instance\"}[1m]) + irate(redis_keyspace_hits_total{instance=~\"$instance\"}[1m]))) by (instance)",
+                    "expr": "avg(irate(redis_keyspace_hits_total{namespace=~\"$namespace\"}[1m]) / (irate(redis_keyspace_misses_total{namespace=~\"$namespace\"}[1m]) + irate(redis_keyspace_hits_total{namespace=~\"$namespace\"}[1m]))) by (namespace)",
                     "format": "time_series",
                     "hide": false,
                     "interval": "",
                     "intervalFactor": 2,
-                    "legendFormat": "{{instance}}",
+                    "legendFormat": "{{namespace}}",
                     "metric": "",
                     "refId": "A",
                     "step": 240,
@@ -356,7 +356,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Hit ratio per instance",
+            "title": "Hit ratio per namespace",
             "tooltip": {
                 "msResolution": false,
                 "shared": true,
@@ -416,7 +416,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "Total taken across instances",
+            "description": "Total taken across namespaces",
             "editable": true,
             "error": false,
             "fieldConfig": {
@@ -473,7 +473,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "sum(redis_memory_used_bytes{instance=~\"$instance\"})",
+                    "expr": "sum(redis_memory_used_bytes{namespace=~\"$namespace\"})",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 2,
@@ -484,7 +484,7 @@
                     "target": ""
                 },
                 {
-                    "expr": "sum(redis_memory_max_bytes{instance=~\"$instance\"})",
+                    "expr": "sum(redis_memory_max_bytes{namespace=~\"$namespace\"})",
                     "format": "time_series",
                     "hide": false,
                     "interval": "",
@@ -494,7 +494,7 @@
                     "step": 240
                 },
                 {
-                    "expr": "sum(redis_memory_used_rss_bytes{instance=~\"$instance\"})",
+                    "expr": "sum(redis_memory_used_rss_bytes{namespace=~\"$namespace\"})",
                     "interval": "",
                     "legendFormat": "Used RSS memory",
                     "refId": "C"
@@ -604,10 +604,10 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "redis_memory_fragmentation_ratio{instance=~\"$instance\"}",
+                    "expr": "redis_memory_fragmentation_ratio{namespace=~\"$namespace\"}",
                     "hide": false,
                     "interval": "",
-                    "legendFormat": "{{instance}}",
+                    "legendFormat": "{{namespace}}",
                     "refId": "C"
                 }
             ],
@@ -615,7 +615,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Memory fragmentation ratio per instance",
+            "title": "Memory fragmentation ratio per namespace",
             "tooltip": {
                 "msResolution": true,
                 "shared": true,
@@ -654,14 +654,6 @@
             }
         },
         {
-            "aliasColors": {
-                "Evictions": "red",
-                "evicts": "#890F02",
-                "memcached_items_evicted_total{instance=\"172.17.0.1:9150\",job=\"prometheus\"}": "#890F02",
-                "reclaims": "#3F6833",
-                "{container=\"redis-exporter\", instance=\"redis-86cb5d76d7-fcdln:redis-exporter:redis-metrics\", job=\"default/redis\", namespace=\"default\", pod=\"redis-86cb5d76d7-fcdln\"}": "red",
-                "{instance=\"redis-86cb5d76d7-fcdln:redis-exporter:redis-metrics\"}": "red"
-            },
             "bars": false,
             "dashLength": 10,
             "dashes": false,
@@ -717,11 +709,11 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "irate(redis_evicted_keys_total{instance=~\"$instance\"}[1m])",
+                    "expr": "irate(redis_evicted_keys_total{namespace=~\"$namespace\"}[1m])",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 2,
-                    "legendFormat": "{{instance}}",
+                    "legendFormat": "{{namespace}}",
                     "refId": "B",
                     "step": 240
                 }
@@ -730,7 +722,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Key evictions per second per instance",
+            "title": "Key evictions per second per namespace",
             "tooltip": {
                 "msResolution": false,
                 "shared": true,
@@ -788,7 +780,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "Sum taken across instances",
+            "description": "Sum taken across namespaces",
             "fieldConfig": {
                 "defaults": {
                     "custom": {}
@@ -831,7 +823,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "sum(redis_connected_clients{instance=~\"$instance\"})",
+                    "expr": "sum(redis_connected_clients{namespace=~\"$namespace\"})",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 1,
@@ -839,7 +831,7 @@
                     "refId": "A"
                 },
                 {
-                    "expr": "sum(redis_blocked_clients{instance=~\"$instance\"})",
+                    "expr": "sum(redis_blocked_clients{namespace=~\"$namespace\"})",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 1,
@@ -896,7 +888,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "Sum taken across instances",
+            "description": "Sum taken across namespaces",
             "editable": true,
             "error": false,
             "fieldConfig": {
@@ -947,7 +939,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "sum (redis_db_keys{instance=~\"$instance\"}) by (db)",
+                    "expr": "sum (redis_db_keys{namespace=~\"$namespace\"}) by (db)",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 1,
@@ -1005,7 +997,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "Sum taken across instances",
+            "description": "Sum taken across namespaces",
             "editable": true,
             "error": false,
             "fieldConfig": {
@@ -1052,7 +1044,7 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "sum (redis_db_keys{instance=~\"$instance\"}) - sum (redis_db_keys_expiring{instance=~\"$instance\"})",
+                    "expr": "sum (redis_db_keys{namespace=~\"$namespace\"}) - sum (redis_db_keys_expiring{namespace=~\"$namespace\"})",
                     "format": "time_series",
                     "hide": false,
                     "interval": "",
@@ -1063,7 +1055,7 @@
                     "target": ""
                 },
                 {
-                    "expr": "sum(redis_db_keys_expiring{instance=~\"$instance\"})",
+                    "expr": "sum(redis_db_keys_expiring{namespace=~\"$namespace\"})",
                     "format": "time_series",
                     "interval": "",
                     "intervalFactor": 2,
@@ -1121,7 +1113,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "This metric will only be non-zero if the instance is a master",
+            "description": "This metric will only be non-zero if the namespace is a master",
             "fieldConfig": {
                 "defaults": {
                     "custom": {}
@@ -1163,9 +1155,9 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "sum(redis_connected_slaves{instance=~\"$instance\"}) by (instance)",
+                    "expr": "sum(redis_connected_slaves{namespace=~\"$namespace\"}) by (namespace)",
                     "interval": "",
-                    "legendFormat": "{{instance}}",
+                    "legendFormat": "{{namespace}}",
                     "refId": "A"
                 }
             ],
@@ -1173,7 +1165,7 @@
             "timeFrom": null,
             "timeRegions": [],
             "timeShift": null,
-            "title": "Connected slaves by instance",
+            "title": "Connected slaves by namespace",
             "tooltip": {
                 "shared": true,
                 "sort": 0,
@@ -1216,7 +1208,7 @@
             "dashLength": 10,
             "dashes": false,
             "datasource": "$datasource",
-            "description": "This metric is only exported if the instance is a slave.",
+            "description": "This metric is only exported if the namespace is a slave.",
             "fieldConfig": {
                 "defaults": {
                     "custom": {}
@@ -1258,9 +1250,9 @@
             "steppedLine": false,
             "targets": [
                 {
-                    "expr": "redis_master_last_io_seconds_ago{instance=~\"$instance\"}",
+                    "expr": "redis_master_last_io_seconds_ago{namespace=~\"$namespace\"}",
                     "interval": "",
-                    "legendFormat": "{{instance}}",
+                    "legendFormat": "{{namespace}}",
                     "refId": "A"
                 }
             ],
@@ -1316,25 +1308,15 @@
     "templating": {
         "list": [
             {
-                "allValue": null,
-                "current": {
-                    "selected": true,
-                    "tags": [],
-                    "text": "redisdb-7d6b98cd98-kjt5x + redisdb-7d6b98cd98-pbkg6",
-                    "value": [
-                        "redisdb-7d6b98cd98-kjt5x",
-                        "redisdb-7d6b98cd98-pbkg6"
-                    ]
-                },
                 "datasource": "$datasource",
-                "definition": "label_values(redis_up, instance)",
+                "definition": "label_values(redis_up, namespace)",
                 "hide": 0,
                 "includeAll": false,
                 "label": null,
                 "multi": true,
-                "name": "instance",
+                "name": "namespace",
                 "options": [],
-                "query": "label_values(redis_up, instance)",
+                "query": "label_values(redis_up, namespace)",
                 "refresh": 2,
                 "regex": "",
                 "skipUrlSync": false,
