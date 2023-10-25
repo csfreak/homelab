@@ -11,6 +11,7 @@ spec:
     managementState: Unmanaged
     s3:
       bucket: ocp-image-registry
+      region: homelab
       regionEndpoint: http://storage.homelab.csfreak.com:9000/
   replicas: 2
   nodeSelector:
