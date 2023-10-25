@@ -31,7 +31,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: image-registry-local-config
-  namspace: openshift-image-registry
+  namespace: openshift-image-registry
 rules:
   - apiGroups:
       - imageregistry.operator.openshift.io
@@ -50,7 +50,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: image-registry-local-config-openshift-gitops
-  namspace: openshift-image-registry
+  namespace: openshift-image-registry
 subjects:
   - kind: ServiceAccount
     name: openshift-gitops-argocd-application-controller
@@ -59,4 +59,4 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: image-registry-local-config
-  namspace: openshift-image-registry
+  namespace: openshift-image-registry
