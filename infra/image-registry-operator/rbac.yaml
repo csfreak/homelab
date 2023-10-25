@@ -34,7 +34,7 @@ metadata:
   namespace: openshift-image-registry
 rules:
   - apiGroups:
-      - imageregistry.operator.openshift.io
+      - external-secrets.io
     resources:
       - externalsecrets
     verbs:
