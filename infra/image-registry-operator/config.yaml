@@ -4,13 +4,14 @@ metadata:
   name: cluster
 spec:
   logLevel: Normal
-  rolloutStrategy: Recreate
+  rolloutStrategy: RollingUpdate
   operatorLogLevel: Normal
   managementState: Managed
   storage:
     managementState: Unmanaged
-    pvc:
-      claim: image-registry-shared
+    s3:
+      bucket: ocp-image-registry
+      regionEndpoint: http://storage.homelab.csfreak.com:9000/
   replicas: 2
   nodeSelector:
     node-role.kubernetes.io/master: ""
