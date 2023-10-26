@@ -1,4 +1,4 @@
-FROM docker.homelab.csfreak.com/library/ubuntu:kinetic
+FROM docker.homelab.csfreak.com/library/ubuntu:jammy
 
 ENV RADARR_BRANCH="master"
 ARG RADARR_RELEASE
@@ -11,7 +11,7 @@ RUN \
     apt-get install -y \
     jq \
     curl \
-    libicu71 \
+    libicu70 \
     libmediainfo0v5 \
     sqlite3 && \
     echo "**** install radarr ****" && \
