@@ -16,13 +16,13 @@ spec:
         - name: grafana
           image: grafana/grafana:10.0.1
           imagePullPolicy: Always
-          envFrom:
-            - secretRef:
-                name: grafana-db-user
-              prefix: GF_DATABASE_
-            - configMapRef:
-                name: grafana-env
-              prefix: GF_
+          # envFrom:
+          #   - secretRef:
+          #       name: grafana-db-user
+          #     prefix: GF_DATABASE_
+          #   - configMapRef:
+          #       name: grafana-env
+          #     prefix: GF_
           ports:
             - containerPort: 3000
               name: http-grafana
