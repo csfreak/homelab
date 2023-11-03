@@ -48,7 +48,7 @@ controller:
         cpu: 10m
         memory: 64Mi
       limits:
-        cpu: 1000m
+        cpu: 100m
         memory: 128Mi
   externalAttacher:
     resources:
