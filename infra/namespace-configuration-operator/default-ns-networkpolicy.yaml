@@ -21,11 +21,11 @@ spec:
           ingress:
           - from:
             - ipBlock:
-                cidr: 192.168.0.0/18
+                cidr: 192.168.0.0/18 # Home IPs
             - ipBlock:
-                cidr: 172.30.0.0/16
+                cidr: 172.30.0.0/16 # Cluster Local 
             - ipBlock:
-                cidr: 172.31.1.0/24
+                cidr: 172.31.1.0/24 #Cluster Edge IPs
 ---
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: NamespaceConfig
@@ -47,7 +47,8 @@ spec:
           podSelector: {}
           policyTypes:
           - Egress
-          egress: []
+          egress:
+          - {}
 ---
 apiVersion: redhatcop.redhat.io/v1alpha1
 kind: NamespaceConfig
