@@ -29,7 +29,8 @@ metadata:
   name: snmp-metrics-cyberpower
 spec:
   interval: 30s
-  module: cyberpower
+  module: cyberpower,if_mib
+  auth: public_v1
   prober:
     url: snmp-exporter.tools-monitoring.svc.cluster.local:9116
     path: /snmp
