@@ -30,7 +30,6 @@ metadata:
 spec:
   interval: 30s
   module: cyberpower,if_mib
-  auth: public_v1
   prober:
     url: snmp-exporter.tools-monitoring.svc.cluster.local:9116
     path: /snmp
@@ -39,6 +38,8 @@ spec:
     staticConfig:
       static:
         - ups.homelab.csfreak.com
+      labels:
+        __params_auth: public_v1
   metricRelabelings:
     - sourceLabels:
         - "__name__"
