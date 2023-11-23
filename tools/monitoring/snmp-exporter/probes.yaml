@@ -38,8 +38,6 @@ spec:
     staticConfig:
       static:
         - ups.homelab.csfreak.com
-      labels:
-        __params_auth: public_v1
   metricRelabelings:
     - sourceLabels:
         - "__name__"
