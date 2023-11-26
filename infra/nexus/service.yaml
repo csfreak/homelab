@@ -22,8 +22,8 @@ metadata:
 spec:
   ports:
     - appProtocol: http3
-      port: 443
+      port: 8083
       protocol: TCP
-      targetPort: 8444
+      targetPort: 8083
   selector:
     app: nexus3

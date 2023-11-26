@@ -40,3 +40,24 @@ spec:
     name: docker
     weight: 100
   wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: nexus3-tls
+  name: nexus3-docker-homelab
+  labels:
+    app: nexus3
+spec:
+  host: homelab.docker.homelab.csfreak.com
+  port:
+    targetPort: 8083
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: homelab
+    weight: 100
+  wildcardPolicy: None

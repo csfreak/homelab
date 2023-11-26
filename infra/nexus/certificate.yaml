@@ -11,3 +11,4 @@ spec:
   dnsNames:
     - "nexus.homelab.csfreak.com"
     - "docker.homelab.csfreak.com"
+    - "homelab.docker.homelab.csfreak.com"
