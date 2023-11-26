@@ -21,9 +21,9 @@ metadata:
     app: nexus3-docker
 spec:
   ports:
-    - appProtocol: http
-      port: 8083
+    - appProtocol: http3
+      port: 443
       protocol: TCP
-      targetPort: 8083  
+      targetPort: 8444
   selector:
     app: nexus3
