@@ -8,6 +8,7 @@ spec:
   ports:
     - appProtocol: http
       port: 80
+      name: http
       protocol: TCP
       targetPort: 8082
   selector:
@@ -23,6 +24,7 @@ spec:
   ports:
     - appProtocol: http
       port: 80
+      name: http
       protocol: TCP
       targetPort: 8083
   selector:

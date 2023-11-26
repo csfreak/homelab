@@ -31,7 +31,7 @@ metadata:
 spec:
   host: docker.homelab.csfreak.com
   port:
-    targetPort: 80
+    targetPort: http
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
@@ -52,7 +52,7 @@ metadata:
 spec:
   host: homelab.docker.homelab.csfreak.com
   port:
-    targetPort: 80
+    targetPort: http
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
