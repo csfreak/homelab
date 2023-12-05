@@ -2,10 +2,6 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  annotations:
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"minecraft-bedrock-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"main\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"mc-monitor:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"mc-monitor\")].image"}]
   name: bedrock-server
 spec:
   # never more than 1 since BDS is not horizontally scalable
@@ -22,7 +18,7 @@ spec:
     spec:
       containers:
         - name: main
-          image: minecraft-bedrock-server
+          image: itzg/minecraft-bedrock-server:latest
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
@@ -54,7 +50,7 @@ spec:
               cpu: "4"
               memory: "4Gi"
         - name: mc-monitor
-          image: mc-monitor
+          image: itzg/mc-monitor:latest
           args:
             - export-for-prometheus
           env:
