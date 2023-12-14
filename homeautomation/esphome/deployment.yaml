@@ -20,7 +20,7 @@ spec:
       containers:
         - args:
             - dashboard
-            - /config/esphome
+            - /config/esphome/
           image: esphome/esphome:2023.11
           imagePullPolicy: IfNotPresent
           livenessProbe:
@@ -47,8 +47,8 @@ spec:
               memory: 128Mi
               cpu: 10m
             limits:
-              memory: 512Gi
-              cpu: "1"
+              memory: 512Mi
+              cpu: 200m
           volumeMounts:
             - mountPath: /config
               name: esphome-config
