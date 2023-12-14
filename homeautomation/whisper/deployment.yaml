@@ -22,19 +22,25 @@ spec:
             - python3
             - -m
             - wyoming_faster_whisper
-            - --uri 'tcp://0.0.0.0:10300'
-            - --model tiny-int8
-            - --beam-size 1
-            - --language en
-            - --data-dir /data
-            - --download-dir /data
+            - --uri
+            - tcp://0.0.0.0:10300
+            - --model
+            - tiny-int8
+            - --beam-size
+            - "1"
+            - --language
+            - en
+            - --data-dir
+            - /data
+            - --download-dir
+            - /data
           image: homeassistant/amd64-addon-whisper
           imagePullPolicy: IfNotPresent
           name: whisper
 
           ports:
             - containerPort: 10300
-              name: whisper-http
+              name: whisper
               protocol: TCP
           resources:
             requests:
