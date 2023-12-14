@@ -17,10 +17,38 @@ spec:
       labels:
         deployment: esphome
     spec:
+      initContainers:
+        - name: make-platformio-dirs
+          image: ubi9/ubi
+          envFrom:
+            - configMapRef:
+                name: platformio-env
+              prefix: PLATFORMIO_
+          volumeMounts:
+            - mountPath: /config
+              name: esphome-config
+            - mountPath: /cache
+              name: esphome-cache
+          command:
+            - /usr/bin/bash
+            - -c
+            - |
+              for var in ${!PLATFORMIO_*}
+                do
+                if [[ "${var}" =~ _DIR ]]; then 
+                  mkdir -pv ${!var}
+                fi
+              done
+
       containers:
-        - args:
+        - command:
+            - esphome
             - dashboard
             - /config/esphome/
+          envFrom:
+            - configMapRef:
+                name: platformio-env
+              prefix: PLATFORMIO_
           image: esphome/esphome:2023.11
           imagePullPolicy: IfNotPresent
           livenessProbe:
@@ -64,8 +92,8 @@ spec:
               value: /home/coder
           resources:
             limits:
-              memory: 768Mi
-              cpu: "1"
+              memory: 512Mi
+              cpu: 200m
             requests:
               memory: 128Mi
               cpu: 10m

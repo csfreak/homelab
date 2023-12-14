@@ -17,3 +17,13 @@ labels:
 images:
   - name: esphome/esphome
     newTag: "2023.11"
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
+configMapGenerator:
+  - name: platformio-env
+    behavior: create
+    envs:
+      - platformio.env
