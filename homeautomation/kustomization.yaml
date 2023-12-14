@@ -5,3 +5,4 @@ resources:
   - cyberpower
   - backups
   - esphome
+  - whisper

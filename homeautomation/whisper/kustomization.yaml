@@ -1,0 +1,17 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+
+commonLabels:
+  app: whisper
+  app.kubernetes.io/component: whisper
+  app.kubernetes.io/part-of: homeassistant
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: whisper
+    includeTemplates: true
+
+images:
+  - name: homeassistant/amd64-addon-whisper
+    newTag: "1.0.0"
