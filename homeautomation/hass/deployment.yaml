@@ -95,7 +95,7 @@ spec:
           image: minio-backup-sidecar:latest
           envFrom:
             - configMapRef:
-                name: hass-backup-8bdgfg5cgf
+                name: hass-backup
               prefix: CONF_
             - secretRef:
                 name: backup-credentials

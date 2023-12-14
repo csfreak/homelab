@@ -4,3 +4,4 @@ resources:
   - zwavejs
   - cyberpower
   - backups
+  - esphome

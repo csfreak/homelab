@@ -1,0 +1,33 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: esphome
+spec:
+  host: esphome.apps.homelab.csfreak.com
+  port:
+    targetPort: esphome-http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: esphome
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: esphome-code-server
+spec:
+  host: config-esphome.apps.homelab.csfreak.com
+  port:
+    targetPort: code-server-http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: esphome
+    weight: 100
+  wildcardPolicy: None

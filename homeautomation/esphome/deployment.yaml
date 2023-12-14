@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esphome
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: esphome
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: homeautomation
+      labels:
+        deployment: esphome
+    spec:
+      containers:
+        - command:
+            - dashboard
+            - /config/esphome
+            - "--log-no-color"
+          image: esphome/esphome:2023.11
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /version
+              port: 6052
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: esphome
+          
+          ports:
+            - containerPort: 6052
+              name: esphome-http
+              protocol: TCP
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 512Gi
+              cpu: "1"
+          volumeMounts:
+            - mountPath: /config
+              name: esphome-config
+        - name: code-server
+          image: code-server:latest
+          volumeMounts:
+            - mountPath: /home/coder/
+              name: esphome-config
+          env:
+            - name: HOME
+              value: /home/coder
+          resources:
+            limits:
+              memory: 768Mi
+              cpu: "1"
+            requests:
+              memory: 128Mi
+              cpu: 10m
+          ports:
+            - containerPort: 8080
+              name: codeserver-http
+              protocol: TCP
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: esphome-config
+          persistentVolumeClaim:
+            claimName: esphome-config
+status: {}

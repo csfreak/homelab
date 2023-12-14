@@ -1,0 +1,19 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+
+commonLabels:
+  app: esphome
+  app.kubernetes.io/component: esphome
+  app.kubernetes.io/part-of: homeassistant
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: esphome
+    includeTemplates: true
+
+images:
+  - name: esphome/esphome
+    newTag: "2023.11"
