@@ -18,10 +18,9 @@ spec:
         deployment: esphome
     spec:
       containers:
-        - command:
+        - args:
             - dashboard
             - /config/esphome
-            - "--log-no-color"
           image: esphome/esphome:2023.11
           imagePullPolicy: IfNotPresent
           livenessProbe:
@@ -38,7 +37,7 @@ spec:
             successThreshold: 1
             timeoutSeconds: 1
           name: esphome
-          
+
           ports:
             - containerPort: 6052
               name: esphome-http
