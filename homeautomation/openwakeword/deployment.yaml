@@ -40,11 +40,11 @@ spec:
               protocol: TCP
           resources:
             requests:
-              memory: 512Mi
-              cpu: 500m
+              memory: 128Mi
+              cpu: 200m
             limits:
-              memory: 1536Mi
-              cpu: 1200m
+              memory: 256Mi
+              cpu: 500m
           volumeMounts:
             - mountPath: /share/openwakeword
               name: openwakeword-data

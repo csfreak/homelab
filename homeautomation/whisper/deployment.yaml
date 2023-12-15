@@ -42,11 +42,11 @@ spec:
               protocol: TCP
           resources:
             requests:
-              memory: 1024Mi
+              memory: 256Mi
               cpu: 500m
             limits:
-              memory: 1536Mi
-              cpu: "2"
+              memory: 512Mi
+              cpu: "1"
           volumeMounts:
             - mountPath: /data
               name: whisper-data

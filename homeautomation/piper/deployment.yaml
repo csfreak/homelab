@@ -53,11 +53,11 @@ spec:
               protocol: TCP
           resources:
             requests:
-              memory: 1024Mi
-              cpu: 500m
+              memory: 128Mi
+              cpu: 200m
             limits:
-              memory: 1536Mi
-              cpu: 1200m
+              memory: 512Mi
+              cpu: 500m
           volumeMounts:
             - mountPath: /data
               name: piper-data
