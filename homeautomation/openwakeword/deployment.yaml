@@ -48,6 +48,20 @@ spec:
           volumeMounts:
             - mountPath: /share/openwakeword
               name: openwakeword-data
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - >
+                  echo '{ "type": "describe" }' 
+                  | nc -w 1 localhost 10400 
+                  | grep -iq "openwakeword" 
+                  || exit 1
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 1
       securityContext:
         runAsNonRoot: true
       volumes:

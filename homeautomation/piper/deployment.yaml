@@ -61,6 +61,20 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: piper-data
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - >
+                  echo '{ "type": "describe" }' 
+                  | nc -w 1 localhost 10200 
+                  | grep -iq "piper" 
+                  || exit 1
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 1
       securityContext:
         runAsNonRoot: true
       volumes:
