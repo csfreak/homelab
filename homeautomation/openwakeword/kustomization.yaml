@@ -1,0 +1,18 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+
+commonLabels:
+  app: openwakeword
+  app.kubernetes.io/component: openwakeword
+  app.kubernetes.io/part-of: homeassistant
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: openwakeword
+    includeTemplates: true
+
+images:
+  - name: homeassistant/amd64-addon-openwakeword
+    newTag: "1.8.2"

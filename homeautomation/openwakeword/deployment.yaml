@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openwakeword
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: openwakeword
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: openwakeword
+    spec:
+      containers:
+        - command:
+            - python3
+            - -m
+            - wyoming_openwakeword
+            - --uri
+            - "tcp://0.0.0.0:10000"
+            - --preload-model
+            - "ok_nabu"
+            - --threshold
+            - "1"
+            - --trigger-level
+            - "0.5"
+            - --custom-model-dir
+            - /share/openwakeword
+
+          image: homeassistant/amd64-addon-openwakeword
+          imagePullPolicy: IfNotPresent
+          name: openwakeword
+          ports:
+            - containerPort: 10200
+              name: openwakeword
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 500m
+            limits:
+              memory: 1536Mi
+              cpu: 1200m
+          volumeMounts:
+            - mountPath: /share/openwakeword
+              name: openwakeword-data
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: openwakeword-data
+          persistentVolumeClaim:
+            claimName: openwakeword-data
+status: {}
