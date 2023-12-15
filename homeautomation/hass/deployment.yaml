@@ -35,7 +35,7 @@ spec:
             - configMapRef:
                 name: hass-db-config
               prefix: MYSQL_
-          image: homeassistant:home-assistant
+          image: homeassistant/home-assistant
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
