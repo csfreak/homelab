@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piper
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: piper
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: piper
+    spec:
+      containers:
+        - command:
+            - python3
+            - -m
+            - wyoming_piper
+            - --piper
+            - "/usr/share/piper/piper"
+            - --uri
+            - "tcp://0.0.0.0:10200"
+            - --length-scale
+            - "1.0"
+            - --noise-scale
+            - "0.667"
+            - --noise-w
+            - "0.333"
+            - --speaker
+            - "0"
+            - --voice
+            - en_US-lessac-medium
+            - --max-piper-procs
+            - "1"
+            - --data-dir
+            - /data
+            - --data-dir
+            - /share/piper
+            - --download-dir
+            - /data
+            - --update-voices
+
+          image: homeassistant/amd64-addon-piper
+          imagePullPolicy: IfNotPresent
+          name: piper
+          ports:
+            - containerPort: 10200
+              name: piper
+              protocol: TCP
+          resources:
+            requests:
+              memory: 1024Mi
+              cpu: 500m
+            limits:
+              memory: 1536Mi
+              cpu: 1200m
+          volumeMounts:
+            - mountPath: /data
+              name: piper-data
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: piper-data
+          persistentVolumeClaim:
+            claimName: piper-data
+status: {}

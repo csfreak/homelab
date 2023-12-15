@@ -6,3 +6,4 @@ resources:
   - backups
   - esphome
   - whisper
+  - piper

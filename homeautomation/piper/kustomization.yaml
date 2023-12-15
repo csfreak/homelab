@@ -1,0 +1,18 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+
+commonLabels:
+  app: piper
+  app.kubernetes.io/component: piper
+  app.kubernetes.io/part-of: homeassistant
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: piper
+    includeTemplates: true
+
+images:
+  - name: homeassistant/amd64-addon-piper
+    newTag: "1.0.0"
