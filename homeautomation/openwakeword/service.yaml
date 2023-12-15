@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - name: openwakeword
-      port: 10200
+      port: 10400
       protocol: TCP
   selector: {}
   sessionAffinity: None

@@ -35,7 +35,7 @@ spec:
           imagePullPolicy: IfNotPresent
           name: openwakeword
           ports:
-            - containerPort: 10200
+            - containerPort: 10400
               name: openwakeword
               protocol: TCP
           resources:
