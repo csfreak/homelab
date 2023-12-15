@@ -83,7 +83,7 @@ spec:
             - mountPath: /cache
               name: esphome-cache
         - name: code-server
-          image: code-server:latest
+          image: code-server
           volumeMounts:
             - mountPath: /home/coder/
               name: esphome-config

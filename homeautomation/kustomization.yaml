@@ -8,3 +8,11 @@ resources:
   - whisper
   - piper
   - openwakeword
+
+images:
+  - name: minio-backup-sidecar
+    newName: ghcr.io/csfreak/minio-backup-sidecar
+    newTag: v0.4.4
+  - name: code-server
+    newName: codercom/code-server
+    newTag: "4.19.1"

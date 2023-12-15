@@ -1,10 +1,14 @@
 resources:
-  - imagestream.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
   - monitoring.yaml
   - route.yaml
+
+images:
+  - name: homeassistant/home-assistant
+    newTag: "2023.12.3"
+
 
 commonLabels:
   app: homeassistant

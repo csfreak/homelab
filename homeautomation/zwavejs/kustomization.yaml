@@ -1,5 +1,4 @@
 resources:
-  - imagestream.yaml
   - pvc.yaml
   - serviceaccount.yaml
   - secret.yaml
@@ -17,6 +16,11 @@ labels:
       app.kubernetes.io/part-of: homeassistant
       app.kubernetes.io/component: zwavejs
     includeTemplates: true
+
+images:
+  - name: zwavejs
+    newName: zwavejs/zwave-js-ui
+    newTag: "9.6.0"
 
 generatorOptions:
   annotations:

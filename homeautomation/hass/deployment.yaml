@@ -1,12 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    alpha.image.policy.openshift.io/resolve-names: homeassistant
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"homeassistant:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"hass-server\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"code-server:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"code-server\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")].image"}]
   name: hass
 spec:
   replicas: 1
@@ -19,7 +13,6 @@ spec:
   template:
     metadata:
       annotations:
-        alpha.image.policy.openshift.io/resolve-names: "*"
         k8s.v1.cni.cncf.io/networks: homeautomation
       labels:
         deployment: hass
@@ -42,7 +35,7 @@ spec:
             - configMapRef:
                 name: hass-db-config
               prefix: MYSQL_
-          image: homeassistant:latest
+          image: homeassistant:home-assistant
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
@@ -73,7 +66,7 @@ spec:
             - mountPath: /config
               name: hass-config
         - name: code-server
-          image: code-server:latest
+          image: code-server
           volumeMounts:
             - mountPath: /home/coder/
               name: hass-config
@@ -92,7 +85,7 @@ spec:
               name: codeserver-http
               protocol: TCP
         - name: backup
-          image: minio-backup-sidecar:latest
+          image: minio-backup-sidecar
           envFrom:
             - configMapRef:
                 name: hass-backup

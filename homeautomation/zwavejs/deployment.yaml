@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"zwavejs:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"zwavejs-server\")].image"},
-      {"from":{"kind":"ImageStreamTag","name":"minio-backup-sidecar:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"backup\")].image"}]
   name: zwavejs
 spec:
   replicas: 1
@@ -16,8 +12,6 @@ spec:
     type: Recreate
   template:
     metadata:
-      annotations:
-        alpha.image.policy.openshift.io/resolve-names: "*"
       labels:
         deployment: zwavejs
     spec:
@@ -27,7 +21,7 @@ spec:
                 name: zwavejs-env
             - secretRef:
                 name: zwavejs-env-secret
-          image: zwavejs:latest
+          image: zwavejs
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -82,7 +76,7 @@ spec:
             - mountPath: /dev/ttyUSB0
               name: zwave-stick
         - name: backup
-          image: minio-backup-sidecar:latest
+          image: minio-backup-sidecar
           envFrom:
             - configMapRef:
                 name: zwavejs-backup
