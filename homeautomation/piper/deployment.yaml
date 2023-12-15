@@ -74,7 +74,7 @@ spec:
             failureThreshold: 3
             initialDelaySeconds: 10
             periodSeconds: 10
-            timeoutSeconds: 1
+            timeoutSeconds: 3
       securityContext:
         runAsNonRoot: true
       volumes:
