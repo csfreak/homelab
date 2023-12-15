@@ -25,9 +25,9 @@ spec:
             - --preload-model
             - "ok_nabu"
             - --threshold
-            - "1"
-            - --trigger-level
             - "0.5"
+            - --trigger-level
+            - "1"
             - --custom-model-dir
             - /share/openwakeword
 
