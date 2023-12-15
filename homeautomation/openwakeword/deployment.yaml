@@ -21,7 +21,7 @@ spec:
             - -m
             - wyoming_openwakeword
             - --uri
-            - "tcp://0.0.0.0:10000"
+            - "tcp://0.0.0.0:10400"
             - --preload-model
             - "ok_nabu"
             - --threshold
