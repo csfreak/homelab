@@ -1,0 +1,8 @@
+resources:
+  - openshift-gitops.yaml
+  - gitopsservice.yaml
+  - inetroute.yaml
+  - certificate.yaml
+  - networkpolicy.yaml
+  - rbac.yaml
+  - github.com/argoproj-labs/argocd-image-updater/manifests/base?ref=release-0.12
