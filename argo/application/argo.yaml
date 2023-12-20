@@ -8,12 +8,15 @@ spec:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: default
-  source:
-    path: argo
-    directory:
-      recurse: true
-    repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
+  sources:
+    - path: argo
+      directory:
+        recurse: true
+      repoURL: https://github.com/csfreak/homelab.git
+      targetRevision: HEAD
+    - path: /manifests/base
+      repoUrl: https://github.com/argoproj-labs/argocd-image-updater.git
+      targetRevision: HEAD
   syncPolicy:
     automated: {}
     syncOptions:
