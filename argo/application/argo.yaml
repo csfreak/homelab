@@ -30,7 +30,7 @@ spec:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: default
-  sources:
+  source:
     path: /manifests/base
     repoUrl: https://github.com/argoproj-labs/argocd-image-updater.git
     targetRevision: HEAD
