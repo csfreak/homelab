@@ -9,3 +9,7 @@ spec:
   selector:
     matchLabels:
       app: nexus3
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 10s

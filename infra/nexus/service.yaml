@@ -42,5 +42,9 @@ spec:
       protocol: TCP
       port: 80
       targetPort: 8081
+    - name: metrics
+      protocol: TCP
+      port: 8405
+      targetPort: 8405
   selector:
     app: nexus3
