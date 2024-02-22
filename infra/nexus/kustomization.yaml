@@ -1,0 +1,15 @@
+resources:
+  - certificate.yaml
+  - route.yaml
+  - service.yaml
+  - haproxy-deploy.yaml
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: nexus3
+    includeTemplates: true
+
+configMapGenerator:
+  - name: haproxy-config
+    files:
+      - haproxy.cfg

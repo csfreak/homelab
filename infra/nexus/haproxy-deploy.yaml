@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus3-haproxy
+spec:
+  selector:
+    matchLabels:
+      deployment: nexus3-haproxy
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        deployment: nexus3-haproxy
+        app: nexus3
+        app.kubernetes.io/component: proxy
+        app.kubernetes.io/name: haproxy
+    spec:
+      containers:
+        - name: haproxy
+          image: registry.connect.redhat.com/haproxytech/haproxy
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          ports:
+            - containerPort: 8081
+            - containerPort: 8082
+            - containerPort: 8083
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 10m
+            limits:
+              memory: 256Mi
+              cpu: 200m
+      volumes:
+        - name: config
+          configMap:
+            name: haproxy-config

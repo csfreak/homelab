@@ -29,3 +29,18 @@ spec:
       targetPort: 8083
   selector:
     app: nexus3
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nexus3
+  labels:
+    app: nexus3
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8081
+  selector:
+    app: nexus3
