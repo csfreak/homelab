@@ -3,6 +3,7 @@ resources:
   - route.yaml
   - service.yaml
   - haproxy-deploy.yaml
+  - metrics.yaml
 
 labels:
   - pairs:
