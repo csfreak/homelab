@@ -5,6 +5,11 @@ resources:
   - haproxy-deploy.yaml
   - metrics.yaml
 
+images:
+  - name: haproxy
+    newName: docker pull ghcr.io/haproxytech/haproxy-docker-debian
+    newTag: 2.9.5
+
 labels:
   - pairs:
       app.kubernetes.io/part-of: nexus3

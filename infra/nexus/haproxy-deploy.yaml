@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: haproxy
-          image: registry.connect.redhat.com/haproxytech/haproxy
+          image: haproxy
           args:
             - haproxy
             - -f
