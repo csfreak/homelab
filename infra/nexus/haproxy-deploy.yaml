@@ -18,6 +18,10 @@ spec:
       containers:
         - name: haproxy
           image: registry.connect.redhat.com/haproxytech/haproxy
+          args:
+            - haproxy
+            - -f
+            - /config/haproxy.cfg
           volumeMounts:
             - name: config
               mountPath: /config
