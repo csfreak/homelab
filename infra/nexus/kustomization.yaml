@@ -4,6 +4,7 @@ resources:
   - service.yaml
   - haproxy-deploy.yaml
   - metrics.yaml
+  - pdb.yaml
 
 images:
   - name: haproxy
