@@ -19,6 +19,9 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
           ports:
             - containerPort: 9116
               name: snmp-exporter
