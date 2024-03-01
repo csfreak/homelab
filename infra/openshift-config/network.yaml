@@ -40,7 +40,7 @@ spec:
         }
       type: Raw
   defaultNetwork:
-    type: OpenShiftSDN
+    type: OVNKubernetes
   managementState: Managed
   unsupportedConfigOverrides: null
   clusterNetwork:
