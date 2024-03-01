@@ -36,4 +36,4 @@ spec:
       annotations:
         app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
         app.openshift.io/vcs-ref: main
-        netnamespace.network.openshift.io/multicast-enabled: "true"
+        k8s.ovn.org/multicast-enabled: "true"
