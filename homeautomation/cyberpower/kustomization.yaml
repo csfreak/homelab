@@ -1,6 +1,10 @@
 resources:
   - config.yaml
-  - imagestream.yaml
   - deployment.yaml
   - route.yaml
   - service.yaml
+
+images:
+  - name: cyber-power
+    newName: ghcr.io/csfreak/cyber_power
+    newTag: latest
