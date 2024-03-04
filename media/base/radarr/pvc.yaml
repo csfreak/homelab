@@ -7,7 +7,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
   storageClassName: synology-iscsi
   volumeMode: Filesystem
   volumeName: radarr-config

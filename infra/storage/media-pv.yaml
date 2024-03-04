@@ -56,7 +56,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-radarr-config
     iscsiInterface: default
@@ -74,7 +74,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   iscsi:
     iqn: iqn.2000-01.com.synology:ocp4-sonarr-config
     iscsiInterface: default
