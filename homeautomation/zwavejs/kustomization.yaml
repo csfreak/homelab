@@ -20,7 +20,7 @@ labels:
 images:
   - name: zwavejs
     newName: zwavejs/zwave-js-ui
-    newTag: "9.6.0"
+    newTag: "9.9"
 
 generatorOptions:
   annotations:

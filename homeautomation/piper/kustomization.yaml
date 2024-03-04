@@ -15,4 +15,4 @@ labels:
 
 images:
   - name: homeassistant/amd64-addon-piper
-    newTag: "1.4.0"
+    newTag: "1.5.0"

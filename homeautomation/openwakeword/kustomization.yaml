@@ -15,4 +15,4 @@ labels:
 
 images:
   - name: homeassistant/amd64-addon-openwakeword
-    newTag: "1.8.2"
+    newTag: "1.10.0"
