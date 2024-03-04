@@ -1,5 +1,4 @@
 resources:
-  - imagestream.yaml
   - pvc.yaml
   - config.yaml
   - deployment.yaml
@@ -7,12 +6,21 @@ resources:
   - monitoring.yaml
   - secret.yaml
 
-commonLabels:
-  app: hass-db
-
 labels:
   - pairs:
       app.kubernetes.io/name: hass-db
       app.kubernetes.io/part-of: homeassistant
       app.kubernetes.io/component: database
     includeTemplates: true
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: hass-db
+
+images:
+  - name: mariadb
+    newName: registry.redhat.io/rhel8/mariadb-105
+    newTag: latest
+  - name: mysqld-exporter
+    newName: quay.io/prometheus/mysqld-exporter
+    newTag: latest
