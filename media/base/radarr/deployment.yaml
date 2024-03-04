@@ -43,6 +43,8 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: radarr-config
+            - mountPath: /config/Backups
+              name: backups
             - mountPath: /downloads
               name: radarr-downloads
             - mountPath: /media/hdd
@@ -76,6 +78,25 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: radarr-config
+        - name: backup
+          image: minio-backup-sidecar
+          envFrom:
+            - configMapRef:
+                name: radarr-backup
+              prefix: CONF_
+            - secretRef:
+                name: backup-credentials
+              prefix: CONF_MINIO__
+          resources:
+            requests:
+              memory: 16Mi
+              cpu: 1m
+            limits:
+              memory: 32Mi
+              cpu: 10m
+          volumeMounts:
+            - mountPath: /radarr
+              name: backups
       serviceAccountName: media-runas-user
       volumes:
         - name: radarr-config
@@ -90,3 +111,5 @@ spec:
         - name: radarr-media-ssd
           persistentVolumeClaim:
             claimName: shared-media-ssd
+        - name: backups
+          emptydir: {}

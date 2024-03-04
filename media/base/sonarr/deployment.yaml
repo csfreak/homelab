@@ -40,6 +40,8 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: sonarr-config
+            - mountPath: /config/Backups
+              name: backups
             - mountPath: /downloads
               name: sonarr-downloads
             - mountPath: /media/hdd
@@ -73,6 +75,25 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: sonarr-config
+        - name: backup
+          image: minio-backup-sidecar
+          envFrom:
+            - configMapRef:
+                name: sonarr-backup
+              prefix: CONF_
+            - secretRef:
+                name: backup-credentials
+              prefix: CONF_MINIO__
+          resources:
+            requests:
+              memory: 16Mi
+              cpu: 1m
+            limits:
+              memory: 32Mi
+              cpu: 10m
+          volumeMounts:
+            - mountPath: /sonarr
+              name: backups
       serviceAccountName: media-runas-user
       volumes:
         - name: sonarr-config
@@ -87,3 +108,5 @@ spec:
         - name: sonarr-media-ssd
           persistentVolumeClaim:
             claimName: shared-media-ssd
+        - name: backups
+          emptydir: {}

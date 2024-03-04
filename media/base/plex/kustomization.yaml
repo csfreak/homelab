@@ -8,15 +8,19 @@ resources:
   - monitoring.yaml
   - secret.yaml
 
-commonLabels:
-  app: plex
 labels:
-  - pairs:
+  - includeTemplates: true
+    pairs:
       app.kubernetes.io/component: streamer
       app.kubernetes.io/name: plex
+  - includeSelectors: true
     includeTemplates: true
+    pairs:
+      app: plex
 
 configMapGenerator:
-  - name: plex-log-config
-    files:
+  - files:
       - plex-logs.toml
+    name: plex-log-config
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

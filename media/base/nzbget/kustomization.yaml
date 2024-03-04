@@ -8,15 +8,19 @@ resources:
   - monitoring.yaml
   - nzbget-env-secret.yaml
 
-commonLabels:
-  app: nzbget
 labels:
-  - pairs:
+  - includeTemplates: true
+    pairs:
       app.kubernetes.io/component: downloader
       app.kubernetes.io/name: nzbget
+  - includeSelectors: true
     includeTemplates: true
+    pairs:
+      app: nzbget
 
 configMapGenerator:
-  - name: nzbget-env-config
-    envs:
+  - envs:
       - nzbget-config.ini
+    name: nzbget-env-config
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

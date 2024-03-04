@@ -4,12 +4,20 @@ resources:
   - base/sonarr
   - base/radarr
   - base/plex
+  - base/backups
 
 labels:
-  - pairs:
+  - includeTemplates: true
+    pairs:
       app.kubernetes.io/part-of: media
-    includeTemplates: true
 
 commonAnnotations:
-  app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
   app.openshift.io/vcs-ref: main
+  app.openshift.io/vcs-uri: https://github.com/csfreak/homelab.git
+
+images:
+  - name: minio-backup-sidecar
+    newName: ghcr.io/csfreak/minio-backup-sidecar
+    newTag: v0.4.8
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

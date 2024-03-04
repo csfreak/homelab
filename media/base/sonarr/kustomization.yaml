@@ -7,10 +7,24 @@ resources:
   - route.yaml
   - monitoring.yaml
 
-commonLabels:
-  app: sonarr
 labels:
-  - pairs:
+  - includeTemplates: true
+    pairs:
       app.kubernetes.io/component: manager
       app.kubernetes.io/name: sonarr
+  - includeSelectors: true
     includeTemplates: true
+    pairs:
+      app: sonarr
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+configMapGenerator:
+  - envs:
+      - backup-conf.env
+    name: sonarr-backup
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
