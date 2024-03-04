@@ -13,4 +13,3 @@ spec:
       app.kubernetes.io/name: openshift-gitops-server
   policyTypes:
     - Ingress
-status: {}
