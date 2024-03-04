@@ -7,7 +7,7 @@ resources:
 
 images:
   - name: homeassistant/home-assistant
-    newTag: "2023.2"
+    newTag: "2024.2"
 
 commonLabels:
   app: homeassistant
