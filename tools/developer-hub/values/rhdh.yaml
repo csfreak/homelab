@@ -2,3 +2,11 @@ global:
   clusterRouterBase: apps.homelab.csfreak.com
   host: developer-hub.apps.homelab.csfreak.com
   storageClass: synology-iscsi-hdd
+
+upstream:
+  backstage:
+    extraAppConfig:
+      - configMapRef: app-config-rhdh
+        filename: app-config-rhdh.yaml
+    extraEnvVarsSecrets:
+      - app-env-secret

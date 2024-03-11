@@ -1,0 +1,9 @@
+resources:
+  - external-secret.yaml
+
+configMapGenerator:
+  - name: app-config-rhdh
+    options:
+      disableNameSuffixHash: true
+    files:
+      - app-config-rhdh.yaml
