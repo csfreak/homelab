@@ -8,7 +8,7 @@ metadata:
 spec:
   project: tools
   sources:
-    - chart: democratic-csi
+    - chart: backstage
       repoURL: https://redhat-developer.github.io/rhdh-chart
       targetRevision: 2.*
       helm:
