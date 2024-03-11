@@ -10,9 +10,9 @@ app:
           privateKey: |
             ${GITHUB_APP_PRIVATE_KEY}
   auth:
-    environment: default
+    environment: development
     providers:
       github:
-        default:
+        development:
           clientId: ${GITHUB_APP_CLIENT_ID}
           clientSecret: ${GITHUB_APP_CLIENT_SECRET}
