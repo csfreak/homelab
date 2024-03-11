@@ -7,3 +7,8 @@ configMapGenerator:
       disableNameSuffixHash: true
     files:
       - app-config-rhdh.yaml
+  - name: app-env-rhdh
+    options:
+      disableNameSuffixHash: true
+    envs:
+      - app-env-rhdh.env

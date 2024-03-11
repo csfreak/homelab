@@ -1,6 +1,6 @@
 app:
   title: Red Hat Developer Hub
-  integrations:
+integrations:
   github:
     - host: github.com
       apps:
@@ -9,10 +9,16 @@ app:
           clientSecret: ${GITHUB_APP_CLIENT_SECRET}
           privateKey: |
             ${GITHUB_APP_PRIVATE_KEY}
-  auth:
-    environment: development
-    providers:
-      github:
-        development:
-          clientId: ${GITHUB_APP_CLIENT_ID}
-          clientSecret: ${GITHUB_APP_CLIENT_SECRET}
+auth:
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: ${GITHUB_APP_CLIENT_ID}
+        clientSecret: ${GITHUB_APP_CLIENT_SECRET}
+permission:
+  enabled: true
+  rbac:
+    admin:
+      users:
+        - name: user:default/csfreak

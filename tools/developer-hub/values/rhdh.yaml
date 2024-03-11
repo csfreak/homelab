@@ -2,11 +2,26 @@ global:
   clusterRouterBase: apps.homelab.csfreak.com
   host: developer-hub.apps.homelab.csfreak.com
   storageClass: synology-iscsi-hdd
-
+  dynamic:
+    plugins:
+      - package: ./dynamic-plugins/dist/backstage-plugin-scaffolder-backend-module-gitlab-dynamic
+        disabled: true
+      - package: ./dynamic-plugins/dist/backstage-plugin-scaffolder-backend-module-azure-dynamic
+        disabled: true
+      - package: ./dynamic-plugins/dist/backstage-plugin-scaffolder-backend-module-gerrit-dynamic
+        disabled: true
+      - package: ./dynamic-plugins/dist/janus-idp-backstage-scaffolder-backend-module-quay-dynamic
+        disabled: true
+      - package: ./dynamic-plugins/dist/backstage-plugin-scaffolder-backend-module-bitbucket-cloud-dynamic
+        disabled: true
+      - package: ./dynamic-plugins/dist/backstage-plugin-scaffolder-backend-module-bitbucket-server-dynamic
+        disabled: true
 upstream:
   backstage:
     extraAppConfig:
       - configMapRef: app-config-rhdh
         filename: app-config-rhdh.yaml
+    extraEnvVarsCM:
+      - app-env-rhdh
     extraEnvVarsSecrets:
       - app-env-secret
