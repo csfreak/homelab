@@ -1,0 +1,5 @@
+global:
+  clusterRouterBase: apps.homelab.csfreak.com
+  host: developer-hub.apps.homelab.csfreak.com
+  storageClass: synology-iscsi-hdd
+  imageRegistry: https://docker.homelab.csfreak.com
