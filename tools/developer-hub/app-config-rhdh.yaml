@@ -23,3 +23,15 @@ permission:
     admin:
       users:
         - name: user:default/csfreak
+kubernetes:
+  serviceLocatorMethod:
+    type: "singleTenent"
+  clusterLocatorMethods:
+    - type: "config"
+      clusters:
+        - url: https://${KUBERNETES_SERVICE_HOST}:{KUBERNETES_SERVICE_PORT_HTTPS}
+          name: in-cluster
+          authProvider: "serviceAccount"
+          title: "Homelab Cluster"
+          dashboardUrl: https://console-openshift-console.apps.homelab.csfreak.com
+          dashboardApp: openshift

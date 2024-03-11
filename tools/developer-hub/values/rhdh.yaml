@@ -25,3 +25,5 @@ upstream:
       - app-env-rhdh
     extraEnvVarsSecrets:
       - app-env-secret
+  serviceAccount:
+    create: true
