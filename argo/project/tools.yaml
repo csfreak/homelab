@@ -16,6 +16,9 @@ spec:
         - system:authenticated:oauth
   sourceRepos:
     - https://github.com/csfreak/homelab.git
+    - https://redhat-developer.github.io/rhdh-chart
+    - https://charts.bitnami.com/bitnami
+    - https://backstage.github.io/charts
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
