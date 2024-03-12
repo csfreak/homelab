@@ -78,10 +78,15 @@ spec:
   rbac:
     policy: |
       g, cluster-admins, role:admin
+      g, role:developer-hub, role:read-only
+      p, role:developer-hub, application, sync, *
+      g, argocd-developer-hub, role: developer-hub
     scopes: "[groups]"
+  disableAdmin: true
   extraConfig:
     application.resourceTrackingMethod: annotation+label
     exec.enabled: "true"
+    accounts.argocd-developer-hub: "apiKey"
   repo:
     replicas: 2
     resources:
