@@ -77,9 +77,9 @@ spec:
         enabled: false
   rbac:
     policy: |
-      g, cluster-admins, role:admin
+      g, system:cluster-admins, role:admin
       g, role:developer-hub, role:read-only
-      p, role:developer-hub, application, sync, *
+      p, role:developer-hub, application, sync, */*, allow
       g, argocd-developer-hub, role: developer-hub
     scopes: "[groups]"
   disableAdmin: true
