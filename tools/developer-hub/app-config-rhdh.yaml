@@ -35,3 +35,11 @@ kubernetes:
           title: "Homelab Cluster"
           dashboardUrl: https://console-openshift-console.apps.homelab.csfreak.com
           dashboardApp: openshift
+argocd:
+  username: ${ARGOCD_USERNAME}
+  appLocatorMethods:
+    - type: "config"
+      instances:
+        - name: openshift-gitops
+          url: ${ARGOCD_URL}
+          token: ${ARGOCD_AUTH_TOKEN}
