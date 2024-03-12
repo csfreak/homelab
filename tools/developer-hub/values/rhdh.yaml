@@ -32,6 +32,8 @@ global:
         disabled: false
       - package: ./dynamic-plugins/dist/janus-idp-backstage-plugin-nexus-repository-manager
         disabled: false
+      - package: ./dynamic-plugins/dist/backstage-plugin-catalog-backend-module-github-dynamic
+        disabled: false
 upstream:
   backstage:
     extraAppConfig:
