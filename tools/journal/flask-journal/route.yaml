@@ -3,6 +3,7 @@ kind: Route
 metadata:
   name: journal
 spec:
+  host: journal.apps.homelab.csfreak.com
   port:
     targetPort: http
   to:

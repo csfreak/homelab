@@ -1,0 +1,6 @@
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: csfreak-homelab-images
+spec:
+  url: https://github.com/csfreak/homelab-images

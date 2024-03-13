@@ -7,11 +7,11 @@ metadata:
     app.kubernetes.io/name: journal
 spec:
   destination:
-    namespace: journal
+    namespace: tools-journal
     server: https://kubernetes.default.svc
   project: tools
   source:
-    path: journal
+    path: tools/journal
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:

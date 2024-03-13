@@ -1,31 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets-akeyless
+  name: homelab-images
   namespace: openshift-gitops
-  annotations:
-    argocd.argoproj.io/compare-options: IgnoreExtraneous
+  labels:
+    app.kubernetes.io/name: homelab-images
 spec:
   destination:
-    namespace: tools-external-secrets-akeyless
+    namespace: tools-homelab-images-pipelines
     server: https://kubernetes.default.svc
   project: tools
-  ignoreDifferences:
-    - jsonPointers:
-        - /data
-      kind: Secret
   source:
-    path: tools/external-secrets-akeyless
+    path: tools/homelab-images
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
+    automated:
+      prune: true
     syncOptions:
-      - Prune=false
       - CreateNamespace=true
+      - PruneLast=true
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
       annotations:
         app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
         app.openshift.io/vcs-ref: main
-    automated: {}
