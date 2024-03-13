@@ -28,3 +28,5 @@ spec:
       kind: SecurityContextConstraints
     - group: console.openshift.io
       kind: ConsoleLink
+    - group: external-secrets.io
+      kind: ClusterSecretStore
