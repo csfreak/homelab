@@ -13,6 +13,11 @@ spec:
       logEmptyRequests: Log
   defaultCertificate:
     name: wildcard-ingress-cert
+  endpointPublishingStrategy:
+    type: LoadBalancerService
+    loadBalancer:
+      scope: External
+      dnsManagementPolicy: Unmanaged
   replicas: 2
   nodePlacement:
     nodeSelector:

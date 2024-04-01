@@ -20,7 +20,8 @@ metadata:
   namespace: metallb-system
 spec:
   ipAddressPools:
-    - openshift-ingress
+    - openshift-ingress-address-pool
+    - control-plane-address-pool
   aggregationLength: 32
   communities:
     - NO_EXPORT
