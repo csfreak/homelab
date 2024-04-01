@@ -6,6 +6,8 @@ spec:
   addresses:
     - 172.31.1.96/27
   autoAssign: true
+  serviceAllocations:
+    priority: 100
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
@@ -27,8 +29,8 @@ metadata:
   name: openshift-ingress-address-pool
 spec:
   addresses:
-    - 172.31.1.64/32
+    - 172.31.1.64
   serviceAllocation:
-    priority: 0
+    priority: 1
     namespaces:
       - openshift-ingress
