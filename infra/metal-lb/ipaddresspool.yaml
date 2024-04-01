@@ -6,7 +6,7 @@ spec:
   addresses:
     - 172.31.1.96/27
   autoAssign: true
-  serviceAllocations:
+  serviceAllocation:
     priority: 100
 ---
 apiVersion: metallb.io/v1beta1
