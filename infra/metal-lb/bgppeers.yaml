@@ -8,7 +8,7 @@ spec:
   peerAddress: 172.31.1.129
   bfdProfile: mikrotik
   nodeSelectors:
-    - matchLables:
+    - matchLabels:
         homelab.csfreak.com/router: rosshomelab01
 ---
 apiVersion: metallb.io/v1beta2
