@@ -19,7 +19,7 @@ spec:
     priority: 10
     namespaceSelectors:
       - matchLabels:
-          openshift.io/cluster-monitoring: true
+          openshift.io/cluster-monitoring: "true"
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
