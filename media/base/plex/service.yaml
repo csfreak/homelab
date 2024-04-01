@@ -7,6 +7,7 @@ metadata:
     metallb.universe.tf/allow-shared-ip: "media"
 spec:
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - name: pms
       port: 32400
