@@ -13,7 +13,7 @@ metadata:
   name: control-plane-address-pool
 spec:
   addresses:
-    - 172.31.1.64/27
+    - 172.31.1.65-172.31.1.95
   autoAssign: true
   serviceAllocation:
     priority: 10
