@@ -29,7 +29,7 @@ metadata:
   name: openshift-ingress-address-pool
 spec:
   addresses:
-    - 172.31.1.64
+    - 172.31.1.64/32
   serviceAllocation:
     priority: 1
     namespaces:
