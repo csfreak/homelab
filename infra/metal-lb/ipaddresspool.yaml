@@ -6,3 +6,15 @@ spec:
   addresses:
     - 172.31.1.132-172.31.1.149
   autoAssign: true
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: openshift-ingress
+spec:
+  addresses:
+    - 172.31.1.131/32
+  serviceAllocation:
+    priority: 0
+    namespaces:
+      - openshift-ingress

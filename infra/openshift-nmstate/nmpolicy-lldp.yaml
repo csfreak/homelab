@@ -1,0 +1,23 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: enable-lldp
+spec:
+  capture:
+    ethernet: interfaces.type=="ethernet"
+    ethernet-br-ex: capture.ethernet | interfaces.controller=="br-ex"
+  desiredState:
+    interfaces:
+      - lldp:
+          enabled: true
+        name: br-ex
+        type: ovs-bridge
+      - lldp:
+          enabled: true
+        name: br-ex
+        type: ovs-interface
+      - lldp:
+          enabled: true
+        name: "{{ capture.ethernet-br-ex.interfaces.0.name }}"
+        type: ethernet
+  maxUnavailable: 1

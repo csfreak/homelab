@@ -1,0 +1,11 @@
+apiVersion: metallb.io/v1beta1
+kind: Community
+metadata:
+  name: communities
+  namespace: metallb-system
+spec:
+  communities:
+    - name: NO_EXPORT
+      value: 65535:65281
+    - name: NO_ADVERTISE
+      value: 65535:65282

@@ -1,0 +1,29 @@
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: workers
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - default-address-pool
+  aggregationLength: 32
+  communities:
+    - NO_EXPORT
+  nodeSelectors:
+    - matchLabels:
+        node-role.kubernetes.io/worker: ""
+---
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: control-plane
+  namespace: metallb-system
+spec:
+  ipAddressPools:
+    - openshift-ingress
+  aggregationLength: 32
+  communities:
+    - NO_EXPORT
+  nodeSelectors:
+    - matchLabels:
+        node-role.kubernetes.io/master: ""
