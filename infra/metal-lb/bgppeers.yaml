@@ -6,7 +6,7 @@ spec:
   myASN: 4200000099
   peerASN: 4200000000
   peerAddress: 172.31.1.129
-  bfdProfile: mktkBFD
+  bfdProfile: mikrotik
   nodeSelectors:
     - matchLables:
         homelab.csfreak.com/router: rosshomelab01
@@ -19,7 +19,7 @@ spec:
   myASN: 4200000099
   peerASN: 4200000000
   peerAddress: 172.31.1.193
-  bfdProfile: mktkBFD
+  bfdProfile: mikrotik
   nodeSelectors:
     - matchLabels:
         homelab.csfreak.com/router: rosshomelab02
@@ -27,6 +27,6 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: BFDProfile
 metadata:
-  name: mktkBFD
+  name: mikrotik
   namespace: metallb-system
 spec: {}
