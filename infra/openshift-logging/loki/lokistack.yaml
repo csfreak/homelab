@@ -25,13 +25,82 @@ spec:
   template:
     querier:
       replicas: 2
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: querier
+                  app.kubernetes.io/instance: lokistack-logging
+              topologyKey: kubernetes.io/hostname
+            weight: 10
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
     queryFrontend:
       replicas: 2
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: query-frontend
+                  app.kubernetes.io/instance: lokistack-logging
+              topologyKey: kubernetes.io/hostname
+            weight: 10
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
     indexGateway:
       replicas: 2
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: index-gateway
+                  app.kubernetes.io/instance: lokistack-logging
+              topologyKey: kubernetes.io/hostname
+            weight: 10
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
     gateway:
       replicas: 3
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: lokistack-gateway
+                  app.kubernetes.io/instance: lokistack-logging
+              topologyKey: kubernetes.io/hostname
+            weight: 10
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
     ingester:
       replicas: 2
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: ingester
+                  app.kubernetes.io/instance: lokistack-logging
+              topologyKey: kubernetes.io/hostname
+            weight: 10
     distributor:
       replicas: 2
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/component: distributer
+                  app.kubernetes.io/instance: lokistack-logging
+              topologyKey: kubernetes.io/hostname
+            weight: 10
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          effect: NoSchedule
