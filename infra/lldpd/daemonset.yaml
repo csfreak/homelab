@@ -31,7 +31,7 @@ spec:
             - br-ex
             - -C
             - br-ex
-            - I
+            - -I
             - enp*
           securityContext:
             capabilities:
