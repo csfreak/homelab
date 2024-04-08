@@ -25,10 +25,10 @@ spec:
           imagePullPolicy: IfNotPresent
           command: [lldpd]
           args:
-            - -d
-            - -I
-            - br-ex
+            - -ddd
             - -m
+            - br-ex
+            - -c
             - br-ex
           securityContext:
             capabilities:
