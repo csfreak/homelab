@@ -23,7 +23,7 @@ spec:
         - name: lldpd
           image: lldpd:latest
           imagePullPolicy: IfNotPresent
-          cmd: [lldpd]
+          command: [lldpd]
           args:
             - -d
             - -I
