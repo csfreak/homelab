@@ -26,10 +26,13 @@ spec:
           command: [lldpd]
           args:
             - -ddd
+            - -c
             - -m
             - br-ex
-            - -c
+            - -C
             - br-ex
+            - I
+            - enp*
           securityContext:
             capabilities:
               drop: ["ALL"]
