@@ -11,5 +11,5 @@ labels:
 
 images:
   - name: lldpd
-  - newName: grc.io/lldpd/lldpd
-  - newTag: 1.0.18
+    newName: grc.io/lldpd/lldpd
+    newTag: 1.0.18
