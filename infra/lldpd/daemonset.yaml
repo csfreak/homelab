@@ -23,6 +23,13 @@ spec:
         - name: lldpd
           image: lldpd:latest
           imagePullPolicy: IfNotPresent
+          cmd: [lldpd]
+          args:
+            - -d
+            - -I
+            - br-ex
+            - -m
+            - br-ex
           securityContext:
             capabilities:
               drop: ["ALL"]
