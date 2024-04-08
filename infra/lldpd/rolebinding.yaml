@@ -1,0 +1,12 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: lldp-deployer-scc
+subjects:
+  - kind: ServiceAccount
+    name: lldp-deployer
+    namespace: infra-lldpd
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: "system:openshift:scc:privileged"

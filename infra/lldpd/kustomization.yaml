@@ -1,0 +1,15 @@
+resources:
+  - serviceaccount.yaml
+  - rolebinding.yaml
+  - daemonset.yaml
+
+labels:
+  - pairs:
+      app: lldpd
+      app.kubernetes.io/name: lldpd
+    includeTemplates: true
+
+images:
+  - name: lldpd
+  - newName: grc.io/lldpd/lldpd
+  - newTag: 1.0.18
