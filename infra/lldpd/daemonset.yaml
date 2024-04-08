@@ -32,7 +32,7 @@ spec:
             - -C
             - br-ex
             - -I
-            - enp*
+            - en*
           securityContext:
             capabilities:
               drop: ["ALL"]
