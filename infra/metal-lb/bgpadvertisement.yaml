@@ -28,15 +28,3 @@ spec:
   nodeSelectors:
     - matchLabels:
         node-role.kubernetes.io/master: ""
----
-apiVersion: metallb.io/v1beta1
-kind: BGPAdvertisement
-metadata:
-  name: summary
-  namespace: metallb-system
-spec:
-  ipAddressPools:
-    - default-address-pool
-    - openshift-ingress-address-pool
-    - control-plane-address-pool
-  aggregationLength: 27
