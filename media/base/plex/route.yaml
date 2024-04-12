@@ -5,6 +5,7 @@ metadata:
   name: plex
   annotations:
     console.alpha.openshift.io/overview-app-route: "true"
+    haproxy.router.openshift.io/ip_whitelist: 0.0.0.0/0
 spec:
   host: plex.apps.homelab.csfreak.com
   port:
