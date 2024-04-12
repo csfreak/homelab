@@ -1,0 +1,19 @@
+apiVersion: operator.gatekeeper.sh/v1alpha1
+kind: Gatekeeper
+metadata:
+  name: gatekeeper
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: " node-role.kubernetes.io/master"
+                operator: Exists
+  mutatingWebhook: Enabled
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      operator: Exists
+  validatingWebhook: Enabled
+  webhook:
+    logMutations: Enabled

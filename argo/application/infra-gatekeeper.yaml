@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gatekeeper
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+spec:
+  destination:
+    namespace: openshift-operators
+    server: https://kubernetes.default.svc
+  project: infra
+  source:
+    path: infra/gatekeeper
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - Prune=false
+      - RespectIgnoreDifferences=true

@@ -1,0 +1,16 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: route-require-ip-whitelist
+spec:
+  applyTo:
+    - groups: ["route.openshift.io"]
+      kinds: ["Route"]
+      versions: ["v1"]
+  location: 'metadata.annotations."haproxy.router.openshift.io/ip_whitelist"'
+  parameters:
+    pathTests:
+      - subPath: 'metadata.annotations."haproxy.router.openshift.io/ip_whitelist"'
+        condition: MustNotExist
+    assign:
+      value: 172.31.0.0/16 192.168.0.0/16 10.0.0.0/8
