@@ -6,7 +6,7 @@ spec:
   match:
     scope: Namespaced
     kinds:
-      - APIGroups: ["route.openshift.io"]
+      - apiGroups: ["route.openshift.io"]
         kinds: ["Route"]
   location: metadata.annotations."haproxy.router.openshift.io/ip_whitelist"
   parameters:
