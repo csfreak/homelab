@@ -1,0 +1,2 @@
+resources:
+  - route-require-ip-whitelist.yaml

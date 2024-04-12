@@ -15,7 +15,8 @@ spec:
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
     syncOptions:
-      - Prune=false
+      - PruneLast=True
       - RespectIgnoreDifferences=true
