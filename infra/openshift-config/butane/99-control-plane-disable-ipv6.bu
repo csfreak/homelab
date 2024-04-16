@@ -1,0 +1,12 @@
+variant: openshift
+version: 4.15.0
+metadata:
+  name: 99-master-disable-ipv9
+  labels:
+    machineconfiguration.openshift.io/role: master
+storage:
+  files:
+    - path: /etc/sysctl.d/10-disable-ipv6.conf
+      contents:
+        inline: net.ipv6.conf.all.disable_ipv6 = 1
+      mode: 0644
