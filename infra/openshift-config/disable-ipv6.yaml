@@ -4,7 +4,7 @@ kind: MachineConfig
 metadata:
   labels:
     machineconfiguration.openshift.io/role: worker
-  name: 99-worker-disable-ipv9
+  name: 99-worker-disable-ipv6
 spec:
   config:
     ignition:
@@ -23,7 +23,7 @@ kind: MachineConfig
 metadata:
   labels:
     machineconfiguration.openshift.io/role: master
-  name: 99-master-disable-ipv9
+  name: 99-master-disable-ipv6
 spec:
   config:
     ignition:

@@ -5,7 +5,7 @@ metadata:
 spec:
   capture:
     ethernet: interfaces.type=="ethernet"
-    ethernet-active: capture.ethernet | interfaces.ipv4.enabled==true
+    ethernet-active: capture.ethernet | interfaces.profile-name==ovs-if-phys0
   desiredState:
     interfaces:
       - mtu: 1500

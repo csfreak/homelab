@@ -1,7 +1,7 @@
 variant: openshift
 version: 4.15.0
 metadata:
-  name: 99-worker-disable-ipv9
+  name: 99-worker-disable-ipv6
   labels:
     machineconfiguration.openshift.io/role: worker
 storage:
