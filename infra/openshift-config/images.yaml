@@ -13,7 +13,7 @@ spec:
     - mirrors:
         - docker.homelab.csfreak.com
       source: docker.io
-      mirrorSourcePolicy: NeverContactSource
+      mirrorSourcePolicy: AllowContactingSource
 ---
 apiVersion: config.openshift.io/v1
 kind: ImageTagMirrorSet
@@ -24,4 +24,4 @@ spec:
     - mirrors:
         - docker.homelab.csfreak.com
       source: docker.io
-      mirrorSourcePolicy: NeverContactSource
+      mirrorSourcePolicy: AllowContactingSource
