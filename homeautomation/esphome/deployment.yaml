@@ -61,9 +61,9 @@ spec:
               port: 6052
               scheme: HTTP
             initialDelaySeconds: 30
-            periodSeconds: 3
+            periodSeconds: 30
             successThreshold: 1
-            timeoutSeconds: 1
+            timeoutSeconds: 10
           name: esphome
 
           ports:
