@@ -1,0 +1,24 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: ingress-class-name
+spec:
+  applyTo:
+    - groups:
+        - "networking.k8s.io"
+      kinds:
+        - Ingress
+      versions:
+        - "v1"
+  match:
+    scope: Namespaced
+    kinds:
+      - apiGroups: ["networking.k8s.io"]
+        kinds: ["Ingress"]
+  location: spec.ingressClassName
+  parameters:
+    pathTests:
+      - subPath: spec.ingressClassName
+        condition: MustNotExist
+    assign:
+      value: openshift-default
