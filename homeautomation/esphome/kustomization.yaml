@@ -16,7 +16,7 @@ labels:
 
 images:
   - name: esphome/esphome
-    newTag: "2024.2"
+    newTag: "2024.4"
 
 generatorOptions:
   annotations:

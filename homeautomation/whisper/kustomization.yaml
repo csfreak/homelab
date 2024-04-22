@@ -15,4 +15,4 @@ labels:
 
 images:
   - name: homeassistant/amd64-addon-whisper
-    newTag: "1.0.2"
+    newTag: "2.0.0"

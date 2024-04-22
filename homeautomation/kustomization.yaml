@@ -15,4 +15,4 @@ images:
     newTag: v0.4.8
   - name: code-server
     newName: codercom/code-server
-    newTag: "4.22.0"
+    newTag: "4.23.1"
