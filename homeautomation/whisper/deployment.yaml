@@ -35,7 +35,9 @@ spec:
           image: homeassistant/amd64-addon-whisper
           imagePullPolicy: IfNotPresent
           name: whisper
-
+          env:
+            - name: HOME
+              value: /data
           ports:
             - containerPort: 10300
               name: whisper
