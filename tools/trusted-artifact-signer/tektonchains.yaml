@@ -17,7 +17,7 @@ spec:
   artifacts.pipelinerun.signer: x509
   artifacts.pipelinerun.format: in-toto
   transparency.enabled: true
-  transparency.url: https://tools/trusted-artifact-signer/securesign.yaml/
+  transparency.url: https://rekor-rhtap.apps.homelab.csfreak.com/
   signers.x509.fulcio.enabled: true
   signers.x509.fulcio.address: https://fulcio-rhtap.apps.homelab.csfreak.com/
   signers.x509.tuf.mirror.url: https://tuf-rhtap.apps.homelab.csfreak.com/
