@@ -12,11 +12,21 @@ spec:
       - name: communityClusterTasks
         value: "true"
   chain:
-    artifacts.pipelinerun.storage: tekton,oci
     disabled: false
-    options:
-      disabled: false
-  config: {}
+    artifacts.oci.format: simplesigning
+    artifacts.oci.storage: oci
+    artifacts.oci.signer: x509
+    artifacts.taskrun.format: in-toto
+    artifacts.taskrun.storage: oci
+    artifacts.taskrun.signer: x509
+    artifacts.pipelinerun.storage: "oci"
+    artifacts.pipelinerun.signer: x509
+    artifacts.pipelinerun.format: in-toto
+    transparency.enabled: true
+    transparency.url: https://rekor-rhtap.apps.homelab.csfreak.com/
+    signers.x509.fulcio.enabled: true
+    signers.x509.fulcio.address: https://fulcio-rhtap.apps.homelab.csfreak.com/
+    signers.x509.tuf.mirror.url: https://tuf-rhtap.apps.homelab.csfreak.com/
   dashboard:
     options:
       disabled: false
