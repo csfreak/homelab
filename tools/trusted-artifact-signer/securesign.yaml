@@ -1,0 +1,45 @@
+apiVersion: rhtas.redhat.com/v1alpha1
+kind: Securesign
+metadata:
+  name: securesign
+  namespace: tools-trusted-artifact-signer
+  labels:
+    app.kubernetes.io/instance: securesign
+    app.kubernetes.io/name: securesign
+    app.kubernetes.io/part-of: trusted-artifact-signer
+spec:
+  ctlog: {}
+  fulcio:
+    certificate:
+      commonName: fulcio-rhtap.apps.homelab.csfreak.com
+      organizationEmail: fulcio@homelab.csfreak.com
+      organizationName: HomeLab
+    config:
+      OIDCIssuers:
+        'https://oauth-openshift.apps.homelab.csfreak.com':
+          ChallengeClaim: sub
+          ClientID: 'system:serviceaccount:tools-trusted-account-signer:securesign'
+          IssuerURL: 'https://oauth-openshift.apps.homelab.csfreak.com'
+          Type: Kubernetes
+    externalAccess:
+      enabled: true
+      host: fulcio-rhtap.apps.homelab.csfreak.com
+  rekor:
+    externalAccess:
+      enabled: true
+      host: rekor-rhtap.apps.homelab.csfreak.com
+    rekorSearchUI: {}
+    signer:
+      kms: secret
+  trillian:
+    database:
+      create: true
+  tuf:
+    externalAccess:
+      enabled: true
+      host: tuf-rhtap.apps.homelab.csfreak.com
+    keys:
+      - name: rekor.pub
+      - name: ctfe.pub
+      - name: fulcio_v1.crt.pem
+    port: 80
