@@ -30,3 +30,5 @@ spec:
       kind: ConsoleLink
     - group: external-secrets.io
       kind: ClusterSecretStore
+    - group: operator.tekton.dev
+      kind: TektonChain
