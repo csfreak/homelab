@@ -22,7 +22,7 @@ spec:
     artifacts.pipelinerun.storage: "oci"
     artifacts.pipelinerun.signer: x509
     artifacts.pipelinerun.format: in-toto
-    transparency.enabled: true
+    transparency.enabled: "true"
     transparency.url: https://rekor-rhtap.apps.homelab.csfreak.com/
     signers.x509.fulcio.enabled: true
     signers.x509.fulcio.address: https://fulcio-rhtap.apps.homelab.csfreak.com/
