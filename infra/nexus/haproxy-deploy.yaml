@@ -41,6 +41,10 @@ spec:
             httpGet:
               port: 8405
               path: /healthz
+            initialDelaySeconds: 10
+            periodSeconds: 1
+            successThreshold: 10
+            failureThreshold: 1
       volumes:
         - name: config
           configMap:
