@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       deployment: nexus3-haproxy
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:
