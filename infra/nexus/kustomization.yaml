@@ -9,7 +9,7 @@ resources:
 images:
   - name: haproxy
     newName: ghcr.io/haproxytech/haproxy-docker-debian
-    newTag: 2.9.5
+    newTag: 2.9.7
 
 labels:
   - pairs:

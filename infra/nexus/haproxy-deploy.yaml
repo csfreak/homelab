@@ -37,6 +37,10 @@ spec:
             limits:
               memory: 256Mi
               cpu: 200m
+          readinessProbe:
+            httpGet:
+              port: 8405
+              path: /healthz
       volumes:
         - name: config
           configMap:
