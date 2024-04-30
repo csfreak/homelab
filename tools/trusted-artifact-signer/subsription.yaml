@@ -7,6 +7,6 @@ spec:
   channel: stable
   installPlanApproval: Automatic
   name: rhtas-operator
-  source: redhat-4.14
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: rhtas-operator.v0.0.2
