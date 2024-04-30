@@ -10,7 +10,7 @@ spec:
   sources:
     - chart: mariadb-operator
       repoURL: https://mariadb-operator.github.io/mariadb-operator
-      targetRevision: 0.19.0
+      targetRevision: 0.27.0
       helm:
         releaseName: mariadb-operator
         valueFiles:
@@ -38,4 +38,3 @@ spec:
       annotations:
         app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
         app.openshift.io/vcs-ref: main
-    automated: {}
