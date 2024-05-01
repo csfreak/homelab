@@ -104,6 +104,12 @@ spec:
       kinds:
       - TaskRun
       - PipelineRun
+    - apiGroups:
+      - operator.tekton.dev
+      clusters:
+      - '*'
+      kinds:
+      - TektonInstallerSet
   ha:
     enabled: true
     resources:
