@@ -16,11 +16,11 @@ spec:
       organizationName: HomeLab
     config:
       OIDCIssuers:
-        'https://oauth-openshift.apps.homelab.csfreak.com':
+        - Issuer: "https://sso.homelab.csfreak.com/realms/homelab"
           ChallengeClaim: sub
-          ClientID: 'system:serviceaccount:tools-trusted-account-signer:securesign'
-          IssuerURL: 'https://oauth-openshift.apps.homelab.csfreak.com'
-          Type: Kubernetes
+          ClientID: "trusted-artifact-signer"
+          IssuerURL: "https://sso.homelab.csfreak.com/realms/homelab"
+          Type: email
     externalAccess:
       enabled: true
       host: fulcio-rhtap.apps.homelab.csfreak.com
