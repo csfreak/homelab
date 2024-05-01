@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/name: securesign
     app.kubernetes.io/part-of: trusted-artifact-signer
 spec:
+  analytics: true
   ctlog: {}
   fulcio:
     certificate:
@@ -16,25 +17,37 @@ spec:
       organizationName: HomeLab
     config:
       OIDCIssuers:
-        - Issuer: "https://sso.homelab.csfreak.com/realms/homelab"
-          ClientID: "trusted-artifact-signer"
+        - ClientID: trusted-artifact-signer
+          Issuer: "https://sso.homelab.csfreak.com/realms/homelab"
           IssuerURL: "https://sso.homelab.csfreak.com/realms/homelab"
           Type: email
     externalAccess:
       enabled: true
       host: fulcio-rhtap.apps.homelab.csfreak.com
+    monitoring:
+      enabled: true
   rekor:
+    backFillRedis:
+      enabled: true
+      schedule: 0 0 * * *
     externalAccess:
       enabled: true
       host: rekor-rhtap.apps.homelab.csfreak.com
+    monitoring:
+      enabled: true
+    pvc:
+      retain: true
+      size: 5Gi
     rekorSearchUI:
       enabled: true
-      host: rekor-search-rhtap.apps.homelab.csfreak.com
     signer:
       kms: secret
   trillian:
     database:
       create: true
+      pvc:
+        retain: true
+        size: 5Gi
   tuf:
     externalAccess:
       enabled: true
