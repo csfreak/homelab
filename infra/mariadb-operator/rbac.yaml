@@ -6,7 +6,6 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
 rules:
   - apiGroups:
-      - mariadb.mmontes.io
       - k8s.mariadb.com
     resources:
       - "*"
