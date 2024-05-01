@@ -110,6 +110,7 @@ spec:
       - '*'
       kinds:
       - TektonInstallerSet
+      - TektonAddon
   ha:
     enabled: true
     resources:
