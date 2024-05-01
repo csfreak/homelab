@@ -52,8 +52,4 @@ spec:
     externalAccess:
       enabled: true
       host: tuf-rhtap.apps.homelab.csfreak.com
-    keys:
-      - name: rekor.pub
-      - name: ctfe.pub
-      - name: fulcio_v1.crt.pem
     port: 80
