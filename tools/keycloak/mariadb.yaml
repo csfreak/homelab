@@ -7,7 +7,7 @@ spec:
     name: sso-db-root
     key: password
   image: mariadb:10.11
-  iamgePullPolicy: IfNotPresent
+  imagePullPolicy: IfNotPresent
   port: 3306
   myCnfConfigMapKeyRef:
     name: config-sso-db
@@ -60,10 +60,6 @@ spec:
     name: sso-db
   characterSet: utf8
   collate: utf8_general_ci
-  serviceAccountName: sso
-  storage:
-    size: null
-    volumeClaimTemplate: null
 ---
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: User
@@ -76,10 +72,6 @@ spec:
     name: sso-db-sso-user
     key: password
   maxUserConnections: 20
-  serviceAccountName: sso
-  storage:
-    size: null
-    volumeClaimTemplate: null
 ---
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: Grant
@@ -92,7 +84,3 @@ spec:
     - "ALL"
   database: "sso"
   username: sso
-  serviceAccountName: sso-db-sso
-  storage:
-    size: null
-    volumeClaimTemplate: null
