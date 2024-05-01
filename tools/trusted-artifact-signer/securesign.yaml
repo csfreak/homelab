@@ -17,7 +17,6 @@ spec:
     config:
       OIDCIssuers:
         - Issuer: "https://sso.homelab.csfreak.com/realms/homelab"
-          ChallengeClaim: sub
           ClientID: "trusted-artifact-signer"
           IssuerURL: "https://sso.homelab.csfreak.com/realms/homelab"
           Type: email
@@ -28,7 +27,9 @@ spec:
     externalAccess:
       enabled: true
       host: rekor-rhtap.apps.homelab.csfreak.com
-    rekorSearchUI: {}
+    rekorSearchUI:
+      enabled: true
+      host: rekor-search-rhtap.apps.homelab.csfreak.com
     signer:
       kms: secret
   trillian:
