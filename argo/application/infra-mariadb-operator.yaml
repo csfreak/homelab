@@ -21,7 +21,7 @@ spec:
       ref: homelab
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: mariadb-operator
+    namespace: infra-mariadb-operator
   ignoreDifferences:
     - jsonPointers:
         - /data
