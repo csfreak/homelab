@@ -19,7 +19,6 @@ spec:
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
     syncOptions:
       - Prune=false
       - RespectIgnoreDifferences=true

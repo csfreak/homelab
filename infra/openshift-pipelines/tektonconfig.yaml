@@ -92,7 +92,7 @@ spec:
           custom-console-url-pr-tasklog: ""
           error-detection-from-container-logs: "true"
           error-detection-max-number-of-lines: "50"
-          error-detection-simple-regexp:
+          error-detection-simple-regexp: >
             ^(?P<filename>[^:]*):(?P<line>[0-9]+):(?P<column>[0-9]+):([
             ]*)?(?P<error>.*)
           error-log-snippet: "true"
