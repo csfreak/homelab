@@ -7,6 +7,7 @@ metadata:
 rules:
   - apiGroups:
       - mariadb.mmontes.io
+      - k8s.mariadb.com
     resources:
       - "*"
     verbs:
