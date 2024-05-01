@@ -1,0 +1,13 @@
+resources:
+  - operators.yaml
+  - external-secrets.yaml
+  - mariadb.yaml
+  - cert.yaml
+  - keycloak.yaml
+
+configMapGenerator:
+  - name: config-sso-db
+    files:
+      - my.cnf
+    options:
+      disableNameSuffixHash: true

@@ -1,0 +1,98 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: sso-db
+spec:
+  rootPasswordSecretKeyRef:
+    name: sso-db-root
+    key: password
+  image: mariadb:10.11
+  iamgePullPolicy: IfNotPresent
+  port: 3306
+  myCnfConfigMapKeyRef:
+    name: config-sso-db
+    key: my.cnf
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
+  env:
+    - name: TZ
+      value: UTC
+  securityContext:
+    allowPrivilegeEscalation: false
+  metrics:
+    enabled: true
+    exporter:
+      image: prom/mysqld-exporter:v0.15.1
+      imagePullPolicy: IfNotPresent
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 300m
+          memory: 512Mi
+    serviceMonitor:
+      prometheusRelease: openshift-user-workload-monitoring
+      interval: 10s
+      scrapeTimeout: 10s
+  serviceAccountName: sso-db
+  storage:
+    size: 10Gi
+    volumeClaimTemplate:
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: synology-iscsi-ssd
+      accessModes:
+        - ReadWriteOnce
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Database
+metadata:
+  name: sso
+spec:
+  mariaDbRef:
+    name: sso-db
+  characterSet: utf8
+  collate: utf8_general_ci
+  serviceAccountName: sso
+  storage:
+    size: null
+    volumeClaimTemplate: null
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: User
+metadata:
+  name: sso
+spec:
+  mariaDbRef:
+    name: sso-db
+  passwordSecretKeyRef:
+    name: sso-db-sso-user
+    key: password
+  maxUserConnections: 20
+  serviceAccountName: sso
+  storage:
+    size: null
+    volumeClaimTemplate: null
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Grant
+metadata:
+  name: sso-db-sso
+spec:
+  mariaDbRef:
+    name: sso-db
+  privileges:
+    - "ALL"
+  database: "sso"
+  username: sso
+  serviceAccountName: sso-db-sso
+  storage:
+    size: null
+    volumeClaimTemplate: null

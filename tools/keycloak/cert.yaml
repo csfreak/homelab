@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: sso-cert
+spec:
+  commonName: "sso.homelab.csfreak.com"
+  dnsNames:
+    - "sso.homelab.csfreak.com"
+    - "sso-admin.homelab.csfreak.com"
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt
+  secretName: sso-cert

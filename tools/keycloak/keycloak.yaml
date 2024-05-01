@@ -1,0 +1,32 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: homelab-sso
+spec:
+  instances: 1
+  db:
+    vendor: mariadb
+    host: sso-db
+    database: sso
+    usernameSecret:
+      name: sso-db-sso-user
+      key: username
+    passwordSecret:
+      name: sso-db-sso-user
+      key: password
+  http:
+    tlsSecret: sso-cert
+  hostname:
+    hostname: sso.homelab.csfreak.com
+  additionalOptions:
+    - name: proxy
+      value: passthrough
+    - name: log-level
+      value: info
+  features:
+    disabled:
+      - kerberos
+      - web-authn
+    enabled:
+      - token-exchange
+      - update-email
