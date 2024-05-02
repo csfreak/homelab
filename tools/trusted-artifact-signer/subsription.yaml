@@ -9,10 +9,11 @@ spec:
   name: rhtas-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 5m
-      memory: 128Mi
+  config:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 5m
+        memory: 128Mi
