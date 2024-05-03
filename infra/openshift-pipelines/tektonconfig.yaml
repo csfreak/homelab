@@ -22,12 +22,6 @@ spec:
     disabled: false
     options:
       disabled: false
-    signers.x509.fulcio.enabled: true
-    signers.x509.fulcio.address: http://fulcio-server.tools-trusted-artifact-signer.svc.cluster.local
-    signers.x509.tuf.mirror.url: http://tuf.tools-trusted-artifact-signer.svc.cluster.local
-    controllerEnvs:
-      - name: SIGSTORE_NO_CACHE
-        value: "TRUE"
   dashboard:
     options:
       disabled: false
