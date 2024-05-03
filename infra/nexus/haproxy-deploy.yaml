@@ -27,9 +27,19 @@ spec:
               mountPath: /config
           ports:
             - containerPort: 8081
+              name: http-nexus-ui
             - containerPort: 8082
+              name: http-nexus-docker
             - containerPort: 8083
+              name: http-nexus-homelab
+            - containerPort: 8084
+              name: http-nexus-redhat
+            - containerPort: 8085
+              name: http-nexus-quay
+            - containerPort: 8086
+              name: http-nexus-ghcr
             - containerPort: 8405
+              name: http-nexus-metrics
           resources:
             requests:
               memory: 64Mi
