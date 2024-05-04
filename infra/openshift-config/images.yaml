@@ -7,87 +7,45 @@ spec: {}
 apiVersion: config.openshift.io/v1
 kind: ImageDigestMirrorSet
 metadata:
-  name: docker.io
+  name: nexus3
 spec:
   imageDigestMirrors:
     - mirrors:
         - docker.homelab.csfreak.com
       source: docker.io
-      mirrorSourcePolicy: AllowContactingSource
----
-apiVersion: config.openshift.io/v1
-kind: ImageTagMirrorSet
-metadata:
-  name: docker.io
-spec:
-  imageTagMirrors:
-    - mirrors:
-        - docker.homelab.csfreak.com
-      source: docker.io
-      mirrorSourcePolicy: AllowContactingSource
----
-apiVersion: config.openshift.io/v1
-kind: ImageDigestMirrorSet
-metadata:
-  name: ghcr.io
-spec:
-  imageDigestMirrors:
+      mirrorSourcePolicy: NeverContactSource
     - mirrors:
         - ghcr.docker.homelab.csfreak.com
       source: ghcr.io
       mirrorSourcePolicy: AllowContactingSource
----
-apiVersion: config.openshift.io/v1
-kind: ImageTagMirrorSet
-metadata:
-  name: ghcr.io
-spec:
-  imageTagMirrors:
-    - mirrors:
-        - ghcr.homelab.csfreak.com
-      source: ghcr.io
-      mirrorSourcePolicy: AllowContactingSource
----
-apiVersion: config.openshift.io/v1
-kind: ImageDigestMirrorSet
-metadata:
-  name: registry.access.redhat.com
-spec:
-  imageDigestMirrors:
     - mirrors:
         - redhat.docker.homelab.csfreak.com
       source: registry.access.redhat.com
       mirrorSourcePolicy: AllowContactingSource
----
-apiVersion: config.openshift.io/v1
-kind: ImageTagMirrorSet
-metadata:
-  name: registry.access.redhat.com
-spec:
-  imageTagMirrors:
     - mirrors:
         - redhat.homelab.csfreak.com
       source: registry.access.redhat.com
       mirrorSourcePolicy: AllowContactingSource
 ---
 apiVersion: config.openshift.io/v1
-kind: ImageDigestMirrorSet
-metadata:
-  name: quay.io
-spec:
-  imageDigestMirrors:
-    - mirrors:
-        - quay.docker.homelab.csfreak.com
-      source: quay.io
-      mirrorSourcePolicy: AllowContactingSource
----
-apiVersion: config.openshift.io/v1
 kind: ImageTagMirrorSet
 metadata:
-  name: quay.io
+  name: nexus3
 spec:
   imageTagMirrors:
     - mirrors:
-        - quay.homelab.csfreak.com
-      source: quay.io
+        - docker.homelab.csfreak.com
+      source: docker.io
+      mirrorSourcePolicy: NeverContactSource
+    - mirrors:
+        - ghcr.docker.homelab.csfreak.com
+      source: ghcr.io
+      mirrorSourcePolicy: AllowContactingSource
+    - mirrors:
+        - redhat.docker.homelab.csfreak.com
+      source: registry.access.redhat.com
+      mirrorSourcePolicy: AllowContactingSource
+    - mirrors:
+        - redhat.homelab.csfreak.com
+      source: registry.access.redhat.com
       mirrorSourcePolicy: AllowContactingSource
