@@ -31,13 +31,13 @@ metadata:
 spec:
   host: docker.homelab.csfreak.com
   port:
-    targetPort: http
+    targetPort: docker-proxy
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
   to:
     kind: Service
-    name: docker
+    name: nexus3-docker
     weight: 100
   wildcardPolicy: None
 ---
@@ -52,12 +52,75 @@ metadata:
 spec:
   host: homelab.docker.homelab.csfreak.com
   port:
-    targetPort: http
+    targetPort: homelab-repo
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
   to:
     kind: Service
-    name: homelab
+    name: nexus3-docker
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: nexus3-tls
+  name: nexus3-docker-redhat
+  labels:
+    app: nexus3
+spec:
+  host: redhat.docker.homelab.csfreak.com
+  port:
+    targetPort: redhat-proxy
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: nexus3-docker
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: nexus3-tls
+  name: nexus3-docker-quay
+  labels:
+    app: nexus3
+spec:
+  host: quay.docker.homelab.csfreak.com
+  port:
+    targetPort: quay-proxy
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: nexus3-docker
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: nexus3-tls
+  name: nexus3-docker-ghcr
+  labels:
+    app: nexus3
+spec:
+  host: ghcr.docker.homelab.csfreak.com
+  port:
+    targetPort: ghcr-proxy
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: nexus3-docker
     weight: 100
   wildcardPolicy: None

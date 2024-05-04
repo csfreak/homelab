@@ -1,32 +1,36 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: docker
+  name: nexus3-docker
   labels:
     app: nexus3-docker
 spec:
   ports:
     - appProtocol: http
-      port: 80
-      name: http
+      name: docker-proxy
+      port: 8082
       protocol: TCP
-      targetPort: 8082
-  selector:
-    app: nexus3
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: homelab
-  labels:
-    app: nexus3-docker
-spec:
-  ports:
+      targetPort: docker-proxy
     - appProtocol: http
-      port: 80
-      name: http
+      name: homelab-repo
+      port: 8083
       protocol: TCP
-      targetPort: 8083
+      targetPort: homelab-repo
+    - appProtocol: http
+      name: redhat-proxy
+      port: 8084
+      protocol: TCP
+      targetPort: redhat-proxy
+    - appProtocol: http
+      name: quay-proxy
+      port: 8085
+      protocol: TCP
+      targetPort: quay-proxy
+    - appProtocol: http
+      name: ghcr-proxy
+      port: 8086
+      protocol: TCP
+      targetPort: ghcr-proxy
   selector:
     app: nexus3
 ---
@@ -41,10 +45,10 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 8081
+      targetPort: http
     - name: metrics
       protocol: TCP
       port: 8405
-      targetPort: 8405
+      targetPort: http-metrics
   selector:
     app: nexus3
