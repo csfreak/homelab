@@ -59,14 +59,15 @@ spec:
         - name: config
           configMap:
             name: haproxy-config
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchLabels:
-                  deployment: nexus3-haproxy
-              topologyKey: kubernetes.io/hostname
-            weight: 10
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    deployment: nexus3-haproxy
+                topologyKey: kubernetes.io/hostname
+              weight: 10
       tolerations:
         - key: node-role.kubernetes.io/master
           effect: NoSchedule
