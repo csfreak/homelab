@@ -3,7 +3,7 @@ resources:
   - scc.yaml
   - rbac.yaml
   - pvc.yaml
-#  - external-secret.yaml
+  #  - external-secret.yaml
   - deployment.yaml
   - service.yaml
   - route.yaml
@@ -16,6 +16,10 @@ labels:
   - pairs:
       app.kubernetes.io/name: adguardhome
       app.kubernetes.io/component: dns
+images:
+  - name: adguardhome
+    newName: adguard/adguardhome
+    newTag: v0.107.48
 
 generatorOptions:
   immutable: true
