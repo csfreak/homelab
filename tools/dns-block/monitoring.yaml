@@ -11,4 +11,9 @@ spec:
       path: /metrics
       interval: 10s
       metricRelabelings:
-        sourceLabel: 
+        - sourceLabels:
+            - domain
+            - client
+          separator: ","
+          regex: ","
+          action: keep
