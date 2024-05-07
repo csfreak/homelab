@@ -17,3 +17,5 @@ spec:
           separator: ","
           regex: ","
           action: keep
+        - regex: server
+          action: labeldrop
