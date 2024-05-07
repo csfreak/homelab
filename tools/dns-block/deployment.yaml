@@ -50,6 +50,28 @@ spec:
               mountPath: /opt/adguardhome/conf
             - name: adguard-work
               mountPath: /opt/adguardhome/work
+        - name: adguard-exporter
+          image: adguard-exporter:latest
+          envFrom:
+            - secretRef:
+                name: adguard-metrics
+              prefix: ADGUARD_
+          env:
+            - name: ADGUARD_SERVERS
+              value: http://127.0.0.1:3000
+            - name: INTERVAL
+              value: 10s
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: 10m
+            requests:
+              memory: 32Mi
+              cpu: 1m
+          ports:
+            - name: metrics
+              containerPort: 9618
+              protocol: TCP
       serviceAccountName: dns-runner
       volumes:
         - name: adguard-config

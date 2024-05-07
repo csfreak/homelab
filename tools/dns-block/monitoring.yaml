@@ -1,15 +1,14 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: pihole-metrics
+  name: adguardhome-metrics
 spec:
   selector:
     matchLabels:
-      metrics: pihole
+      metrics: adguardhome
   endpoints:
     - port: metrics
       path: /metrics
       interval: 10s
-  namespaceSelector:
-    matchNames:
-      - pihole
+      metricRelabelings:
+        sourceLabel: 
