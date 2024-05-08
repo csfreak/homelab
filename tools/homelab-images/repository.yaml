@@ -4,3 +4,55 @@ metadata:
   name: csfreak-homelab-images
 spec:
   url: https://github.com/csfreak/homelab-images
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: gitea-plex
+  namespace: tools-homelab-images-pipelines
+spec:
+  git_provider:
+    secret:
+      key: provider.token
+      name: gitea-plex-token-fzkpw
+    url: "http://storage.homelab.csfreak.com:8418"
+  url: "http://storage.homelab.csfreak.com:8418/homelab/plex/"
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: gitea-sonarr
+  namespace: tools-homelab-images-pipelines
+spec:
+  git_provider:
+    secret:
+      key: provider.token
+      name: gitea-plex-token-fzkpw
+    url: "http://storage.homelab.csfreak.com:8418"
+  url: "http://storage.homelab.csfreak.com:8418/homelab/sonarr/"
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: gitea-radarr
+  namespace: tools-homelab-images-pipelines
+spec:
+  git_provider:
+    secret:
+      key: provider.token
+      name: gitea-plex-token-fzkpw
+    url: "http://storage.homelab.csfreak.com:8418"
+  url: "http://storage.homelab.csfreak.com:8418/homelab/radarr/"
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: gitea-nzbget
+  namespace: tools-homelab-images-pipelines
+spec:
+  git_provider:
+    secret:
+      key: provider.token
+      name: gitea-plex-token-fzkpw
+    url: "http://storage.homelab.csfreak.com:8418"
+  url: "http://storage.homelab.csfreak.com:8418/homelab/nzbget/"
