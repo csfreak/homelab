@@ -19,5 +19,8 @@ images:
   - name: minio-backup-sidecar
     newName: ghcr.io/csfreak/minio-backup-sidecar
     newTag: v0.4.8
+  - name: exportarr
+    newName: ghcr.io/onedr0p/exportarr
+    newTag: v2.0
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

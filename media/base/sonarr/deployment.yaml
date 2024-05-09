@@ -44,7 +44,7 @@ spec:
             - mountPath: /media/ssd
               name: sonarr-media-ssd
         - name: sonarr-metrics
-          image: ghcr.io/onedr0p/exportarr:latest
+          image: exportarr
           imagePullPolicy: Always
           command:
             - "/exportarr"

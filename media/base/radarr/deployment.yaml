@@ -48,7 +48,7 @@ spec:
             - mountPath: /media/ssd
               name: radarr-media-ssd
         - name: radarr-metrics
-          image: ghcr.io/onedr0p/exportarr:latest
+          image: exportarr
           imagePullPolicy: Always
           command:
             - "/exportarr"
