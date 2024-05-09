@@ -10,4 +10,4 @@ spec:
     section: Red Hat Applications
     # image that is 24x24 in size
     imageURL: >-
-      https://acs-co7er01lhcjnasvrf2g0.acs.rhcloud.com/static/media/RHACS-Logo.d3245b7c3ef3347be06f35cae343c70a.svg
+      https://console-openshift-console.apps.homelab.csfreak.com/static/assets/public/imgs/logos/redhat.svg
