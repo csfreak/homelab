@@ -1,0 +1,45 @@
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: stackrox-secured-cluster-services
+spec:
+  admissionControl:
+    bypass: BreakGlassAnnotation
+    contactImageScanners: DoNotScanInline
+    listenOnCreates: true
+    listenOnEvents: true
+    listenOnUpdates: true
+    replicas: 2
+    timeoutSeconds: 20
+    tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/master
+      - effect: NoExecute
+        key: node-role.kubernetes.io/master
+  auditLogs:
+    collection: Auto
+  centralEndpoint: acs-data-co7er01lhcjnasvrf2g0.acs.rhcloud.com:443
+  clusterName: homelab
+  monitoring:
+    openshift:
+      enabled: true
+  perNode:
+    collector:
+      collection: EBPF
+      forceCollection: false
+      imageFlavor: Slim
+    taintToleration: TolerateTaints
+  scanner:
+    analyzer:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 1024Mi
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 3
+        minReplicas: 1
+        replicas: 1
+    scannerComponent: AutoSense
+  scannerV4:
+    scannerComponent: Default

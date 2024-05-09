@@ -1,0 +1,13 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: rhacs-link
+spec:
+  href: "https://acs-co7er01lhcjnasvrf2g0.acs.rhcloud.com/"
+  location: ApplicationMenu
+  text: Red Hat Advanced Cluster Security
+  applicationMenu:
+    section: Red Hat Applications
+    # image that is 24x24 in size
+    imageURL: >-
+      https://acs-co7er01lhcjnasvrf2g0.acs.rhcloud.com/static/media/RHACS-Logo.d3245b7c3ef3347be06f35cae343c70a.svg
