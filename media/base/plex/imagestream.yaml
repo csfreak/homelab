@@ -1,8 +1,0 @@
----
-kind: ImageStream
-apiVersion: image.openshift.io/v1
-metadata:
-  name: plex
-spec:
-  lookupPolicy:
-    local: true

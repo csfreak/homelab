@@ -1,6 +1,4 @@
 resources:
-  - imagestream.yaml
-  - buildconfig.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
@@ -16,6 +14,11 @@ labels:
     includeTemplates: true
     pairs:
       app: radarr
+
+images:
+  - name: radarr:latest
+    newName: homelab.docker.homelab.csfreak.com/homelab/radarr
+    newTag: e0bcea96a8a0b702809dc3598a4ae63222c2156c
 
 generatorOptions:
   annotations:

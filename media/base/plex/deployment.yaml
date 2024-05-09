@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: plex
   annotations:
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"plex:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"plex-server\")].image"}]
     app.openshift.io/connects-to: '[{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-ssd"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
 spec:
   replicas: 1
@@ -16,8 +14,6 @@ spec:
       deployment: plex
   template:
     metadata:
-      annotations:
-        alpha.image.policy.openshift.io/resolve-names: "*"
       labels:
         deployment: plex
     spec:
@@ -25,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 120
       initContainers:
         - name: cleanup-pidfile
-          image: image-registry.openshift-image-registry.svc:5000/openshift/cli
+          image: openshift-cli
           volumeMounts:
             - name: config
               mountPath: /config

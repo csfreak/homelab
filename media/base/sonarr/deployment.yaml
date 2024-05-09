@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"sonarr:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"sonarr\")].image"}]
     app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"nzbget"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
   name: sonarr
 spec:
@@ -16,14 +14,12 @@ spec:
     type: Recreate
   template:
     metadata:
-      annotations:
-        alpha.image.policy.openshift.io/resolve-names: "*"
       labels:
         deployment: sonarr
     spec:
       containers:
-        - imagePullPolicy: Always
-          image: sonarr:latest
+        - imagePullPolicy: IfNotPresent
+          image: sonarr
           name: sonarr
           ports:
             - containerPort: 8989

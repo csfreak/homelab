@@ -1,6 +1,4 @@
 resources:
-  - imagestream.yaml
-  - buildconfig.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
@@ -17,6 +15,13 @@ labels:
     includeTemplates: true
     pairs:
       app: plex
+
+images:
+  - name: openshift-cli
+    newName: image-registry.openshift-image-registry.svc:5000/openshift/cli
+  - name: plex
+    newName: homelab.docker.homelab.csfreak.com/homelab/plex
+    newTag: 6bd15616215aa578665e3e3949e9a8fdb114ac71
 
 configMapGenerator:
   - files:

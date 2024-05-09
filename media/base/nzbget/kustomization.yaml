@@ -1,6 +1,4 @@
 resources:
-  - imagestream.yaml
-  - buildconfig.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
@@ -17,6 +15,11 @@ labels:
     includeTemplates: true
     pairs:
       app: nzbget
+
+images:
+  - name: nzbget
+    newName: homelab.docker.homelab.csfreak.com/homelab/nzbget
+    newTag: 12474ca21259f9782dcb4ae23f03ab0b5dca652e
 
 configMapGenerator:
   - envs:

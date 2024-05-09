@@ -1,6 +1,4 @@
 resources:
-  - imagestream.yaml
-  - buildconfig.yaml
   - pvc.yaml
   - deployment.yaml
   - service.yaml
@@ -16,6 +14,11 @@ labels:
     includeTemplates: true
     pairs:
       app: sonarr
+
+images:
+  - name: sonarr:latest
+    newName: homelab.docker.homelab.csfreak.com/homelab/sonarr
+    newTag: 4d43a058d5c949e0c8e559e912316afc0e771a20
 
 generatorOptions:
   annotations:

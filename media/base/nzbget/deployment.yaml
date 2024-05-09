@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nzbget
-  annotations:
-    image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"nzbget:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nzbget\")].image"}]
 spec:
   replicas: 1
   revisionHistoryLimit: 2
@@ -19,8 +16,8 @@ spec:
         deployment: nzbget
     spec:
       containers:
-        - imagePullPolicy: Always
-          image: nzbget:latest
+        - imagePullPolicy: IfNotPresent
+          image: nzbget
           name: nzbget
           envFrom:
             - configMapRef:
