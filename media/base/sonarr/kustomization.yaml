@@ -16,7 +16,7 @@ labels:
       app: sonarr
 
 images:
-  - name: sonarr:latest
+  - name: sonarr
     newName: homelab.docker.homelab.csfreak.com/homelab/sonarr
     newTag: 4d43a058d5c949e0c8e559e912316afc0e771a20
 
