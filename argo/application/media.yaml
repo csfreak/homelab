@@ -10,10 +10,6 @@ spec:
     namespace: media
     server: https://kubernetes.default.svc
   ignoreDifferences:
-    - group: apps
-      jqPathExpressions:
-        - .spec.template.spec.containers[].image
-      kind: Deployment
     - jsonPointers:
         - /data
       kind: Secret
