@@ -21,9 +21,7 @@ spec:
     transparency.url: "http://rekor-server.tools-trusted-artifact-signer.svc"
     signers.x509.fulcio.enabled: true
     signers.x509.fulcio.address: "http://fulcio-server.tools-trusted-artifact-signer.svc"
-    signers.x509.fulcio.issuer: "kubernetes/service-account"
-    signers.x509.fulcio.provider: filesystem
-    signers.x509.identity.token.file: /var/run/secrets/rhtas/oidc-token
+
     signers.x509.tuf.mirror.url: "http://tuf.tools-trusted-artifact-signer.svc"
     disabled: false
     options:
@@ -31,26 +29,16 @@ spec:
       deployments:
         tekton-chains-controller:
           spec:
-            template:
-              volumes:
-                - name: rhtas-token
-                  projected:
-                    sources:
-                      - serviceAccountToken:
-                          path: oidc-token
-                          expirationSeconds: 7200
-                          audience: sigstore
+            volumes:
+              - name: sigstorehome
+                emptydir: {}
+            containers:
+              envs:
+                - name: TUF_ROOT
+                  value: /sigstorehome/.sigstore/root
+              volumeMounts:
                 - name: sigstorehome
-                  emptydir: {}
-              containers:
-                - env:
-                    - name: TUF_ROOT
-                      value: /sigstorehome/.sigstore/root
-                  volumeMounts:
-                    - name: rhtas-token
-                      mountPath: /var/run/secrets/rhtas
-                    - name: sigstorehome
-                      mountPath: /sigstorehome
+                  mountPath: /sigstorehome
 
   dashboard:
     options:
