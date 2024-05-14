@@ -29,16 +29,18 @@ spec:
       deployments:
         tekton-chains-controller:
           spec:
-            volumes:
-              - name: sigstorehome
-                emptydir: {}
-            containers:
-              envs:
-                - name: TUF_ROOT
-                  value: /sigstorehome/.sigstore/root
-              volumeMounts:
-                - name: sigstorehome
-                  mountPath: /sigstorehome
+            templates:
+              spec:
+                volumes:
+                  - name: sigstorehome
+                    emptydir: {}
+                containers:
+                  envs:
+                    - name: TUF_ROOT
+                      value: /sigstorehome/.sigstore/root
+                  volumeMounts:
+                    - name: sigstorehome
+                      mountPath: /sigstorehome
 
   dashboard:
     options:
