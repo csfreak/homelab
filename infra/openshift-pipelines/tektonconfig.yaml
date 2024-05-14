@@ -13,18 +13,43 @@ spec:
         value: "true"
   chain:
     artifacts.taskrun.storage: oci
+    artifacts.taskrun.format: slsa/v2alpha3
     artifacts.pipelinerun.storage: oci
-    artifacts.pipelinerun.format: slsa/v1
+    artifacts.pipelinerun.format: slsa/v2alpha3
     transparency.enabled: "true"
-    artifacts.taskrun.format: slsa/v1
     artifacts.oci.storage: oci
     transparency.url: "http://rekor-server.tools-trusted-artifact-signer.svc"
-    # signers.x509.fulcio.enabled: true
-    # signers.x509.fulcio.address: "http://fulcio-server.tools-trusted-artifact-signer.svc"
-    # signers.x509.tuf.mirror.url: "http://tuf.tools-trusted-artifact-signer.svc"
+    signers.x509.fulcio.enabled: true
+    signers.x509.fulcio.address: "http://fulcio-server.tools-trusted-artifact-signer.svc"
+    signers.x509.fulcio.issuer: "kubernetes/service-account"
+    signers.x509.fulcio.provider: filesystem
+    signers.x509.identity.token.file: /var/run/secrets/rhtas/oidc-token
+    signers.x509.tuf.mirror.url: "http://tuf.tools-trusted-artifact-signer.svc"
     disabled: false
     options:
       disabled: false
+      deployment:
+        spec:
+          volumes:
+            - name: rhtas-token
+              projected:
+                sources:
+                  - serviceAccountToken:
+                      path: oidc-token
+                      expirationSeconds: 7200
+                      audience: sigstore
+            - name: sigstorehome
+              emptydir: {}
+          containers:
+            envs:
+              - name: TUF_ROOT
+                value: /sigstorehome/.sigstore/root
+            volumeMounts:
+              - name: rhtas-token
+                mountPath: /var/run/secrets/rhtas
+              - name: sigstorehome
+                mountPath: /sigstorehome
+
   dashboard:
     options:
       disabled: false

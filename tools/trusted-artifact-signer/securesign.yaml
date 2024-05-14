@@ -21,6 +21,10 @@ spec:
           Issuer: "https://sso.homelab.csfreak.com/realms/homelab"
           IssuerURL: "https://sso.homelab.csfreak.com/realms/homelab"
           Type: email
+        - ClientID: system:serviceaccount:tools-trusted-artifact-signer:fulcio
+          Issuer: "kubernetes/service-account"
+          IssuerURL: "https://kubernetes.default.svc"
+          Type: kubernetes
     externalAccess:
       enabled: true
       host: fulcio-rhtap.apps.homelab.csfreak.com
