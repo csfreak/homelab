@@ -29,7 +29,7 @@ spec:
       deployments:
         tekton-chains-controller:
           spec:
-            templates:
+            template:
               spec:
                 volumes:
                   - name: sigstorehome
