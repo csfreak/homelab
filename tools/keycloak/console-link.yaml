@@ -1,0 +1,13 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: sso-link
+spec:
+  href: "https://sso.homelab.csfreak.com"
+  location: ApplicationMenu
+  text: Homelab SSO
+  applicationMenu:
+    section: Secure Software Supply Chain
+    # image that is 24x24 in size
+    imageURL: >-
+      https://sso.homelab.csfreak.com/resources/81avv/admin/keycloak.v2/logo.svg
