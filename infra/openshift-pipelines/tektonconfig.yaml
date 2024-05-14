@@ -35,7 +35,8 @@ spec:
                   - name: sigstorehome
                     emptyDir: {}
                 containers:
-                  - env:
+                  - name: tekton-chains-controller
+                    env:
                       - name: TUF_ROOT
                         value: /sigstorehome/.sigstore/root
                     volumeMounts:
