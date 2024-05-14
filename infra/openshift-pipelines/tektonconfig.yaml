@@ -43,14 +43,14 @@ spec:
                 - name: sigstorehome
                   emptydir: {}
               containers:
-                envs:
-                  - name: TUF_ROOT
-                    value: /sigstorehome/.sigstore/root
-                volumeMounts:
-                  - name: rhtas-token
-                    mountPath: /var/run/secrets/rhtas
-                  - name: sigstorehome
-                    mountPath: /sigstorehome
+                - env:
+                    - name: TUF_ROOT
+                      value: /sigstorehome/.sigstore/root
+                  volumeMounts:
+                    - name: rhtas-token
+                      mountPath: /var/run/secrets/rhtas
+                    - name: sigstorehome
+                      mountPath: /sigstorehome
 
   dashboard:
     options:
