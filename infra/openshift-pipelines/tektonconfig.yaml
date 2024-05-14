@@ -33,7 +33,7 @@ spec:
               spec:
                 volumes:
                   - name: sigstorehome
-                    emptydir: {}
+                    emptyDir: {}
                 containers:
                   - env:
                       - name: TUF_ROOT
