@@ -21,7 +21,7 @@ spec:
           Issuer: "https://sso.homelab.csfreak.com/realms/homelab"
           IssuerURL: "https://sso.homelab.csfreak.com/realms/homelab"
           Type: email
-        - ClientID: system:serviceaccount:tools-trusted-artifact-signer:fulcio
+        - ClientID: sigstore
           Issuer: "https://kubernetes.default.svc"
           IssuerURL: "https://kubernetes.default.svc"
           Type: kubernetes
