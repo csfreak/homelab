@@ -34,7 +34,7 @@ spec:
             - "if [ -e \"${PIDFILE}\" ] ; then echo \"Deleting ${PIDFILE}\"; rm \"${PIDFILE}\"; else echo \"Nothing to do\n${PIDFILE} not found\"; fi; exit 0"
       containers:
         - name: plex-server
-          image: image-registry.openshift-image-registry.svc:5000/media/plex
+          image: plex
           readinessProbe:
             httpGet:
               path: /identity
