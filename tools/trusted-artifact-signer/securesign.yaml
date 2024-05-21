@@ -7,8 +7,9 @@ metadata:
     app.kubernetes.io/name: securesign
     app.kubernetes.io/part-of: trusted-artifact-signer
 spec:
-  analytics: true
-  ctlog: {}
+  ctlog:
+    monitoring:
+      enabled: true
   fulcio:
     certificate:
       commonName: fulcio-rhtap.apps.homelab.csfreak.com
@@ -51,8 +52,14 @@ spec:
       pvc:
         retain: true
         size: 5Gi
+    monitoring:
+      enabled: true
   tuf:
     externalAccess:
       enabled: true
       host: tuf-rhtap.apps.homelab.csfreak.com
+    keys:
+      - name: rekor.pub
+      - name: ctfe.pub
+      - name: fulcio_v1.crt.pem
     port: 80
