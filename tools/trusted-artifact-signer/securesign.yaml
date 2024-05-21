@@ -2,7 +2,6 @@ apiVersion: rhtas.redhat.com/v1alpha1
 kind: Securesign
 metadata:
   name: securesign
-  namespace: tools-trusted-artifact-signer
   labels:
     app.kubernetes.io/instance: securesign
     app.kubernetes.io/name: securesign

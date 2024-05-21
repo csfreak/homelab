@@ -3,11 +3,11 @@ kind: ConsoleLink
 metadata:
   name: rektor-link
 spec:
-  href: "https://rekor-search-ui-tools-trusted-artifact-signer.apps.homelab.csfreak.com/"
+  href: "https://rekor-search-ui-trusted-artifact-signer.apps.homelab.csfreak.com/"
   location: ApplicationMenu
   text: Rektor Transparency
   applicationMenu:
     section: Secure Software Supply Chain
     # image that is 24x24 in size
     imageURL: >-
-      https://rekor-search-ui-tools-trusted-artifact-signer.apps.homelab.csfreak.com/_next/static/media/Logo-Red_Hat-Trusted_Artifact_Signer-A-Reverse-RGB.22a59824.svg
+      https://rekor-search-ui-trusted-artifact-signer.apps.homelab.csfreak.com/_next/static/media/Logo-Red_Hat-Trusted_Artifact_Signer-A-Reverse-RGB.22a59824.svg

@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/name: trusted-artifact-signer
 spec:
   destination:
-    namespace: tools-trusted-artifact-signer
+    namespace: trusted-artifact-signer
     server: https://kubernetes.default.svc
   project: tools
   source:
