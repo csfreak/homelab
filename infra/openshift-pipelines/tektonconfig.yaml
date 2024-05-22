@@ -18,11 +18,11 @@ spec:
     artifacts.pipelinerun.format: slsa/v2alpha3
     transparency.enabled: "true"
     artifacts.oci.storage: oci
-    transparency.url: "http://rekor-server.tools-trusted-artifact-signer.svc"
+    transparency.url: "http://rekor-server.trusted-artifact-signer.svc"
     signers.x509.fulcio.enabled: true
-    signers.x509.fulcio.address: "http://fulcio-server.tools-trusted-artifact-signer.svc"
+    signers.x509.fulcio.address: "http://fulcio-server.trusted-artifact-signer.svc"
 
-    signers.x509.tuf.mirror.url: "http://tuf.tools-trusted-artifact-signer.svc"
+    signers.x509.tuf.mirror.url: "http://tuf.trusted-artifact-signer.svc"
     disabled: false
     options:
       disabled: false
