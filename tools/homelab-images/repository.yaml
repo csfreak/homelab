@@ -56,3 +56,16 @@ spec:
       name: gitea-plex-token-fzkpw
     url: "http://storage.homelab.csfreak.com:8418"
   url: "http://storage.homelab.csfreak.com:8418/homelab/nzbget/"
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: gitea-keycloak
+  namespace: tools-homelab-images-pipelines
+spec:
+  git_provider:
+    secret:
+      key: provider.token
+      name: gitea-plex-token-fzkpw
+    url: "http://storage.homelab.csfreak.com:8418"
+  url: "http://storage.homelab.csfreak.com:8418/homelab/keycloak/"
