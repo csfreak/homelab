@@ -18,15 +18,10 @@ spec:
     tlsSecret: sso-cert
   hostname:
     hostname: sso.homelab.csfreak.com
+  ingress:
+    enabled: true
+    className: openshift-default
   additionalOptions:
-    - name: proxy
-      value: passthrough
     - name: log-level
       value: info
-  features:
-    disabled:
-      - kerberos
-      - web-authn
-    enabled:
-      - token-exchange
-      - update-email
+  image: homelab.docker.homelab.csfreak.com/homelab/keycloak:63a4ec8e5e38e5d213ac668a7c7f25e2eba5f5aa
