@@ -12,7 +12,7 @@ resources:
 images:
   - name: minio-backup-sidecar
     newName: ghcr.io/csfreak/minio-backup-sidecar
-    newTag: v0.4.8
+    newTag: v0.4.9
   - name: code-server
     newName: codercom/code-server
     newTag: "4.23.1"
