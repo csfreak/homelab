@@ -43,6 +43,7 @@ spec:
             - --download-dir
             - /data
             - --update-voices
+            - --debug
 
           image: homeassistant/amd64-addon-piper
           imagePullPolicy: IfNotPresent

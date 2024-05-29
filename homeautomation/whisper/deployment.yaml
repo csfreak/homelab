@@ -23,7 +23,7 @@ spec:
             - --uri
             - tcp://0.0.0.0:10300
             - --model
-            - small-int8
+            - base-int8
             - --beam-size
             - "2"
             - --language
@@ -32,7 +32,6 @@ spec:
             - /data
             - --download-dir
             - /data
-            - --debug
           image: homeassistant/amd64-addon-whisper
           imagePullPolicy: IfNotPresent
           name: whisper
