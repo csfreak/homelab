@@ -61,7 +61,7 @@ spec:
                 - >
                   echo '{ "type": "describe" }' 
                   | nc -w 1 localhost 10300 
-                  | grep -iq "whisper" 
+                  | grep -iq "faster-whisper" 
                   || exit 1
             failureThreshold: 3
             initialDelaySeconds: 10
