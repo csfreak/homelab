@@ -1,0 +1,10 @@
+resources:
+  - kafka.yaml
+
+configMapGenerator:
+  - name: amq-configs
+    files:
+      - kafka-jmx.config
+      - zookeeper-jmx.config
+    options:
+      disableNameSuffixHash: true

@@ -1,0 +1,58 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: tpa-cluster
+spec:
+  entityOperator:
+    topicOperator:
+      logging:
+        type: inline
+      watchedNamespace: tools-truster-profile-analyzer
+    userOperator:
+      logging:
+        type: inline
+      watchedNamespace: tools-truster-profile-analyzer
+  kafka:
+    config:
+      default.replication.factor: 3
+      inter.broker.protocol.version: "3.7"
+      min.insync.replicas: 2
+      offsets.topic.replication.factor: 3
+      transaction.state.log.min.isr: 2
+      transaction.state.log.replication.factor: 3
+    listeners:
+      - name: plain
+        port: 9092
+        tls: false
+        type: internal
+      - name: tls
+        port: 9093
+        tls: true
+        type: internal
+    logging:
+      type: inline
+    metricsConfig:
+      type: jmxPrometheusExporter
+      valueFrom:
+        configMapKeyRef:
+          key: kafaka-jmx.config
+          name: amq-configs
+          optional: true
+    replicas: 3
+    storage:
+      class: synology-iscsi-hdd
+      deleteClaim: true
+      size: 10G
+      type: persistent-claim
+    version: 3.7.0
+  zookeeper:
+    metricsConfig:
+      type: jmxPrometheusExporter
+      valueFrom:
+        configMapKeyRef:
+          key: zookeeper-jmx.config
+          name: amq-configs
+          optional: true
+    replicas: 3
+    storage:
+      type: ephemeral

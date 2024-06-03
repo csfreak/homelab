@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trusted-profile-analyzer
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/name: trusted-profile-analyzer
+spec:
+  destination:
+    namespace: tools-trusted-profile-analyzer
+    server: https://kubernetes.default.svc
+  project: tools
+  source:
+    path: tools/trusted-profile-analyzer
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+      annotations:
+        app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+        app.openshift.io/vcs-ref: main
