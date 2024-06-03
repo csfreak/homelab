@@ -35,7 +35,7 @@ spec:
       type: jmxPrometheusExporter
       valueFrom:
         configMapKeyRef:
-          key: kafaka-jmx.config
+          key: kafka-jmx.config
           name: amq-configs
           optional: true
     replicas: 3
