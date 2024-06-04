@@ -3,3 +3,13 @@ resources:
   - operator.yaml
   - github.com/intel/intel-device-plugins-for-kubernetes/deployments/nfd/overlays/node-feature-rules?ref=v0.30.0
   - intel-rule.yaml
+
+patches:
+  - patch: |-
+      - op: replace
+        path: /apiVersion
+        value: nfd.openshift.io/v1alpha1
+    target:
+      kind: NodeFeatureRule
+    options:
+      allowKindChange: true
