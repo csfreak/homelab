@@ -6,8 +6,8 @@ spec:
   rules:
     - name: "intel.gpu.iris.580"
       labels:
-        "gpu.intel.com/family": "Iris Pro"
-        "gpu.intel.com/product": "Iris Pro Graphics 580"
+        "gpu.intel.com/family": "Iris_Pro"
+        "gpu.intel.com/product": "Iris_Pro_Graphics_580"
       matchFeatures:
         - feature: pci.device
           matchExpressions:
@@ -17,7 +17,7 @@ spec:
     - name: "intel.gpu.hd.4000"
       labels:
         "gpu.intel.com/family": "HD"
-        "gpu.intel.com/product": "HD Graphics 4000"
+        "gpu.intel.com/product": "HD_Graphics_4000"
       matchFeatures:
         - feature: pci.device
           matchExpressions:
