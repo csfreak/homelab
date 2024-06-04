@@ -128,7 +128,8 @@ spec:
               name: metrics
               protocol: TCP
       nodeSelector:
-        intel.feature.node.kubernetes.io/gpu: "true"
+        intel.feature.node.kubernetes.io/gpu: "iris.pro"
+        intel.feature.node.kubernetes.io/gpu.driver: "i915"
       volumes:
         - name: datassd
           persistentVolumeClaim:
