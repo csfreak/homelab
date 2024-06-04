@@ -26,6 +26,12 @@ patches:
         value: 
           - "-enable-monitoring"
           - "-v=2"
+      - op: remove
+        path: "/spec/template/spec/nodeSelector/intel.feature.node.kubernetes.io/gpu"
+      - op: add
+        path: "/spec/template/spec/nodeSelector/intel.feature.node.kubernetes.io/gpu.driver"
+        value: i915
+
     target:
       kind: DaemonSet
       name: intel-gpu-plugin
