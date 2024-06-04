@@ -1,7 +1,7 @@
 resources:
   - sa.yaml
   - scc.yaml
-  - github.com/intel/intel-device-plugins-for-kubernetes/deployments/gpu_plugin/overlays/nfd_labeled_nodes?ref=v0.26.1
+  - github.com/intel/intel-device-plugins-for-kubernetes/deployments/gpu_plugin/overlays/nfd_labeled_nodes?ref=v0.30.0
 
 namespace: intel-device-plugin
 
@@ -26,12 +26,6 @@ patches:
         value: 
           - "-enable-monitoring"
           - "-v=2"
-      - op: remove
-        path: "/spec/template/spec/nodeSelector/intel.feature.node.kubernetes.io/gpu"
-      - op: add
-        path: "/spec/template/spec/nodeSelector/intel.feature.node.kubernetes.io/gpu.driver"
-        value: i915
-
     target:
       kind: DaemonSet
       name: intel-gpu-plugin

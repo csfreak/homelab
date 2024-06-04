@@ -1,0 +1,5 @@
+resources:
+  - instance.yaml
+  - operator.yaml
+  - github.com/intel/intel-device-plugins-for-kubernetes/deployments/nfd/overlays/node-feature-rules?ref=v0.30.0
+  - intel-rule.yaml
