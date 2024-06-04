@@ -21,6 +21,7 @@ spec:
           - pci
           - cpu
           - kernel
+          - local
       sources:
         usb:
           deviceClassWhitelist:
