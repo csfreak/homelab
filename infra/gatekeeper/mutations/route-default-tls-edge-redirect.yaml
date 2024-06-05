@@ -1,0 +1,26 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: route-default-tls-edge
+spec:
+  applyTo:
+    - groups:
+        - "route.openshift.io"
+      kinds:
+        - Route
+      versions:
+        - "v1"
+  match:
+    scope: Namespaced
+    kinds:
+      - apiGroups: ["route.openshift.io"]
+        kinds: ["Route"]
+  location: spec.tls
+  parameters:
+    pathTests:
+      - subPath: spec.tls
+        condition: MustNotExist
+    assign:
+      value:
+        termination: edge
+        insecureEdgeTerminationPolicy: Redirect

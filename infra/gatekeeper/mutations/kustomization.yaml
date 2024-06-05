@@ -1,3 +1,4 @@
 resources:
   - route-require-ip-whitelist.yaml
   - ingress-class-name.yaml
+  - route-default-tls-edge-redirect.yaml
