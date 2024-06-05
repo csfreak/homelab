@@ -7,11 +7,11 @@ spec:
     topicOperator:
       logging:
         type: inline
-      watchedNamespace: tools-truster-profile-analyzer
+      watchedNamespace: tools-trusted-profile-analyzer
     userOperator:
       logging:
         type: inline
-      watchedNamespace: tools-truster-profile-analyzer
+      watchedNamespace: tools-trusted-profile-analyzer
   kafka:
     config:
       default.replication.factor: 3
