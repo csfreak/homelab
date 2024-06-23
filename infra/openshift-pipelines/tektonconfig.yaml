@@ -11,6 +11,8 @@ spec:
         value: "true"
       - name: communityClusterTasks
         value: "true"
+      - name: resolverTasks	
+        value: 'true'
   chain:
     artifacts.taskrun.storage: oci
     artifacts.taskrun.format: slsa/v2alpha3
