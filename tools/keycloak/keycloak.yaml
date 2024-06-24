@@ -24,11 +24,4 @@ spec:
   additionalOptions:
     - name: log-level
       value: info
-  ##image: homelab.docker.homelab.csfreak.com/homelab/keycloak:63a4ec8e5e38e5d213ac668a7c7f25e2eba5f5aa
-  features:
-    disabled:
-      - kerberos
-      - web-authn
-    enabled:
-      - token-exchange
-      - update-email
+  image: homelab.docker.homelab.csfreak.com/homelab/keycloak:a9eb211495447cd0e459732c05fdc58a9c6fd131
