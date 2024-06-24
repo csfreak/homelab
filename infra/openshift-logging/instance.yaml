@@ -5,6 +5,10 @@ metadata:
 spec:
   collection:
     type: vector
+    tolerations:
+      - key: node-status.csfreak.com/network
+        operator: Exists
+        effect: NoSchedule
   logStore:
     lokistack:
       name: lokistack-logging
