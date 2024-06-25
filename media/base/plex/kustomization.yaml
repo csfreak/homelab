@@ -21,7 +21,7 @@ images:
     newName: image-registry.openshift-image-registry.svc:5000/openshift/cli
   - name: plex
     newName: homelab.docker.homelab.csfreak.com/homelab/plex
-    newTag: 6bd15616215aa578665e3e3949e9a8fdb114ac71
+    newTag: 3fc9dec23d5d41bdbe06882b71808b02103627ae
 
 configMapGenerator:
   - files:
