@@ -18,7 +18,7 @@ commonAnnotations:
 images:
   - name: minio-backup-sidecar
     newName: ghcr.io/csfreak/minio-backup-sidecar
-    newTag: v0.4.8
+    newTag: v0.4.10
   - name: exportarr
     newName: ghcr.io/onedr0p/exportarr
     newTag: v2.0
