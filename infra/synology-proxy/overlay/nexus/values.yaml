@@ -4,16 +4,7 @@
 
 replicaCount: 4
 
-image:
-  repository: ghcr.io/haproxytech/haproxy-docker-debian
-  pullPolicy: IfNotPresent
-  tag: "2.9.7"
-
 nameOverride: "nexus"
-fullnameOverride: ""
-
-podAnnotations: {}
-podLabels: {}
 
 resources:
   requests:
@@ -22,8 +13,6 @@ resources:
   limits:
     memory: 256Mi
     cpu: 200m
-
-livenessProbe: {}
 
 tolerations:
   - key: node-role.kubernetes.io/master
@@ -60,10 +49,6 @@ tls:
   issuer:
     name: letsencrypt
     kind: ClusterIssuer
-  secretName: ""
-
-service:
-  type: ClusterIP
 
 routes:
   enabled: true
