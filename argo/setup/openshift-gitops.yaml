@@ -87,6 +87,7 @@ spec:
     application.resourceTrackingMethod: annotation+label
     exec.enabled: "true"
     accounts.argocd-developer-hub: "apiKey"
+  kustomizeBuildOptions: --enable-helm
   repo:
     replicas: 2
     resources:
