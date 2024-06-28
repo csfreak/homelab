@@ -47,7 +47,7 @@ data:
             nameserver router_tcp tcp@192.168.255.1:53
 
         backend synology-http
-        server-template synology-http- 3 HomeLabSAN.homelab.csfreak.com. resolvers router check 
+        server-template synology-http- 3 HomeLabSAN.homelab.csfreak.com.{{ include "synology-haproxy.httpProxyCheckPort.tpl" . }} resolvers router check 
 
         backend synology-other
         server-template storage-other- 3 HomeLabSAN.homelab.csfreak.com. resolvers router

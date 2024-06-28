@@ -58,6 +58,10 @@ Port Functions
 {{- end }}
 {{- end }}
 
+{{-  define "synology-haproxy.httpProxyCheckPort.tpl" }}
+{{- regexSplit "," (include "synology-haproxy.httpProxyPorts.tpl" .) 2 | first }}
+{{- end }}
+
 {{- define "synology-haproxy.otherProxyPorts.tpl" -}}
 {{- range .Values.proxyPorts }}
 {{- if or (not .appProtocol) (ne (.appProtocol | trim | lower) "http") }}
