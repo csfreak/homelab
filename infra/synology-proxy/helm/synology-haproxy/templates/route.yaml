@@ -1,0 +1,34 @@
+{{- if .Values.routes.enabled }}
+{{- $tls := .Values.tls }}
+{{- $tplCtx := . }}
+{{- range $route := .Values.routes.routes -}}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  {{- if $tls.enabled }}
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ default (print (include "synology-haproxy.fullname" $tplCtx ) "-tls") $tls.secretName }}
+  {{- end }}
+  name: {{ printf "%s-%s" (include "synology-haproxy.fullname" $tplCtx) $route.portName }}
+  labels:
+    {{- include "synology-haproxy.labels" $tplCtx | nindent 4 }}
+spec:
+  host: {{ $route.hostname }}
+  path: {{ default $route.path "/"}}
+  port:
+    targetPort: {{ $route.portName }}
+  tls:
+    {{- if $tls.enabled }}
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+    {{- else }}
+    {}
+    {{- end }}
+  to:
+    kind: Service
+    name: {{ include "synology-haproxy.fullname" $tplCtx }}
+    weight: 100
+  wildcardPolicy: None
+---
+{{- end }}
+{{- end }}

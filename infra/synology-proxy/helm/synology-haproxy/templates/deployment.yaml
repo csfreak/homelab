@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "synology-haproxy.fullname" . }}
+  labels:
+    {{- include "synology-haproxy.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount | default 0 }}
+  selector:
+    matchLabels:
+      {{- include "synology-haproxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "synology-haproxy.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - haproxy
+            - -f
+            - /config/haproxy.cfg
+          ports:
+            - name: http-metrics
+              containerPort: 8405
+              protocol: TCP
+            {{- with .Values.proxyPorts -}}
+            {{ toYaml . | nindent 12 }}
+            {{- end }}
+          readinessProbe:
+            httpGet:
+              port: 8405
+              path: /healthz
+            initialDelaySeconds: 10
+            periodSeconds: 1
+            successThreshold: 10
+            failureThreshold: 1
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "synology-haproxy.fullname" . }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    {{- include "synology-haproxy.selectorLabels" . | nindent 20 }}
+                topologyKey: kubernetes.io/hostname
+              weight: 10
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
