@@ -33,8 +33,12 @@ spec:
             - name: http-metrics
               containerPort: 8405
               protocol: TCP
-            {{- with .Values.proxyPorts -}}
-            {{ toYaml . | nindent 12 }}
+            {{- range $port := .Values.proxyPorts }}
+            - containerPort: {{ $port.containerPort }}
+              name: {{ $port.name }}
+            {{- if $port.protocol }}
+              protocol: {{ $port.protocol }}
+            {{- end }}
             {{- end }}
           readinessProbe:
             httpGet:
