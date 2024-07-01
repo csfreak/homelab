@@ -49,7 +49,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Port Functions
 */}}
 {{- define "synology-haproxy.httpProxyPorts.tpl" }}
-{{- range .Values.proxyPorts }}
+{{- range .Values.proxy.ports }}
 {{- if .appProtocol }}
 {{- if eq (.appProtocol | trim | lower) "http" }}
 {{- printf ":%s," (cat .containerPort) }}
@@ -63,7 +63,7 @@ Port Functions
 {{- end }}
 
 {{- define "synology-haproxy.otherProxyPorts.tpl" -}}
-{{- range .Values.proxyPorts }}
+{{- range .Values.proxy.ports }}
 {{- if or (not .appProtocol) (ne (.appProtocol | trim | lower) "http") }}
 {{- printf ":%s," (cat .containerPort) }}
 {{- end }}

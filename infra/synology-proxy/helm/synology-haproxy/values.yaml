@@ -29,23 +29,31 @@ tolerations:
   - key: node-role.kubernetes.io/master
     effect: NoSchedule
 
-proxyPorts:
-  ## Port definitions for proxy
-  ## if appProtocol set to http, haproxy will perform http-checks
-  # - containerPort: 8081
-  #   name: http
-  #   protocol: TCP
-  #   appProtocol: http
-  # - containerPort: 8082
-  #   name: docker-proxy
-  # - containerPort: 8083
-  #   name: homelab-repo
-  # - containerPort: 8084
-  #   name: redhat-proxy
-  # - containerPort: 8085
-  #   name: quay-proxy
-  # - containerPort: 8086
-  #   name: ghcr-proxy
+proxy:
+  ports:
+    ## Port definitions for proxy
+    ## if appProtocol set to http, haproxy will perform http-checks
+    # - containerPort: 8081
+    #   name: http
+    #   protocol: TCP
+    #   appProtocol: http
+    # - containerPort: 8082
+    #   name: docker-proxy
+    # - containerPort: 8083
+    #   name: homelab-repo
+    # - containerPort: 8084
+    #   name: redhat-proxy
+    # - containerPort: 8085
+    #   name: quay-proxy
+    # - containerPort: 8086
+    #   name: ghcr-proxy
+  frontend:
+    http: ""
+    other: ""
+
+  backend:
+    http: ""
+    other: ""
 
 tls:
   enabled: true

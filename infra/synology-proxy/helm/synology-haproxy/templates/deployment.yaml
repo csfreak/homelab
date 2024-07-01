@@ -33,7 +33,7 @@ spec:
             - name: http-metrics
               containerPort: 8405
               protocol: TCP
-            {{- range $port := .Values.proxyPorts }}
+            {{- range $port := .Values.proxy.ports }}
             - containerPort: {{ $port.containerPort }}
               name: {{ $port.name }}
             {{- if $port.protocol }}
