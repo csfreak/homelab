@@ -38,7 +38,7 @@ proxy:
       name: ghcr-proxy
   frontend:
     other: >-
-      http-request return status 200 content-type text/plain string OK if { path /v2/ }
+      http-request return status 200 content-type application/json string "{}" if { path /v2/ }
 
 tls:
   enabled: true
