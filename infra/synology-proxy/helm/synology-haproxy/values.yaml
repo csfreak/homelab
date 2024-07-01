@@ -70,6 +70,7 @@ service:
 
 routes:
   enabled: true
+  annotations: {}
   routes:
     - hostname: ""
       portName: ""

@@ -8,6 +8,9 @@ metadata:
   {{- if $tls.enabled }}
   annotations:
     cert-utils-operator.redhat-cop.io/certs-from-secret: {{ default (print (include "synology-haproxy.fullname" $tplCtx ) "-tls") $tls.secretName }}
+    {{- range $key, $value := $.Values.routes.annotations }}
+    {{ $key }}: {{ $value }}
+    {{- end }}
   {{- end }}
   name: {{ printf "%s-%s" (include "synology-haproxy.fullname" $tplCtx) $route.portName }}
   labels:
