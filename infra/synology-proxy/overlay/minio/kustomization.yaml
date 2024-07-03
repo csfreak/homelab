@@ -1,0 +1,6 @@
+helmGlobals:
+  chartHome: ../../helm/
+
+helmCharts:
+  - name: synology-haproxy
+    valuesFile: values.yaml

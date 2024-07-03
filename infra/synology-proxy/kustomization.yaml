@@ -1,2 +1,4 @@
 resources:
   - overlay/nexus/
+  - overlay/minio/
+  - overlay/gitea/
