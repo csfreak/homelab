@@ -30,11 +30,11 @@ data:
         defaults synology from http
             log stdout format raw daemon
             option httplog
-            capture request header Forwarded
         {{ if (include "synology-haproxy.httpProxyPorts.tpl" .) }}
         frontend synology-http
         {{- cat "bind" (include "synology-haproxy.httpProxyPorts.tpl" . | trimSuffix ",") | nindent 12 }}
             default_backend synology-http
+            capture request header Forwarded
         {{- if .Values.proxy.frontend.http }}
         {{- .Values.proxy.frontend.http | nindent 12}}
         {{- end }}
@@ -43,6 +43,7 @@ data:
         frontend synology-other
         {{- cat "bind" (include "synology-haproxy.otherProxyPorts.tpl" . | trimSuffix ",") | nindent 12 }}
             default_backend synology-other
+            capture request header Forwarded
         {{- if .Values.proxy.frontend.other }}
         {{- .Values.proxy.frontend.other | nindent 12}}
         {{- end }}
