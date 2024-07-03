@@ -101,16 +101,16 @@ defaults synology from http
     option httplog
 {{ if (include "synology-haproxy.httpProxyPorts.tpl" .) }}
 frontend synology-http
-{{- cat "bind" (include "synology-haproxy.httpProxyPorts.tpl" . | trimSuffix ",") | nindent 12 }}
+{{- cat "bind" (include "synology-haproxy.httpProxyPorts.tpl" . | trimSuffix ",") | nindent 4 }}
     default_backend synology-http
-    capture request header Forwarded
+    capture request header Forwarded len 64
 {{- if .Values.proxy.frontend.http }}
 {{- .Values.proxy.frontend.http | nindent 12}}
 {{- end }}
 {{- end }}
 {{ if (include "synology-haproxy.otherProxyPorts.tpl" .) }}
 frontend synology-other
-{{- cat "bind" (include "synology-haproxy.otherProxyPorts.tpl" . | trimSuffix ",") | nindent 12 }}
+{{- cat "bind" (include "synology-haproxy.otherProxyPorts.tpl" . | trimSuffix ",") | nindent 4 }}
     default_backend synology-other
     capture request header Forwarded len 64
 {{- if .Values.proxy.frontend.other }}
@@ -126,14 +126,14 @@ resolvers router
 backend synology-http
     server-template synology-http- 3 HomeLabSAN.homelab.csfreak.com.{{ include "synology-haproxy.httpProxyCheckPort.tpl" . }} resolvers router check 
 {{- if .Values.proxy.backend.http }}
-{{- .Values.proxy.backend.http | nindent 12 }}
+{{- .Values.proxy.backend.http | nindent 4 }}
 {{- end }}
 {{- end }}
 {{ if (include "synology-haproxy.otherProxyPorts.tpl" .) }}
 backend synology-other
     server-template storage-other- 3 HomeLabSAN.homelab.csfreak.com. resolvers router
 {{- if .Values.proxy.backend.other }}
-{{- .Values.proxy.backend.other | nindent 12 }}
+{{- .Values.proxy.backend.other | nindent 4 }}
 {{- end }}
 {{- end }}
 {{- end }}
