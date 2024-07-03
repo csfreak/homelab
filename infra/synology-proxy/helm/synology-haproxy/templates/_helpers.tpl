@@ -112,7 +112,7 @@ frontend synology-http
 frontend synology-other
 {{- cat "bind" (include "synology-haproxy.otherProxyPorts.tpl" . | trimSuffix ",") | nindent 12 }}
     default_backend synology-other
-    capture request header Forwarded
+    capture request header Forwarded len 64
 {{- if .Values.proxy.frontend.other }}
 {{- .Values.proxy.frontend.other | nindent 12}}
 {{- end }}
