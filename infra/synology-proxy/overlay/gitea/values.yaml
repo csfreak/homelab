@@ -31,8 +31,6 @@ tls:
   enabled: true
   generate: true
   commonName: gitea.homelab.csfreak.com
-  dnsNames:
-    - git.homelab.csfreak.com
   issuer:
     name: letsencrypt
     kind: ClusterIssuer
@@ -43,6 +41,4 @@ routes:
     haproxy.router.openshift.io/ip_whitelist: 172.16.0.0/12 192.168.0.0/16 10.0.0.0/8 100.64.0.0/16
   routes:
     - hostname: gitea.homelab.csfreak.com
-      portName: http
-    - hostname: git.homelab.csfreak.com
       portName: http
