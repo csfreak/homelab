@@ -15,7 +15,8 @@ labels:
     includeTemplates: true
 
 images:
-  - name: ghcr.io/esphome/esphome
+  - name: esphome/esphome
+    newName: ghcr.io/esphome/esphome
     newTag: "2024.6"
 
 generatorOptions:

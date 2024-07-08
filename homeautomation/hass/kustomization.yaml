@@ -6,7 +6,8 @@ resources:
   - route.yaml
 
 images:
-  - name: ghcr.io/home-assistant/home-assistant
+  - name: homeassistant/home-assistant
+    newName: ghcr.io/home-assistant/home-assistant
     newTag: "2024.7"
 
 commonLabels:
