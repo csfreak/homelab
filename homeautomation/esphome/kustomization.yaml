@@ -15,8 +15,8 @@ labels:
     includeTemplates: true
 
 images:
-  - name: esphome/esphome
-    newTag: "2024.5"
+  - name: ghcr.io/esphome/esphome
+    newTag: "2024.6"
 
 generatorOptions:
   annotations:
