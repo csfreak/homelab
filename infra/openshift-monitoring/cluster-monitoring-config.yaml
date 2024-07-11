@@ -83,15 +83,15 @@ data:
         systemd:
           enabled: true
           units: 
-            - "wait-for-.+\.service"
-            - "ovs.*\.service"
-            - "node.+\.service"
-            - "nmstate.*\.service"
-            - "NetworkManager.*\.service"
-            - "kubelet.*\.service"
-            - "iscsid\.service"
-            - "crio.*\.service"
-            - "machine-config-daemon-.+\.service"
+            - wait-for-.+\.service
+            - ovs.*\.service
+            - node.+\.service
+            - nmstate.*\.service
+            - NetworkManager.*\.service
+            - kubelet.*\.service
+            - iscsid\.service
+            - crio.*\.service
+            - machine-config-daemon-.+\.service
 kind: ConfigMap
 metadata:
   name: cluster-monitoring-config
