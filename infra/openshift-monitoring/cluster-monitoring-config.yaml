@@ -14,11 +14,6 @@ data:
         requests:
           memory: 3G
           cpu: 500m
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
     alertmanagerMain:
       volumeClaimTemplate:
         spec:
