@@ -74,12 +74,6 @@ data:
           key: node-role.kubernetes.io/master
     nodeExporter:
       collectors:
-        cpufreq:
-          enabled: true
-        tcpstat:
-          enabled: true
-        mountstats:
-          enabled: true
         systemd:
           enabled: true
           units: 
@@ -89,7 +83,6 @@ data:
             - nmstate.*\.service
             - NetworkManager.*\.service
             - kubelet.*\.service
-            - iscsid\.service
             - crio.*\.service
             - machine-config-daemon-.+\.service
 kind: ConfigMap
