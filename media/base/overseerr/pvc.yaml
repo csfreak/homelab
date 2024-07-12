@@ -8,6 +8,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-  storageClassName: synology-iscsi
+  storageClassName: synology-iscsi-hdd
   volumeMode: Filesystem
   volumeName: overseerr-config
