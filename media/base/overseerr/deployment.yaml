@@ -37,26 +37,26 @@ spec:
               name: overseerr-config
             # - mountPath: /config/Backups
             #   name: backups
-        - name: overseerr-metrics
-          image: overseerr_exporter
-          imagePullPolicy: Always
-          args:
-            - --overseerr.address=http://localhost:5055
-            - --overseerr.api-key=testapikey
-          resources:
-            limits:
-              memory: "128Mi"
-              cpu: "100m"
-            requests:
-              memory: "28Mi"
-              cpu: "10m"
-          ports:
-            - containerPort: 9850
-              name: metrics
-              protocol: TCP
-          volumeMounts:
-            - mountPath: /config
-              name: overseerr-config
+        # - name: overseerr-metrics
+        #   image: overseerr_exporter
+        #   imagePullPolicy: Always
+        #   args:
+        #     - --overseerr.address=http://localhost:5055
+        #     - --overseerr.api-key=testapikey
+        #   resources:
+        #     limits:
+        #       memory: "128Mi"
+        #       cpu: "100m"
+        #     requests:
+        #       memory: "28Mi"
+        #       cpu: "10m"
+        #   ports:
+        #     - containerPort: 9850
+        #       name: metrics
+        #       protocol: TCP
+        #   volumeMounts:
+        #     - mountPath: /config
+        #       name: overseerr-config
         # - name: backup
         #   image: minio-backup-sidecar
         #   envFrom:
