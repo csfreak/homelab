@@ -1,0 +1,36 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: manager
+      app.kubernetes.io/name: overseerr
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: overseerr
+
+images:
+  - name: overseerr
+    newName: ghcr.io/sct/overseerr
+    newTag: 1.33.2
+  - name: overseerr_exporter
+    newName: ghcr.io/willfantom/overseerr-exporter
+    newTag: latest
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+configMapGenerator:
+  - envs:
+      - backup-conf.env
+    name: overseerr-backup
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

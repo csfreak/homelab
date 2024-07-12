@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"sonarr"},{"apiVersion":"apps/v1","kind":"Deployment","name":"radarr"},{"apiVersion":"apps/v1","kind":"Deployment","name":"plex"},]'
+  name: overseerr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: overseerr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: overseerr
+    spec:
+      containers:
+        - imagePullPolicy: IfNotPresent
+          image: overseerr
+          name: overseerr
+          ports:
+            - containerPort: 5055
+              name: overseerr
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 2Gi
+              cpu: 1000m
+          volumeMounts:
+            - mountPath: /app/config
+              name: overseerr-config
+            # - mountPath: /config/Backups
+            #   name: backups
+        - name: overseerr-metrics
+          image: overseer_exporter
+          imagePullPolicy: Always
+          args:
+            - --overseerr.address=http://localhost:5055
+            - --overseerr.api-key=testapikey
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          ports:
+            - containerPort: 9850
+              name: metrics
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: overseerr-config
+        # - name: backup
+        #   image: minio-backup-sidecar
+        #   envFrom:
+        #     - configMapRef:
+        #         name: overseerr-backup
+        #       prefix: CONF_
+        #     - secretRef:
+        #         name: backup-credentials
+        #       prefix: CONF_MINIO__
+        #   resources:
+        #     requests:
+        #       memory: 16Mi
+        #       cpu: 1m
+        #     limits:
+        #       memory: 32Mi
+        #       cpu: 10m
+        #   volumeMounts:
+        #     - mountPath: /overseerr
+        #       name: backups
+      serviceAccountName: media-runas-user
+      volumes:
+        - name: overseerr-config
+          persistentVolumeClaim:
+            claimName: overseerr-config
+        # - name: backups
+        #   emptydir: {}
