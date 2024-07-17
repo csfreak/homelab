@@ -101,9 +101,9 @@ spec:
       endpoint: api.minio.homelab.csfreak.com
       accessKeyIdSecretKeyRef:
         name: sso-backup
-        key: access-key-id
+        key: access_key_id
       secretAccessKeySecretKeyRef:
         name: sso-backup
-        key: secret-access-key
+        key: secret_access_key
       tls:
         enabled: true
