@@ -84,3 +84,26 @@ spec:
     - "ALL"
   database: "sso"
   username: sso
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: backup
+spec:
+  mariaDbRef:
+    name: sso-db
+  ignoreGlobalPriv: true
+  maxRetention: 72h
+  storage:
+    s3:
+      bucket: backups-keycloak
+      prefix: mariadb
+      endpoint: api.minio.homelab.csfreak.com
+      accessKeyIdSecretKeyRef:
+        name: sso-backup
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: sso-backup
+        key: secret-access-key
+      tls:
+        enabled: true
