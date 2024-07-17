@@ -99,6 +99,7 @@ spec:
       bucket: backups-keycloak
       prefix: mariadb
       endpoint: api.minio.homelab.csfreak.com
+      region: homelab
       accessKeyIdSecretKeyRef:
         name: sso-backup
         key: access_key_id
