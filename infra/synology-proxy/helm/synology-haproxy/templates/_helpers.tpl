@@ -59,7 +59,7 @@ Port Functions
 {{- end }}
 
 {{-  define "synology-haproxy.httpProxyCheckPort.tpl" }}
-{{- regexSplit "," (include "synology-haproxy.httpProxyPorts.tpl" .) 2 | first }}
+{{- regexSplit "," (include "synology-haproxy.httpProxyPorts.tpl" .) 2 | first | trimPrefix ":" }}
 {{- end }}
 
 {{- define "synology-haproxy.otherProxyPorts.tpl" -}}
@@ -124,7 +124,7 @@ resolvers router
     nameserver router_tcp tcp@192.168.255.1:53
 {{ if (include "synology-haproxy.httpProxyPorts.tpl" .) }}
 backend synology-http
-    server-template synology-http- 3 HomeLabSAN.homelab.csfreak.com.{{ include "synology-haproxy.httpProxyCheckPort.tpl" . }} resolvers router check 
+    server-template synology-http- 3 HomeLabSAN.homelab.csfreak.com. port {{ include "synology-haproxy.httpProxyCheckPort.tpl" . }} resolvers router check 
 {{- if .Values.proxy.backend.http }}
 {{- .Values.proxy.backend.http | nindent 4 }}
 {{- end }}
