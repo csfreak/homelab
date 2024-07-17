@@ -6,7 +6,7 @@ spec:
   rootPasswordSecretKeyRef:
     name: sso-db-root
     key: password
-  image: mariadb:10.11
+  image: mariadb:11.4
   imagePullPolicy: IfNotPresent
   port: 3306
   myCnfConfigMapKeyRef:
