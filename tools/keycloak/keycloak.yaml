@@ -24,6 +24,6 @@ spec:
   additionalOptions:
     - name: log-level
       value: info
-  image: homelab.docker.homelab.csfreak.com/homelab/keycloak:a77379e4dfcf90697a61a4898e704e7133aa5a86
+  image: homelab.docker.homelab.csfreak.com/homelab/keycloak:a61ee3283d1d79f494e5d96debea9d35f72e20b5
   httpManagement:
     port: 9000
