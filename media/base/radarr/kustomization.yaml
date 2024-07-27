@@ -18,7 +18,7 @@ labels:
 images:
   - name: radarr
     newName: homelab.docker.homelab.csfreak.com/homelab/radarr
-    newTag: a02f996c1d1b3d1f907a37e3425218e91d0a6906
+    newTag: ffe6a753aeaf8bb3f939dde3016cc37d30b28e82
 
 generatorOptions:
   annotations:
