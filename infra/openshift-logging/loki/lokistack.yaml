@@ -92,9 +92,6 @@ spec:
                   app.kubernetes.io/instance: lokistack-logging
               topologyKey: kubernetes.io/hostname
             weight: 10
-      tolerations:
-        - key: node-role.kubernetes.io/master
-          effect: NoSchedule
     distributor:
       replicas: 2
       podAntiAffinity:
