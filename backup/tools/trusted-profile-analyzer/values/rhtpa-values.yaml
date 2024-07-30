@@ -1,0 +1,119 @@
+appDomain: $APP_DOMAIN_URL
+tracing: {}
+ingress:
+  className: openshift-default
+
+storage:
+  endpoint: S3_ENDPOINT_URL
+  accessKey:
+    valueFrom:
+      secretKeyRef:
+        name: s3-credentials
+        key: user
+  secretKey:
+    valueFrom:
+      secretKeyRef:
+        name: s3-credentials
+        key: password
+
+eventBus:
+  type: kafka
+  bootstrapServers: AMQ_ENDPOINT_URL:9092
+  config:
+    securityProtocol: SASL_PLAINTEXT
+    username: “USER_NAME”
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: kafka-credentials
+          key: client_password
+    mechanism: SCRAM-SHA-512
+
+oidc:
+  issuerUrl: OIDC_ISSUER_URL
+  clients:
+    frontend:
+      clientId: FRONTEND_CLIENT_ID
+    walker:
+      clientId: WALKER_CLIENT_ID
+      clientSecret:
+        valueFrom:
+          secretKeyRef:
+            name: oidc-walker
+            key: client-secret
+
+bombastic:
+  bucket: bombastic-default
+  topics:
+    failed: bombastic-failed-default
+    indexed: bombastic-indexed-default
+    stored: bombastic-stored-default
+
+vexination:
+  bucket: vexination-default
+  topics:
+    failed: vexination-failed-default
+    indexed: vexination-indexed-default
+    stored: vexination-stored-default
+
+v11y:
+  bucket: v11y-default
+  topics:
+    failed: v11y-failed-default
+    indexed: v11y-indexed-default
+    stored: v11y-stored-default
+
+guac:
+  database:
+    name:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-credentials
+          key: db.name
+    host:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-credentials
+          key: db.host
+    port:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-credentials
+          key: db.port
+    username:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-credentials
+          key: db.user
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-credentials
+          key: db.password
+
+  initDatabase:
+    name:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-admin-credentials
+          key: db.name
+    host:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-admin-credentials
+          key: db.host
+    port:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-admin-credentials
+          key: db.port
+    username:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-admin-credentials
+          key: db.user
+    password:
+      valueFrom:
+        secretKeyRef:
+          name: postgresql-admin-credentials
+          key: db.password

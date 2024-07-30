@@ -1,0 +1,82 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: bombastic-failed-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: bombastic-failed-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: bombastic-indexed-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: bombastic-indexed-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: bombastic-stored-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: bombastic-stored-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: vexination-failed-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: vexination-failed-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: vexination-indexed-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: vexination-indexed-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: vexination-stored-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: vexination-stored-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: v11y-failed-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: v11y-failed-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: v11y-indexed-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: v11y-indexed-default
+---
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: v11y-stored-default
+  labels:
+    strimzi.io/cluster: tpa-cluster
+spec:
+  topicName: v11y-stored-default
+---
+

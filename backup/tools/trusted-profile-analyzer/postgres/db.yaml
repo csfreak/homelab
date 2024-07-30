@@ -1,0 +1,55 @@
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: tpa-postgres
+spec:
+  backups:
+    pgbackrest:
+      configuration:
+        - secret:
+            name: pgo-s3-creds
+      global:
+        log-level-file: debug
+        repo1-path: /tpa/backups
+        repo1-s3-uri-style: path
+      repos:
+        - name: repo1
+          s3:
+            bucket: pgbackup
+            endpoint: 'https://api.minio.homelab.csfreak.com/'
+            region: homelab
+      restore:
+        enabled: false
+        repoName: repo1
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: synology-iscsi-ssd
+      name: ''
+      replicas: 2
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+  openshift: true
+  patroni:
+    leaderLeaseDurationSeconds: 30
+    port: 8008
+    switchover:
+      enabled: true
+      type: Switchover
+    syncPeriodSeconds: 10
+  port: 5432
+  postgresVersion: 15
+  proxy:
+    pgBouncer:
+      port: 5432
+      replicas: 1
+      service:
+        type: ClusterIP
+  service:
+    type: ClusterIP

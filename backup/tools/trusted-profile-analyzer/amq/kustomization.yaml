@@ -1,5 +1,6 @@
 resources:
   - kafka.yaml
+  - topics.yaml
 
 configMapGenerator:
   - name: amq-configs
