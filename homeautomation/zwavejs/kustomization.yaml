@@ -20,7 +20,7 @@ labels:
 images:
   - name: zwavejs
     newName: ghcr.io/zwave-js/zwave-js-ui
-    newTag: "9.14"
+    newTag: "9.16"
 
 generatorOptions:
   annotations:
