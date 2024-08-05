@@ -17,7 +17,7 @@ spec:
             message: "Certificate {{ $labels.namespace }}/{{ $labels.name }} is at 85% of its lifetime"
             summary: "Certificate {{ $labels.namespace }}/{{ $labels.name }} is at 85% of its lifetime"
           expr: |
-            ((cert:time_to_expiration:sec/ on(job, name, exported_namespace) cert:validity_duration:sec ) unless on (exported_namespace,name) (cert:validity_duration:sec > 1209600 and cert:time_to_expiration:sec < 1209600)) < 0.15
+            ((cert:time_to_expiration:sec/ on(job, name, exported_namespace) cert:validity_duration:sec ) unless on (exported_namespace,name) (cert:validity_duration:sec < 1209600 or cert:time_to_expiration:sec > 1209600)) < 0.15
           labels:
             severity: warning
         - alert: CertificateIsAboutToExpire
@@ -25,6 +25,6 @@ spec:
             message: "Certificate {{ $labels.namespace }}/{{ $labels.name }} is at 95% of its lifetime"
             summary: "Certificate {{ $labels.namespace }}/{{ $labels.name }} is at 95% of its lifetime"
           expr: |
-            ((cert:time_to_expiration:sec/ on(job, name, exported_namespace) cert:validity_duration:sec ) unless on (exported_namespace,name) (cert:validity_duration:sec > 1209600 and cert:time_to_expiration:sec < 1209600)) < 0.05
+            ((cert:time_to_expiration:sec/ on(job, name, exported_namespace) cert:validity_duration:sec ) unless on (exported_namespace,name) (cert:validity_duration:sec < 1209600 or cert:time_to_expiration:sec > 1209600)) < 0.05
           labels:
             severity: critical
