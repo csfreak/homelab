@@ -9,6 +9,13 @@ data:
             requests:
               storage: 100G
       retention: 30d
+    resources:
+        requests: 
+          memory: 512M
+          cpu: 10m
+        limits:
+          memory: 1G
+          cpu: 100m
     prometheusOperator:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -17,6 +24,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 128M
+          cpu: 3m
+        limits:
+          memory: 172M
+          cpu: 6m
     ThanosRulerConfig:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -25,6 +39,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 128M
+          cpu: 4m
+        limits:
+          memory: 256M
+          cpu: 10m
 kind: ConfigMap
 metadata:
   name: user-workload-monitoring-config

@@ -12,8 +12,11 @@ data:
       retention: 30d
       resources:
         requests:
-          memory: 3G
+          memory: 4.5G
           cpu: 500m
+        limits: 
+          memory: 6G
+          cpu: 1000m
     alertmanagerMain:
       volumeClaimTemplate:
         spec:
@@ -27,6 +30,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 128M
+          cpu: 10m
+        limits:
+          memory: 172M
+          cpu: 20m
     prometheusOperator:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -35,6 +45,28 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 128M
+          cpu: 5m
+        limits:
+          memory: 172M
+          cpu: 10m
+    prometheusOperatorAdmissionWebhook:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+        - effect: NoExecute
+          key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 48M
+          cpu: 5m
+        limits:
+          memory: 64M
+          cpu: 10m
     metricsServer:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -43,6 +75,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 72M
+          cpu: 5m
+        limits:
+          memory: 100M
+          cpu: 10m
     kubeStateMetrics:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -51,6 +90,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 256M
+          cpu: 5m
+        limits:
+          memory: 384M
+          cpu: 20m
     telemeterClient:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -59,6 +105,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 70M
+          cpu: 3m
+        limits:
+          memory: 100M
+          cpu: 10m
     openshiftStateMetrics:
       nodeSelector:
         node-role.kubernetes.io/master: ""
@@ -67,6 +120,13 @@ data:
           key: node-role.kubernetes.io/master
         - effect: NoExecute
           key: node-role.kubernetes.io/master
+      resources:
+        requests: 
+          memory: 72M
+          cpu: 3m
+        limits:
+          memory: 100M
+          cpu: 10m
     nodeExporter:
       collectors:
         systemd:
@@ -80,6 +140,42 @@ data:
             - kubelet.*\.service
             - crio.*\.service
             - machine-config-daemon-.+\.service
+      resources:
+        requests: 
+          memory: 47M
+          cpu: 10m
+        limits:
+          memory: 64M
+          cpu: 20m
+    thanosQuerier:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+        - effect: NoExecute
+          key: node-role.kubernetes.io/master
+      resources:
+        requests:
+          memory: 384M
+          cpu: 500m
+        limits:
+          memory: 512M
+          cpu: 1000m
+    monitoringPlugin:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+        - effect: NoExecute
+          key: node-role.kubernetes.io/master
+      resources:
+        memory: 10M
+        cpu: 10m
+      limits:
+        memory: 100M
+        cpu: 100m
 kind: ConfigMap
 metadata:
   name: cluster-monitoring-config
