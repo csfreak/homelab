@@ -81,7 +81,7 @@ data:
           cpu: 5m
         limits:
           memory: 100M
-          cpu: 10m
+          cpu: 50m
     kubeStateMetrics:
       nodeSelector:
         node-role.kubernetes.io/master: ""
