@@ -1,0 +1,23 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: ContainerRuntimeConfig
+metadata:
+  name: crun-runtime-worker
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      pools.operator.machineconfiguration.openshift.io/worker: ""
+  containerRuntimeConfig:
+    overlaySize: 8G
+    defaultRuntime: "crun"
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: ContainerRuntimeConfig
+metadata:
+  name: crun-runtime-master
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      pools.operator.machineconfiguration.openshift.io/master: ""
+  containerRuntimeConfig:
+    overlaySize: 8G
+    defaultRuntime: "crun"
