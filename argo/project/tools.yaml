@@ -31,3 +31,12 @@ spec:
       kind: ConsoleLink
     - group: external-secrets.io
       kind: ClusterSecretStore
+    # sigstore-policy-controller
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
