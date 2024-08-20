@@ -1,0 +1,4 @@
+resources:
+  - subscription.yaml
+  - securesign.yaml
+  - console-link.yaml

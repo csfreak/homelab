@@ -19,6 +19,7 @@ spec:
     - https://redhat-developer.github.io/rhdh-chart
     - https://charts.bitnami.com/bitnami
     - https://backstage.github.io/charts
+    - https://sigstore.github.io/helm-charts
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace

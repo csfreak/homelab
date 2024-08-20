@@ -1,0 +1,86 @@
+cosign:
+  webhookName: "policy.sigstore.dev"
+
+installCRDs: true
+
+imagePullSecrets: []
+
+loglevel: info
+
+webhook:
+  customLabels: {}
+  configData:
+    no-match-policy: warn
+  replicaCount: 3
+  name: webhook
+  image:
+    repository: ghcr.io/sigstore/policy-controller/policy-controller
+    version: sha256:04511d1a24b9d649b95c0a7913d03c9260d4d80bfda7c8013ee11001402f8058
+    pullPolicy: IfNotPresent
+  env: {}
+  extraArgs:
+    tuf-root: /var/run/tuf/root.json
+    tuf-mirror: tuf
+
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  failurePolicy: Fail
+  podSecurityContext:
+    enabled: true
+    allowPrivilegeEscalation: false
+    readOnlyRootFilesystem: true
+    capabilities:
+      drop:
+        - ALL
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 1
+    # maxUnavailable: 3
+  serviceAccount:
+    annotations: {}
+    create: true
+    name: ""
+  service:
+    annotations: {}
+    type: ClusterIP
+    port: 443
+  volumeMounts:
+    - name: tuf-root
+      mountPath: /var/run/tuf
+      readOnly: true
+  volumes:
+    - name: tuf-root
+      secret:
+        secretName: tuf-root
+        items:
+          - key: root
+            path: root.json
+
+  namespaceSelector:
+    matchExpressions:
+      - key: policy.sigstore.dev/include
+        operator: In
+        values: ["true"]
+  registryCaBundle: {}
+  webhookNames:
+    defaulting: "defaulting.clusterimagepolicy.sigstore.dev"
+    validating: "validating.clusterimagepolicy.sigstore.dev"
+
+leasescleanup:
+  image:
+    repository: cgr.dev/chainguard/kubectl
+    version: latest-dev
+    pullPolicy: IfNotPresent
+
+commonTolerations:
+  - key: "node-role.kubernetes.io/master"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+serviceMonitor:
+  enabled: true

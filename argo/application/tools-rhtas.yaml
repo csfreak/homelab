@@ -10,10 +10,19 @@ spec:
     namespace: trusted-artifact-signer
     server: https://kubernetes.default.svc
   project: tools
-  source:
-    path: tools/trusted-artifact-signer
-    repoURL: https://github.com/csfreak/homelab.git
-    targetRevision: HEAD
+  sources:
+    - path: tools/trusted-artifact-signer
+      repoURL: https://github.com/csfreak/homelab.git
+      targetRevision: HEAD
+      ref: homelab
+    - chart: policy-controller
+      repoURL: https://sigstore.github.io/helm-charts
+      targetRevision: 0.6.*
+      helm:
+        releaseName: sigstore-policy-controller
+        valueFiles:
+          - "$homelab/tools/trusted-artifact-signer/policy-controller-values.yaml"
+
   syncPolicy:
     automated:
       prune: true
