@@ -37,7 +37,7 @@ webhook:
     capabilities:
       drop:
         - ALL
-    runAsUser: ""
+    runAsUser: null
   podDisruptionBudget:
     enabled: true
     minAvailable: 1
