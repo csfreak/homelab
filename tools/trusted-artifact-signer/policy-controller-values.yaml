@@ -64,11 +64,11 @@ webhook:
 
   namespaceSelector:
     matchExpressions:
+      - key: webhooks.knative.dev/exclude
+        operator: DoesNotExist
       - key: policy.sigstore.dev/include
         operator: In
         values: ["true"]
-      - key: webhooks.knative.dev/exclude
-        operator: DoesNotExist
   # registryCaBundle: {}
   # webhookNames:
   #   defaulting: "defaulting.clusterimagepolicy.sigstore.dev"
