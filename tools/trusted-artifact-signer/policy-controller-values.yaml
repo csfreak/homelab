@@ -3,12 +3,12 @@ cosign:
 
 installCRDs: true
 
-imagePullSecrets: []
+# imagePullSecrets: []
 
 loglevel: info
 
 webhook:
-  customLabels: {}
+  # customLabels: {}
   configData:
     no-match-policy: warn
   replicaCount: 3
@@ -17,19 +17,19 @@ webhook:
     repository: ghcr.io/sigstore/policy-controller/policy-controller
     version: sha256:04511d1a24b9d649b95c0a7913d03c9260d4d80bfda7c8013ee11001402f8058
     pullPolicy: IfNotPresent
-  env: {}
+  # env: {}
   # extraArgs:
   #   tuf-root: /var/run/tuf/root.json
   #   tuf-mirror: tuf
 
-  resources:
-    limits:
-      cpu: 200m
-      memory: 512Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
-  failurePolicy: Fail
+  # resources:
+  #   limits:
+  #     cpu: 200m
+  #     memory: 512Mi
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  # failurePolicy: Fail
   podSecurityContext:
     enabled: true
     allowPrivilegeEscalation: false
@@ -42,14 +42,14 @@ webhook:
     enabled: true
     minAvailable: 1
     # maxUnavailable: 3
-  serviceAccount:
-    annotations: {}
-    create: true
-    name: ""
-  service:
-    annotations: {}
-    type: ClusterIP
-    port: 443
+  # serviceAccount:
+  #   annotations: {}
+  #   create: true
+  #   name: ""
+  # service:
+  #   annotations: {}
+  #   type: ClusterIP
+  #   port: 443
   # volumeMounts:
   #   - name: tuf-root
   #     mountPath: /var/run/tuf
@@ -67,16 +67,18 @@ webhook:
       - key: policy.sigstore.dev/include
         operator: In
         values: ["true"]
-  registryCaBundle: {}
-  webhookNames:
-    defaulting: "defaulting.clusterimagepolicy.sigstore.dev"
-    validating: "validating.clusterimagepolicy.sigstore.dev"
+      - key: webhooks.knative.dev/exclude
+        operator: DoesNotExist
+  # registryCaBundle: {}
+  # webhookNames:
+  #   defaulting: "defaulting.clusterimagepolicy.sigstore.dev"
+  #   validating: "validating.clusterimagepolicy.sigstore.dev"
 
-leasescleanup:
-  image:
-    repository: cgr.dev/chainguard/kubectl
-    version: latest-dev
-    pullPolicy: IfNotPresent
+# leasescleanup:
+#   image:
+#     repository: cgr.dev/chainguard/kubectl
+#     version: latest-dev
+#     pullPolicy: IfNotPresent
 
 commonTolerations:
   - key: "node-role.kubernetes.io/master"
