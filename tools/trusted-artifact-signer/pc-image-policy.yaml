@@ -22,7 +22,7 @@ spec:
           policy:
             type: cue
             data: |
-              predicateType: "cosign.sigstore.dev/attestation/v1"
+              predicateType: "https://slsa.dev/provenance/v1"
               predicate: {
                 buildDefinition: {
                   buildType: "https://tekton.dev/chains/v2/slsa",
