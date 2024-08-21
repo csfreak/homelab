@@ -12,7 +12,7 @@ spec:
         trustRootRef: rhtas-root
         identities:
           - issuerRegExp: .*kubernetes.default.*
-            subjectRegExp: .*kubernetes.io/namespaces/default/serviceaccounts/default
+            subjectRegExp: .*kubernetes.io/namespaces/openshift-pipelines/serviceaccounts/tekton-chains-controller
       ctlog:
         url: http://rekor-server.trusted-artifact-signer.svc
         trustRootRef: rhtas-root
