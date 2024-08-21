@@ -2,3 +2,5 @@ resources:
   - subscription.yaml
   - securesign.yaml
   - console-link.yaml
+  - pc-trustroot.yaml
+  - pc-image-policy.yaml

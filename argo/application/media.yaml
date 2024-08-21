@@ -25,6 +25,7 @@ spec:
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
+        policy.sigstore.dev/include: "true"
       annotations:
         app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
         app.openshift.io/vcs-ref: main

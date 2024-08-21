@@ -1,0 +1,30 @@
+apiVersion: policy.sigstore.dev/v1alpha1
+kind: ClusterImagePolicy
+metadata:
+  name: image-policy-keyless-with-trustroot-remote-with-attestations
+spec:
+  images:
+    - glob: homelab.docker.homelab.csfreak.com/homelab/*
+  authorities:
+    - name: rhtas
+      keyless:
+        url: http://fulcio.trusted-artifact-signer.svc
+        trustRootRef: rhtas-root
+        identities:
+          - issuerRegExp: .*kubernetes.default.*
+            subjectRegExp: .*kubernetes.io/namespaces/default/serviceaccounts/default
+      ctlog:
+        url: http://rekor.trusted-artifact-signer.svc
+        trustRootRef: rhtas-root
+      attestations:
+        - name: tekton-attestation
+          predicateType: https://slsa.dev/provenance/v1
+          policy:
+            type: cue
+            data: |
+              predicateType: "cosign.sigstore.dev/attestation/v1"
+              predicate: {
+                buildDefinition: {
+                  buildType: "https://tekton.dev/chains/v2/slsa",
+                  }
+                }
