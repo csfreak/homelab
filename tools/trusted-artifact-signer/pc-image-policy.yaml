@@ -8,13 +8,13 @@ spec:
   authorities:
     - name: rhtas
       keyless:
-        url: http://fulcio.trusted-artifact-signer.svc
+        url: http://fulci-server.trusted-artifact-signer.svc
         trustRootRef: rhtas-root
         identities:
           - issuerRegExp: .*kubernetes.default.*
             subjectRegExp: .*kubernetes.io/namespaces/default/serviceaccounts/default
       ctlog:
-        url: http://rekor.trusted-artifact-signer.svc
+        url: http://rekor-server.trusted-artifact-signer.svc
         trustRootRef: rhtas-root
       attestations:
         - name: tekton-attestation
