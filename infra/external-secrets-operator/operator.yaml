@@ -6,7 +6,7 @@ metadata:
   name: external-secrets-operator
   namespace: openshift-operators
 spec:
-  channel: alpha
+  channel: stable
   installPlanApproval: Automatic
   name: external-secrets-operator
   source: community-operators
