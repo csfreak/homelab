@@ -18,9 +18,9 @@ webhook:
     version: sha256:04511d1a24b9d649b95c0a7913d03c9260d4d80bfda7c8013ee11001402f8058
     pullPolicy: IfNotPresent
   env: {}
-  extraArgs:
-    tuf-root: /var/run/tuf/root.json
-    tuf-mirror: tuf
+  # extraArgs:
+  #   tuf-root: /var/run/tuf/root.json
+  #   tuf-mirror: tuf
 
   resources:
     limits:
@@ -50,17 +50,17 @@ webhook:
     annotations: {}
     type: ClusterIP
     port: 443
-  volumeMounts:
-    - name: tuf-root
-      mountPath: /var/run/tuf
-      readOnly: true
-  volumes:
-    - name: tuf-root
-      secret:
-        secretName: tuf-root
-        items:
-          - key: root
-            path: root.json
+  # volumeMounts:
+  #   - name: tuf-root
+  #     mountPath: /var/run/tuf
+  #     readOnly: true
+  # volumes:
+  #   - name: tuf-root
+  #     secret:
+  #       secretName: tuf-root
+  #       items:
+  #         - key: root
+  #           path: root.json
 
   namespaceSelector:
     matchExpressions:
