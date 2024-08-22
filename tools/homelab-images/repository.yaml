@@ -15,8 +15,8 @@ spec:
     secret:
       key: provider.token
       name: gitea-plex-token-fzkpw
-    url: "http://storage.homelab.csfreak.com:8418"
-  url: "http://storage.homelab.csfreak.com:8418/homelab/plex/"
+    url: "https://gitea.homelab.csfreak.com"
+  url: "https://gitea.homelab.csfreak.com/homelab/plex/"
 ---
 apiVersion: pipelinesascode.tekton.dev/v1alpha1
 kind: Repository
@@ -28,8 +28,8 @@ spec:
     secret:
       key: provider.token
       name: gitea-plex-token-fzkpw
-    url: "http://storage.homelab.csfreak.com:8418"
-  url: "http://storage.homelab.csfreak.com:8418/homelab/sonarr/"
+    url: "https://gitea.homelab.csfreak.com"
+  url: "https://gitea.homelab.csfreak.com/homelab/sonarr/"
 ---
 apiVersion: pipelinesascode.tekton.dev/v1alpha1
 kind: Repository
@@ -41,8 +41,8 @@ spec:
     secret:
       key: provider.token
       name: gitea-plex-token-fzkpw
-    url: "http://storage.homelab.csfreak.com:8418"
-  url: "http://storage.homelab.csfreak.com:8418/homelab/radarr/"
+    url: "https://gitea.homelab.csfreak.com"
+  url: "https://gitea.homelab.csfreak.com/homelab/radarr/"
 ---
 apiVersion: pipelinesascode.tekton.dev/v1alpha1
 kind: Repository
@@ -54,8 +54,8 @@ spec:
     secret:
       key: provider.token
       name: gitea-plex-token-fzkpw
-    url: "http://storage.homelab.csfreak.com:8418"
-  url: "http://storage.homelab.csfreak.com:8418/homelab/nzbget/"
+    url: "https://gitea.homelab.csfreak.com"
+  url: "https://gitea.homelab.csfreak.com/homelab/nzbget/"
 ---
 apiVersion: pipelinesascode.tekton.dev/v1alpha1
 kind: Repository
@@ -67,5 +67,5 @@ spec:
     secret:
       key: provider.token
       name: gitea-plex-token-fzkpw
-    url: "http://storage.homelab.csfreak.com:8418"
-  url: "http://storage.homelab.csfreak.com:8418/homelab/keycloak/"
+    url: "https://gitea.homelab.csfreak.com"
+  url: "https://gitea.homelab.csfreak.com/homelab/keycloak/"
