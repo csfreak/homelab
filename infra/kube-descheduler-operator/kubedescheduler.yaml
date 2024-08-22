@@ -23,5 +23,6 @@ spec:
   profiles:
     - AffinityAndTaints
     - LifecycleAndUtilization
+    - TopologyAndDuplicates
   managementState: Managed
   unsupportedConfigOverrides: null
