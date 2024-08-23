@@ -42,7 +42,6 @@ Selector labels
 */}}
 {{- define "synology-haproxy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "synology-haproxy.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
