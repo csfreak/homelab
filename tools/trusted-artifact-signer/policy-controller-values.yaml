@@ -5,7 +5,7 @@ installCRDs: true
 
 # imagePullSecrets: []
 
-loglevel: debug
+loglevel: info
 
 webhook:
   # customLabels: {}
