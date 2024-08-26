@@ -8,6 +8,7 @@ resources:
   - whisper
   - piper
   - openwakeword
+  - mass
 
 images:
   - name: minio-backup-sidecar

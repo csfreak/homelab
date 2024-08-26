@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: mass
+spec:
+  host: musicassistant.apps.homelab.csfreak.com
+  port:
+    targetPort: mass-http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: mass
+    weight: 100
+  wildcardPolicy: None

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mass
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: mass
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: mass
+    spec:
+      containers:
+        - image: music-assistant
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /info
+              port: 8095
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: mass-server
+          ports:
+            - containerPort: 8095
+              name: mass-http
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 10m
+            limits:
+              memory: 1Gi
+              cpu: "1"
+          volumeMounts:
+            - mountPath: /config
+              name: mass-config
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: mass-config
+          persistentVolumeClaim:
+            claimName: mass-config
+status: {}

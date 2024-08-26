@@ -1,0 +1,23 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+
+images:
+  - name: music-assistant
+    newName: ghcr.io/music-assistant/server
+    newTag: "2.2.2"
+
+commonLabels:
+  app: music-assistant
+  app.kubernetes.io/component: music-assistant
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: mass
+    includeTemplates: true
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
