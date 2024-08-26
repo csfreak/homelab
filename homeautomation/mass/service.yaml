@@ -21,16 +21,16 @@ metadata:
 spec:
   ports:
     - port: 8098
-      name: mass-streamserver
+      name: streamserver
       protocol: TCP
     - port: 3483
       name: slimproto-tcp
       protocol: TCP
     - port: 9000
-      name: slimproto-json-rpc
+      name: slimproto-json
       protocol: TCP
     - port: 9090
-      name: slimproto-legacy
+      name: slimproto-raw
       protocol: TCP
   selector: {}
   sessionAffinity: None
