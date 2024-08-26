@@ -36,6 +36,21 @@ spec:
             - containerPort: 8095
               name: mass-http
               protocol: TCP
+            - containerPort: 8098
+              name: mass-streamserver
+              protocol: TCP
+            - containerPort: 3483
+              name: slimproto-tcp
+              protocol: TCP
+            - containerPort: 3483
+              name: slimproto-udp
+              protocol: UDP
+            - containerPort: 9000
+              name: slimproto-json-rpc
+              protocol: TCP
+            - containerPort: 9090
+              name: slimproto-legacy
+              protocol: TCP
           resources:
             requests:
               memory: 512Mi
