@@ -9,7 +9,7 @@ spec:
       "cniVersion": "0.3.1",
       "type": "vlan",
       "mtu": 1500,
-      "vlanId": 106
+      "vlanId": 106,
       "linkInContainer": false,
       "ipam": {
         "type": "dhcp",
