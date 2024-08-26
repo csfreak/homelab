@@ -44,9 +44,9 @@ spec:
         {
           "name": "media",
           "cniVersion": "0.3.1",
-          "type": "vlan",
+          "type": "bridge",
+          "bridge": "media-vlan-bridge",
           "mtu": 1500,
-          "vlanId": 106,
           "linkInContainer": false,
           "ipam": {
             "type": "dhcp",
