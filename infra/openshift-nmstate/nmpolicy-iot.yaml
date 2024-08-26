@@ -16,7 +16,7 @@ spec:
           base-iface: "{{ capture.ethernet-active.interfaces.0.name }}"
           id: 104
       - mtu: 1500
-        name: iot-vlan-bridge
+        name: iot-vlan-br
         state: up
         type: linux-bridge
         bridge:

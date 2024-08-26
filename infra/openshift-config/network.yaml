@@ -15,7 +15,7 @@ spec:
           "name": "homeautomation",
           "cniVersion": "0.3.1",
           "type": "bridge",
-          "bridge": "iot-vlan-bridge",
+          "bridge": "iot-vlan-br",
           "mtu": 1500,
           "linkInContainer": false,
           "ipam": {
@@ -45,7 +45,7 @@ spec:
           "name": "media",
           "cniVersion": "0.3.1",
           "type": "bridge",
-          "bridge": "media-vlan-bridge",
+          "bridge": "media-vlan-br",
           "mtu": 1500,
           "linkInContainer": false,
           "ipam": {
