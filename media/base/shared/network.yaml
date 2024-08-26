@@ -1,0 +1,33 @@
+apiVersion: k8s.cni.cncf.io/v1
+kind: NetworkAttachmentDefinition
+metadata:
+  name: media
+spec:
+  config: |-
+    {
+      "name": "media",
+      "cniVersion": "0.3.1",
+      "type": "vlan",
+      "mtu": 1500,
+      "vlanId": 106
+      "linkInContainer": false,
+      "ipam": {
+        "type": "dhcp",
+        "provide": [
+          {
+            "option": "host-name",
+            "fromArg": "K8S_POD_NAME"
+          },
+          {
+            "option": "vendor-class-identifier",
+            "value": "openshift"
+          }
+        ],
+        "request": [
+          {
+            "option": "subnet-mask",
+            "skipDefault": true 
+          }
+        ]
+      }
+    }
