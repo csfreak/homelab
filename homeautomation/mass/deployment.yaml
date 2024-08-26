@@ -67,7 +67,7 @@ spec:
               memory: 1Gi
               cpu: "1"
           volumeMounts:
-            - mountPath: /config
+            - mountPath: /data
               name: mass-config
       securityContext:
         runAsNonRoot: true
