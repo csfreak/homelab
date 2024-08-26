@@ -19,7 +19,7 @@ spec:
           [
             {
               "name": "media", 
-              "namespace": "media"
+              "namespace": "default"
             }
           ]
     spec:
