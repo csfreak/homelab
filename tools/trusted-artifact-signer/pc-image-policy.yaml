@@ -8,7 +8,7 @@ spec:
   authorities:
     - name: rhtas
       keyless:
-        url: http://fulci-server.trusted-artifact-signer.svc
+        url: http://fulcio-server.trusted-artifact-signer.svc
         trustRootRef: rhtas-root
         identities:
           - issuerRegExp: .*kubernetes.default.*
