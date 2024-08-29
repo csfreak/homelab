@@ -13,7 +13,16 @@ spec:
   template:
     metadata:
       annotations:
-        k8s.v1.cni.cncf.io/networks: homeautomation
+        k8s.v1.cni.cncf.io/networks: |-
+          [
+            {
+              "name": "homeautomation"
+            },
+            {
+              "name": "media", 
+              "namespace": "default"
+            }
+          ]
       labels:
         deployment: hass
     spec:

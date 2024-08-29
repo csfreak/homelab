@@ -64,8 +64,8 @@ spec:
               memory: 512Mi
               cpu: 10m
             limits:
-              memory: 1Gi
-              cpu: "1"
+              memory: 2Gi
+              cpu: 100m
           volumeMounts:
             - mountPath: /data
               name: mass-config
