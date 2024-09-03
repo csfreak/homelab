@@ -50,7 +50,7 @@ spec:
               mountPath: /mosquitto/secret
             - name: mosquitto-config
               mountPath: /mosquitto/config
-        - name: mosquitto_exporter
+        - name: mosquitto-exporter
           image: mosquitto_exporter
           env:
             - name: MY_POD_NAME
