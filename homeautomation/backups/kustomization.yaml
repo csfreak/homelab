@@ -1,10 +1,13 @@
 resources:
-  - backup-secret.yaml
+- backup-secret.yaml
 
-commonLabels:
-  app: backups
 
 labels:
-  - pairs:
-      app.kubernetes.io/name: backups
-      app.kubernetes.io/component: backups
+- pairs:
+    app.kubernetes.io/component: backups
+    app.kubernetes.io/name: backups
+- includeSelectors: true
+  pairs:
+    app: backups
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

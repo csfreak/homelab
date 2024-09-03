@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass-mqtt
+spec:
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      initContainers:
+        - name: set-passwd
+          image: mosquitto 
+          volumeMounts:
+            - name: mosquitto-secret
+              mountPath: /mosquitto/secret
+          envFrom:
+            - secretRef:
+                name: mosquitto-passwd
+              prefix: MOSQUITTO_USER_
+          cmd: 
+            - /bin/sh
+          args:
+            - -c
+            - |-
+              echo /usr/bin/mosquitto_passwd -c /mosquitto/secret/mosquitto.passwd
+              for ENVVAR in ${!MOSQUITTO_USER_@}
+              do
+                USERNAME=$(echo ${ENVVAR#MOSQUITTO_USER_} | tr '[:upper:]' '[:lower:]')
+                PASSWORD=$(printenv ${ENVVAR})
+                echo /usr/bin/mosquitto_passwd -b /mosquitto/secret/mosquitto.passwd ${USERNAME} ${PASSWORD}
+              done
+
+      containers:
+        - name: mosquitto
+          image: mosquitto
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+          - containerPort: 1883
+            name: mqtt
+            protocol: TCP
+          volumeMounts: 
+            - name: mosquitto-secret
+              mountPath: /mosquitto/secret
+            - name: mosquitto-config
+              mountPath: /mosquitto/config
+        - name: mosquitto_exporter
+          image: mosquitto_exporter
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef: 
+                  fieldPath: metadata.name
+            - name: MQTT_CLIENT_ID
+              value: $(MY_POD_NAME)_exporter
+          resources: 
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 9234
+              name: metrics
+              protocol: TCP
+      volumes:
+        - name: mosquitto-secret
+          emptyDir: {}
+        - name: mosquitto-config
+          configMap: 
+            name: mosquitto-config

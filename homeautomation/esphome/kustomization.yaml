@@ -1,30 +1,33 @@
 resources:
-  - pvc.yaml
-  - deployment.yaml
-  - service.yaml
-  - route.yaml
+- pvc.yaml
+- deployment.yaml
+- service.yaml
+- route.yaml
 
-commonLabels:
-  app: esphome
-  app.kubernetes.io/component: esphome
-  app.kubernetes.io/part-of: homeassistant
 
 labels:
-  - pairs:
-      app.kubernetes.io/name: esphome
-    includeTemplates: true
+- includeTemplates: true
+  pairs:
+    app.kubernetes.io/name: esphome
+- includeSelectors: true
+  pairs:
+    app: esphome
+    app.kubernetes.io/component: esphome
+    app.kubernetes.io/part-of: homeassistant
 
 images:
-  - name: esphome/esphome
-    newName: ghcr.io/esphome/esphome
-    newTag: "2024.8.0b1"
+- name: esphome/esphome
+  newName: ghcr.io/esphome/esphome
+  newTag: 2024.8.0b1
 
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
 
 configMapGenerator:
-  - name: platformio-env
-    behavior: create
-    envs:
-      - platformio.env
+- behavior: create
+  envs:
+  - platformio.env
+  name: platformio-env
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

@@ -1,30 +1,33 @@
 resources:
-  - pvc.yaml
-  - deployment.yaml
-  - service.yaml
-  - monitoring.yaml
-  - route.yaml
+- pvc.yaml
+- deployment.yaml
+- service.yaml
+- monitoring.yaml
+- route.yaml
 
 images:
-  - name: homeassistant/home-assistant
-    newName: ghcr.io/home-assistant/home-assistant
-    newTag: "2024.8.1"
+- name: homeassistant/home-assistant
+  newName: ghcr.io/home-assistant/home-assistant
+  newTag: 2024.8.1
 
-commonLabels:
-  app: homeassistant
-  app.kubernetes.io/component: homeassistant
 
 labels:
-  - pairs:
-      app.kubernetes.io/name: hass
-    includeTemplates: true
+- includeTemplates: true
+  pairs:
+    app.kubernetes.io/name: hass
+- includeSelectors: true
+  pairs:
+    app: homeassistant
+    app.kubernetes.io/component: homeassistant
 
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
 
 configMapGenerator:
-  - name: hass-backup
-    behavior: create
-    envs:
-      - backup-conf.env
+- behavior: create
+  envs:
+  - backup-conf.env
+  name: hass-backup
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

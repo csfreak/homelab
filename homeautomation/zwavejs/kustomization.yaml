@@ -1,26 +1,27 @@
 resources:
-  - pvc.yaml
-  - serviceaccount.yaml
-  - secret.yaml
-  - deployment.yaml
-  - service.yaml
-  - monitoring.yaml
-  - route.yaml
+- pvc.yaml
+- serviceaccount.yaml
+- secret.yaml
+- deployment.yaml
+- service.yaml
+- monitoring.yaml
+- route.yaml
 
-commonLabels:
-  app: zwavejs
 
 labels:
-  - pairs:
-      app.kubernetes.io/name: zwavejs
-      app.kubernetes.io/part-of: homeassistant
-      app.kubernetes.io/component: zwavejs
-    includeTemplates: true
+- includeTemplates: true
+  pairs:
+    app.kubernetes.io/component: zwavejs
+    app.kubernetes.io/name: zwavejs
+    app.kubernetes.io/part-of: homeassistant
+- includeSelectors: true
+  pairs:
+    app: zwavejs
 
 images:
-  - name: zwavejs
-    newName: ghcr.io/zwave-js/zwave-js-ui
-    newTag: "9.16"
+- name: zwavejs
+  newName: ghcr.io/zwave-js/zwave-js-ui
+  newTag: "9.16"
 
 generatorOptions:
   annotations:
@@ -28,9 +29,11 @@ generatorOptions:
   immutable: true
 
 configMapGenerator:
-  - name: zwavejs-env
-    envs:
-      - zwavejs.env
-  - name: zwavejs-backup
-    envs:
-      - backup-conf.env
+- envs:
+  - zwavejs.env
+  name: zwavejs-env
+- envs:
+  - backup-conf.env
+  name: zwavejs-backup
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

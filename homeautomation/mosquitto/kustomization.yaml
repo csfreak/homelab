@@ -1,0 +1,36 @@
+resources:
+- external-secret.yaml
+- deployment.yaml
+- service.yaml
+- servicemonitor.yaml
+
+images:
+- name: mosquitto
+  newName: eclipse-mosquitto
+  newTag: 2.0.18
+- name: mosquitto_exporter
+  newName: sapcc/mosquitto-exporter
+  newTag: 0.8.0
+
+
+labels:
+- includeTemplates: true
+  pairs:
+    app.kubernetes.io/name: mosquitto
+- includeSelectors: true
+  pairs:
+    app: mosquitto
+    app.kubernetes.io/component: mosquitto
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
+configMapGenerator:
+- files:
+  - mosquitto.conf
+  - mosquitto_acl.conf
+  - mosquitto_acl_exporter.conf
+  name: mosquitto-conf
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
