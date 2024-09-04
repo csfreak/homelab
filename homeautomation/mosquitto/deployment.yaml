@@ -26,8 +26,8 @@ spec:
               value: '1'
           command: 
             - /bin/sh
-          args:
             - -c
+          args:
             - |
               if [ -n "${DEBUG}" ]; then
                 set -x
