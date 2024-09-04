@@ -26,12 +26,13 @@ spec:
           args:
             - -c
             - |-
-              echo /usr/bin/mosquitto_passwd -c /mosquitto/secret/mosquitto.passwd
-              for ENVVAR in ${!MOSQUITTO_USER_@}
+              set -x
+              /usr/bin/mosquitto_passwd -c /mosquitto/secret/mosquitto.passwd
+              for ENVVAR in $(set | grep -o "^MOSQUITTO_USER_[A-Z0-9]\+" )
               do
-                USERNAME=$(echo ${ENVVAR#MOSQUITTO_USER_} | tr '[:upper:]' '[:lower:]')
-                PASSWORD=$(printenv ${ENVVAR})
-                echo /usr/bin/mosquitto_passwd -b /mosquitto/secret/mosquitto.passwd ${USERNAME} ${PASSWORD}
+                USERNAME=$(echo "${ENVVAR#MOSQUITTO_USER_}" | tr '[:upper:]' '[:lower:]')
+                eval "PASSWORD=\$${ENVVAR}"
+                /usr/bin/mosquitto_passwd -b /mosquitto/secret/mosquitto.passwd ${USERNAME} ${PASSWORD}
               done
 
       containers:
