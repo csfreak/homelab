@@ -31,6 +31,6 @@ configMapGenerator:
   - mosquitto.conf
   - mosquitto_acl.conf
   - mosquitto_acl_exporter.conf
-  name: mosquitto-conf
+  name: mosquitto-config
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
