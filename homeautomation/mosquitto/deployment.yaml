@@ -23,9 +23,9 @@ spec:
             - secretRef:
                 name: mosquitto-passwd
               prefix: MOSQUITTO_USER_
-          env:
-            - name: DEBUG
-              value: '1'
+          # env:
+          #   - name: DEBUG
+          #     value: '1'
           command: 
             - /bin/sh
           args:

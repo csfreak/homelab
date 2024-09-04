@@ -13,10 +13,12 @@ if [ ! -e ${PASSWD_FILE} ]; then
     chmod 600 ${PASSWD_FILE}
     # mosquitto complains if file group doesnt match users primary group
     chown :0 ${PASSWD_FILE}
+    echo "Created ${PASSWD_FILE}"
 fi
 
 for ENVVAR in $(set | grep -o "^MOSQUITTO_USER_[A-Z0-9]\+" ); do
     USERNAME=$(echo "${ENVVAR#MOSQUITTO_USER_}" | tr "[:upper:]" "[:lower:]")
     eval "PASSWORD=\$${ENVVAR}"
     ${PASSWD_CMD} -b ${PASSWD_FILE} ${USERNAME} ${PASSWORD}
+    echo "Set password for ${USERNAME}"
 done
