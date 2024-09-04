@@ -21,7 +21,7 @@ spec:
             - secretRef:
                 name: mosquitto-passwd
               prefix: MOSQUITTO_USER_
-          cmd: 
+          command: 
             - /bin/sh
           args:
             - -c
