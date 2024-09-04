@@ -29,6 +29,7 @@ spec:
             - -c
           args:
             - |
+              '
               if [ -n "${DEBUG}" ]; then
                 set -x
               fi
@@ -47,10 +48,11 @@ spec:
 
               for ENVVAR in $(set | grep -o "^MOSQUITTO_USER_[A-Z0-9]\+" )
               do
-                USERNAME=$(echo "${ENVVAR#MOSQUITTO_USER_}" | tr '[:upper:]' '[:lower:]')
+                USERNAME=$(echo "${ENVVAR#MOSQUITTO_USER_}" | tr "[:upper:]" "[:lower:]")
                 eval "PASSWORD=\$${ENVVAR}"
                 ${PASSWD_CMD} -b ${PASSWD_FILE} ${USERNAME} ${PASSWORD}
               done
+              '
 
       containers:
         - name: mosquitto
