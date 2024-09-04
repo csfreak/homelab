@@ -32,5 +32,9 @@ configMapGenerator:
   - mosquitto_acl.conf
   - mosquitto_acl_exporter.conf
   name: mosquitto-config
+- files:
+  - set-password.sh
+  name: mosquitto-init
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
