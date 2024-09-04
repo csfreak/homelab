@@ -56,6 +56,8 @@ spec:
                   fieldPath: metadata.name
             - name: MQTT_CLIENT_ID
               value: $(MY_POD_NAME)_exporter
+            - name: BROKER_ENDPOINT
+              value: tcp://127.0.0.1:8883
           resources: 
             limits:
               memory: "128Mi"
@@ -70,6 +72,7 @@ spec:
         - name: mosquitto-config
           configMap: 
             name: mosquitto-config
+            defaultMode: 0600
         - name: mosquitto-init
           configMap:
             name: mosquitto-init
