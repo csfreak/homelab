@@ -17,8 +17,9 @@ labels:
       app: plex
 
 images:
-  - name: openshift-cli
-    newName: image-registry.openshift-image-registry.svc:5000/openshift/cli
+  - name: shell
+    newName: icgr.dev/chainguard/bash
+    newTag: latest
   - name: plex
     newName: homelab.docker.homelab.csfreak.com/homelab/plex
     newTag: f0ce37970f2a87e355b75f5cfeb5f73fd817ded8

@@ -21,7 +21,7 @@ spec:
       terminationGracePeriodSeconds: 120
       initContainers:
         - name: cleanup-pidfile
-          image: openshift-cli
+          image: shell
           volumeMounts:
             - name: config
               mountPath: /config
