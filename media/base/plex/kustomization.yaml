@@ -18,7 +18,7 @@ labels:
 
 images:
   - name: shell
-    newName: icgr.dev/chainguard/bash
+    newName: cgr.dev/chainguard/bash
     newTag: latest
   - name: plex
     newName: homelab.docker.homelab.csfreak.com/homelab/plex
