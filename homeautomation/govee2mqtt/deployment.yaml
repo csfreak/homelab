@@ -22,10 +22,10 @@ spec:
       - name: govee2mqtt
         image: govee2mqtt
         envFrom:
-          - configMap:
+          - configMapRef:
               name: gv2mqtt-env
             prefix: GOVEE_
-          - secret:
+          - secretRef:
               name: govee-creds
             prefix: GOVEE_
         env:
