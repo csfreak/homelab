@@ -47,6 +47,8 @@ spec:
               mountPath: /mosquitto/secret
             - name: mosquitto-config
               mountPath: /mosquitto/config
+            - name: mosquitto-data
+              mountPath: /mosquitto/data
         - name: mosquitto-exporter
           image: mosquitto_exporter
           env:
@@ -76,3 +78,5 @@ spec:
         - name: mosquitto-init
           configMap:
             name: mosquitto-init
+        - name: mosquitto-data
+          emptyDir: {}
