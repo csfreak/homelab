@@ -15,7 +15,7 @@ labels:
 - includeSelectors: true
   pairs:
     app: govee2mqtt
-    app.kubernetes.io/component: mqtt gateway
+    app.kubernetes.io/component: mqtt_gateway
 
 generatorOptions:
   annotations:
