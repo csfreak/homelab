@@ -44,4 +44,9 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-          
+        volumeMounts:
+          - name: govee-data
+            mountPath: /data
+      volumes:
+        - name: govee-data 
+          emptyDir: {}
