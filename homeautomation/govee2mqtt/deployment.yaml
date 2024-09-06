@@ -40,8 +40,6 @@ spec:
             value: $(HASS_MQTT_SERVICE_HOST)
           - name: GOVEE_MQTT_PORT
             value: $(HASS_MQTT_SERVICE_PORT_MQTT)
-          - name: RUST_LOG
-            value: govee=debug,mosquitto_rs=debug
         resources:
           limits:
             memory: "128Mi"
