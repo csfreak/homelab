@@ -1,0 +1,29 @@
+resources:
+  - externalsecrets.yaml
+  - deployment.yaml
+
+images:
+- name: govee2mqtt
+  newName: ghcr.io/wez/govee2mqtt
+  digest: sha256:b40cfa323495a0cdb332cccca298a15d08e219110e751911373d843c2c857ba1
+
+
+labels:
+- includeTemplates: true
+  pairs:
+    app.kubernetes.io/name: govee2mqtt
+- includeSelectors: true
+  pairs:
+    app: govee2mqtt
+    app.kubernetes.io/component: mqtt gateway
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
+configMapGenerator:
+- envs:
+  - gv2mqtt.env
+  name: gv2mqtt-env
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

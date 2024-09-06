@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govee2mqtt
+spec:
+  selector:
+    matchLabels:
+      app: govee2mqtt
+  template:
+    metadata:
+      labels:
+        app: govee2mqtt
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |-
+          [
+            {
+              "name": "homeautomation"
+            }
+          ]
+    spec:
+      containers:
+      - name: govee2mqtt
+        image: govee2mqtt
+        envFrom:
+          - configMap:
+              name: gv2mqtt-env
+            prefix: GOVEE_
+          - secret:
+              name: govee-creds
+            prefix: GOVEE_
+        env:
+          - name: GOVEE_MQTT_USER
+            value: gv2mqtt
+          - name: GOVEE_MQTT_PASSWORD
+            valueFrom: 
+              secretKeyRef:
+                key: GV2MQTT
+                name: mosquitto-passwd
+          - name: GOVEE_MQTT_HOST
+            value: $(HASS_MQTT_SERVICE_HOST)
+          - name: GOVEE_MQTT_PORT
+            value: $(HASS_MQTT_SERVICE_PORT_MQTT)
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          
