@@ -6,11 +6,11 @@ spec:
   addon:
     params:
       - name: clusterTasks
-        value: "true"
+        value: "false"
       - name: pipelineTemplates
-        value: "true"
+        value: "false"
       - name: communityClusterTasks
-        value: "true"
+        value: "false"
       - name: resolverTasks	
         value: 'true'
   chain:
