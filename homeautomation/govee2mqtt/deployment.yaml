@@ -42,12 +42,11 @@ spec:
             value: $(HASS_MQTT_SERVICE_PORT_MQTT)
         resources:
           limits:
-            memory: "16Mi"
-            cpu: "10m"
+            memory: 16Mi
+            cpu: 10m
           requests:
-            requests: "8Mi"
-            cpu: "1m"
-
+            memory: 8Mi
+            cpu: 1m
         volumeMounts:
           - name: govee-data
             mountPath: /data
