@@ -37,7 +37,10 @@ spec:
           resources:
             limits:
               memory: "128Mi"
-              cpu: "500m"
+              cpu: "10m"
+            requests:
+              memory: "64Mi"
+              cpu: "1m"
           ports:
           - containerPort: 1883
             name: mqtt
