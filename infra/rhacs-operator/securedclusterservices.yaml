@@ -51,13 +51,13 @@ spec:
         minReplicas: 1
         replicas: 1
     db:
-      resource:
-        requests:
-          memory: 64Mi
-          cpu: 20m
+      resources:
         limits:
-          memory: 512mi
           cpu: 500m
+          memory: 512Mi
+        requests:
+          cpu: 20m
+          memory: 64Mi
     scannerComponent: AutoSense
   scannerV4:
     scannerComponent: Default
