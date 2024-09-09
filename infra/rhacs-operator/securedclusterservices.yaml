@@ -28,18 +28,44 @@ spec:
       collection: EBPF
       forceCollection: false
       imageFlavor: Slim
+      resources:
+        requests:
+          memory: 340Mi
+          cpu: 70m
+        limits:
+          memory: 1Gi
+          cpu: 250m
     taintToleration: TolerateTaints
   scanner:
     analyzer:
       resources:
         requests:
           cpu: 100m
-          memory: 1024Mi
+          memory: "512Mi"
+        limits:
+          cpu: "1"
+          memory: "2Gi"
       scaling:
         autoScaling: Enabled
         maxReplicas: 3
         minReplicas: 1
         replicas: 1
+    db:
+      resource:
+        requests:
+          memory: 64Mi
+          cpu: 20m
+        limits:
+          memory: 512mi
+          cpu: 500m
     scannerComponent: AutoSense
   scannerV4:
     scannerComponent: Default
+  sensor:
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "1Gi"
+      limits:
+        cpu: "2"
+        memory: "2Gi"
