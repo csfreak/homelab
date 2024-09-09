@@ -30,11 +30,27 @@ spec:
       imageFlavor: Slim
       resources:
         requests:
-          memory: 340Mi
+          memory: 256Mi
           cpu: 70m
         limits:
-          memory: 1Gi
+          memory: 512Mi
           cpu: 250m
+    compliance:
+      resources:
+        requests:
+          memory: 64Mi
+          cpu: 30m
+        limits:
+          memory: 512Mi
+          cpu: 100m
+    node-inventory:
+      resources:
+        requests:
+          memory: 128mi
+          cpu: 10m
+        limits:
+          memory: 256Mi
+          cpu: 100m
     taintToleration: TolerateTaints
   scanner:
     analyzer:
