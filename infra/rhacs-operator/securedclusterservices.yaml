@@ -43,10 +43,10 @@ spec:
         limits:
           memory: 512Mi
           cpu: 100m
-    node-inventory:
+    nodeInventory:
       resources:
         requests:
-          memory: 128mi
+          memory: 128Mi
           cpu: 10m
         limits:
           memory: 256Mi
