@@ -31,8 +31,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: manifests/base
-    repoURL: https://github.com/argoproj-labs/argocd-image-updater.git
+    path: infra/argocd-image-updater
+    repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
     automated: {}
