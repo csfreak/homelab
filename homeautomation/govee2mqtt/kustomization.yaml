@@ -5,7 +5,7 @@ resources:
 images:
 - name: govee2mqtt
   newName: ghcr.io/wez/govee2mqtt
-  digest: sha256:b40cfa323495a0cdb332cccca298a15d08e219110e751911373d843c2c857ba1
+  digest: sha256:6471bf22613f20960591f57f4465592cf9eb79a4f14776d63e975f045b307c14
 
 
 labels:

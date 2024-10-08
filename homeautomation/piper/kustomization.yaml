@@ -16,6 +16,6 @@ labels:
 
 images:
 - name: homeassistant/amd64-addon-piper
-  newTag: 1.5.0
+  newTag: 1.5.2
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

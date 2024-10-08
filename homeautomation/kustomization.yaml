@@ -15,9 +15,9 @@ resources:
 images:
 - name: minio-backup-sidecar
   newName: ghcr.io/csfreak/minio-backup-sidecar
-  newTag: v0.4.10
+  newTag: v0.4.12
 - name: code-server
   newName: ghcr.io/coder/code-server
-  newTag: 4.91.1
+  newTag: 4.93.1
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

@@ -18,8 +18,8 @@ labels:
 images:
 - name: esphome/esphome
   newName: ghcr.io/esphome/esphome
-  newTag: 2024.8.0b1
-
+  newTag: 2024.9.2
+  
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
