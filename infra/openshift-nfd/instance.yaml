@@ -6,7 +6,7 @@ metadata:
 spec:
   operand:
     image: >-
-      registry.redhat.io/openshift4/ose-node-feature-discovery:v4.17
+      registry.redhat.io/openshift4/ose-node-feature-discovery-rhel9@sha256:4626d3729cea47c14c9d192b5630089b6d9c127faf6df89340d82061003fa574
     servicePort: 12000
   extraLabelNs:
     - "gpu.intel.com"
