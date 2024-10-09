@@ -7,7 +7,7 @@ spec:
   channel: stable
   installPlanApproval: Automatic
   name: rhtas-operator
-  source: redhat-operators
+  source: redhat-operators-4.16
   sourceNamespace: openshift-marketplace
   config:
     resources:
