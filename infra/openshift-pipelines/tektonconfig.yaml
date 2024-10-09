@@ -72,8 +72,7 @@ spec:
     enable-hub-resolver: true
     enable-param-enum: false
     enable-provenance-in-status: true
-    enable-step-actions: false
-    enable-tekton-oci-bundles: false
+    enable-step-actions: true
     enforce-nonfalsifiability: none
     keep-pod-on-cancel: false
     max-result-size: 4096
