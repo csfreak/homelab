@@ -5,6 +5,8 @@ metadata:
   namespace: openshift-nfd
 spec:
   upgradeStrategy: Default
+  targetNamespaces:
+  - openshift-nfd
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
