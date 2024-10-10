@@ -14,31 +14,33 @@ spec:
       initContainers:
         - name: validate-config
           image: mmuxer
+          envFrom:
+            - secretRef:
+                name: imap-server
+              prefix: mmuxer_
           args: 
             - check
             - --config-file
             - /config/config.yaml
           volumeMounts:
-            - name: secrets
-              mountPath: /run/secrets
             - name: config
               mountPath: /config
       containers:
       - name: mmuxer
         image: mmuxer
+        envFrom:
+          - secretRef:
+              name: imap-server
+            prefix: mmuxer_
         args:
           - monitor
           - --config-file
           - /config/config.yaml
         volumeMounts:
-          - name: secrets
-            mountPath: /run/secrets
           - name: config
             mountPath: /config
       volumes:
         - name: config
           configMap:
             name: mmuxer-config
-        - name: secrets
-          secret:
-            secretName: imap-server
+
