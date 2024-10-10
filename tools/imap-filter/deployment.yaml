@@ -12,7 +12,7 @@ spec:
         app: mmuxer
     spec:
       initContainers:
-        - name: validate_config
+        - name: validate-config
           image: mmuxer
           command: 
             - mmuxer
