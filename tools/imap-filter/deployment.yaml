@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmuxer
+spec:
+  selector:
+    matchLabels:
+      app: mmuxer
+  template:
+    metadata:
+      labels:
+        app: mmuxer
+    spec:
+      initContainers:
+        - name: validate config
+          image: mmuxer
+          command: 
+            - mmuxer
+            - check
+            - --config-file
+            - /config/config.yaml
+          volumeMounts:
+            - name: secret
+              mountPath: /run/secrets
+            - name: config
+              mountPath: /config
+      containers:
+      - name: mmuxer
+        image: mmuxer
+        command:
+          - mmuxer
+          - monitor
+          - --config-file
+          - /config/config.yaml
+        volumeMounts:
+          - name: secret
+            mountPath: /run/secrets
+          - name: config
+            mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: mmuxer-config
+        - name: secret
+          secret:
+            name: imap-server

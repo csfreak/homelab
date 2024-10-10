@@ -1,0 +1,45 @@
+rules:
+  - condition:
+      ALL:
+        - HEADER:
+            original-recipient: homedepot@csfreak.com
+        - ANY:
+            - HEADER:
+                Return-Path: "@citibank.com"
+            - HEADER:
+                Return-Path: citi.com
+    move_to: Accounts/HomeDepot
+  - condition:
+      HEADER:
+        original-recipient: k1speed@csfreak.com
+    move_to: Newsletters/K1Speed
+  - condition:
+      ALL:
+        - HEADER:
+            original-recipient: homedepot@csfreak.com
+        - NOT:
+            ANY:
+              - HEADER:
+                  Return-Path: "@citibank.com"
+              - HEADER:
+                  Return-Path: citi.com
+    move_to: Newsletters/HomeDepot
+  - condition:
+      ALL:
+        - HEADER:
+            original-recipient: harborfreight@csfreak.com
+        - HEADER:
+            return-path: hft@em.harborfreight.com
+    move_to: Newsletters/HarborFreight
+  - condition:
+      ANY:
+        - ALL:
+            - HEADER:
+                Delivered-To: jason.d.ross@gmail.com
+            - ANY:
+                - HEADER:
+                    List-Id: b0a8bb4990e841b919666c65f4128d727c412573.google.com
+                - HEADER:
+                    X-Account-Notification-Type: "325"
+        - TO: gmailrecovery@csfreak.com
+    move_to: Accounts/Google
