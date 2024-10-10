@@ -1,3 +1,4 @@
+settings: {}
 rules:
   - condition:
       ALL:
