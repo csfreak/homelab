@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: journal
+  name: imap-filter
   namespace: openshift-gitops
   labels:
     app.kubernetes.io/name: imap-filter
