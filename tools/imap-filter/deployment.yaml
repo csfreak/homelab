@@ -14,8 +14,7 @@ spec:
       initContainers:
         - name: validate-config
           image: mmuxer
-          command: 
-            - mmuxer
+          args: 
             - check
             - --config-file
             - /config/config.yaml
@@ -27,8 +26,7 @@ spec:
       containers:
       - name: mmuxer
         image: mmuxer
-        command:
-          - mmuxer
+        args:
           - monitor
           - --config-file
           - /config/config.yaml

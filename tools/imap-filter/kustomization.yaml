@@ -13,6 +13,7 @@ images:
   - name: mmuxer
     newName: homelab.docker.homelab.csfreak.com/mmuxer
     newTag: 0.6.5-csfreak
+    digest: sha256:d06734a57a389e625adec35925a8b44bc9305a355628700dad5d5ee4c971ccc0
 
 configMapGenerator:
   - name: mmuxer-config
