@@ -20,7 +20,7 @@ spec:
             - --config-file
             - /config/config.yaml
           volumeMounts:
-            - name: secret
+            - name: secrets
               mountPath: /run/secrets
             - name: config
               mountPath: /config
@@ -33,7 +33,7 @@ spec:
           - --config-file
           - /config/config.yaml
         volumeMounts:
-          - name: secret
+          - name: secrets
             mountPath: /run/secrets
           - name: config
             mountPath: /config
@@ -41,6 +41,6 @@ spec:
         - name: config
           configMap:
             name: mmuxer-config
-        - name: secret
+        - name: secrets
           secret:
-            name: imap-server
+            secretName: imap-server
