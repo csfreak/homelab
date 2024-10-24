@@ -19,9 +19,11 @@ commonAnnotations:
 images:
   - name: minio-backup-sidecar
     newName: ghcr.io/csfreak/minio-backup-sidecar
-    newTag: v0.4.10
+    newTag: v0.4.12
+    digest: sha256:807a998f25aafe5cc5cd70246fb1be5215bc645f5ed99ea6acf97c46af755682
   - name: exportarr
     newName: ghcr.io/onedr0p/exportarr
-    newTag: v2.0
+    newTag: v2.0.1
+    digest: sha256:727e7bc8f2f0934a2117978c59f4476b954018b849a010ea6cfb380bd6539644
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

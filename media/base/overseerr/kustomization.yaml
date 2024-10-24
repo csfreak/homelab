@@ -19,9 +19,10 @@ images:
   - name: overseerr
     newName: ghcr.io/sct/overseerr
     newTag: 1.33.2
+    digest: sha256:714ea6db2bc007a2262d112bef7eec74972eb33d9c72bddb9cbd98b8742de950
   - name: overseerr_exporter
     newName: ghcr.io/willfantom/overseerr-exporter
-    newTag: latest
+    digest: sha256:80bafb994cbeb3a418d54b8d72ac0f25fb6b0202d272e199a1161cc95a4e90f5
 
 generatorOptions:
   annotations:

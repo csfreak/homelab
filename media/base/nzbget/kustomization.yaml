@@ -19,7 +19,7 @@ labels:
 images:
   - name: nzbget
     newName: homelab.docker.homelab.csfreak.com/homelab/nzbget
-    newTag: b7767fa98ccf8dc4af0305c93f2188e87b420d1d
+    digest: sha256:f54ba907750c846a70ddc2bb0298bfd54009ea82fda0cb7fcc9c1dd4384156e4
 
 configMapGenerator:
   - envs:

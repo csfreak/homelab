@@ -19,10 +19,10 @@ labels:
 images:
   - name: shell
     newName: cgr.dev/chainguard/bash
-    newTag: latest
+    digest: sha256:78f0aaf52873e2ec88dd2525e82dd7e309583c6cd115910e50be6d3773a2192a
   - name: plex
     newName: homelab.docker.homelab.csfreak.com/homelab/plex
-    newTag: f0ce37970f2a87e355b75f5cfeb5f73fd817ded8
+    digest: sha256:d575612c639778080c93b949238c08bf3172b74a3bcf32543fe851a5eee1ea7es
 
 configMapGenerator:
   - files:
