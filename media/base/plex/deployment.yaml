@@ -80,7 +80,7 @@ spec:
         - args:
             - "--config"
             - "/etc/vector/plex-logs.toml"
-          image: timberio/vector:latest-distroless-libc
+          image: vector
           imagePullPolicy: Always
           name: plex-logs
           resources:
@@ -104,7 +104,7 @@ spec:
             - name: config
               mountPath: /config
         - name: plex-metrics
-          image: granra/plex_exporter:latest
+          image: plex_exporter
           imagePullPolicy: Always
           env:
             - name: PLEX_SERVER
