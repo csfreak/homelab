@@ -19,3 +19,4 @@ spec:
       limits:
         cpu: 100m
         memory: 512Mi
+  bgpBackend: "frr"
