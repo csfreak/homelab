@@ -17,5 +17,6 @@ labels:
 images:
 - name: homeassistant/amd64-addon-openwakeword
   newTag: 1.10.0
+  digest: sha256:4b78e208b49763cdf807f5f0e2da6b53560799a125a0d4ec092f21f667bbf817
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

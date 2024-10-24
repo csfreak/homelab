@@ -7,10 +7,12 @@ resources:
 images:
 - name: mosquitto
   newName: eclipse-mosquitto
-  newTag: 2.0.19
+  newTag: 2.0.20
+  digest: sha256:090d745b6435d10a31acb82eee999ec36a2d7f416cc4f578c0a298c42af2ea14
 - name: mosquitto_exporter
   newName: sapcc/mosquitto-exporter
   newTag: 0.8.0
+  digest: sha256:241570341cd144c27ca0952255a2726a4964b7397bfed93a98707b32eb06858c
 
 
 labels:
