@@ -47,7 +47,7 @@ spec:
             - mountPath: /downloads/local
               name: nzbget-tmp
         - name: nzbget-metrics
-          image: frebib/nzbget-exporter:latest
+          image: nxbget-exporter
           imagePullPolicy: Always
           resources:
             limits:

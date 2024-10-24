@@ -20,6 +20,9 @@ images:
   - name: nzbget
     newName: homelab.docker.homelab.csfreak.com/homelab/nzbget
     digest: sha256:f54ba907750c846a70ddc2bb0298bfd54009ea82fda0cb7fcc9c1dd4384156e4
+  - name: nzbget-exporter
+    newName: frebib/nzbget-exporter
+    digest: sha256:1ab799cf7ecaaf732b9e8655786c2bc8657f268290a580304192050c105dd4d9
 
 configMapGenerator:
   - envs:
