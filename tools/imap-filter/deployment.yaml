@@ -36,6 +36,7 @@ spec:
             - --config-file
             - /config/config.yaml
             - create-missing-folders
+            - --assume-yes
 
           volumeMounts:
             - name: config
