@@ -33,9 +33,10 @@ spec:
               prefix: mmuxer_
           args: 
             - folder
-            - create-missing-folders
             - --config-file
             - /config/config.yaml
+            - create-missing-folders
+
           volumeMounts:
             - name: config
               mountPath: /config  
