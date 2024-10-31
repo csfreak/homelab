@@ -1,5 +1,32 @@
 settings: {}
 rules:
+  # Alerts
+  - condition:
+      ALL:
+        - FROM: notify@nearlyfreespeech.net
+        - SUBJECT: "[NearlyFreeSpeech.NET] Scheduled task"
+    actions:
+      - action: move
+        dest: Alerts/NearlyFreeSpeech/Log
+      - action: flag
+        flag: SEEN
+  - condition:
+      FROM: notify@nearlyfreespeech.net
+    move_to: Alerts/NearlyFreeSpeech
+  - condition:
+      ALL:
+        - FROM: mcinfo@ups.com
+        - TO: ups@csfreak.com
+    move_to: Alerts/UPS
+  - condition:
+      FROM: alertmanager@homelab.csfreak.com
+    move_to: Alerts/Homelab
+  - condition:
+      ALL:
+        - FROM: wordpress@drpawsitive.com
+        - SUBJECT: Wordfence Alert
+    move_to: Alerts/DrPawsitive
+  # Accounts
   - condition:
       ALL:
         - HEADER:
@@ -10,6 +37,40 @@ rules:
             - HEADER:
                 Return-Path: citi.com
     move_to: Accounts/HomeDepot
+  - condition:
+      ANY:
+        - ALL:
+            - HEADER:
+                Delivered-To: jason.d.ross@gmail.com
+            - ANY:
+                - HEADER:
+                    List-Id: b0a8bb4990e841b919666c65f4128d727c412573.google.com
+                - HEADER:
+                    X-Account-Notification-Type: "325"
+        - TO: gmailrecovery@csfreak.com
+    move_to: Accounts/Google
+  - condition:
+      FROM: icloud <noreply@email.apple.com>
+    move_to: Accounts/iCloud
+  - condition:
+      TO: uber@csfreak.com
+    move_to: Accounts/Uber
+  - condition:
+      TO: doordash@csfreak.com
+    move_to: Accounts/DoorDash
+  - condition:
+      TO: attmobile@csfreak.com
+    move_to: Accounts/ATTMobile
+  - condition:
+      TO: frontier@csfreak.com
+    move_to: Accounts/Frontier
+  - condition:
+      TO: costco@csfreak.com
+    move_to: Accounts/Costco
+  - condition:
+      TO: noisy.huddle-0e@icloud.com
+    move_to: Accounts/Tinder
+  # Newsletters
   - condition:
       HEADER:
         original-recipient: k1speed@csfreak.com
@@ -33,14 +94,35 @@ rules:
             return-path: hft@em.harborfreight.com
     move_to: Newsletters/HarborFreight
   - condition:
+      HEADER:
+        Reply-To: news@dishformyrv.com
+    move_to: Newsletters/DishForMyRV
+  - condition:
       ANY:
-        - ALL:
-            - HEADER:
-                Delivered-To: jason.d.ross@gmail.com
-            - ANY:
-                - HEADER:
-                    List-Id: b0a8bb4990e841b919666c65f4128d727c412573.google.com
-                - HEADER:
-                    X-Account-Notification-Type: "325"
-        - TO: gmailrecovery@csfreak.com
-    move_to: Accounts/Google
+        - HEADER:
+            Reply-To: bounce@promotions.espnmail.com
+        - HEADER:
+            Reply-To: bounce@marketing.espnmail.com
+    move_to: Newsletters/ESPN
+  - condition:
+      HEADER:
+        Return-Path: "@mailer.members.netflix.com"
+    move_to: Newsletters/Netflix
+  - condition:
+      HEADER:
+        Reply-To: odom_email_noreply@officedepot.com
+    move_to: Newsletters/OfficeDepot
+  # Misc
+  - condition:
+      FROM: announcements@jimmyjohns.com
+    move_to: Deleted Messages
+  - condition:
+      TO: freecycle@csfreak.com
+    move_to: Misc/Freecycle
+  - condition:
+      TO: admin@drpawsitive.com
+    actions:
+      - action: move
+        dest: Misc/DrPawsitive
+      - action: flag
+        flag: SEEN

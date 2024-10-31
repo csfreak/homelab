@@ -25,6 +25,20 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+        - name: create-destinations
+          image: mmuxer
+          envFrom:
+            - secretRef:
+                name: imap-server
+              prefix: mmuxer_
+          args: 
+            - folder
+            - create-missing-folders
+            - --config-file
+            - /config/config.yaml
+          volumeMounts:
+            - name: config
+              mountPath: /config  
       containers:
       - name: mmuxer
         image: mmuxer
@@ -36,6 +50,13 @@ spec:
           - monitor
           - --config-file
           - /config/config.yaml
+        resources:
+          requests:
+            memory: 128M
+            cpu: 10m
+          limits:
+            memory: 256M
+            cpu: 100m
         volumeMounts:
           - name: config
             mountPath: /config
