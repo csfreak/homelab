@@ -25,6 +25,22 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
+        - name: create-destinations
+          image: mmuxer
+          envFrom:
+            - secretRef:
+                name: imap-server
+              prefix: mmuxer_
+          args: 
+            - folder
+            - --config-file
+            - /config/config.yaml
+            - create-missing-folders
+            - --assume-yes
+
+          volumeMounts:
+            - name: config
+              mountPath: /config  
       containers:
       - name: mmuxer
         image: mmuxer
