@@ -81,7 +81,9 @@ rules:
             X-Amazon-Mail-Relay-Type: notification
         - TO: amazon@csfreak.com
         - NOT:
-            - FROM: do-not-reply@audible.com
+            ANY:
+              - FROM: do-not-reply@audible.com
+              - FROM: newsletters@audible.com
     move_to: Accounts/Amazon
   - condition:
       ALL:
