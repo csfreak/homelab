@@ -19,6 +19,11 @@ rules:
         - TO: ups@csfreak.com
     move_to: Alerts/UPS
   - condition:
+      ALL:
+        - FROM: USPSInformeddelivery@email.informeddelivery.usps.com
+        - TO: usps@csfreak.com
+    move_to: Alerts/USPS
+  - condition:
       FROM: alertmanager@homelab.csfreak.com
     move_to: Alerts/Homelab
   - condition:
@@ -70,6 +75,28 @@ rules:
   - condition:
       TO: noisy.huddle-0e@icloud.com
     move_to: Accounts/Tinder
+  - condition:
+      ALL:
+        - HEADER:
+            X-Amazon-Mail-Relay-Type: notification
+        - TO: amazon@csfreak.com
+        - NOT:
+            - FROM: do-not-reply@audible.com
+    move_to: Accounts/Amazon
+  - condition:
+      ALL:
+        - HEADER:
+            X-Amazon-Mail-Relay-Type: notification
+        - TO: amazon@csfreak.com
+        - ANY:
+            - FROM: do-not-reply@audible.com
+            - FROM: newsletters@audible.com
+    move_to: Accounts/Audible
+  - condition:
+      ALL:
+        - FROM: collegestation@gonexcom.com
+        - TO: abcpest@csfreak.com
+    move_to: Accounts/ABCPest
   # Newsletters
   - condition:
       HEADER:
@@ -126,3 +153,8 @@ rules:
         dest: Misc/DrPawsitive
       - action: flag
         flag: SEEN
+  - github:
+      user: csfreak
+      base: GitHub
+      by_owner: True
+      by_repo: True
