@@ -38,8 +38,6 @@ spec:
             - name: DATABASE_URL
               value: mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db:3306/$(MYSQL_DATABASE)?charset-utf8mb4
             - name: MQTT_URL
-            - name: HOME
-              value: /config/
           envFrom:
             - prefix: MYSQL_
               secretRef:
