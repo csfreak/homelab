@@ -9,9 +9,8 @@ images:
 - name: homeassistant/home-assistant
   newName: ghcr.io/home-assistant/home-assistant
   newTag: 2024.10.4
-  digest: sha256:408a5a63e3e9a89ceb6ecd98345e54c86073314b4d94e217cd54f7208307406d
-
-
+  digest: sha256:103da063b0bbe4d6e9c0f6bb01db91d02b0707d15276b9807835d180478f78b9
+  
 labels:
 - includeTemplates: true
   pairs:
