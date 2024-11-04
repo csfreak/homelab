@@ -75,6 +75,8 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: hass-config
+            - mountPath: /.cache
+              name: cache
         - name: code-server
           image: code-server
           volumeMounts:
@@ -119,4 +121,6 @@ spec:
         - name: hass-config
           persistentVolumeClaim:
             claimName: hass-config
+        - name: cache
+          emptydir: {}
 status: {}
