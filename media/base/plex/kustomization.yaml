@@ -22,7 +22,7 @@ images:
     digest: sha256:78f0aaf52873e2ec88dd2525e82dd7e309583c6cd115910e50be6d3773a2192a
   - name: plex
     newName: homelab.docker.homelab.csfreak.com/homelab/plex
-    digest: sha256:d575612c639778080c93b949238c08bf3172b74a3bcf32543fe851a5eee1ea7e
+    digest: sha256:20faecf5f2f8b3b4321fb619c7b13c3a970b04a102eca5afae3b7bb7729eb7a5
   - name: vector
     newName: timberio/vector
     newTag: latest-distroless-libc
