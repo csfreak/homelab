@@ -44,6 +44,7 @@ spec:
       size: 5Gi
     rekorSearchUI:
       enabled: true
+      host: rekor-ui-rhtap.apps.homelab.csfreak.com
     signer:
       kms: secret
   trillian:
@@ -62,4 +63,27 @@ spec:
       - name: rekor.pub
       - name: ctfe.pub
       - name: fulcio_v1.crt.pem
+      - name: tsa.certchain.pem
     port: 80
+  tsa:
+    externalAccess:
+      enabled: true
+      host: tas-rhtap.apps.homelab.csfreak.com
+    monitoring: 
+      enabled: true
+    ntpMonitoring:
+      enabled: true
+    signer:
+      certificateChain:
+        rootCA:
+          organizationName: CSFreak Homelab
+          organizationEmail: tsa@homelab.csfreak.com
+          commonName: root.tsa-rhtap.apps.homelab.csfreak.com
+        intermediateCA:
+          - organizationName: CSFreak Homelab
+            organizationEmail: tsa@homelab.csfreak.com
+            commonName: int.tsa-rhtap.apps.homelab.csfreak.com
+        leafCA:
+          organizationName: CSFreak Homelab
+          organizationEmail: tsa@homelab.csfreak.com
+          commonName: leaf.tsa-rhtap.apps.homelab.csfreak.com
