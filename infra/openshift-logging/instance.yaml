@@ -1,34 +1,27 @@
-apiVersion: logging.openshift.io/v1
-kind: ClusterLogging
-metadata:
-  name: instance
-spec:
-  collection:
-    type: vector
-    tolerations:
-      - key: node-status.csfreak.com/network
-        operator: Exists
-        effect: NoSchedule
-  logStore:
-    lokistack:
-      name: lokistack-logging
-    type: lokistack
-  managementState: Managed
-  visualization:
-    type: ocp-console
----
-apiVersion: logging.openshift.io/v1
+apiVersion: observability.openshift.io/v1
 kind: ClusterLogForwarder
 metadata:
-  name: instance
+  name: collector
+  namespace: openshift-logging
 spec:
+  serviceAccount:
+    name: logcollector
+  outputs:
+    - name: default
+      type: lokiStack
+      lokiStack:
+        target:
+          name: lokistack-logging
+          namespace: openshift-logging
+  filters:
+    - name: detectexception
+      type: detectMultilineException
   pipelines:
-    - detectMultilineErrors: true
+    - filterRefs:
+        -  detectexception
       inputRefs:
         - application
       name: application-logs
-      outputRefs:
-        - default
     - inputRefs:
         - infrastructure
         - audit

@@ -2,3 +2,4 @@ resources:
   - loki
   - operator.yaml
   - instance.yaml
+  - serviceaccount.yaml
