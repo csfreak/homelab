@@ -16,6 +16,10 @@ spec:
         authentication:
           token:
             from: serviceAccount
+      tls:
+        ca:
+          key: service-ca.crt
+          configMapName: openshift-service-ca.crt
   filters:
     - name: detectexception
       type: detectMultilineException
