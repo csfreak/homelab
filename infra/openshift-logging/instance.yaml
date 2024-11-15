@@ -25,6 +25,8 @@ spec:
       inputRefs:
         - application
       name: application-logs
+      outputRefs:
+        - default
     - inputRefs:
         - infrastructure
         - audit
