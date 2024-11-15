@@ -1,5 +1,6 @@
 resources:
   - loki
+  - coo
   - operator.yaml
   - instance.yaml
   - serviceaccount.yaml

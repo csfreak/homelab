@@ -13,6 +13,9 @@ spec:
         target:
           name: lokistack-logging
           namespace: openshift-logging
+        authentication:
+          token:
+            from: serviceAccount
   filters:
     - name: detectexception
       type: detectMultilineException
