@@ -10,6 +10,9 @@ spec:
         queryTimeout: 1m
       retention:
         days: 21
+      ingestion:
+        ingestionBurstSize: 16 
+        ingestionRate: 8 
   managementState: Managed
   size: 1x.pico
   storage:
