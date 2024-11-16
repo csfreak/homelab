@@ -4,7 +4,7 @@ csiDriver:
 storageClasses:
   - name: synology-iscsi-ssd
     defaultClass: false
-    reclaimPolicy: Retain
+    reclaimPolicy: Delete
     volumeBindingMode: Immediate
     allowVolumeExpansion: true
     parameters:
