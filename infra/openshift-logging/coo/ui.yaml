@@ -1,4 +1,4 @@
-apiVersion: observability.openshift.io/v1alpha1
+apiVersion: observability.openshift.io/v1beta1
 kind: UIPlugin
 metadata:
   name: logging
@@ -6,4 +6,4 @@ spec:
   type: Logging
   logging:
     lokiStack:
-      name: logging-loki
+      name: lokistack-logging
