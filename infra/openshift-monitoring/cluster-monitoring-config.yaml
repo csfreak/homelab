@@ -53,13 +53,6 @@ data:
           memory: 172M
           cpu: 10m
     prometheusOperatorAdmissionWebhook:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
       resources:
         requests: 
           memory: 48M
