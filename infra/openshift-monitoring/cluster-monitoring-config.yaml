@@ -171,11 +171,12 @@ data:
         - effect: NoExecute
           key: node-role.kubernetes.io/master
       resources:
-        memory: 10M
-        cpu: 10m
-      limits:
-        memory: 100M
-        cpu: 100m
+        requests:
+          memory: 10M
+          cpu: 10m
+        limits:
+          memory: 100M
+          cpu: 100m
 kind: ConfigMap
 metadata:
   name: cluster-monitoring-config
