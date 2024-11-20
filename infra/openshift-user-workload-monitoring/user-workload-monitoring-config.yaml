@@ -32,7 +32,7 @@ data:
           memory: 172M
           cpu: 6m
       logLevel: debug
-    ThanosRulerConfig:
+    thanosRuler:
       nodeSelector:
         node-role.kubernetes.io/master: ""
       tolerations:
