@@ -20,7 +20,7 @@ labels:
 images:
 - name: mariadb
   newName: registry.redhat.io/rhel9/mariadb-1011
-  newTag: 1-18
+  newTag: 1-22
 - name: mysqld-exporter
   newName: quay.io/prometheus/mysqld-exporter
   newTag: latest

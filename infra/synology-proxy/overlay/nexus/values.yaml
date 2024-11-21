@@ -30,8 +30,8 @@ proxy:
       name: docker-proxy
     - containerPort: 8083
       name: homelab-repo
-    - containerPort: 8084
-      name: redhat-proxy
+    # - containerPort: 8084
+    #   name: redhat-proxy
     - containerPort: 8085
       name: quay-proxy
     - containerPort: 8086
