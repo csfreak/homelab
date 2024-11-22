@@ -75,7 +75,7 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: hass-config
-            - mountPath: /.cache
+            - mountPath: /tmp
               name: cache
         - name: code-server
           image: code-server
