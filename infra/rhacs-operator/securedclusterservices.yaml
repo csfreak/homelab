@@ -23,6 +23,7 @@ spec:
   monitoring:
     openshift:
       enabled: true
+  registryOverride: docker.homelab.csfreak.com
   overlays: 
    - kind: Deployment
      apiVersion: apps/v1
@@ -35,7 +36,7 @@ spec:
              claimName: scanner-db
   perNode:
     collector:
-      collection: EBPF
+      collection: CORE_BPF
       forceCollection: false
       imageFlavor: Slim
       resources:
