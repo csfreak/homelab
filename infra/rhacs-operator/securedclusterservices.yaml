@@ -23,6 +23,16 @@ spec:
   monitoring:
     openshift:
       enabled: true
+  overlays: 
+   - kind: Deployment
+     apiVersion: apps/v1
+     name: scanner-db
+     patches:
+       - path: spec.template.spec.volumes[name:scanner-db-data]
+         value: |
+           name: scanner-db-data
+           persistentVolumeClaim:
+             claimName: scanner-db
   perNode:
     collector:
       collection: EBPF
