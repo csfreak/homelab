@@ -1,16 +1,16 @@
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: scanner-v4-db
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-  storageClassName: synology-iscsi-hdd
-  volumeMode: Filesystem
----
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: scanner-v4-db
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   storageClassName: synology-iscsi-hdd
+#   volumeMode: Filesystem
+# ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
