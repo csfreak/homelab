@@ -74,8 +74,8 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: hass-config
-            # - mountPath: /tmp
-            #   name: cache
+            - mountPath: /tmp
+              name: cache
             - mountPath: /.dockerenv
               name: containerenv
               subPath: containerenv
@@ -123,8 +123,8 @@ spec:
         - name: hass-config
           persistentVolumeClaim:
             claimName: hass-config
-        # - name: cache
-        #   emptydir: {}
+        - name: cache
+          emptydir: {}
         - name: containerenv
           configMap:
             name: hass-containerenv
