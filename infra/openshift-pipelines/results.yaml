@@ -60,8 +60,7 @@ spec:
   log_level: debug
   db_port: 5432
   db_host: tekton-results-postgres-service.openshift-pipelines.svc.cluster.local
-  logs_path: /logs
-  logs_type: File
+  logs_type: loki
   logs_buffer_size: 32768
   auth_disable: true
   tls_hostname_override: tekton-results-api-service.openshift-pipelines.svc.cluster.local
