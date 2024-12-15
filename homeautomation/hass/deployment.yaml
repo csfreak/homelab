@@ -26,6 +26,18 @@ spec:
       labels:
         deployment: hass
     spec:
+      initContainers:
+        - name: setup-site-packages
+          image: homeassistant/home-assistant
+          command:
+            - cp
+            - -r 
+            - /usr/local/lib/python3.13/site-packages/*
+            - /site-package-volume/
+          volumeMounts:
+            - mountPath: /site-package-volume
+              name: site-packages
+          
       containers:
         - command:
             - python3
@@ -79,6 +91,8 @@ spec:
             - mountPath: /.dockerenv
               name: containerenv
               subPath: containerenv
+            - mountPath: /usr/local/lib/python3.13/site-packages
+              name: site-packages
         - name: code-server
           image: code-server
           volumeMounts:
@@ -128,5 +142,7 @@ spec:
         - name: containerenv
           configMap:
             name: hass-containerenv
+        - name: site-packages
+          emptydir: {}
             
 status: {}
