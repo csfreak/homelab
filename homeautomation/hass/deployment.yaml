@@ -37,9 +37,6 @@ spec:
           env:
             - name: DATABASE_URL
               value: mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db:3306/$(MYSQL_DATABASE)?charset-utf8mb4
-            - name: MQTT_URL
-            - name: PYTHONPATH
-              value: /config/homeassistant/deps
           envFrom:
             - prefix: MYSQL_
               secretRef:
