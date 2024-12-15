@@ -22,7 +22,7 @@ images:
 - name: zwavejs
   newName: ghcr.io/zwave-js/zwave-js-ui
   newTag: 9.27.4
-  digest: sha256:dd945bf63aca8c31763d90addf36db1f0d809c232b806d193173c329c03a183f
+  digest: sha256:6888670fdbcb011ba7418377893e15503594b99562400e6cc244f85c95a62b45
 
 generatorOptions:
   annotations:
