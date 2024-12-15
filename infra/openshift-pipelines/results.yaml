@@ -21,7 +21,7 @@
 #     kind: ClusterIssuer
 #     group: cert-manager.io
 # ---
-# apiVersion: generators.external-secrets.io/v1alpha1
+apiVersion: generators.external-secrets.io/v1alpha1
 kind: Password
 metadata:
   name: random-password
