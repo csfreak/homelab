@@ -29,5 +29,9 @@ configMapGenerator:
   envs:
   - backup-conf.env
   name: hass-backup
+- behavior: create
+  files:
+  - containerenv
+  name: hass-containerenv
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

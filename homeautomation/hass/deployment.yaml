@@ -76,6 +76,9 @@ spec:
               name: hass-config
             - mountPath: /tmp
               name: cache
+            - mountPath: /.containerenv
+              name: containerenv
+              subPath: containerenv
         - name: code-server
           image: code-server
           volumeMounts:
@@ -122,4 +125,8 @@ spec:
             claimName: hass-config
         - name: cache
           emptydir: {}
+        - name: containerenv
+          configMap:
+            name: hass-containerenv
+            
 status: {}
