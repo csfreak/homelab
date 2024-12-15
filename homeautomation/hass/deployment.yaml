@@ -76,7 +76,7 @@ spec:
               name: hass-config
             # - mountPath: /tmp
             #   name: cache
-            - mountPath: /.containerenv
+            - mountPath: /.dockerenv
               name: containerenv
               subPath: containerenv
         - name: code-server
