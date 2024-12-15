@@ -18,6 +18,6 @@ images:
   newTag: v0.4.12
 - name: code-server
   newName: ghcr.io/coder/code-server
-  newTag: 4.93.3
+  newTag: 4.95.3
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
