@@ -1,27 +1,27 @@
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: tekton-results
-spec:
-  isCA: false
-  dnsNames:
-    - tekton-results-api-service.openshift-pipelines.svc.cluster.local
-  subject:
-    organizations:
-      - homelab
-    organizationalUnits:
-      - openshift-pipelines
-  commonName: "tekton-results"
-  secretName: tekton-results-tls
-  privateKey:
-    algorithm: ECDSA
-    size: 256
-  issuerRef:
-    name: self-signed
-    kind: ClusterIssuer
-    group: cert-manager.io
----
-apiVersion: generators.external-secrets.io/v1alpha1
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: tekton-results
+# spec:
+#   isCA: false
+#   dnsNames:
+#     - tekton-results-api-service.openshift-pipelines.svc.cluster.local
+#   subject:
+#     organizations:
+#       - homelab
+#     organizationalUnits:
+#       - openshift-pipelines
+#   commonName: "tekton-results"
+#   secretName: tekton-results-tls
+#   privateKey:
+#     algorithm: ECDSA
+#     size: 256
+#   issuerRef:
+#     name: self-signed
+#     kind: ClusterIssuer
+#     group: cert-manager.io
+# ---
+# apiVersion: generators.external-secrets.io/v1alpha1
 kind: Password
 metadata:
   name: random-password
