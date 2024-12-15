@@ -31,8 +31,8 @@ spec:
           image: homeassistant/home-assistant
           command:
             - cp
-            - -r 
-            - /usr/local/lib/python3.13/site-packages/*
+            - -a
+            - /usr/local/lib/python3.13/site-packages/
             - /site-package-volume/
           volumeMounts:
             - mountPath: /site-package-volume
@@ -93,6 +93,7 @@ spec:
               subPath: containerenv
             - mountPath: /usr/local/lib/python3.13/site-packages
               name: site-packages
+              subPath: site-packages
         - name: code-server
           image: code-server
           volumeMounts:
