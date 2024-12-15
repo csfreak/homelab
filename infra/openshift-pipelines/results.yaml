@@ -1,0 +1,78 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: tekton-results
+spec:
+  isCA: false
+  dnsNames:
+    - tekton-results-api-service.openshift-pipelines.svc.cluster.local
+  subject:
+    organizations:
+      - homelab
+    organizationalUnits:
+      - openshift-pipelines
+  commonName: "tekton-results"
+  secretName: tekton-results-tls
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: self-signed
+    kind: ClusterIssuer
+    group: cert-manager.io
+---
+apiVersion: generators.external-secrets.io/v1alpha1
+kind: Password
+metadata:
+  name: random-password
+spec:
+  length: 20
+  symbols: 0
+  noUpper: false
+  allowRepeat: true
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: result-password
+spec:
+  refreshInterval: "0"
+  target:
+    name: tekton-results-postgres
+    template:
+      data:
+        POSTGRES_PASSWORD: "{{.password}}"
+        POSTGRES_USER: result
+  dataFrom:
+    - sourceRef:
+        generatorRef:
+          apiVersion: generators.external-secrets.io/v1alpha1
+          kind: Password
+          name: random-password
+---
+apiVersion: operator.tekton.dev/v1alpha1
+kind: TektonResult
+metadata:
+  name: result
+spec:
+  targetNamespace: openshift-pipelines
+  logs_api: true
+  log_level: debug
+  db_port: 5432
+  db_host: tekton-results-postgres-service.openshift-pipelines.svc.cluster.local
+  logs_path: /logs
+  logs_type: File
+  logs_buffer_size: 32768
+  auth_disable: true
+  tls_hostname_override: tekton-results-api-service.openshift-pipelines.svc.cluster.local
+  db_enable_auto_migration: true
+  server_port: 8080
+  prometheus_port: 9090
+  loki_stack_name: logging-loki 
+  loki_stack_namespace: openshift-logging 
+  options:
+    configMaps:
+      config-results-retention-policy:
+        data:
+          runAt: "3 5 * * 0"
+          maxRetention: "360"
