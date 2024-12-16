@@ -5,11 +5,11 @@ metadata:
   namespace: openshift-gitops
 spec:
   destination:
-    namespace: infra-alert-remediation.yaml
+    namespace: infra-alert-remediation
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: infra/alert-remediation.yaml
+    path: infra/alert-remediation
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
   syncPolicy:
