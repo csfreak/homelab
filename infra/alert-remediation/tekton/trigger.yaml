@@ -2,6 +2,8 @@ apiVersion: triggers.tekton.dev/v1beta1
 kind: Trigger
 metadata:
   name: alertmanager-webhook-trigger
+  annotations:
+    triggers.tekton.dev/old-escape-quotes: "true"
 spec:
   bindings:
     - ref: alertmanager-webhook-binding
