@@ -4,4 +4,9 @@ metadata:
   name: alertmanager-webhook
 spec:
   triggers:
-    - triggerRef: alertmanager-webhook-trigger
+    - name: alertmanager-webhook-trigger
+      bindings:
+        - ref: alertmanager-webhook-binding
+      template:
+        ref: alertmanager-pipeline-template
+  

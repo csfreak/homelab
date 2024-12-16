@@ -1,14 +1,11 @@
+
 apiVersion: triggers.tekton.dev/v1beta1
-kind: Trigger
+kind: TriggerTemplate
 metadata:
-  name: alertmanager-webhook-trigger
+  name: alertmanager-pipeline-template
   annotations:
     triggers.tekton.dev/old-escape-quotes: "true"
-spec:
-  bindings:
-    - ref: alertmanager-webhook-binding
-  template:
-    spec: 
+spec: 
       params: 
         - name: status
         - name: alerts
