@@ -64,13 +64,13 @@ spec:
     disable-affinity-assistant: true
     disable-creds-init: false
     enable-api-fields: alpha
-    enable-bundles-resolver: true
-    enable-cel-in-whenexpression: false
+    enable-bundles-resolver: false
+    enable-cel-in-whenexpression: true
     enable-cluster-resolver: true
     enable-custom-tasks: true
     enable-git-resolver: true
     enable-hub-resolver: true
-    enable-param-enum: false
+    enable-param-enum: true
     enable-provenance-in-status: true
     enable-step-actions: true
     enforce-nonfalsifiability: none
