@@ -126,7 +126,6 @@ spec:
   profile: all
   pruner:
     disabled: false
-    keep: 0
     resources:
       - pipelinerun
     schedule: 0 * * * *
