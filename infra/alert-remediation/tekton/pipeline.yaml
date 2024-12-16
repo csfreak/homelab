@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: alertmanager-remediation-pipeline
+spec:
+  params:
+    - name: status
+      enum: 
+        - firing
+        - resolved
+    - name: labels
+      type: array
+  tasks:
+    - name: openshift-client
+      params:
+        - name: SCRIPT
+          value: oc whoami
+        - name: VERSION
+          value: latest
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: openshift-client
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster

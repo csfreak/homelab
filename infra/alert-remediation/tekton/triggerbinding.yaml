@@ -5,9 +5,9 @@ metadata:
 spec:
   params:
   - name: status
-    value: $(body.status)
-  - name: alerts
-    value: $(body.alerts)
+    value: $(extensions.status)
+  - name: labels
+    value: $(extensions.labels)
 
 # {
 #   "version": "4",

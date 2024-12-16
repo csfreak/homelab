@@ -8,17 +8,17 @@ metadata:
 spec: 
       params: 
         - name: status
-        - name: alerts
+        - name: labels
       resourcetemplates:
         - apiVersion: tekton.dev/v1beta1
           kind: PipelineRun
           metadata:
-            generateName: alertmanager-remediation-pipeline-run
+            generateName: alertmanager-remediation-pipeline-run-
           spec:
             pipelineRef:
               name: alertmanager-remediation-pipeline
             params:
             - name: status
               value: $(tt.params.status)
-            - name: alerts
-              value: $(tt.params.alerts)
+            - name: labels
+              value: $(tt.params.labels)

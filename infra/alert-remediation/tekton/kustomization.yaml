@@ -2,3 +2,4 @@ resources:
   - eventlistener.yaml
   - triggerbinding.yaml
   - triggertemplate.yaml
+  - pipeline.yaml

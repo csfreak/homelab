@@ -5,6 +5,16 @@ metadata:
 spec:
   triggers:
     - name: alertmanager-webhook-trigger
+      interceptors:
+        - ref:
+            name: cel
+          params: 
+            - name: overlays
+              value:
+              - key: status
+                expression: "body.alerts[0].status"
+              - key: labels
+                expression: "body.alerts[0].labels"  
       bindings:
         - ref: alertmanager-webhook-binding
       template:
