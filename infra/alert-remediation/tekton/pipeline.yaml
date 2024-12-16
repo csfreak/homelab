@@ -8,8 +8,10 @@ spec:
       enum: 
         - firing
         - resolved
+      type: string
     - name: labels
-      type: array
+      type: string
+      description: json encoded string
   tasks:
     - name: openshift-client
       params:
