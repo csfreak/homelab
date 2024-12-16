@@ -1,0 +1,10 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: alertmanager-webhook
+spec:
+  triggers:
+    - triggerRef: alertmanager-webhook-trigger
+  namespaceSelector:
+    matchNames:
+      - infra-alert-remediation

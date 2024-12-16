@@ -14,6 +14,15 @@ spec:
         ingestionBurstSize: 16 
         ingestionRate: 8 
   managementState: Managed
+  rules:
+    enabled: true
+    namespaceSelector: 
+      matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: Exists
+    selector:
+      matchLabels:
+        loki.homelab.csfreak.com/lokistack: lokistack-logging
   size: 1x.pico
   storage:
     schemas:

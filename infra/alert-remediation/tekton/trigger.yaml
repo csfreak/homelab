@@ -1,0 +1,26 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  name: alertmanager-webhook-trigger
+spec:
+  bindings:
+    - ref: alertmanager-webhook-binding
+  template:
+    - name: alertmanger-pipeline
+      spec: 
+        params: 
+          - name: status
+          - name: alerts
+        resourcetemplates:
+          - apiVersion: tekton.dev/v1beta1
+            kind: PipelineRun
+            metadata:
+              generateName: alertmanager-remediation-pipeline-run
+            spec:
+              pipelineRef:
+                name: alertmanager-remediation-pipeline
+              params:
+              - name: status
+                value: $(tt.params.status)
+              - name: alerts
+                value: $(tt.params.alerts)
