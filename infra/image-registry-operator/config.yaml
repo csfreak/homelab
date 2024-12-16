@@ -14,10 +14,5 @@ spec:
       region: homelab
       regionEndpoint: http://storage.homelab.csfreak.com:9000/
   replicas: 2
-  nodeSelector:
-    node-role.kubernetes.io/master: ""
-  tolerations:
-    - effect: NoSchedule
-      key: node-role.kubernetes.io/master
-    - effect: NoExecute
-      key: node-role.kubernetes.io/master
+  nodeSelector: {}
+  tolerations: []

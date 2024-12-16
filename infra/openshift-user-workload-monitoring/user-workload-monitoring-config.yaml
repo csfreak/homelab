@@ -17,13 +17,6 @@ data:
           memory: 1G
           cpu: 100m
     prometheusOperator:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
-      tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
       resources:
         requests: 
           memory: 128M
@@ -33,13 +26,7 @@ data:
           cpu: 6m
       logLevel: debug
     thanosRuler:
-      nodeSelector:
-        node-role.kubernetes.io/master: ""
       tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-        - effect: NoExecute
-          key: node-role.kubernetes.io/master
       resources:
         requests: 
           memory: 128M
