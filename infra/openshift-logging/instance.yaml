@@ -23,9 +23,12 @@ spec:
   filters:
     - name: detectexception
       type: detectMultilineException
+    - name: parse-json
+      type: parse
   pipelines:
     - filterRefs:
-        -  detectexception
+        - detectexception
+        - parse-json
       inputRefs:
         - application
       name: application-logs
