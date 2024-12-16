@@ -6,7 +6,6 @@ spec:
   bindings:
     - ref: alertmanager-webhook-binding
   template:
-    name: alertmanger-pipeline
     spec: 
       params: 
         - name: status
