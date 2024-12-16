@@ -126,10 +126,10 @@ spec:
   profile: all
   pruner:
     disabled: false
-    keep: 10
+    keep: 0
     resources:
       - pipelinerun
-    schedule: 0 8 * * *
+    schedule: 0 * * * *
   targetNamespace: openshift-pipelines
   trigger:
     default-service-account: pipeline
