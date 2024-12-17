@@ -34,7 +34,7 @@ spec:
           values: ["NodeExporterBrokenPipe"]
       params:
         - name: labels
-          value: $(params.labels)
+          value: $(params.labels[*])
       taskSpec:
         params:
           - name: labels
