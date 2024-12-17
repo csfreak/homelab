@@ -21,7 +21,7 @@ spec:
         - critical
         - warning
         - info
-      decription: severity of alert
+      description: severity of alert
       default: info
   tasks:
     - name: parse-node-exporter-labels
