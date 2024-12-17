@@ -69,3 +69,16 @@ spec:
       name: gitea-plex-token-fzkpw
     url: "https://gitea.homelab.csfreak.com"
   url: "https://gitea.homelab.csfreak.com/homelab/keycloak/"
+---
+apiVersion: pipelinesascode.tekton.dev/v1alpha1
+kind: Repository
+metadata:
+  name: gitea-ubi-task
+  namespace: tools-homelab-images-pipelines
+spec:
+  git_provider:
+    secret:
+      key: provider.token
+      name: gitea-plex-token-fzkpw
+    url: "https://gitea.homelab.csfreak.com"
+  url: "https://gitea.homelab.csfreak.com/homelab/ubi-task/"
