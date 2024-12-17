@@ -87,7 +87,6 @@ spec:
                 fi
               done
     - name: delete-node-exporter-pod
-      needs: parse-node-exporter-labels
       params:
         - name: SCRIPT
           value: |
