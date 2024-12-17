@@ -36,9 +36,6 @@ spec:
         - name: labels
           value: $(params.labels[*])
       taskSpec:
-        params:
-          - name: labels
-            type: array
         results:
           - name: node
             type: string
