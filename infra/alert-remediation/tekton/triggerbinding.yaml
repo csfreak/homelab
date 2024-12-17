@@ -8,6 +8,11 @@ spec:
     value: $(extensions.status)
   - name: labels
     value: $(extensions.labels)
+  - name: alertname
+    value: $(extensions.alertname)
+  - name: severity
+    value: $(extensions.severity)
+    
 
 # {
 #   "version": "4",

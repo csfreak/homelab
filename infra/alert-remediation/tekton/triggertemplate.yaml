@@ -9,6 +9,8 @@ spec:
       params: 
         - name: status
         - name: labels
+        - name: alertname
+        - name: severity
       resourcetemplates:
         - apiVersion: tekton.dev/v1beta1
           kind: PipelineRun
@@ -22,3 +24,7 @@ spec:
               value: $(tt.params.status)
             - name: labels
               value: $(tt.params.labels)
+            - name: alertname
+              value: $(tt.params.alertname)
+            - name: severity
+              value: $(tt.params.severity)

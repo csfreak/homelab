@@ -1,0 +1,29 @@
+apiVersion: loki.grafana.com/v1
+kind: AlertingRule
+metadata:
+  name: node-exporter-broken-pipe
+  namespace: openshift-monitoring
+spec:
+  groups:
+    - interval: 1m
+      name: infrastructure
+      rules:
+        - alert: NodeExporterBrokenPipe
+          annotations:
+            description: 'The node-exporter pod on {{ $labels.kubernetes_host }} is logging write errors for 5 minutes.'
+            summary: Node Exporter Failed
+          expr: |
+            sum (
+              rate( 
+                { log_type="infrastructure", kubernetes_namespace_name="openshift-monitoring", kubernetes_container_name="node-exporter" } |= `broken pipe` 
+              [1m])
+            ) by (
+              kubernetes_host, kubernetes_pod_name
+            ) > 1
+          for: 5m
+          labels:
+            namespace: openshift-monitoring
+            service: node-exporter
+            severity: warning
+            openshift_io_alert_source: loki
+  tenantID: infrastructure

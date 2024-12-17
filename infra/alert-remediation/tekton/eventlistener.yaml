@@ -14,7 +14,13 @@ spec:
               - key: status
                 expression: "body.alerts[0].status"
               - key: labels
-                expression: "body.alerts[0].labels"  
+                expression: "body.alerts[0].labels.map(name, !(name in ['alertname','severity']), name + '=' + body.alerts[0].labels[name])"
+              - key: alertname
+                expression: "body.alerts[0].labels.alertname"
+              - key: severity
+                expression: "body"
+            - name: filter
+              value: "body.alerts[0].labels.alertname in ['NodeExporterBrokenPipe'] && body.alerts[0].status == `firing`"
       bindings:
         - ref: alertmanager-webhook-binding
       template:

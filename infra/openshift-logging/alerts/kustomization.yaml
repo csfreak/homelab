@@ -1,0 +1,7 @@
+resources:
+  - node-exporter-broken-pipe.yaml
+
+labels:
+  - pairs:
+      loki.homelab.csfreak.com/lokistack: lokistack-logging
+
