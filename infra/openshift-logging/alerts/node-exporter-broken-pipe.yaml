@@ -15,7 +15,7 @@ spec:
           expr: |
             sum (
               rate( 
-                { log_type="infrastructure", kubernetes_namespace_name="openshift-monitoring", kubernetes_container_name="node-exporter" } |= `broken pipe` 
+                { log_type="infrastructure", kubernetes_namespace_name="openshift-monitoring", kubernetes_container_name="node-exporter" } |= "broken pipe" 
               [1m])
             ) by (
               kubernetes_host, kubernetes_pod_name
