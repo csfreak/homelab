@@ -28,10 +28,10 @@ spec:
           resources:
             requests:
               memory: 512Mi
-              cpu: 100m
+              cpu: 10m
             limits:
               memory: 2Gi
-              cpu: 1000m
+              cpu: 100m
           volumeMounts:
             - mountPath: /app/config
               name: overseerr-config
