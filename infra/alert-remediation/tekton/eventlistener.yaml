@@ -18,7 +18,7 @@ spec:
               - key: alertname
                 expression: "body.alerts[0].labels.alertname"
               - key: severity
-                expression: "body"
+                expression: "body.alerts[0].labels.severity"
             - name: filter
               value: "body.alerts[0].labels.alertname in ['NodeExporterBrokenPipe','KubeDaemonSetRolloutStuck'] && body.alerts[0].status == 'firing'"
       bindings:
