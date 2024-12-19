@@ -87,13 +87,87 @@ spec:
       params:
         - name: SCRIPT
           value: |
-            PODNODE="$(oc get po/$(tasks.parse-node-exporter-labels.results.pod) -n $(tasks.parse-node-exporter-labels.node) | jq -r '.spec.nodeName')"
+            PODNODE="$(oc get po/$(tasks.parse-node-exporter-labels.results.pod) -n $(tasks.parse-node-exporter-labels.namespace) | jq -r '.spec.nodeName')"
             if [ "${PODNODE}" != "$(tasks.parse-node-exporter-labels.results.node)"]; then
               echo "ERROR: pod $(tasks.parse-node-exporter-labels.results.pod) not on $(tasks.parse-node-exporter-labels.node)"
               exit 1
             fi
             echo "deleting po/$(tasks.parse-node-exporter-labels.results.pod) from $(tasks.parse-node-exporter-labels.node) in $(tasks.parse-node-exporter-labels.namespace) namespace"
             oc delete po/$(tasks.parse-node-exporter-labels.results.pod) -n $(tasks.parse-node-exporter-labels.namespace)
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: openshift-client
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+    - name: parse-daemon-set-labels
+      when: 
+        - input: $(params.status)
+          operator: in
+          values: ["firing"]
+        - input: $(params.alertname)
+          operator: in
+          values: ["KubeDaemonSetRolloutStuck"]
+      params:
+        - name: labels
+          value: $(params.labels[*])
+      taskSpec:
+        results:
+          - name: daemonset
+            type: string
+          - name: namespace
+            type: string
+          - name: service
+            type: string
+        steps:
+          - name: parse-labels
+            image: homelab.docker.homelab.csfreak.com/homelab/ubi-task@sha256:b537e2bf9ea9e49cf7974dc907ac658b72c315546ded0e3902adf0408584f647
+            env:
+              - name: LABELS
+                value: "$(params.labels[*])"
+            script: |
+              #!/usr/bin/env bash
+
+              set -e
+
+              for label in LABELS; do 
+                labelarr=(${label//;/ })
+                key=${labelarr[1]}
+                value=${labelarr[2]}
+                echo "processing label ${key} with value ${value}"
+                case "${key}" in
+                  "daemonset")
+                    output = $(results.daemonset.path) 
+                    ;;
+                  "namespace")
+                    output = $(results.namespace.path) 
+                    ;;
+                  "service")
+                    output = $(results.service.path) 
+                    ;;
+                  "*")
+                    output = ""
+                    echo "WARNING: unknown label ${key}" >&2
+                    ;;
+                esac
+                if [ -z "${output}" ]; then
+                  echo "${value}" > ${output}
+                fi
+              done
+    - name: delete-daemon-set-pods
+      params:
+        - name: SCRIPT
+          value: |
+            PODS="$(oc get pod -n $(tasks.parse-daemon-set-labels.namespace) -o name --field-selector status.phase=Failed)"
+            for POD in $(PODS); do
+              if [ "${POD/#pod\/$(tasks.parse-daemon-set-labels.daemonset)-*/match}" == "match" ]; then
+                echo "deleting ${POD}"
+                oc delete ${POD} -n $(tasks.parse-daemon-set-labels.namespace) --wait=false
+              fi
+            done
       taskRef:
         params:
           - name: kind
