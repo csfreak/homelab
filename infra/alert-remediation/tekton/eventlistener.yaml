@@ -20,7 +20,7 @@ spec:
               - key: severity
                 expression: "body"
             - name: filter
-              value: "body.alerts[0].labels.alertname in ['NodeExporterBrokenPipe'] && body.alerts[0].status == `firing`"
+              value: "body.alerts[0].labels.alertname in ['NodeExporterBrokenPipe'] && body.alerts[0].status == 'firing'"
       bindings:
         - ref: alertmanager-webhook-binding
       template:
