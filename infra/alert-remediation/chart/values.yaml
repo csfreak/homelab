@@ -21,7 +21,7 @@ alerts:
         enabled: true
         script: |
           PODS="$(oc get pod -n $(params.namespace) -o name --field-selector status.phase=Failed)"
-          for POD in $(PODS); do
+          for POD in ${PODS}; do
             if [ "${POD/#pod\/$(params.daemonset)-*/match}" == "match" ]; then
               echo "deleting ${POD}"
               oc delete ${POD} -n $(params.namespace) --wait=false
