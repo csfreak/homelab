@@ -36,9 +36,6 @@ Common labels
 {{- define "alert-remediation.labels" -}}
 helm.sh/chart: {{ include "alert-remediation.chart" . }}
 {{ include "alert-remediation.selectorLabels" . }}
-{{- if $.Chart.AppVersion }}
-app.kubernetes.io/version: {{ $.Chart.AppVersion | quote }}
-{{- end }}
 app.kubernetes.io/managed-by: {{ $.Release.Service }}
 {{- end }}
 

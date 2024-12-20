@@ -48,4 +48,5 @@ spec:
           - name: {{ $param.name }}
             value: $(tt.params.{{ $param.name }})
           {{ end }}
+---
 {{ end }}
