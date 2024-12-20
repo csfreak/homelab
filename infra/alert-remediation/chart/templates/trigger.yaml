@@ -4,7 +4,7 @@ kind: Trigger
 metadata:
   name: trigger-{{ $alert.name | kebabcase }}
   labels: 
-    {{ include "alert-remediation.labels" $ }}
+{{ include "alert-remediation.labels" $ | indent 4 }}
 spec:
   interceptors:
     - ref:

@@ -4,7 +4,7 @@ kind: Pipeline
 metadata:
   name: alert-{{ $alert.name | kebabcase }}
   labels:
-    {{ include "alert-remediation.labels" $ }}
+{{ include "alert-remediation.labels" $ | indent 4 }}
 spec:
   params:
     - name: status
