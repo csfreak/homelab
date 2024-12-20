@@ -37,6 +37,8 @@ alerts:
             - delete
           resources:
             - pods
+          apiGroups:
+            - ''
       namespace: openshift-network-node-identity
 
   - name: NodeExporterBrokenPipe
@@ -68,4 +70,6 @@ alerts:
             - delete
           resources:
             - pods
+          apiGroups:
+            - ''
       namespace: openshift-monitoring
