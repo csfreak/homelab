@@ -53,7 +53,7 @@ alerts:
       firing:
         enabled: true
         script: |
-          PODNODE="$(oc get po/$(params.pod) -n $(params.namespace) -o jsonpath='{.spec.nodeName}'"
+          PODNODE="$(oc get po/$(params.pod) -n $(params.namespace) -o jsonpath='{.spec.nodeName}')"
           if [ "${PODNODE}" != "$(params.node)"]; then
             echo "ERROR: pod $(params.pod) not on $(params.node)"
             exit 1
