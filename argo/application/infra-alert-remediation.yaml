@@ -12,8 +12,6 @@ spec:
     path: infra/alert-remediation/chart
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: HEAD
-    helm:
-      IgnoreMissingValueFiles: true
   syncPolicy:
     automated: 
       prune: true
