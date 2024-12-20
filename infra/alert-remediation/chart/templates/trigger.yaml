@@ -28,25 +28,26 @@ spec:
       value: $(extensions.{{ $param.name }})
     {{ end }}
   template:
-    params: 
-      - name: status
-      {{ range $param := $alert.params -}}
-      - name: {{ $param.name }}
-      {{ end }}
-    resourcetemplates:
-      - apiVersion: tekton.dev/v1beta1
-        kind: PipelineRun
-        metadata:
-          generateName: alert-{{ $alert.name | kebabcase }}-
-        spec:
-          pipelineRef:
-            name: alert-{{ $alert.name | kebabcase }}
-          params:
-          - name: status
-            value: $(tt.params.status)
-          {{ range $param := $alert.params -}}
-          - name: {{ $param.name }}
-            value: $(tt.params.{{ $param.name }})
-          {{ end }}
+    spec:
+      params: 
+        - name: status
+        {{ range $param := $alert.params -}}
+        - name: {{ $param.name }}
+        {{ end }}
+      resourcetemplates:
+        - apiVersion: tekton.dev/v1beta1
+          kind: PipelineRun
+          metadata:
+            generateName: alert-{{ $alert.name | kebabcase }}-
+          spec:
+            pipelineRef:
+              name: alert-{{ $alert.name | kebabcase }}
+            params:
+            - name: status
+              value: $(tt.params.status)
+            {{ range $param := $alert.params -}}
+            - name: {{ $param.name }}
+              value: $(tt.params.{{ $param.name }})
+            {{ end }}
 ---
 {{ end }}
