@@ -4,6 +4,9 @@
 
 nameOverride: ""
 fullnameOverride: ""
+eventListener:
+  enabled: true
+  name: alertmanager-webhook
 
 alerts:
   - name: KubeDaemonSetRolloutStuck

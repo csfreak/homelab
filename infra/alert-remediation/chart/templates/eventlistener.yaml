@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1
 kind: EventListener
 metadata:
-  name: {{ include "alert-remediation.fullname" . }}
+  name: {{ .Values.eventListener.name | default (include "alert-remediation.fullname" . ) }}
   labels:
 {{ include "alert-remediation.labels" . | indent 4 }}
 spec:
