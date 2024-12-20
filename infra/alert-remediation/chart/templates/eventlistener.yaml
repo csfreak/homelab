@@ -17,7 +17,7 @@ spec:
               - key: status
                 expression: "body.status"
             - name: filter
-              value: "header.canonical('User-Agent').startsWith('Alertmanager') && body.has('status') && body.alerts.size == 1"
+              value: "header.canonical('User-Agent').startsWith('Alertmanager') && has(body.status) && body.alerts.size() == 1"
       triggerSelector:
         labelSelector:
           matchLabels:
