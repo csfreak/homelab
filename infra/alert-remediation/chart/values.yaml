@@ -29,6 +29,16 @@ alerts:
           done
       resolved:
         enabled: false
+    rbac:
+      rules:
+        - verbs:
+            - get
+            - list
+            - delete
+          resources:
+            - pods
+      namespace: openshift-network-node-identity
+
   - name: NodeExporterBrokenPipe
     params:
       - name: node
@@ -50,3 +60,12 @@ alerts:
           oc delete po/$(params.pod) -n $(params.namespace)
       resolved:
         enabled: false
+    rbac:
+      rules:
+        - verbs:
+            - get
+            - list
+            - delete
+          resources:
+            - pods
+      namespace: openshift-monitoring

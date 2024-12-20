@@ -1,0 +1,32 @@
+{{ range $alert := $.Values.alerts -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: {{ if $alert.rbac.namespace -}} Role {{- else -}} ClusterRole {{- end }}
+metadata: 
+  name: {{ include "alert-remediation.fullname" $ }}-{{ $alert.name | kebabcase }}
+  {{ if $alert.rbac.namespace -}}
+  namespace: {{ $alert.rbac.namespace }}
+  {{- end }}
+  labels:
+{{ include "alert-remediation.labels" $ | indent 4 }}
+rules:
+{{ $alert.rbac.rules | toYaml }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: {{ if $alert.rbac.namespace -}} RoleBinding {{- else -}} ClusterRoleBinding {{- end }}
+metadata: 
+  name: {{ include "alert-remediation.fullname" $ }}-{{ $alert.name | kebabcase }}
+  {{ if $alert.rbac.namespace -}}
+  namespace: {{ $alert.rbac.namespace }}
+  {{- end }}
+  labels:
+{{ include "alert-remediation.labels" $ | indent 4 }}
+subjects:
+  - kind: ServiceAccount
+    name: pipeline
+    namespace: {{ $.Release.Namespace}}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: {{ if $alert.rbac.namespace -}} Role {{- else -}} ClusterRole {{- end }}
+  name: {{ include "alert-remediation.fullname" $ }}-{{ $alert.name | kebabcase }}
+---
+{{ end }}
