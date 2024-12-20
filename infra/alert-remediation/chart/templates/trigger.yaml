@@ -19,7 +19,7 @@ spec:
               expression: {{ $param.expression | default (printf "body.alerts[0].labels.%s" ($param.fromLabel | default $param.name)) | quote }}
             {{ end }}
         - name: filter
-          value: "body.alerts[0].labels.alertname == {{ $alert.name }}"
+          value: "body.alerts[0].labels.alertname == {{ $alert.name |  squote }}"
   bindings:
     - name: status
       value: $(extensions.status)
