@@ -8,11 +8,15 @@ spec:
     namespace: infra-alert-remediation
     server: https://kubernetes.default.svc
   project: infra
-  source:
-    path: infra/alert-remediation/chart
-    repoURL: https://github.com/csfreak/homelab.git
-    chart: alert-remediation
-    targetRevision: HEAD
+  sources:
+    - ref: git
+      path: infra/alert-remediation
+      repoURL: https://github.com/csfreak/homelab.git
+      targetRevision: HEAD
+    - chart: alert-remediation
+      repoURL: $git/chart
+      helm:
+        IgnoreMissingValueFiles: true
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
