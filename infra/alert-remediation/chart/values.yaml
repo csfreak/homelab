@@ -1,0 +1,49 @@
+# Default values for alert-remediation.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+alerts:
+  - name: KubeDaemonSetRolloutStuck
+    params:
+      - name: daemonset
+        #expression: "body.alerts[0].labels.daemonset"
+        #fromLabel: daemonset
+        type: string
+      - name: namespace
+    actions:
+      firing:
+        enabled: true
+        script: |
+          PODS="$(oc get pod -n $(params.namespace) -o name --field-selector status.phase=Failed)"
+          for POD in $(PODS); do
+            if [ "${POD/#pod\/$(params.daemonset)-*/match}" == "match" ]; then
+              echo "deleting ${POD}"
+              oc delete ${POD} -n $(params.namespace) --wait=false
+            fi
+          done
+      resolved:
+        enabled: false
+  - name: NodeExporterBrokenPipe
+    params:
+      - name: node
+        fromLabel: kubernetes_host
+      - name: namespace
+      - name: pod
+        fromLabel: kubernetes_pod_name
+      - name: service
+    actions:
+      firing:
+        enabled: true
+        script: |
+          PODNODE="$(oc get po/$(params.pod) -n $(params.namespace) | jq -r '.spec.nodeName')"
+          if [ "${PODNODE}" != "$(params.node)"]; then
+            echo "ERROR: pod $(params.pod) not on $(params.node)"
+            exit 1
+          fi
+          echo "deleting po/$(params.pod) from $(params.node) in $(params.namespace) namespace"
+          oc delete po/$(params.pod) -n $(params.namespace)
+      resolved:
+        enabled: false

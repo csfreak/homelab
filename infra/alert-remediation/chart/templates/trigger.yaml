@@ -1,0 +1,51 @@
+{{ range $alert := $.Values.alerts -}}
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  name: trigger-{{ $alert.name | kebabcase }}
+  labels: 
+    {{ include "alert-remediation.labels" $ }}
+spec:
+  interceptors:
+    - ref:
+        name: cel
+      params: 
+        - name: overlays
+          value:
+            - key: severity
+              expression: "body.alerts[0].labels.severity"
+            {{ range $param := $alert.params -}}
+            - key: {{ $param.name }}
+              expression: {{ $param.expression | default (printf "body.alerts[0].labels.%s" ($param.fromLabel | default $param.name)) | quote }}
+            {{ end }}
+        - name: filter
+          value: "body.alerts[0].labels.alertname == {{ $alert.name }}"
+  bindings:
+    - name: status
+      value: $(extensions.status)
+    {{ range $param := $alert.params -}}
+    - name: {{ $param.name }}
+      value: $(extensions.{{ $param.name }})
+    {{ end }}
+  template:
+    params: 
+      - name: status
+      {{ range $param := $alert.params -}}
+      - name: {{ $param.name }}
+      {{ end }}
+    resourcetemplates:
+      - apiVersion: tekton.dev/v1beta1
+        kind: PipelineRun
+        metadata:
+          generateName: alert-{{ $alert.name | kebabcase }}-
+        spec:
+          pipelineRef:
+            name: alert-{{ $alert.name | kebabcase }}
+          params:
+          - name: status
+            value: $(tt.params.status)
+          {{ range $param := $alert.params -}}
+          - name: {{ $param.name }}
+            value: $(tt.params.{{ $param.name }})
+          {{ end }}
+{{ end }}

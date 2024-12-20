@@ -1,0 +1,41 @@
+{{ range $alert := $.Values.alerts -}}
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: alert-{{ $alert.name | kebabcase }}
+  labels:
+    {{ include "alert-remediation.labels" $ }}
+spec:
+  params:
+    - name: status
+      enum: 
+        - firing
+        - resolved
+      type: string
+      default: firing
+    {{ range $param := $alert.params -}}
+    - name: {{ $param.name }}
+      type: {{ $param.type | default "string" }}
+    {{ end }}
+  tasks:
+    {{ if $alert.actions.firing.enabled -}}
+    - name: alert-firing-task
+      when: 
+        - input: $(params.status)
+          operator: in
+          values: ["firing"]
+      params:
+        - name: SCRIPT
+          value: |
+{{ $alert.actions.firing.script | indent 12}}
+      taskRef:
+        params:
+          - name: kind
+            value: task
+          - name: name
+            value: openshift-client
+          - name: namespace
+            value: openshift-pipelines
+        resolver: cluster
+    {{ end }}
+{{ end }}

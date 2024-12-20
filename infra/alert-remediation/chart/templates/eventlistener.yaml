@@ -1,0 +1,25 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: {{ include "alert-remediation.fullname" . }}
+  labels:
+{{ include "alert-remediation.labels" . | indent 4 }}
+spec:
+  triggerGroups:
+    - name: {{ include "alert-remediation.fullname" . }}-triggers
+      interceptors:
+        - name: validate-from-alertmanager
+          ref:
+            name: cel
+          params: 
+            - name: overlays
+              value:
+              - key: status
+                expression: "body.status"
+            - name: filter
+              value: "header.canonical('User-Agent').startswith('Alertmanager') && body.has('status') && body.alerts.size == 1"
+      triggerSelector:
+        labelSelector:
+          matchLabels:
+{{ include "alert-remediation.selectorLabels" . | indent 12}}
+  

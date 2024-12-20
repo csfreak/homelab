@@ -9,11 +9,11 @@ spec:
     server: https://kubernetes.default.svc
   project: infra
   source:
-    path: infra/alert-remediation
+    path: infra/alert-remediation/chart
     repoURL: https://github.com/csfreak/homelab.git
+    chart: alert-remediation
     targetRevision: HEAD
   syncPolicy:
-    automated: {}
     syncOptions:
       - CreateNamespace=true
       - PruneLast=true
