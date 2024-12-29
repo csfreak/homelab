@@ -70,7 +70,7 @@ spec:
   loki_stack_namespace: openshift-logging 
   options:
     configMaps:
-      config-results-retention-policy:
+      tekton-results-config-results-retention-policy:
         data:
           runAt: "3 5 * * 0"
-          maxRetention: "360"
+          maxRetention: "365"
