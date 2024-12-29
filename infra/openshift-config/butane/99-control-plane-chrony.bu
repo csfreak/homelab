@@ -1,0 +1,18 @@
+variant: openshift
+version: 4.17.0
+metadata:
+  name: 99-control-plane-chrony
+  labels:
+    machineconfiguration.openshift.io/role: master
+storage:
+  files:
+  - path: /etc/chrony.conf
+    mode: 0644
+    overwrite: true
+    contents:
+      inline: |
+        driftfile /var/lib/chrony/drift
+        makestep 1.0 3
+        rtcsync
+        logdir /var/log/chrony
+        sourcedir /run/chrony-dhcp
