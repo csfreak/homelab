@@ -18,7 +18,7 @@ spec:
           - name: HA_URL
             value: http://hass:8123
           - name: DASH_URL
-            value: https://appdaemon-homeautomation.apps.homelab.csfreak.com
+            value: http://0.0.0.0:5050
         envFrom:
           - secretRef:
               name: hass-token-secret
