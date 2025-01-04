@@ -14,6 +14,15 @@ spec:
       containers:
       - name: appdaemon
         image: appdaemon
+        env:
+          - name: HA_URL
+            value: http://hass:8123
+          - name: DASH_URL
+            value: https://appdaemon-homeautomation.apps.homelab.csfreak.com
+        envFrom:
+          - secretRef:
+              name: hass-token-secret
+
         volumeMounts:
           - mountPath: /conf/
             name: appdaemon-config
