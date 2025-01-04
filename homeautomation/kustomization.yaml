@@ -20,6 +20,6 @@ images:
 - name: code-server
   newName: ghcr.io/coder/code-server
   newTag: 4.96.2
-  digest: sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699                                                         /0.3s
+  digest: sha256:6b8c0e944caec80057e71d2c2f352cee38fe00ae4b7515fc4458eb300844f699
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
