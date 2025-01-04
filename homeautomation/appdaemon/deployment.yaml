@@ -49,6 +49,6 @@ spec:
             name: codeserver-http
             protocol: TCP
       volumes:
-        - name: hass-config
+        - name: appdaemon-config
           persistentVolumeClaim:
-            claimName: hass-config
+            claimName: appdaemon-config
