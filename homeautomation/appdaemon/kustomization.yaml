@@ -5,22 +5,23 @@ resources:
 - route.yaml
 
 images:
-- name: music-assistant
-  newName: ghcr.io/music-assistant/server
-  newTag: 2.3.5
-  digest: sha256:c9bd5dd2d1f3741649e5398c472b43fdb1c68ef69c8f8d0e0dd261c84cf0d3c1
-
+- name: appdaemon
+  newName: acockburn/appdaemon
+  newTag: 4.4.2
+  digest: sha256:9619fc18bc53082ae2dc680e80f1bcb634c793a74b2114779df1b381ffa0736c
+  
 labels:
 - includeTemplates: true
   pairs:
-    app.kubernetes.io/name: mass
+    app.kubernetes.io/name: appdaemon
 - includeSelectors: true
   pairs:
-    app: music-assistant
-    app.kubernetes.io/component: music-assistant
+    app: appdaemon
+    app.kubernetes.io/part-of: homeassistant
 
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

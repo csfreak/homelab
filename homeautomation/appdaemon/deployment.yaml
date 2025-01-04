@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appdaemon
+spec:
+  selector:
+    matchLabels:
+      app: appdaemon
+  template:
+    metadata:
+      labels:
+        app: appdaemon
+    spec:
+      containers:
+      - name: appdaemon
+        image: appdaemon
+        volumeMounts:
+          - mountPath: /conf/
+            name: appdaemon-config
+            subPath: /config
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 10m
+          limits:
+            memory: 128Mi
+            cpu: 100m
+        ports:
+        - containerPort: 5050
+          name: appdaemon
+          protocol: TCP
+      - name: code-server
+        image: code-server
+        volumeMounts:
+          - mountPath: /home/coder/
+            name: appdaemon-config
+        env:
+          - name: HOME
+            value: /home/coder
+        resources:
+          limits:
+            memory: 768Mi
+            cpu: "1"
+          requests:
+            memory: 128Mi
+            cpu: 10m
+        ports:
+          - containerPort: 8080
+            name: codeserver-http
+            protocol: TCP
+      volumes:
+        - name: hass-config
+          persistentVolumeClaim:
+            claimName: hass-config
