@@ -5,7 +5,9 @@ metadata:
   labels:
     {{- include "synology-haproxy.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount | default 0 }}
+  {{- if not .Values.hpa.enabled  }}
+  replicas: {{ .Values.replicaCount | default 1 }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "synology-haproxy.selectorLabels" . | nindent 6 }}
