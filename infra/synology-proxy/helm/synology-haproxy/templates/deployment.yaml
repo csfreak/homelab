@@ -33,7 +33,7 @@ spec:
             - -f
             - /config/haproxy.cfg
           ports:
-            - name: http-metrics
+            - name: metrics
               containerPort: 8405
               protocol: TCP
             {{- range $port := .Values.proxy.ports }}
