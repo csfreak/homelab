@@ -8,6 +8,7 @@ metadata:
 spec:
   scaleTargetRef:
     kind: Deployment
+    apiVersion: apps/v1
     name: {{ include "synology-haproxy.fullname" . }}
   minReplicas: {{ .Values.hpa.minReplicas | default 1 }}
   maxReplicas: {{ .Values.hpa.maxReplicas | default 2 }}
