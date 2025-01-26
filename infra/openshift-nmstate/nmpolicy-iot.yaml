@@ -14,7 +14,7 @@ spec:
         type: vlan
         vlan:
           base-iface: "{{ capture.ethernet-active.interfaces.0.name }}"
-          id: 104
+          id: 4
       - mtu: 1500
         name: iot-vlan-br
         state: up
