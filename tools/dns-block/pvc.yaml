@@ -14,12 +14,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: adguard-config
+  name: adguard-config-2
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 10Gi
-  storageClassName: synology-nfs-storage-hdd
+  storageClassName: synology-iscsi-hdd
   volumeMode: Filesystem

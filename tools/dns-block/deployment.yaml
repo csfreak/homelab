@@ -17,9 +17,7 @@ spec:
           args:
             - --no-check-update
             - -c
-            - /opt/adguardhome/conf/AdGuardHome.yaml
-            - -w
-            - /opt/adguardhome/work
+            - /opt/adguardhome/work/AdGuardHome.yaml
             - --no-permcheck
           resources:
             limits:
@@ -52,9 +50,9 @@ spec:
                 - NET_ADMIN
                 - NET_RAW
           volumeMounts:
+            - name: adguard-old-work
+              mountPath: /opt/adguardhome/old
             - name: adguard-config
-              mountPath: /opt/adguardhome/conf
-            - name: adguard-work
               mountPath: /opt/adguardhome/work
         - name: adguard-exporter
           image: adguard-exporter:latest
@@ -82,7 +80,7 @@ spec:
       volumes:
         - name: adguard-config
           persistentVolumeClaim:
-            claimName: adguard-config
-        - name: adguard-work
+            claimName: adguard-config-2
+        - name: adguard-old-work
           persistentVolumeClaim:
             claimName: adguard-work
