@@ -19,7 +19,7 @@ labels:
 images:
   - name: adguardhome
     newName: adguard/adguardhome
-    newTag: v0.107.48
+    newTag: v0.107.56
   - name: adguard-exporter
     newName: ghcr.io/henrywhitaker3/adguard-exporter
     newTag: latest
