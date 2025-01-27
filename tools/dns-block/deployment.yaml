@@ -18,6 +18,8 @@ spec:
             - --no-check-update
             - -c
             - /opt/adguardhome/work/AdGuardHome.yaml
+            - -w
+            - /opt/adguardhome/work
           resources:
             limits:
               memory: 384Mi
