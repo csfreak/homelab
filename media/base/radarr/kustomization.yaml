@@ -18,7 +18,7 @@ labels:
 images:
   - name: radarr
     newName: homelab.docker.homelab.csfreak.com/homelab/radarr
-    digest: sha256:be1f6d567c8a2e1d292f85bbccf78d45482cb04acfae907f1501813bddaf4d7b
+    digest: sha256:bca448ef4bb1848cb608d637c656c13b35b246a5dc19f37ab0fa55f6503761cd
 
 generatorOptions:
   annotations:
