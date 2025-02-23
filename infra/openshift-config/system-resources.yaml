@@ -1,0 +1,31 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: master-resources-reservation-config 
+spec:
+  matchExpressions:
+      - key: pools.operator.machineconfiguration.openshift.io/master
+        operator: Exists
+  kubeletConfig: 
+    podsPerCore: 15
+    maxPods: 120
+    systemReserved:
+      cpu: 1000m
+      memory: 2Gi
+---
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: worker-resources-reservation-config 
+spec:
+  matchExpressions:
+      - key: pools.operator.machineconfiguration.openshift.io/worker
+        operator: Exists
+  kubeletConfig: 
+    podsPerCore: 15
+    maxPods: 100
+    systemReserved:
+      cpu: 500m
+      memory: 1Gi
+
+
