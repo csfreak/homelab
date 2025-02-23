@@ -2,10 +2,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: overseerr
-  annotations:
-    haproxy.router.openshift.io/ip_whitelist: 0.0.0.0/0
 spec:
-  host: overseerr.apps.homelab.csfreak.com
   port:
     targetPort: overseerr
   to:
