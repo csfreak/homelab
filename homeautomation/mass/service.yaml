@@ -17,8 +17,8 @@ kind: Service
 metadata:
   name: mass-media
   annotations:
-    metallb.universe.tf/allow-shared-ip: "music"
-    metallb.universe.tf/address-pool: "default-address-pool"
+    metallb.io/allow-shared-ip: "music"
+    metallb.io/address-pool: "default-address-pool"
 spec:
   ports:
     - port: 8098
@@ -43,8 +43,8 @@ kind: Service
 metadata:
   name: mass-media-udp
   annotations:
-    metallb.universe.tf/allow-shared-ip: "music"
-    metallb.universe.tf/address-pool: "default-address-pool"
+    metallb.io/allow-shared-ip: "music"
+    metallb.io/address-pool: "default-address-pool"
 spec:
   ports:
     - port: 3483

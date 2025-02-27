@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: bedrock-connect
   annotations:
-    metallb.universe.tf/allow-shared-ip: minecraft
+    metallb.io/allow-shared-ip: minecraft
 spec:
   allocateLoadBalancerNodePorts: false
   selector:

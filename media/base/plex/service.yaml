@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: plex
   annotations:
-    metallb.universe.tf/allow-shared-ip: "media"
+    metallb.io/allow-shared-ip: "media"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local

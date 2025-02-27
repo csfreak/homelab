@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: dns-udp
   annotations:
-    metallb.universe.tf/allow-shared-ip: "dns"
+    metallb.io/allow-shared-ip: "dns"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
@@ -21,7 +21,7 @@ kind: Service
 metadata:
   name: dns-tcp
   annotations:
-    metallb.universe.tf/allow-shared-ip: "dns"
+    metallb.io/allow-shared-ip: "dns"
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
