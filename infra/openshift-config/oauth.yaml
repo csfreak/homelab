@@ -10,6 +10,27 @@ spec:
       mappingMethod: claim
       name: homelab_htpasswd
       type: HTPasswd
+    - mappingMethod: add
+      name: SSO
+      openID:
+        claims:
+          email:
+            - email
+          groups:
+            - groups
+          name:
+            - name
+          preferredUsername:
+            - preferred_username
+        clientID: homelab-cluster
+        clientSecret:
+          name: openid-client-secret-8tv6q
+        extraScopes:
+          - ocp-groups
+          - email
+          - profile
+        issuer: 'https://sso.homelab.csfreak.com/realms/homelab'
+      type: OpenID
 ---
 kind: Secret
 apiVersion: v1
