@@ -30,10 +30,10 @@ spec:
   resources:
     limits:
       memory: 1Gi
-      cpu: 100m
+      cpu: 1
     requests:
       memory: 850Mi
-      cpu: 10m
+      cpu: 100m
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
