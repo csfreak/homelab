@@ -6,6 +6,8 @@ spec:
   additionalOptions:
     - name: log-level
       value: info
+    - name: metrics-enabled
+      value: 'true'
   instances: 2
   image: homelab.docker.homelab.csfreak.com/homelab/keycloak@sha256:32f59189ea760fb991775d9a20a375bae15fe24094549bb442846e3583d02898
   db:
@@ -27,6 +29,8 @@ spec:
   ingress:
     enabled: true
     className: openshift-default
+  proxy:
+    headers: forwarded
   resources:
     limits:
       memory: 1Gi
