@@ -25,10 +25,6 @@ spec:
         clientID: homelab-cluster
         clientSecret:
           name: openid-client-secret-8tv6q
-        extraScopes:
-          - ocp-groups
-          - email
-          - profile
         issuer: 'https://sso.homelab.csfreak.com/realms/homelab'
       type: OpenID
 ---
@@ -40,3 +36,16 @@ metadata:
 type: Opaque
 data:
   htpasswd: amRyb3NzOiRhcHIxJDlkekRoaDcuJGdCT0VyUW1nRzZZeU9rLzU4cXV0ei8K
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sso-cluster-admins
+subjects:
+  - kind: group
+    apiGroup: rbac.authorization.k8s.io
+    name: cluster-admins
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
