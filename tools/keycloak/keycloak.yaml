@@ -3,7 +3,11 @@ kind: Keycloak
 metadata:
   name: homelab-sso
 spec:
-  instances: 1
+  additionalOptions:
+    - name: log-level
+      value: info
+  instances: 2
+  image: homelab.docker.homelab.csfreak.com/homelab/keycloak@sha256:32f59189ea760fb991775d9a20a375bae15fe24094549bb442846e3583d02898
   db:
     vendor: mariadb
     host: sso-db
@@ -16,14 +20,30 @@ spec:
       key: password
   http:
     tlsSecret: sso-cert
+  httpManagement:
+    port: 9000
   hostname:
     hostname: sso.homelab.csfreak.com
   ingress:
     enabled: true
     className: openshift-default
-  additionalOptions:
-    - name: log-level
-      value: info
-  image: homelab.docker.homelab.csfreak.com/homelab/keycloak:15c559a49b551f9d61e73a93d622ebf14550541e@sha256:be7727f4ee2237dbe9b7b92792f2e4edd2ed24119f7bc0517d06a20ef625ea9d
-  httpManagement:
-    port: 9000
+  resources:
+    limits:
+      memory: 1Gi
+      cpu: 100m
+    requests:
+      memory: 850Mi
+      cpu: 10m
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: homelab-sso-metrics
+spec:
+  selector:
+    matchLabels:
+      app: keycloak
+  endpoints:
+    - port: management
+      path: /metrics
+      interval: 10s
