@@ -7,7 +7,7 @@ spec:
     - htpasswd:
         fileData:
           name: auth-config
-      mappingMethod: claim
+      mappingMethod: add
       name: homelab_htpasswd
       type: HTPasswd
     - mappingMethod: add
