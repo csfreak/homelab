@@ -42,7 +42,7 @@ kind: ClusterRoleBinding
 metadata:
   name: sso-cluster-admins
 subjects:
-  - kind: group
+  - kind: Group
     apiGroup: rbac.authorization.k8s.io
     name: cluster-admins
 roleRef:
