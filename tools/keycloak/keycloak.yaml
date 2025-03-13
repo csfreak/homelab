@@ -44,14 +44,14 @@ spec:
         requiredDuringSchedulingIgnoredDuringExecution:
           nodeSelectorTerms:
           - matchExpressions:
-            - key: node-role.kubernetes.io
-              operator: In
-              values:
-              - master
+            - key: node-role.kubernetes.io/master
+              operator: Exists
     tolerations: 
       - effect: NoSchedule
+        operator: Exists
         key: node-role.kubernetes.io/master
       - effect: NoExecute
+        operator: Exists
         key: node-role.kubernetes.io/master
 ---
 apiVersion: monitoring.coreos.com/v1
