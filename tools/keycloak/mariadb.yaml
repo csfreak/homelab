@@ -40,6 +40,8 @@ spec:
       prometheusRelease: openshift-user-workload-monitoring
       interval: 10s
       scrapeTimeout: 10s
+  nodeSelector:
+    node-role.kubernetes.io/master: ""
   serviceAccountName: sso-db
   storage:
     size: 10Gi
@@ -50,6 +52,11 @@ spec:
       storageClassName: synology-iscsi-ssd
       accessModes:
         - ReadWriteOnce
+  tolerations:
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+    - effect: NoExecute
+      key: node-role.kubernetes.io/master
 ---
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: Database
