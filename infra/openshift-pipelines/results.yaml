@@ -68,9 +68,3 @@ spec:
   prometheus_port: 9090
   loki_stack_name: lokistack-logging
   loki_stack_namespace: openshift-logging 
-  options:
-    configMaps:
-      tekton-results-config-results-retention-policy:
-        data:
-          runAt: "3 5 * * 0"
-          maxRetention: "365"
