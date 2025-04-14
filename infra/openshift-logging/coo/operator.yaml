@@ -12,3 +12,11 @@ spec:
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   startingCSV: cluster-observability-operator.0.4.1s
+  config:
+    resources:
+      limits:
+        cpu: 50m
+        memory: 512Mi
+      requests:
+        cpu: 5m
+        memory: 256Mi
