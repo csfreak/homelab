@@ -9,7 +9,7 @@ spec:
     - name: metrics-enabled
       value: 'true'
   instances: 2
-  image: homelab.docker.homelab.csfreak.com/homelab/keycloak@sha256:32f59189ea760fb991775d9a20a375bae15fe24094549bb442846e3583d02898
+  image: homelab.docker.homelab.csfreak.com/homelab/keycloak@@sha256:2df8ce491d66510e7f18d9ac4cdc597b61655be2d4f1f32b1fe7924354121909
   db:
     vendor: mariadb
     host: sso-db
