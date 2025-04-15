@@ -150,10 +150,10 @@ data:
           key: node-role.kubernetes.io/master
       resources:
         requests:
-          memory: 384M
+          memory: 512M
           cpu: 500m
         limits:
-          memory: 512M
+          memory: 1G
           cpu: 1000m
     monitoringPlugin:
       nodeSelector:
