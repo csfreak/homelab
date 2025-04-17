@@ -1,30 +1,28 @@
 apiVersion: metallb.io/v1beta1
-kind: BGPAdvertisement
+kind: L2Advertisement
 metadata:
-  name: workers
+  name: example-advertisement10
   namespace: metallb-system
 spec:
   ipAddressPools:
     - default-address-pool
-  aggregationLength: 32
-  communities:
-    - NO_EXPORT
   nodeSelectors:
-    - matchLabels:
-        node-role.kubernetes.io/worker: ""
+  - matchLabels:
+      node-role.kubernetes.io/worker: ""
+  interfaces:
+  - br-ex
 ---
 apiVersion: metallb.io/v1beta1
-kind: BGPAdvertisement
+kind: L2Advertisement
 metadata:
-  name: control-plane
+  name: example-advertisement10
   namespace: metallb-system
 spec:
   ipAddressPools:
     - openshift-ingress-address-pool
     - control-plane-address-pool
-  aggregationLength: 32
-  communities:
-    - NO_EXPORT
   nodeSelectors:
-    - matchLabels:
-        node-role.kubernetes.io/master: ""
+  - matchLabels:
+      node-role.kubernetes.io/master: ""
+  interfaces:
+  - br-ex
