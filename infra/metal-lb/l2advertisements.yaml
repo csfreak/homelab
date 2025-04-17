@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: example-advertisement10
+  name: workers
   namespace: metallb-system
 spec:
   ipAddressPools:
@@ -15,7 +15,7 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: example-advertisement10
+  name: control-plane
   namespace: metallb-system
 spec:
   ipAddressPools:
