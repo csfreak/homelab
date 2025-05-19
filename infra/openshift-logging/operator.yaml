@@ -6,7 +6,7 @@ metadata:
   name: cluster-logging
   namespace: openshift-logging
 spec:
-  channel: stable-6.1
+  channel: stable-6.2
   installPlanApproval: Automatic
   name: cluster-logging
   source: redhat-operators
