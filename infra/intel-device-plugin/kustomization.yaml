@@ -10,6 +10,7 @@ images:
     newName: intel/intel-gpu-initcontainer
   - name: intel/intel-gpu-plugin
     newName: intel/intel-gpu-plugin
+    newTag: '0.32.1'
 
 patches:
   - patch: |-
