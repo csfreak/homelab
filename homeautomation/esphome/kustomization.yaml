@@ -18,8 +18,8 @@ labels:
 images:
 - name: esphome/esphome
   newName: ghcr.io/esphome/esphome
-  newTag: 2025.2.0
-  digest: sha256:553f59e109fc9745942a6e02581bf0a1e2f815bef00a9c9d082a689e85ec18cd
+  newTag: 2025.7.4
+  digest: sha256:ba9f7a09e42720fbec9d92a6467a1d017b852e813bdacd7fc50c4de5d96486e9
   
 generatorOptions:
   annotations:

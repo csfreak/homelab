@@ -7,9 +7,8 @@ resources:
 images:
 - name: music-assistant
   newName: ghcr.io/music-assistant/server
-  newTag: 2.3.6
-  digest: sha256:998c15fe2ac868d8e7b610f243aa3edad273465734d786c0c0b79df248b65c79
-
+  newTag: 2.5.5
+  digest: sha256:1d3527bb2d217634e875d6cdb6e459f6ff9dcde02be60c9a02fdd8dd86648f78
 labels:
 - includeTemplates: true
   pairs:

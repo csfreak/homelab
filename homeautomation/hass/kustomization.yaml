@@ -8,8 +8,8 @@ resources:
 images:
 - name: homeassistant/home-assistant
   newName: ghcr.io/home-assistant/home-assistant
-  newTag: 2025.2.5
-  digest: sha256:5b69ca3b3c1a13b8fe05a052a5110f7e2bffca1bf448af44bd52e52a27400c36
+  newTag: 2025.7.4
+  digest: sha256:e5bf3905955081dc4aae3b3980870c43ce6d8ffb880b5447addb3b3ba00f7bc0
   
 labels:
 - includeTemplates: true
