@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: media
+  namespace: openshift-gitops
+  labels:
+    app.kubernetes.io/name: media
+spec:
+  destination:
+    namespace: media
+    server: https://kubernetes.default.svc
+  ignoreDifferences:
+    - jsonPointers:
+        - /data
+      kind: Secret
+  project: media
+  source:
+    path: media2
+    repoURL: https://github.com/csfreak/homelab.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+    managedNamespaceMetadata:
+      labels:
+        argocd.argoproj.io/managed-by: openshift-gitops
+        policy.sigstore.dev/include: "true"
+      annotations:
+        app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
+        app.openshift.io/vcs-ref: main
+        k8s.ovn.org/multicast-enabled: "true"
