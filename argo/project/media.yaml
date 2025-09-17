@@ -8,6 +8,9 @@ spec:
     - name: "*"
       namespace: media
       server: https://kubernetes.default.svc
+    - name: "*"
+      namespace: media2
+      server: https://kubernetes.default.svc
   roles:
     - name: default
       policies:
