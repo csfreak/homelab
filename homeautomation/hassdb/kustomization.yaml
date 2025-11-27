@@ -1,28 +1,28 @@
 resources:
-- pvc.yaml
-- config.yaml
-- deployment.yaml
-- service.yaml
-- monitoring.yaml
-- secret.yaml
+  - pvc.yaml
+  - config.yaml
+  - deployment.yaml
+  - service.yaml
+  - monitoring.yaml
+  - secret.yaml
 
 labels:
-- includeTemplates: true
-  pairs:
-    app.kubernetes.io/component: database
-    app.kubernetes.io/name: hass-db
-    app.kubernetes.io/part-of: homeassistant
-- includeSelectors: true
-  includeTemplates: true
-  pairs:
-    app: hass-db
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: database
+      app.kubernetes.io/name: hass-db
+      app.kubernetes.io/part-of: homeassistant
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: hass-db
 
 images:
-- name: mariadb
-  newName: registry.redhat.io/rhel9/mariadb-1011
-  newTag: 1-22
-- name: mysqld-exporter
-  newName: quay.io/prometheus/mysqld-exporter
-  newTag: latest
+  - name: mariadb
+    newName: registry.redhat.io/rhel9/mariadb-1011
+    digest: sha256:a60c2ab360f480c6963fbef0c1d4262c9b0e55aa9c8a5917d800e11fce840355
+  - name: mysqld-exporter
+    newName: quay.io/prometheus/mysqld-exporter
+    newTag: latest
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

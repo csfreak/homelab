@@ -3,27 +3,26 @@ resources:
   - deployment.yaml
 
 images:
-- name: govee2mqtt
-  newName: ghcr.io/wez/govee2mqtt
-  digest: sha256:6970ea68b0c6ff4ef6d4e63424e46f38b8fa2ec29e9578f9d6136fefe08a08a7
-
+  - name: govee2mqtt
+    newName: ghcr.io/wez/govee2mqtt
+    digest: sha256:3f2ec1af3f46450bf0b6ae2855d6ead7b38126a7445e73322a81ddae77d2f5bc
 
 labels:
-- includeTemplates: true
-  pairs:
-    app.kubernetes.io/name: govee2mqtt
-- includeSelectors: true
-  pairs:
-    app: govee2mqtt
-    app.kubernetes.io/component: mqtt_gateway
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/name: govee2mqtt
+  - includeSelectors: true
+    pairs:
+      app: govee2mqtt
+      app.kubernetes.io/component: mqtt_gateway
 
 generatorOptions:
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
 
 configMapGenerator:
-- envs:
-  - gv2mqtt.env
-  name: gv2mqtt-env
+  - envs:
+      - gv2mqtt.env
+    name: gv2mqtt-env
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

@@ -1,22 +1,21 @@
 resources:
-- pvc.yaml
-- deployment.yaml
-- service.yaml
-
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
 
 labels:
-- includeTemplates: true
-  pairs:
-    app.kubernetes.io/name: piper
-- includeSelectors: true
-  pairs:
-    app: piper
-    app.kubernetes.io/component: piper
-    app.kubernetes.io/part-of: homeassistant
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/name: piper
+  - includeSelectors: true
+    pairs:
+      app: piper
+      app.kubernetes.io/component: piper
+      app.kubernetes.io/part-of: homeassistant
 
 images:
-- name: homeassistant/amd64-addon-piper
-  newTag: 1.5.2
-  digest: sha256:34ec2ddcfeb5f6397c07a67697465ce994d9139a0045f3c7d479455ed86737bf
+  - name: homeassistant/amd64-addon-piper
+    newTag: 2.1.1
+    digest: sha256:0ffcf53dc58b1e293d66e39c1cb179b256847831848f9c74dfd642757b1d6279
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

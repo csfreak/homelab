@@ -1,22 +1,21 @@
 resources:
-- pvc.yaml
-- deployment.yaml
-- service.yaml
-
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
 
 labels:
-- includeTemplates: true
-  pairs:
-    app.kubernetes.io/name: whisper
-- includeSelectors: true
-  pairs:
-    app: whisper
-    app.kubernetes.io/component: whisper
-    app.kubernetes.io/part-of: homeassistant
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/name: whisper
+  - includeSelectors: true
+    pairs:
+      app: whisper
+      app.kubernetes.io/component: whisper
+      app.kubernetes.io/part-of: homeassistant
 
 images:
-- name: homeassistant/amd64-addon-whisper
-  newTag: 2.4.0
-  digest: sha256:59e4289c39663fac7f8d394315b1d3729a44f6cdf848ecf5b30a13158440a607
+  - name: homeassistant/amd64-addon-whisper
+    newTag: 3.0.1
+    digest: sha256:bb5ace027d893ed80760f37759a6c7adabc7215390c1646c3706c4d1cddf036c
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
