@@ -18,7 +18,7 @@ images:
   - name: esphome/esphome
     newName: ghcr.io/esphome/esphome
     newTag: 2025.11.1
-    digest: sha256:02ca34d33789b1c7f4389c644d28e7f6892c26f931a67972e74221a8932d1457\
+    digest: sha256:02ca34d33789b1c7f4389c644d28e7f6892c26f931a67972e74221a8932d1457
 
 generatorOptions:
   annotations:
