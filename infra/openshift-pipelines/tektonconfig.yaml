@@ -11,12 +11,12 @@ spec:
         value: "false"
       - name: communityClusterTasks
         value: "false"
-      - name: resolverTasks	
-        value: 'true'
-      - name: resolverStepActions	
-        value: 'true'
-      - name: communityResolverTasks	
-        value: 'false'
+      - name: resolverTasks
+        value: "true"
+      - name: resolverStepActions
+        value: "true"
+      - name: communityResolverTasks
+        value: "false"
   chain:
     artifacts.taskrun.storage: oci
     artifacts.taskrun.format: slsa/v2alpha3
@@ -117,8 +117,8 @@ spec:
             ^(?P<filename>[^:]*):(?P<line>[0-9]+):(?P<column>[0-9]+):([
             ]*)?(?P<error>.*)
           error-log-snippet: "true"
-          hub-catalog-name: tekton
-          hub-url: https://api.hub.tekton.dev/v1
+          hub-catalog-type: artifacthub
+          hub-url: https://artifacthub.io
           remember-ok-to-test: "true"
           remote-tasks: "true"
           secret-auto-create: "true"
