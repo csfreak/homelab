@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: infra
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: "*"
+      namespace: "*"
+      server: https://kubernetes.default.svc
+  roles:
+    - name: default
+      policies:
+        - p, proj:infra:default, applications, *, infra/*, allow
+      groups:
+        - system:authenticated:oauth
+  sourceRepos:
+    - https://github.com/csfreak/homelab.git
+    - https://mariadb-operator.github.io/mariadb-operator
+    - https://democratic-csi.github.io/charts/
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
