@@ -4,14 +4,6 @@ metadata:
   name: openshift-gitops
   namespace: openshift-gitops
 spec:
-  nodePlacement:
-    nodeSelector:
-      node-role.kubernetes.io/master: ""
-    tolerations:
-      - effect: NoSchedule
-        key: node-role.kubernetes.io/master
-      - effect: NoExecute
-        key: node-role.kubernetes.io/master
   server:
     autoscale:
       enabled: false
