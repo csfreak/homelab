@@ -20,7 +20,7 @@ spec:
         enabled: false
     ingress:
       enabled: false
-    replicas: 2
+    replicas: 1
     resources:
       limits:
         cpu: 500m
@@ -89,7 +89,7 @@ spec:
     accounts.argocd-developer-hub: "apiKey"
   kustomizeBuildOptions: --enable-helm
   repo:
-    replicas: 2
+    replicas: 1
     resources:
       limits:
         cpu: 250m
