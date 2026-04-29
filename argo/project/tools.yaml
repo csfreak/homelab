@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: tools
+  namespace: openshift-gitops
+spec:
+  destinations:
+    - name: "*"
+      namespace: "*"
+      server: https://kubernetes.default.svc
+  roles:
+    - name: default
+      policies:
+        - p, proj:tools:default, applications, *, tools/*, allow
+      groups:
+        - system:authenticated:oauth
+  sourceRepos:
+    - https://github.com/csfreak/homelab.git
+    - https://redhat-developer.github.io/rhdh-chart
+    - https://charts.bitnami.com/bitnami
+    - https://backstage.github.io/charts
+    - https://sigstore.github.io/helm-charts
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRoleBinding
+    - group: security.openshift.io
+      kind: SecurityContextConstraints
+    - group: console.openshift.io
+      kind: ConsoleLink
+    - group: external-secrets.io
+      kind: ClusterSecretStore
+    # sigstore-policy-controller
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+    - group: rbac.authorization.k8s.io
+      kind: ClusterRole
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+    - group: policy.sigstore.dev
+      kind: TrustRoot
+    - group: policy.sigstore.dev
+      kind: ClusterImagePolicy
