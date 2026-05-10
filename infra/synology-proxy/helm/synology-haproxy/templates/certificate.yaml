@@ -1,0 +1,18 @@
+{{- if .Values.tls.generate }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ include "synology-haproxy.fullname" . }}
+  labels:
+    {{- include "synology-haproxy.labels" . | nindent 4 }}
+spec:
+  secretName: {{ default (print (include "synology-haproxy.fullname" .) "-tls") .Values.tls.secretName }}
+  commonName: {{ .Values.tls.commonName | quote}}
+  issuerRef:
+    {{- toYaml .Values.tls.issuer | nindent 4 }}
+  dnsNames:
+    - {{ .Values.tls.commonName | quote}}
+    {{- with .Values.tls.dnsNames }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+{{- end }}

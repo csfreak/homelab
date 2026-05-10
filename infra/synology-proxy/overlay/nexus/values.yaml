@@ -1,0 +1,73 @@
+# Default values for synology-haproxy.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 4
+
+nameOverride: "nexus"
+
+# resources:
+#   requests:
+#     memory: 64Mi
+#     cpu: 10m
+#   limits:
+#     memory: 256Mi
+#     cpu: 200m
+
+tolerations:
+  - key: node-role.kubernetes.io/master
+    effect: NoSchedule
+
+proxy:
+  ports:
+    ## Port definitions for proxy
+    ## if appProtocol set to http, haproxy will perform http-checks
+    - containerPort: 8081
+      name: http
+      protocol: TCP
+      appProtocol: http
+    - containerPort: 8082
+      name: docker-proxy
+    - containerPort: 8083
+      name: homelab-repo
+    # - containerPort: 8084
+    #   name: redhat-proxy
+    - containerPort: 8085
+      name: quay-proxy
+    - containerPort: 8086
+      name: ghcr-proxy
+  frontend:
+    other: >-
+      http-request return status 200 content-type application/json string "{}" if { path /v2/ }
+
+tls:
+  enabled: true
+  generate: true
+  commonName: nexus.homelab.csfreak.com
+  dnsNames:
+    - docker.homelab.csfreak.com
+    - ghcr.docker.homelab.csfreak.com
+    - homelab.docker.homelab.csfreak.com
+    - quay.docker.homelab.csfreak.com
+    - redhat.docker.homelab.csfreak.com
+  issuer:
+    name: letsencrypt
+    kind: ClusterIssuer
+
+routes:
+  enabled: true
+  annotations:
+    haproxy.router.openshift.io/ip_whitelist: 172.16.0.0/12 192.168.0.0/16 10.0.0.0/8 100.64.0.0/16
+  routes:
+    - hostname: nexus.homelab.csfreak.com
+      portName: http
+    - hostname: docker.homelab.csfreak.com
+      portName: docker-proxy
+    - hostname: ghcr.docker.homelab.csfreak.com
+      portName: ghcr-proxy
+    - hostname: homelab.docker.homelab.csfreak.com
+      portName: homelab-repo
+    - hostname: quay.docker.homelab.csfreak.com
+      portName: quay-proxy
+    - hostname: redhat.docker.homelab.csfreak.com
+      portName: redhat-proxy

@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "synology-haproxy.fullname" . }}
+  labels:
+    {{- include "synology-haproxy.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+    {{- include "synology-haproxy.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: metrics
+      path: /metrics
+      interval: 10s

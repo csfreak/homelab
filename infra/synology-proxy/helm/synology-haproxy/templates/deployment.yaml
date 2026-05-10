@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "synology-haproxy.fullname" . }}
+  labels:
+    {{- include "synology-haproxy.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.hpa.enabled  }}
+  replicas: {{ .Values.replicaCount | default 1 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "synology-haproxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include "synology-haproxy.config.tpl" . | sha256sum }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "synology-haproxy.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - haproxy
+            - -f
+            - /config/haproxy.cfg
+          ports:
+            - name: metrics
+              containerPort: 8405
+              protocol: TCP
+            {{- range $port := .Values.proxy.ports }}
+            - containerPort: {{ $port.containerPort }}
+              name: {{ $port.name }}
+            {{- if $port.protocol }}
+              protocol: {{ $port.protocol }}
+            {{- end }}
+            {{- end }}
+          readinessProbe:
+            httpGet:
+              port: 8405
+              path: /healthz
+            initialDelaySeconds: 10
+            periodSeconds: 1
+            successThreshold: 10
+            failureThreshold: 1
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "synology-haproxy.fullname" . }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    {{- include "synology-haproxy.selectorLabels" . | nindent 20 }}
+                topologyKey: kubernetes.io/hostname
+              weight: 10
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
