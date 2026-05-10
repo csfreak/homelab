@@ -12,7 +12,7 @@ spec:
       "topology": "localnet",
       "vlanID": 4,
       "mtu": 1500,
-      "netAttachDefName": "homeautomation/homeautomation"
+      "netAttachDefName": "homeautomation/homeautomation",
       "ipam": {
             "type": "dhcp",
             "provide": [

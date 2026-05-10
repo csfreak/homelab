@@ -12,24 +12,24 @@ spec:
       "topology": "localnet",
       "vlanID": 6,
       "mtu": 1500,
-      "netAttachDefName": "media/media"
+      "netAttachDefName": "media/media",
       "ipam": {
-            "type": "dhcp",
-            "provide": [
-              {
-                "option": "host-name",
-                "fromArg": "K8S_POD_NAME"
-              },
-              {
-                "option": "vendor-class-identifier",
-                "value": "openshift"
-              }
-            ],
-            "request": [
-              {
-                "option": "subnet-mask",
-                "skipDefault": true 
-              }
-            ]
+        "type": "dhcp",
+        "provide": [
+          {
+            "option": "host-name",
+            "fromArg": "K8S_POD_NAME"
+          },
+          {
+            "option": "vendor-class-identifier",
+            "value": "openshift"
           }
+        ],
+        "request": [
+          {
+            "option": "subnet-mask",
+            "skipDefault": true 
+          }
+        ]
+      }
     }
