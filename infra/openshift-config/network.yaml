@@ -1,0 +1,79 @@
+apiVersion: operator.openshift.io/v1
+kind: Network
+metadata:
+  name: cluster
+spec:
+  additionalNetworks:
+    - name: homeautomation
+      namespace: homeautomation
+      rawCNIConfig: |-
+        {
+          "name": "homeautomation",
+          "cniVersion": "0.3.1",
+          "type": "bridge",
+          "bridge": "iot-vlan-br",
+          "mtu": 1500,
+          "linkInContainer": false,
+          "ipam": {
+            "type": "dhcp",
+            "provide": [
+              {
+                "option": "host-name",
+                "fromArg": "K8S_POD_NAME"
+              },
+              {
+                "option": "vendor-class-identifier",
+                "value": "openshift"
+              }
+            ],
+            "request": [
+              {
+                "option": "subnet-mask",
+                "skipDefault": true 
+              }
+            ]
+          }
+        }
+      type: Raw
+    - name: media
+      rawCNIConfig: |-
+        {
+          "name": "media",
+          "cniVersion": "0.3.1",
+          "type": "bridge",
+          "bridge": "media-vlan-br",
+          "mtu": 1500,
+          "linkInContainer": false,
+          "ipam": {
+            "type": "dhcp",
+            "provide": [
+              {
+                "option": "host-name",
+                "fromArg": "K8S_POD_NAME"
+              },
+              {
+                "option": "vendor-class-identifier",
+                "value": "openshift"
+              }
+            ],
+            "request": [
+              {
+                "option": "subnet-mask",
+                "skipDefault": true 
+              }
+            ]
+          }
+        }
+      type: Raw
+  clusterNetwork:
+    - cidr: 10.128.0.0/14
+      hostPrefix: 23
+  externalIP:
+    policy: {}
+  networkDiagnostics:
+    mode: ""
+    sourcePlacement: {}
+    targetPlacement: {}
+  networkType: OVNKubernetes
+  serviceNetwork:
+    - 172.30.0.0/16
