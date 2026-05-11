@@ -5,9 +5,9 @@ metadata:
   namespace: openshift-config
 spec:
   secretName: api-named-cert
-  commonName: "api.homelab.csfreak.com"
+  commonName: "api.snolab.csfreak.com"
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
-    - "api.homelab.csfreak.com"
+    - "api.snolab.csfreak.com"
