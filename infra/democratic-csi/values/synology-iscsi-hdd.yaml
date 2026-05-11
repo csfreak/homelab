@@ -1,0 +1,100 @@
+csiDriver:
+  name: "org.democratic-csi.iscsi-synology-hdd"
+
+storageClasses:
+  - name: synology-iscsi-hdd
+    defaultClass: false
+    reclaimPolicy: Delete
+    volumeBindingMode: Immediate
+    allowVolumeExpansion: true
+    parameters:
+      fsType: ext4
+
+node:
+  rbac:
+    openshift:
+      privileged: true
+  driver:
+    localtimeHostPath: null
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+  driverRegistrar:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 16Mi
+      limits:
+        cpu: 20m
+        memory: 32Mi
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      operator: Exists
+
+driver:
+  config:
+    driver: synology-iscsi
+  existingConfigSecret: synology-iscsi-hdd-democratic-csi-driver-config
+
+controller:
+  replicaCount: 1
+  driver:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+  externalAttacher:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 20m
+        memory: 64Mi
+  externalProvisioner:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 20m
+        memory: 64Mi
+  externalResizer:
+    enabled: true
+    resources:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 20m
+        memory: 128Mi
+  externalSnapshotter:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 20m
+        memory: 64Mi
+  tolerations:
+    - key: node-role.kubernetes.io/master
+      operator: Exists
+  nodeSelector:
+    node-role.kubernetes.io/master: ""
+
+csiProxy:
+  enabled: true
+  resources:
+    requests:
+      cpu: 10m
+      memory: 16Mi
+    limits:
+      cpu: 20m
+      memory: 32Mi
