@@ -1,0 +1,21 @@
+resources:
+  - deployment.yaml
+  - external-secret.yaml
+
+labels:
+  - pairs:
+      app.kubernetes.io/name: imap-filter
+      app.kubernetes.io/component: mmuxer
+    includeSelectors: true
+    includeTemplates: true
+
+images:
+  - name: mmuxer
+    newName: homelab.docker.homelab.csfreak.com/mmuxer
+    newTag: 0.6.5-csfreak.7
+    digest: sha256:644c3ab4754bd44342d100c36c6395c011d3bca21c821676c5f2832f5707cd5d
+
+configMapGenerator:
+  - name: mmuxer-config
+    files:
+      - config.yaml

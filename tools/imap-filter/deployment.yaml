@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mmuxer
+spec:
+  selector:
+    matchLabels:
+      app: mmuxer
+  template:
+    metadata:
+      labels:
+        app: mmuxer
+    spec:
+      initContainers:
+        - name: validate-config
+          image: mmuxer
+          envFrom:
+            - secretRef:
+                name: imap-server
+              prefix: mmuxer_
+          args: 
+            - check
+            - --config-file
+            - /config/config.yaml
+          volumeMounts:
+            - name: config
+              mountPath: /config
+        - name: create-destinations
+          image: mmuxer
+          envFrom:
+            - secretRef:
+                name: imap-server
+              prefix: mmuxer_
+          args: 
+            - folder
+            - --config-file
+            - /config/config.yaml
+            - create-missing-folders
+            - --assume-yes
+
+          volumeMounts:
+            - name: config
+              mountPath: /config  
+      containers:
+      - name: mmuxer
+        image: mmuxer
+        envFrom:
+          - secretRef:
+              name: imap-server
+            prefix: mmuxer_
+        args:
+          - monitor
+          - --config-file
+          - /config/config.yaml
+        resources:
+          requests:
+            memory: 128M
+            cpu: 10m
+          limits:
+            memory: 256M
+            cpu: 100m
+        volumeMounts:
+          - name: config
+            mountPath: /config
+      volumes:
+        - name: config
+          configMap:
+            name: mmuxer-config
+
