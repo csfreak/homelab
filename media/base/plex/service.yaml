@@ -6,7 +6,7 @@ metadata:
   annotations:
     metallb.io/allow-shared-ip: "media"
 spec:
-  type: LoadBalancer
+  type: NodePort
   externalTrafficPolicy: Local
   ports:
     - name: pms
