@@ -1,0 +1,155 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plex
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-ssd"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: plex
+  template:
+    metadata:
+      labels:
+        deployment: plex
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |-
+          [
+            {
+              "name": "media", 
+              "namespace": "default"
+            }
+          ]
+    spec:
+      serviceAccountName: media-runas-user
+      terminationGracePeriodSeconds: 120
+      initContainers:
+        - name: cleanup-pidfile
+          image: shell
+          volumeMounts:
+            - name: config
+              mountPath: /config
+          env:
+            - name: PIDFILE
+              value: "/config/Library/Application\ Support/Plex\ Media\ Server/plexmediaserver.pid"
+          command:
+            - sh
+            - -c
+            - "if [ -e \"${PIDFILE}\" ] ; then echo \"Deleting ${PIDFILE}\"; rm \"${PIDFILE}\"; else echo \"Nothing to do\n${PIDFILE} not found\"; fi; exit 0"
+      containers:
+        - name: plex-server
+          image: plex
+          readinessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 15
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /identity
+              port: 32400
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          ports:
+            - name: pms
+              containerPort: 32400
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: plex-token
+          env:
+            - name: KUBE_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: 2Gi
+              cpu: "2"
+              #gpu.intel.com/i915: "1"
+            limits:
+              memory: 8Gi
+              cpu: "3"
+              #gpu.intel.com/i915: "1"
+          volumeMounts:
+            - name: datassd
+              mountPath: /data/ssd
+            - name: datahdd
+              mountPath: /data/hdd
+            - name: config
+              mountPath: /config
+            - name: transcode
+              mountPath: /data/transcode
+        - args:
+            - "--config"
+            - "/etc/vector/plex-logs.toml"
+          image: vector
+          imagePullPolicy: Always
+          name: plex-logs
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+            limits:
+              cpu: 100m
+              memory: 250Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - name: log-config
+              mountPath: /etc/vector
+            - name: config
+              mountPath: /config
+        - name: plex-metrics
+          image: plex_exporter
+          imagePullPolicy: Always
+          env:
+            - name: PLEX_SERVER
+              value: http://localhost:32400
+            - name: PLEX_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: PLEX_CLAIM
+                  name: plex-token
+            - name: PLEX_LOG_LEVEL
+              value: debug
+          resources:
+            limits:
+              memory: 64Mi
+              cpu: 10m
+            requests:
+              memory: 32Mi
+              cpu: 1m
+          ports:
+            - containerPort: 9594
+              name: metrics
+              protocol: TCP
+      # nodeSelector:
+      #   intel.feature.node.kubernetes.io/gpu: "true"
+      #   gpu.intel.com/family: Iris_Pro
+      volumes:
+        - name: datassd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd
+        - name: datahdd
+          persistentVolumeClaim:
+            claimName: shared-media-hdd
+        - name: config
+          persistentVolumeClaim:
+            claimName: plex-config
+        - name: transcode
+          emptyDir: {}
+        - name: log-config
+          configMap:
+            name: plex-log-config

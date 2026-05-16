@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-config
+  namespace: media
+  labels:
+    app: plex
+    app.kubernetes.io/component: plex
+    app.kubernetes.io/instance: media
+    app.kubernetes.io/part-of: plex
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: synology-iscsi
+  volumeMode: Filesystem
+  volumeName: plex-config
+

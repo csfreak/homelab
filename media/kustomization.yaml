@@ -1,0 +1,29 @@
+resources:
+  - base/shared
+  - base/nzbget
+  - base/sonarr
+  - base/radarr
+  - base/plex
+  - base/overseerr
+  - base/backups
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/part-of: media
+
+commonAnnotations:
+  app.openshift.io/vcs-ref: snolab
+  app.openshift.io/vcs-uri: https://github.com/csfreak/homelab.git
+
+images:
+  - name: minio-backup-sidecar
+    newName: ghcr.io/csfreak/minio-backup-sidecar
+    newTag: v0.4.12
+    digest: sha256:807a998f25aafe5cc5cd70246fb1be5215bc645f5ed99ea6acf97c46af755682
+  - name: exportarr
+    newName: ghcr.io/onedr0p/exportarr
+    newTag: v2.3.0
+    digest: sha256:af535d94061cf97a52e1661945ffba78c03f9443eae7c0da1a80a5a4be56b520
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

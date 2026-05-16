@@ -1,0 +1,32 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+  - nzbget-env-secret.yaml
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: downloader
+      app.kubernetes.io/name: nzbget
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: nzbget
+
+images:
+  - name: nzbget
+    newName: homelab.docker.homelab.csfreak.com/homelab/nzbget
+    digest: sha256:563f0cd0a6803346652b42753b8bc292cf40b6a43425bb1bfc7bfc709edd8ea0
+  - name: nzbget-exporter
+    newName: frebib/nzbget-exporter
+    digest: sha256:af2cb4ef63b5801f6e0002562dfe3e36e1c4bf1777e0a96d2cad9c322722a692
+
+configMapGenerator:
+  - envs:
+      - nzbget-config.ini
+    name: nzbget-env-config
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

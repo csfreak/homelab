@@ -1,0 +1,33 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: manager
+      app.kubernetes.io/name: sonarr
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: sonarr
+
+images:
+  - name: sonarr
+    newName: homelab.docker.homelab.csfreak.com/homelab/sonarr
+    digest: ssha256:37b62281461d459bfca22e1f90bfe64f9cea8ce5a1bb1d5b68ed1a9892671ea6
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+configMapGenerator:
+  - envs:
+      - backup-conf.env
+    name: sonarr-backup
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

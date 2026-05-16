@@ -1,0 +1,33 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: manager
+      app.kubernetes.io/name: radarr
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: radarr
+
+images:
+  - name: radarr
+    newName: homelab.docker.homelab.csfreak.com/homelab/radarr
+    digest: sha256:700053771e442b7a3db3b50df689369955822f1dee7e7d13f1fbd6bb15618f8a
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+configMapGenerator:
+  - envs:
+      - backup-conf.env
+    name: radarr-backup
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

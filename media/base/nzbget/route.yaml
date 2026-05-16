@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: nzbget
+spec:
+  host: nzbget-media.apps.homelab.csfreak.com
+  port:
+    targetPort: nzbget
+  to:
+    kind: Service
+    name: nzbget
+    weight: 100
+  wildcardPolicy: None

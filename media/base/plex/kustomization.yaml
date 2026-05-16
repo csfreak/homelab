@@ -1,0 +1,38 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+  - secret.yaml
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: streamer
+      app.kubernetes.io/name: plex
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: plex
+
+images:
+  - name: shell
+    newName: cgr.dev/chainguard/bash
+    digest: sha256:78f0aaf52873e2ec88dd2525e82dd7e309583c6cd115910e50be6d3773a2192a
+  - name: plex
+    newName: homelab.docker.homelab.csfreak.com/homelab/plex
+    digest: sha256:b837af3636c9800e7fbbe5b146935610ffd65ecb6b1dc78cb8e4928508c8e63c
+  - name: vector
+    newName: timberio/vector
+    newTag: latest-distroless-libc
+    digest: sha256:6eacfbd75280d2f4275a83052f4d28cc96a7c0470fed3da53530c3bd46452acc
+  - name: plex_exporter
+    newName: granra/plex_exporter
+    digest: sha256:b287532deb46cfe7eab4acab07d6857597b82e6b4e64303113f4098d516ff538
+configMapGenerator:
+  - files:
+      - plex-logs.toml
+    name: plex-log-config
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

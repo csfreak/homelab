@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"nzbget"},{"apiVersion": "v1","kind":"PersistentVolumeClaim","name":"shared-media-hdd"}]'
+  name: sonarr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: sonarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: sonarr
+    spec:
+      containers:
+        - imagePullPolicy: IfNotPresent
+          image: sonarr
+          name: sonarr
+          ports:
+            - containerPort: 8989
+              name: sonarr
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 100m
+            limits:
+              memory: 2Gi
+              cpu: 600m
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+            - mountPath: /config/Backups
+              name: backups
+            - mountPath: /downloads
+              name: sonarr-downloads
+            - mountPath: /media/hdd
+              name: sonarr-media-hdd
+            - mountPath: /media/ssd
+              name: sonarr-media-ssd
+        - name: sonarr-metrics
+          image: exportarr
+          imagePullPolicy: Always
+          command:
+            - "/exportarr"
+            - "sonarr"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+            requests:
+              memory: "28Mi"
+              cpu: "10m"
+          env:
+            - name: URL
+              value: "http://localhost:8989"
+            - name: PORT
+              value: "9707"
+            - name: CONFIG
+              value: "/config/config.xml"
+          ports:
+            - containerPort: 9707
+              name: metrics
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: sonarr-config
+        - name: backup
+          image: minio-backup-sidecar
+          envFrom:
+            - configMapRef:
+                name: sonarr-backup
+              prefix: CONF_
+            - secretRef:
+                name: backup-credentials
+              prefix: CONF_MINIO__
+          resources:
+            requests:
+              memory: 16Mi
+              cpu: 1m
+            limits:
+              memory: 32Mi
+              cpu: 10m
+          volumeMounts:
+            - mountPath: /sonarr
+              name: backups
+      serviceAccountName: media-runas-user
+      volumes:
+        - name: sonarr-config
+          persistentVolumeClaim:
+            claimName: sonarr-config
+        - name: sonarr-downloads
+          persistentVolumeClaim:
+            claimName: nzbget-downloads
+        - name: sonarr-media-hdd
+          persistentVolumeClaim:
+            claimName: shared-media-hdd
+        - name: sonarr-media-ssd
+          persistentVolumeClaim:
+            claimName: shared-media-ssd
+        - name: backups
+          emptydir: {}

@@ -1,0 +1,11 @@
+[sources.plex]
+type = "file"
+include = [ "/config/Library/Application Support/Plex Media Server/Logs/Plex Media Server.log" ]
+data_dir = "/config/Library/Application Support/Plex Media Server/Logs/"
+host_key = ""
+
+[sinks.stdout]
+type = "console"
+inputs = [ "plex" ]
+encoding.codec = "text"
+
