@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisper
+spec:
+  replicas: 0
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: whisper
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: whisper
+    spec:
+      containers:
+        - command:
+            - python3
+            - -m
+            - wyoming_faster_whisper
+            - --uri
+            - tcp://0.0.0.0:10300
+            - --model
+            - base-int8
+            - --beam-size
+            - "2"
+            - --language
+            - en
+            - --data-dir
+            - /data
+            - --download-dir
+            - /data
+          image: homeassistant/amd64-addon-whisper
+          imagePullPolicy: IfNotPresent
+          name: whisper
+          env:
+            - name: HOME
+              value: /data
+          ports:
+            - containerPort: 10300
+              name: whisper
+              protocol: TCP
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 250m
+            limits:
+              memory: 1Gi
+              cpu: "1"
+          volumeMounts:
+            - mountPath: /data
+              name: whisper-data
+          livenessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - -c
+                - >
+                  echo '{ "type": "describe" }' 
+                  | nc -w 1 localhost 10300 
+                  | grep -iq "faster-whisper" 
+                  || exit 1
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: whisper-data
+          persistentVolumeClaim:
+            claimName: whisper-data
+status: {}

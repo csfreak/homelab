@@ -1,0 +1,36 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - monitoring.yaml
+  - route.yaml
+
+images:
+  - name: homeassistant/home-assistant
+    newName: ghcr.io/home-assistant/home-assistant
+    newTag: 2025.11.3
+    digest: sha256:f971850a6ec1fb5c5fd4e1748058e9e1f589aaf0da933b8d88bb5dee03f5b5e8
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/name: hass
+  - includeSelectors: true
+    pairs:
+      app: homeassistant
+      app.kubernetes.io/component: homeassistant
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+
+configMapGenerator:
+  - behavior: create
+    envs:
+      - backup-conf.env
+    name: hass-backup
+  - behavior: create
+    files:
+      - containerenv
+    name: hass-containerenv
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

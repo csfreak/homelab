@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zwavejs
+spec:
+  ports:
+    - name: zwavejs-ws
+      port: 3000
+      protocol: TCP
+      targetPort: 3000
+    - name: zwavejs-http
+      port: 8091
+      protocol: TCP
+      targetPort: 8091
+  selector:
+    deployment: zwavejs
+  sessionAffinity: None
+  type: ClusterIP

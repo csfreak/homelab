@@ -1,0 +1,33 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appdaemon
+spec:
+  host: appdaemon-homeautomation.apps.homelab.csfreak.com
+  port:
+    targetPort: appdaemon
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: appdaemon
+    weight: 100
+  wildcardPolicy: None
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: appdaemon-code-server
+spec:
+  host: config-appdaemon-homeautomation.apps.homelab.csfreak.com
+  port:
+    targetPort: code-server-http
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: appdaemon
+    weight: 100
+  wildcardPolicy: None

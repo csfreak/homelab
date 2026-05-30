@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass-db
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      deployment: hass-db
+  template:
+    metadata:
+      labels:
+        deployment: hass-db
+    spec:
+      containers:
+        - name: mariadb
+          image: mariadb
+          envFrom:
+            - configMapRef:
+                name: hass-db-config
+              prefix: MYSQL_
+            - secretRef:
+                name: hass-db-user
+              prefix: MYSQL_
+          volumeMounts:
+            - mountPath: /var/lib/mysql/data
+              name: db-data
+          resources:
+            requests:
+              memory: 128Mi
+              cpu: 10m
+            limits:
+              memory: 500Mi
+              cpu: 1000m
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+        - name: mysqld-exporter
+          image: mysqld-exporter:latest
+          resources:
+            limits:
+              memory: 50M
+              cpu: 100m
+            requests:
+              memory: 20M
+              cpu: 10m
+          args:
+            - --mysqld.address=localhost:3306
+            - --mysqld.username=root
+            - --no-collect.slave_status
+            - --no-collect.info_schema.innodb_cmp
+            - --no-collect.info_schema.innodb_cmpmem
+          ports:
+            - name: metrics
+              containerPort: 9104
+              protocol: TCP
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: hass-db

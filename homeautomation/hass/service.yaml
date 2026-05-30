@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hass
+spec:
+  ports:
+    - name: hass-http
+      port: 8123
+      protocol: TCP
+      targetPort: 8123
+    - name: code-server-http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector: {}
+  sessionAffinity: None
+  type: ClusterIP

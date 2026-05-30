@@ -1,0 +1,149 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: hass
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |-
+          [
+            {
+              "name": "homeautomation"
+            },
+            {
+              "name": "media", 
+              "namespace": "default"
+            }
+          ]
+      labels:
+        deployment: hass
+    spec:
+      initContainers:
+        - name: setup-site-packages
+          image: homeassistant/home-assistant
+          command:
+            - cp
+            - -a
+            - /usr/local/lib/python3.13/site-packages/
+            - /site-package-volume/
+          volumeMounts:
+            - mountPath: /site-package-volume
+              name: site-packages
+          
+      containers:
+        - command:
+            - python3
+            - "-m"
+            - homeassistant
+            - "--config"
+            - /config/homeassistant
+            - "--log-no-color"
+          env:
+            - name: DATABASE_URL
+              value: mysql://$(MYSQL_USER):$(MYSQL_PASSWORD)@hass-db:3306/$(MYSQL_DATABASE)?charset-utf8mb4
+          envFrom:
+            - prefix: MYSQL_
+              secretRef:
+                name: hass-db-user
+            - configMapRef:
+                name: hass-db-config
+              prefix: MYSQL_
+          image: homeassistant/home-assistant
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              httpHeaders:
+                - name: Accept
+                  value: text/plain
+              path: /config/info
+              port: 8123
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: hass-server
+          ports:
+            - containerPort: 8123
+              name: hass-http
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 10m
+            limits:
+              memory: 1Gi
+              cpu: "1"
+          volumeMounts:
+            - mountPath: /config
+              name: hass-config
+            - mountPath: /tmp
+              name: cache
+            - mountPath: /.dockerenv
+              name: containerenv
+              subPath: containerenv
+            - mountPath: /usr/local/lib/python3.13/site-packages
+              name: site-packages
+              subPath: site-packages
+        - name: code-server
+          image: code-server
+          volumeMounts:
+            - mountPath: /home/coder/
+              name: hass-config
+          env:
+            - name: HOME
+              value: /home/coder
+          resources:
+            limits:
+              memory: 768Mi
+              cpu: "1"
+            requests:
+              memory: 128Mi
+              cpu: 10m
+          ports:
+            - containerPort: 8080
+              name: codeserver-http
+              protocol: TCP
+        - name: backup
+          image: minio-backup-sidecar
+          envFrom:
+            - configMapRef:
+                name: hass-backup
+              prefix: CONF_
+            - secretRef:
+                name: backup-credentials
+              prefix: CONF_MINIO__
+          resources:
+            requests:
+              memory: 16Mi
+              cpu: 1m
+            limits:
+              memory: 32Mi
+              cpu: 10m
+          volumeMounts:
+            - mountPath: /config
+              name: hass-config
+      securityContext:
+        runAsNonRoot: true
+      volumes:
+        - name: hass-config
+          persistentVolumeClaim:
+            claimName: hass-config
+        - name: cache
+          emptydir: {}
+        - name: containerenv
+          configMap:
+            name: hass-containerenv
+        - name: site-packages
+          emptydir: {}
+            
+status: {}

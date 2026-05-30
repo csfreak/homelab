@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hass-mqtt
+spec:
+  selector:
+    matchLabels:
+      app: mosquitto
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      initContainers:
+        - name: set-passwd
+          image: mosquitto 
+          volumeMounts:
+            - name: mosquitto-secret
+              mountPath: /mosquitto/secret
+            - name: mosquitto-init
+              mountPath: /scripts
+          envFrom:
+            - secretRef:
+                name: mosquitto-passwd
+              prefix: MOSQUITTO_USER_
+          # env:
+          #   - name: DEBUG
+          #     value: '1'
+          command: 
+            - /bin/sh
+          args:
+            - /scripts/set-password.sh
+
+      containers:
+        - name: mosquitto
+          image: mosquitto
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "10m"
+            requests:
+              memory: "64Mi"
+              cpu: "1m"
+          ports:
+          - containerPort: 1883
+            name: mqtt
+            protocol: TCP
+          volumeMounts: 
+            - name: mosquitto-secret
+              mountPath: /mosquitto/secret
+            - name: mosquitto-config
+              mountPath: /mosquitto/config
+            - name: mosquitto-data
+              mountPath: /mosquitto/data
+        - name: mosquitto-exporter
+          image: mosquitto_exporter
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef: 
+                  fieldPath: metadata.name
+            - name: MQTT_CLIENT_ID
+              value: $(MY_POD_NAME)_exporter
+            - name: BROKER_ENDPOINT
+              value: tcp://127.0.0.1:8883
+          resources: 
+            limits:
+              memory: "128Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 9234
+              name: metrics
+              protocol: TCP
+      volumes:
+        - name: mosquitto-secret
+          emptyDir: {}
+        - name: mosquitto-config
+          configMap: 
+            name: mosquitto-config
+            defaultMode: 0600
+        - name: mosquitto-init
+          configMap:
+            name: mosquitto-init
+        - name: mosquitto-data
+          emptyDir: {}
