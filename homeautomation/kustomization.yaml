@@ -1,6 +1,6 @@
 resources:
   # - hass
-  # - hassdb
+  - hassdb
   - zwavejs
   # - cyberpower
   - backups

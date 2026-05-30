@@ -20,7 +20,7 @@ labels:
 images:
   - name: mariadb
     newName: registry.redhat.io/rhel9/mariadb-1011
-    digest: sha256:a60c2ab360f480c6963fbef0c1d4262c9b0e55aa9c8a5917d800e11fce840355
+    digest: sha256:fd40f8604e0c1c55ce1f9745b067a852099a4220c13f60cf42653f63ff3105bb
   - name: mysqld-exporter
     newName: quay.io/prometheus/mysqld-exporter
     newTag: latest
