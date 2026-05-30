@@ -5,8 +5,8 @@ metadata:
   namespace: openshift-nfd
 spec:
   operand:
-    image: >-
-      registry.redhat.io/openshift4/ose-node-feature-discovery-rhel9@sha256:42493e6048ba6d27d4c590a9157b4395478ba9b867350247a302ad7104741cdf
+    # image: >-
+    #   registry.redhat.io/openshift4/ose-node-feature-discovery-rhel9@sha256:42493e6048ba6d27d4c590a9157b4395478ba9b867350247a302ad7104741cdf
     servicePort: 12000
   # extraLabelNs:
   #   - "gpu.intel.com"
