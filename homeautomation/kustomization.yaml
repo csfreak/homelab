@@ -1,5 +1,5 @@
 resources:
-  # - hass
+  - hass
   - hassdb
   - zwavejs
   # - cyberpower
