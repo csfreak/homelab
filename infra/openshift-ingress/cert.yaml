@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard-ingress-cert
+  namespace: openshift-ingress
+spec:
+  secretName: wildcard-ingress-cert
+  commonName: "*.apps.snolab.csfreak.com"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - "*.apps.snolab.csfreak.com"
+    - "*.apps.homelab.csfreak.com"
