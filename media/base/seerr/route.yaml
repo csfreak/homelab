@@ -1,12 +1,12 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: overseerr
+  name: seerr
 spec:
   port:
-    targetPort: overseerr
+    targetPort: seerr
   to:
     kind: Service
-    name: overseerr
+    name: seerr
     weight: 100
   wildcardPolicy: None

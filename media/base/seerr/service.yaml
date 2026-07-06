@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: overseerr
+  name: seerr
 spec:
   ports:
-    - name: overseerr
+    - name: seerr
       port: 5055
       protocol: TCP
-      targetPort: overseerr
+      targetPort: seerr
       appProtocol: http
     - name: metrics
       port: 9850
@@ -15,6 +15,6 @@ spec:
       targetPort: metrics
       appProtocol: http
   selector:
-    deployment: overseerr
+    deployment: seerr
   sessionAffinity: None
   type: ClusterIP

@@ -4,7 +4,7 @@ resources:
   - base/sonarr
   - base/radarr
   - base/plex
-  - base/overseerr
+  - base/seerr
   - base/backups
 
 labels:

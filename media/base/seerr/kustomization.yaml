@@ -1,0 +1,30 @@
+resources:
+  - pvc.yaml
+  - deployment.yaml
+  - service.yaml
+  - route.yaml
+  - monitoring.yaml
+
+labels:
+  - includeTemplates: true
+    pairs:
+      app.kubernetes.io/component: manager
+      app.kubernetes.io/name: seerr
+  - includeSelectors: true
+    includeTemplates: true
+    pairs:
+      app: seerr
+
+images:
+  - name: seerr
+    newName: ghcr.io/seerr-team/seerr
+    newTag: v3.3.0
+    digest: sha256:c92d2dc117f62185e7bcb88cd56efd374ea79210eaf433275449e8d5988eb5a8
+
+generatorOptions:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
+  immutable: true
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

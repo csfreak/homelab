@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.openshift.io/connects-to: '[{"apiVersion":"apps/v1","kind":"Deployment","name":"sonarr"},{"apiVersion":"apps/v1","kind":"Deployment","name":"radarr"},{"apiVersion":"apps/v1","kind":"Deployment","name":"plex"},]'
+  name: seerr
+spec:
+  replicas: 1
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      deployment: seerr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        deployment: seerr
+    spec:
+      containers:
+        - imagePullPolicy: IfNotPresent
+          image: seerr
+          name: seerr
+          ports:
+            - containerPort: 5055
+              name: seerr
+              protocol: TCP
+          resources:
+            requests:
+              memory: 512Mi
+              cpu: 10m
+            limits:
+              memory: 2Gi
+              cpu: 100m
+          volumeMounts:
+            - mountPath: /app/config
+              name: seerr-config
+
+      serviceAccountName: media-runas-user
+      volumes:
+        - name: seerr-config
+          persistentVolumeClaim:
+            claimName: overseerr-config
