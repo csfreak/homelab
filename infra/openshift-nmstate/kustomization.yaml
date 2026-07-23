@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - nmpolicy-dns-search.yaml
   - nmpolicy-iot.yaml
-  - operatory.yaml
+  - operator.yaml
