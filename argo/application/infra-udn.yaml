@@ -15,7 +15,7 @@ spec:
         - /data
       kind: Secret
   source:
-    path: infra/openshift-udn
+    path: infra/udn
     repoURL: https://github.com/csfreak/homelab.git
     targetRevision: snolab
   syncPolicy:
