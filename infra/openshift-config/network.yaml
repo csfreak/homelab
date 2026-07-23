@@ -35,36 +35,36 @@ spec:
           }
         }
       type: Raw
-    - name: media
-      rawCNIConfig: |-
-        {
-          "name": "media",
-          "cniVersion": "0.3.1",
-          "type": "bridge",
-          "bridge": "media-vlan-br",
-          "mtu": 1500,
-          "linkInContainer": false,
-          "ipam": {
-            "type": "dhcp",
-            "provide": [
-              {
-                "option": "host-name",
-                "fromArg": "K8S_POD_NAME"
-              },
-              {
-                "option": "vendor-class-identifier",
-                "value": "openshift"
-              }
-            ],
-            "request": [
-              {
-                "option": "subnet-mask",
-                "skipDefault": true 
-              }
-            ]
-          }
-        }
-      type: Raw
+    # - name: media
+    #   rawCNIConfig: |-
+    #     {
+    #       "name": "media",
+    #       "cniVersion": "0.3.1",
+    #       "type": "bridge",
+    #       "bridge": "media-vlan-br",
+    #       "mtu": 1500,
+    #       "linkInContainer": false,
+    #       "ipam": {
+    #         "type": "dhcp",
+    #         "provide": [
+    #           {
+    #             "option": "host-name",
+    #             "fromArg": "K8S_POD_NAME"
+    #           },
+    #           {
+    #             "option": "vendor-class-identifier",
+    #             "value": "openshift"
+    #           }
+    #         ],
+    #         "request": [
+    #           {
+    #             "option": "subnet-mask",
+    #             "skipDefault": true
+    #           }
+    #         ]
+    #       }
+    #     }
+    #   type: Raw
   clusterNetwork:
     - cidr: 10.128.0.0/14
       hostPrefix: 23
