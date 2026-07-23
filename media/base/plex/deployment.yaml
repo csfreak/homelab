@@ -20,8 +20,8 @@ spec:
         k8s.v1.cni.cncf.io/networks: |-
           [
             {
-              "name": "media", 
-              "namespace": "default"
+              "name": "media-vlan", 
+              "namespace": "media"
             }
           ]
     spec:

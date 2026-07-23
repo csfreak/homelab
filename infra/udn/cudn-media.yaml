@@ -1,0 +1,28 @@
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  name: media-vlan
+spec:
+  namespaceSelector:
+    matchLabels:
+      network.homelab.csfreak.com/media: enabled
+  network:
+    topology: Localnet
+    localnet:
+      physicalNetworkName: vlan-trunk
+      role: Secondary
+      subnets:
+        - 192.168.6.0/24
+      exclude-subnets:
+        - 192.168.6.0/26
+        - 192.168.6.64/27
+        - 192.168.6.80/28
+        - 192.168.6.88/31
+        - 192.168.6.100/30
+        - 192.168.6.104/29
+        - 192.168.6.112/28
+        - 192.168.6.128/25
+      vlan:
+        mode: Access
+        access:
+          id: 6

@@ -10,14 +10,14 @@ spec:
     interfaces:
       - mtu: 1500
         name: media-vlan
-        state: up
+        state: absent
         type: vlan
         vlan:
           base-iface: "{{ capture.ethernet-active.interfaces.0.name }}"
           id: 6
       - mtu: 1500
         name: media-vlan-br
-        state: up
+        state: absent
         type: linux-bridge
         bridge:
           options:
