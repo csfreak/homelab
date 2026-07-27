@@ -26,6 +26,8 @@ spec:
     managedNamespaceMetadata:
       labels:
         argocd.argoproj.io/managed-by: openshift-gitops
+        network.homelab.csfreak.com/media: enabled
+        network.homelab.csfreak.com/iot: enabled
       annotations:
         app.openshift.io/vcs-uri: "https://github.com/csfreak/homelab.git"
         app.openshift.io/vcs-ref: snolab

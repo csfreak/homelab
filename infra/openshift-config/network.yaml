@@ -6,35 +6,35 @@ spec:
   additionalNetworks:
     - name: homeautomation
       namespace: homeautomation
-      rawCNIConfig: |-
-        {
-          "name": "homeautomation",
-          "cniVersion": "0.3.1",
-          "type": "bridge",
-          "bridge": "iot-vlan-br",
-          "mtu": 1500,
-          "linkInContainer": false,
-          "ipam": {
-            "type": "dhcp",
-            "provide": [
-              {
-                "option": "host-name",
-                "fromArg": "K8S_POD_NAME"
-              },
-              {
-                "option": "vendor-class-identifier",
-                "value": "openshift"
-              }
-            ],
-            "request": [
-              {
-                "option": "subnet-mask",
-                "skipDefault": true 
-              }
-            ]
-          }
-        }
-      type: Raw
+      # rawCNIConfig: |-
+      #   {
+      #     "name": "homeautomation",
+      #     "cniVersion": "0.3.1",
+      #     "type": "bridge",
+      #     "bridge": "iot-vlan-br",
+      #     "mtu": 1500,
+      #     "linkInContainer": false,
+      #     "ipam": {
+      #       "type": "dhcp",
+      #       "provide": [
+      #         {
+      #           "option": "host-name",
+      #           "fromArg": "K8S_POD_NAME"
+      #         },
+      #         {
+      #           "option": "vendor-class-identifier",
+      #           "value": "openshift"
+      #         }
+      #       ],
+      #       "request": [
+      #         {
+      #           "option": "subnet-mask",
+      #           "skipDefault": true
+      #         }
+      #       ]
+      #     }
+      #   }
+      # type: Raw
     # - name: media
     #   rawCNIConfig: |-
     #     {

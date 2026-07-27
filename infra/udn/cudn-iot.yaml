@@ -1,0 +1,28 @@
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  name: iot-vlan
+spec:
+  namespaceSelector:
+    matchLabels:
+      network.homelab.csfreak.com/iot: enabled
+  network:
+    topology: Localnet
+    localnet:
+      physicalNetworkName: vlan-trunk
+      role: Secondary
+      subnets:
+        - 192.168.4.0/24
+      excludeSubnets:
+        - 192.168.4.0/26
+        - 192.168.4.64/28
+        - 192.168.4.80/29
+        - 192.168.4.88/31
+        - 192.168.4.100/30
+        - 192.168.4.104/29
+        - 192.168.4.112/28
+        - 192.168.4.128/25
+      vlan:
+        mode: Access
+        access:
+          id: 4

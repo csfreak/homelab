@@ -13,15 +13,7 @@ spec:
   template:
     metadata:
       annotations:
-        k8s.v1.cni.cncf.io/networks: |-
-          [
-            {
-              "name": "homeautomation"
-            },
-            {
-              "name": "media-vlan"
-            }
-          ]
+        k8s.v1.cni.cncf.io/networks: iot-vlan,media-vlan
       labels:
         deployment: hass
     spec:

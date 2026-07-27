@@ -17,13 +17,7 @@ spec:
       labels:
         deployment: plex
       annotations:
-        k8s.v1.cni.cncf.io/networks: |-
-          [
-            {
-              "name": "media-vlan", 
-              "namespace": "media"
-            }
-          ]
+        k8s.v1.cni.cncf.io/networks: media-vlan
     spec:
       serviceAccountName: media-runas-user
       terminationGracePeriodSeconds: 120

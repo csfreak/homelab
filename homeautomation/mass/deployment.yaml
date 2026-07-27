@@ -15,13 +15,7 @@ spec:
       labels:
         deployment: mass
       annotations:
-        k8s.v1.cni.cncf.io/networks: |-
-          [
-            {
-              "name": "media", 
-              "namespace": "default"
-            }
-          ]
+        k8s.v1.cni.cncf.io/networks: media-vlan
     spec:
       containers:
         - image: music-assistant

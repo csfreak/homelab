@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       annotations:
-        k8s.v1.cni.cncf.io/networks: homeautomation
+        k8s.v1.cni.cncf.io/networks: iot-vlan
       labels:
         deployment: esphome
     spec:

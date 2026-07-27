@@ -11,45 +11,40 @@ spec:
       labels:
         app: govee2mqtt
       annotations:
-        k8s.v1.cni.cncf.io/networks: |-
-          [
-            {
-              "name": "homeautomation"
-            }
-          ]
+        k8s.v1.cni.cncf.io/networks: iot-vlan
     spec:
       containers:
-      - name: govee2mqtt
-        image: govee2mqtt
-        envFrom:
-          - configMapRef:
-              name: gv2mqtt-env
-            prefix: GOVEE_
-          - secretRef:
-              name: govee-creds
-            prefix: GOVEE_
-        env:
-          - name: GOVEE_MQTT_USER
-            value: gv2mqtt
-          - name: GOVEE_MQTT_PASSWORD
-            valueFrom: 
-              secretKeyRef:
-                key: GV2MQTT
-                name: mosquitto-passwd
-          - name: GOVEE_MQTT_HOST
-            value: $(HASS_MQTT_SERVICE_HOST)
-          - name: GOVEE_MQTT_PORT
-            value: $(HASS_MQTT_SERVICE_PORT_MQTT)
-        resources:
-          limits:
-            memory: 16Mi
-            cpu: 10m
-          requests:
-            memory: 8Mi
-            cpu: 1m
-        volumeMounts:
-          - name: govee-data
-            mountPath: /data
+        - name: govee2mqtt
+          image: govee2mqtt
+          envFrom:
+            - configMapRef:
+                name: gv2mqtt-env
+              prefix: GOVEE_
+            - secretRef:
+                name: govee-creds
+              prefix: GOVEE_
+          env:
+            - name: GOVEE_MQTT_USER
+              value: gv2mqtt
+            - name: GOVEE_MQTT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: GV2MQTT
+                  name: mosquitto-passwd
+            - name: GOVEE_MQTT_HOST
+              value: $(HASS_MQTT_SERVICE_HOST)
+            - name: GOVEE_MQTT_PORT
+              value: $(HASS_MQTT_SERVICE_PORT_MQTT)
+          resources:
+            limits:
+              memory: 16Mi
+              cpu: 10m
+            requests:
+              memory: 8Mi
+              cpu: 1m
+          volumeMounts:
+            - name: govee-data
+              mountPath: /data
       volumes:
-        - name: govee-data 
+        - name: govee-data
           emptyDir: {}
