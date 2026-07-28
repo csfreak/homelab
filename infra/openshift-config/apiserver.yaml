@@ -8,6 +8,6 @@ spec:
   servingCerts:
     namedCertificates:
       - names:
-          - api.homelab.csfreak.com
+          - api.snolab.csfreak.com
         servingCertificate:
           name: api-named-cert
