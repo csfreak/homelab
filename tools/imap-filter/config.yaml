@@ -160,3 +160,12 @@ rules:
       base: GitHub
       by_owner: True
       by_repo: True
+  - condition:
+      SUBJECT: "jason"
+    move_to: Deadname/Subject
+  - condition:
+      TO: "jason@jasonandmet.net"
+    move_to: Deadname/Email
+  - condition:
+      BODY: "jason"
+    move_to: Deadname/Body
