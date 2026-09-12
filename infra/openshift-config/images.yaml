@@ -1,0 +1,51 @@
+apiVersion: config.openshift.io/v1
+kind: Image
+metadata:
+  name: cluster
+spec: {}
+---
+apiVersion: config.openshift.io/v1
+kind: ImageDigestMirrorSet
+metadata:
+  name: nexus3
+spec:
+  imageDigestMirrors:
+    - mirrors:
+        - docker.homelab.csfreak.com
+      source: docker.io
+      mirrorSourcePolicy: NeverContactSource
+    - mirrors:
+        - ghcr.docker.homelab.csfreak.com
+      source: ghcr.io
+      mirrorSourcePolicy: AllowContactingSource
+    # - mirrors:
+    #     - redhat.docker.homelab.csfreak.com
+    #   source: registry.access.redhat.com
+    #   mirrorSourcePolicy: AllowContactingSource
+    # - mirrors:
+    #     - redhat.homelab.csfreak.com
+    #   source: registry.access.redhat.com
+    #   mirrorSourcePolicy: AllowContactingSource
+---
+apiVersion: config.openshift.io/v1
+kind: ImageTagMirrorSet
+metadata:
+  name: nexus3
+spec:
+  imageTagMirrors:
+    - mirrors:
+        - docker.homelab.csfreak.com
+      source: docker.io
+      mirrorSourcePolicy: NeverContactSource
+    - mirrors:
+        - ghcr.docker.homelab.csfreak.com
+      source: ghcr.io
+      mirrorSourcePolicy: AllowContactingSource
+    # - mirrors:
+    #     - redhat.docker.homelab.csfreak.com
+    #   source: registry.access.redhat.com
+    #   mirrorSourcePolicy: AllowContactingSource
+    # - mirrors:
+    #     - redhat.homelab.csfreak.com
+    #   source: registry.access.redhat.com
+    #   mirrorSourcePolicy: AllowContactingSource
