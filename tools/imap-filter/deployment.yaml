@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: mmuxer
 spec:
+  replicas: 0
   selector:
     matchLabels:
       app: mmuxer
@@ -18,7 +19,7 @@ spec:
             - secretRef:
                 name: imap-server
               prefix: mmuxer_
-          args: 
+          args:
             - check
             - --config-file
             - /config/config.yaml
@@ -31,7 +32,7 @@ spec:
             - secretRef:
                 name: imap-server
               prefix: mmuxer_
-          args: 
+          args:
             - folder
             - --config-file
             - /config/config.yaml
@@ -40,30 +41,29 @@ spec:
 
           volumeMounts:
             - name: config
-              mountPath: /config  
+              mountPath: /config
       containers:
-      - name: mmuxer
-        image: mmuxer
-        envFrom:
-          - secretRef:
-              name: imap-server
-            prefix: mmuxer_
-        args:
-          - monitor
-          - --config-file
-          - /config/config.yaml
-        resources:
-          requests:
-            memory: 128M
-            cpu: 10m
-          limits:
-            memory: 256M
-            cpu: 100m
-        volumeMounts:
-          - name: config
-            mountPath: /config
+        - name: mmuxer
+          image: mmuxer
+          envFrom:
+            - secretRef:
+                name: imap-server
+              prefix: mmuxer_
+          args:
+            - monitor
+            - --config-file
+            - /config/config.yaml
+          resources:
+            requests:
+              memory: 128M
+              cpu: 10m
+            limits:
+              memory: 256M
+              cpu: 100m
+          volumeMounts:
+            - name: config
+              mountPath: /config
       volumes:
         - name: config
           configMap:
             name: mmuxer-config
-
